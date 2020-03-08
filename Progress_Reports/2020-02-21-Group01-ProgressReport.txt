@@ -1,0 +1,35 @@
+This week we expected to be able to do...
+=========================================
+-Start the project
+-Draw Use Case Diagram.
+-Draw E-R Diagram
+-Excel documents with the different tables.
+-Download th DB browser for SQLite.
+-Discover the previous tool.
+-Start to program in SQL.
+
+Optional: Reasons why
+---------------------
+We have begun the Data Base project about our idea(Prosthetic Data Base) and we 
+are tried to follow the roadmap given.
+ 
+This week we did...
+===================
+We have done everything that we expected for this week, wrote in the beginning.
+
+Optional: Reasons why
+---------------------
+
+Next weeks we will do...
+========================
+-Write code (without using the help interface) to create the tables.
+-Select the better option to program the User Interface (UI), choosing between JavaFX and
+ JavaSwing .
+-Start to prepare the presentation of our project with the User Interface drawing in     
+ paper.
+-Open an account in GitHub.
+-Learn to use GitHub.
+-Create a Repository with the members of the group.
+
+Optional: Reasons why
+---------------------

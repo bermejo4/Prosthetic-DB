@@ -1,0 +1,28 @@
+This week we expected to be able to do...
+=========================================
+- finish to define the items and flow of the UI.
+- Learn to upload files and code to github.
+- Upload the last Porgress Report to github
+- Continue with the presentation.
+- Create the DML that will be used in our proyect.
+
+Optional: Reasons why
+---------------------
+
+This week we did...
+===================
+We have done everything that we expected to do.
+
+Optional: Reasons why
+---------------------
+
+Next weeks we will do...
+========================
+-Finish the presentation
+-Watch the video-tutorial about the combination of eclipse and GitHub.
+-Read the cheatsheets uploaded by Rodrigo in GitHub.
+-Understand the project example uploaded by Rodrigo in GitHub
+-Start with the project
+
+Optional: Reasons why
+---------------------

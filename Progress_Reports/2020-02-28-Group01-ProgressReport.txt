@@ -1,0 +1,34 @@
+This week we expected to be able to do...
+=========================================
+-Write code (without using the help interface) to create the tables.
+-Select the better option to program the User Interface (UI), choosing between JavaFX and
+ JavaSwing .
+-Start to prepare the presentation of our project with the User Interface drawing in
+ paper diagrams and the interface..
+-Continue transforming the previous work to a powerpoint. 
+-Open an account in GitHub.
+-Learn to use GitHub.
+-Create a Repository with the members of the group.
+
+Optional: Reasons why
+---------------------
+
+ 
+This week we did...
+===================
+We have done everything that we expected for this week, wrote in the first part of this file..
+
+Optional: Reasons why
+---------------------
+
+
+Next weeks we will do...
+========================
+- finish to define the items and flow of the UI.
+- Learn to upload files and code to github.
+- Upload the last Porgress Report and this one to github
+- Continue with the presentation.
+- Create the DML that will be used in our proyect.
+ 
+Optional: Reasons why
+---------------------
