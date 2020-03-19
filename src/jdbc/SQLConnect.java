@@ -6,6 +6,7 @@ public class SQLConnect {
 	public static void main(String args[]) {
 		try {
 			// Open database connection
+			//ESTE CÓDIGO YA ESTÁ MODIFICADO Y TERMINADO (#firmado: Bermejo)
 			Class.forName("org.sqlite.JDBC");
 			Connection c = DriverManager.getConnection("jdbc:sqlite:./db/Prosthetic_DB.db");
 			c.createStatement().execute("PRAGMA foreign_keys=ON");
