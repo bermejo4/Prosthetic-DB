@@ -1,0 +1,27 @@
+This week we expected to be able to do...
+=========================================
+- Modify mock-ups.
+- Modify the Use Case Diagram.
+- Upload last progress reports to github using eclipse interface.
+- Create the java project in eclipse
+
+Optional: Reasons why
+---------------------
+
+This week we did...
+===================
+We have done everything that we expected to do.
+COVID-19 has appered in our progress
+
+Optional: Reasons why
+---------------------
+
+Next weeks we will do...
+========================
+- Create de UML diagram 
+- distribute the code work
+- assign the pojos to the different components of the group.
+- assign the database interface
+
+Optional: Reasons why
+---------------------
