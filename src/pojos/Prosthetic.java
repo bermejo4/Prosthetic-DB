@@ -2,7 +2,7 @@ package pojos;
 
 import java.io.Serializable;
 
-public class prosthetic implements Serializable {
+public class Prosthetic implements Serializable {
 
 	/**
 	 * 
@@ -18,7 +18,7 @@ public class prosthetic implements Serializable {
 	private Integer numberFailures;
 
 	// Constructor with all variables
-	public prosthetic(Integer id, String type, String material, Float price, Object dimensions, Boolean failures,
+	public Prosthetic(Integer id, String type, String material, Float price, Object dimensions, Boolean failures,
 			Integer numberFailures) {
 		super();
 		this.id = id;
@@ -31,7 +31,7 @@ public class prosthetic implements Serializable {
 	}
 
 	// Empty constructor
-	public prosthetic() {
+	public Prosthetic() {
 		super();
 	}
 
@@ -118,7 +118,7 @@ public class prosthetic implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		prosthetic other = (prosthetic) obj;
+		Prosthetic other = (Prosthetic) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
