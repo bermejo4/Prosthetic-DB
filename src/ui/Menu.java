@@ -17,11 +17,10 @@ public class Menu {
 	System.out.println("4.Hospital");
 	
 	do {
-		System.out.println("Introduce the number: ");
 		max =4;
-		num = Integer.parseInt(reader.readLine());
+		num=InputFlow.takeInteger(reader, "Introduce the number: ");
 		
-	}while(InputErrors.CheckOption(num, max));
+	}while(InputFlow.CheckOption(num, max));
 	
 	switch(num) {
 	case 1: //code
@@ -34,6 +33,7 @@ public class Menu {
 		break;
 	default:
 	}
+	float number = InputFlow.takeFloat(reader, "Introduce a float: ");
 	
 	}
 
