@@ -33,7 +33,8 @@ public class Menu {
 		break;
 	default:
 	}
-	float number = InputFlow.takeFloat(reader, "Introduce a float: ");
+	
+	//float number = InputFlow.takeFloat(reader, "Introduce a float: ");
 	
 	}
 

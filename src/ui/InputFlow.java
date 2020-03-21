@@ -16,13 +16,13 @@ public class InputFlow {
 	
     public static int takeInteger(BufferedReader reader, String text) {
         boolean check = false;
-        int dato = 0;
+        int data = 0;
 
         System.out.println(text);
 
-        while (!check||dato<0) {
+        while (!check||data<0) {
             try {
-                dato = Integer.parseInt(reader.readLine());
+                data = Integer.parseInt(reader.readLine());
                 check = true;
             } catch (IOException ex) {
                 System.out.println("Error reading");
@@ -32,18 +32,18 @@ public class InputFlow {
             }
 
         }
-        return dato;
+        return data;
     }
     
     public static float takeFloat(BufferedReader reader, String text) {
         boolean check = false;
-        float dato = 0;
+        float data = 0;
 
         System.out.println(text);
 
-        while (!check||dato<0) {
+        while (!check||data<0) {
             try {
-                dato = Float.parseFloat(reader.readLine());
+                data = Float.parseFloat(reader.readLine());
                 check = true;
             } catch (IOException ex) {
                 System.out.println("Error reading");
@@ -53,7 +53,7 @@ public class InputFlow {
             }
 
         }
-        return dato;
+        return data;
     }
 	
 }
