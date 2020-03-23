@@ -1,7 +1,7 @@
 package db.inteface;
 import pojos.Patient;
 import java.sql.Date;
-//jeje
+
 
 public interface PatientManager {
 	public void register(Patient patient);
