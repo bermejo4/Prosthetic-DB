@@ -9,4 +9,5 @@ public interface HospitalManager {
 	public void buy(int hospital_id, int prosthetic_id);
 	
 	
+	
 }
