@@ -1,5 +1,5 @@
 package db.inteface;
 
-public class DoctorManager {
+public interface DoctorManager {
 
 }

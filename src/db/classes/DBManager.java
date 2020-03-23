@@ -1,4 +1,4 @@
-package db.inteface;
+package db.classes;
 
 public class DBManager {
 
