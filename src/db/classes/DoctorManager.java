@@ -24,7 +24,7 @@ public class DoctorManager {
 	
 	public void searchPatientByTelephone(float tel) {
 		//- searchPatientByTelephone( telephone:Float) : List<Patient>
-
+		//;
 	}
 
 }
