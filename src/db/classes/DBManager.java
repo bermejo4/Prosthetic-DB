@@ -81,7 +81,7 @@ public class DBManager implements DBManagerinterface{
 			stmt3.executeUpdate(sql3);
 			stmt3.close();
 			Statement stmt4 = c.createStatement(); 
-			String sql4 = "CREATE TABLE doctor "
+			String sql4 = "CREATE TABLE prosthetic "
 					+ "(prosthetic_id	INTEGER NOT NULL UNIQUE,"
 					+ "material 	TEXT,"
 					+ "type		TEXT,"
