@@ -66,11 +66,18 @@ public class DBManager implements DBManagerinterface{
 			stmt2.executeUpdate(sql2);
 			stmt2.close();
 			Statement stmt3 = c.createStatement();
-			String sql3 = "CREATE TABLE reports "
-					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
-					   + " name     TEXT     NOT NULL, "
-					   + " content  TEXT  	NOT NULL, "
-					   + " date		DATE)";
+			String sql3 = "CREATE TABLE patient "
+					   + "patient_id INTEGER NOT NULL UNIQUE,"
+					   + "name    TEXT,"
+					   + "lastname        TEXT,"
+					   + "dob     DATE,"
+					   + "address   TEXT,"
+					   + "telephone     INTEGER, "
+					   + "problem      TEXT, "
+					   + "doc_id     INTEGER, "
+					   + "PRIMARY KEY('patient_id'),"
+					   + "FOREIGN KEY('doc_id') REFERENCES doctor(doctor_id)"
+					   + "ON DELETE SET NULL ON UPDATE CASCADE)";
 			stmt3.executeUpdate(sql3);
 			stmt3.close();
 			Statement stmt4 = c.createStatement(); 
