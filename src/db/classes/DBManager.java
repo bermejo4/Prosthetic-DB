@@ -56,12 +56,13 @@ public class DBManager implements DBManagerinterface{
 			stmt1.close();
 			
 			Statement stmt2 = c.createStatement();
-			String sql2 = "CREATE TABLE hospital 
+			String sql2 = "CREATE TABLE hospital "
 					+ "(hospital_id	INTEGER NOT NULL UNIQUE,"
 					+ "name 	TEXT,"
 					+ "location 	TEXT,"
 					+ "patient_id	INTEGER,"
 					+ "PRIMARY KEY('hospital_id'))";
+			
 			stmt2.executeUpdate(sql2);
 			stmt2.close();
 			
