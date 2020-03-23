@@ -54,17 +54,18 @@ public class DBManager implements DBManagerinterface{
 			
 			stmt1.executeUpdate(sql1);
 			stmt1.close();
+			
 			Statement stmt2 = c.createStatement();
-			String sql2 = "CREATE TABLE employees "
-					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
-					   + " name     TEXT     NOT NULL, "
-					   + " dob      DATE	 NOT NULL, "
-					   + " address  TEXT, "
-					   + " salary   REAL,"
-					   + " photo	BLOB,"
-					   + " dep_id	INTEGER REFERENCES departments(id) ON UPDATE CASCADE ON DELETE SET NULL)";
+			String sql2 = "CREATE TABLE hospital "
+					+ "(hospital_id	INTEGER NOT NULL UNIQUE,"
+					+ "name 	TEXT,"
+					+ "location 	TEXT,"
+					+ "patient_id	INTEGER,"
+					+ "PRIMARY KEY('hospital_id'))";
+			
 			stmt2.executeUpdate(sql2);
 			stmt2.close();
+			
 			Statement stmt3 = c.createStatement();
 			String sql3 = "CREATE TABLE patient "
 					   + "patient_id INTEGER NOT NULL UNIQUE,"
@@ -80,16 +81,25 @@ public class DBManager implements DBManagerinterface{
 					   + "ON DELETE SET NULL ON UPDATE CASCADE)";
 			stmt3.executeUpdate(sql3);
 			stmt3.close();
-			Statement stmt4 = c.createStatement();
-			String sql4 = "CREATE TABLE authors "
-					   + "(report_id     INTEGER  REFERENCES reports(id) ON UPDATE CASCADE ON DELETE SET NULL,"
-					   + " employee_id   INTEGER  REFERENCES employees(id) ON UPDATE CASCADE ON DELETE SET NULL,"
-					   + " PRIMARY KEY (report_id,employee_id))";
+			
+			Statement stmt4 = c.createStatement(); 
+			String sql4 = "CREATE TABLE prosthetic "
+					+ "(prosthetic_id	INTEGER NOT NULL UNIQUE,"
+					+ "material 	TEXT,"
+					+ "type		TEXT,"
+					+ "dimension	TEXT"
+					+ "failures   TEXT"
+					+ "price 	REAL"
+					+ "patient_id	INTEGER,"
+					+ "hospital_id 	INTEGER"
+					+ "PRIMARY KEY('prosthetic_id'),"
+					+ "FOREIGN KEY('Hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
+			
 			stmt4.executeUpdate(sql4);
 			stmt4.close();
 			System.out.println("Tables created.");
 			// Create table: end
-			
+			//
 			// - Set initial values for the Primary Keys
 			// - Don't try to understand this until JPA is explained
 			// This is usually not needed, since the initial values
