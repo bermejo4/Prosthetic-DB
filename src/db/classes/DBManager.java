@@ -73,11 +73,18 @@ public class DBManager implements DBManagerinterface{
 					   + " date		DATE)";
 			stmt3.executeUpdate(sql3);
 			stmt3.close();
-			Statement stmt4 = c.createStatement();
-			String sql4 = "CREATE TABLE authors "
-					   + "(report_id     INTEGER  REFERENCES reports(id) ON UPDATE CASCADE ON DELETE SET NULL,"
-					   + " employee_id   INTEGER  REFERENCES employees(id) ON UPDATE CASCADE ON DELETE SET NULL,"
-					   + " PRIMARY KEY (report_id,employee_id))";
+			Statement stmt4 = c.createStatement(); 
+			String sql4 = "CREATE TABLE doctor "
+					+ "(prosthetic_id	INTEGER NOT NULL UNIQUE,"
+					+ "material 	TEXT,"
+					+ "type		TEXT,"
+					+ "dimension	TEXT"
+					+ "failures   TEXT"
+					+ "price 	REAL"
+					+ "patient_id	INTEGER,"
+					+ "hospital_id 	INTEGER"
+					+ "PRIMARY KEY('prosthetic_id'),"
+					+ "FOREIGN KEY('Hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
 			stmt4.executeUpdate(sql4);
 			stmt4.close();
 			System.out.println("Tables created.");
