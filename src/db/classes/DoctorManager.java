@@ -1,8 +1,10 @@
 package db.classes;
 import pojos.*;
 import java.sql.Date;
+import db.inteface.*;
 
-public class DoctorManager {
+
+public class DoctorManager implements DoctorManagerInterface{
 	public void register(Doctor doc) {
 	
 	}
