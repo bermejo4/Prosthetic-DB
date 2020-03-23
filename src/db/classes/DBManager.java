@@ -91,7 +91,7 @@ public class DBManager implements DBManagerinterface{
 			stmt4.close();
 			System.out.println("Tables created.");
 			// Create table: end
-			
+			//
 			// - Set initial values for the Primary Keys
 			// - Don't try to understand this until JPA is explained
 			// This is usually not needed, since the initial values
