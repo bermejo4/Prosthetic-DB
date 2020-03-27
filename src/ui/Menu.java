@@ -138,7 +138,7 @@ public class Menu {
 		System.out.println("1.Name of Hospital.");
 		System.out.println("2.Location.");
 		System.out.println("3.Telephone.");
-		System.out.println("4.Password.");
+		System.out.println("4.Password.");//sjdnc
 	}
 	
 
