@@ -19,15 +19,19 @@ public class DoctorManager implements DoctorManagerInterface{
 	public void login(Doctor doc) {
 		
 	}
+	
 	public void update(Doctor doc) {
 		
 	}
+	
 	public void addPatient(Patient pat) {
 		
 	}
+	
 	public void selectProsthetic(Prosthetic prost) {
 		
 	}
+	
 	public void assignProsthetic(Date date) {
 		
 	}
