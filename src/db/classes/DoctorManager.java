@@ -1,10 +1,18 @@
 package db.classes;
 import pojos.*;
-import java.sql.Date;
+
+import java.sql.*;
 import db.inteface.*;
 
 
 public class DoctorManager implements DoctorManagerInterface{
+	
+	private Connection c;
+	
+	public DoctorManager(Connection c) {
+		this.c=c;
+	}
+	
 	public void register(Doctor doc) {
 	
 	}
