@@ -2,10 +2,15 @@ package ui;
 
 import java.io.*;
 
+import db.classes.DoctorManager;
+import pojos.Doctor;
+import 
+
 public class Menu {
 
 	private static BufferedReader reader;
 	private static int num;
+	private Doctor doc;
 
 	public static void main(String[] args) throws Exception {
 		reader = new BufferedReader(new InputStreamReader(System.in));
@@ -52,6 +57,8 @@ public class Menu {
 			switch (num) {
 			case 1: // Register
 				registerMenu();
+				
+				DoctorManager.register(doc);
 				break;
 			case 2: // Login
 				loginMenu();
@@ -138,7 +145,7 @@ public class Menu {
 		System.out.println("1.Name of Hospital.");
 		System.out.println("2.Location.");
 		System.out.println("3.Telephone.");
-		System.out.println("4.Password.");//sjdnc
+		System.out.println("4.Password.");
 	}
 	
 
