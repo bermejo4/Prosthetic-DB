@@ -15,7 +15,7 @@ public class DBManager implements DBManagerinterface{
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:./db/Prosthetic_DB.db");
 			c.createStatement().execute("PRAGMA foreign_keys=ON");
-			System.out.println("Database connection opened.");
+			//System.out.println("Database connection opened.");
 			//create DoctorManager
 			doctor = new DoctorManager(c);
 			//create HospitalManager
@@ -31,10 +31,8 @@ public class DBManager implements DBManagerinterface{
 	public void disconnect() {
 		try {			
 			// Close database connection
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:./db/Prosthetic_DB.db");
 			c.close();
-			System.out.println("Database connection closed.");
+			//System.out.println("Database connection closed.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -131,4 +129,32 @@ public class DBManager implements DBManagerinterface{
 			e.printStackTrace();
 		}
 	}
+
+	public DoctorManager getDoctor() {
+		return doctor;
+	}
+
+	public HospitalManager getHospital() {
+		return hospital;
+	}
+
+	public PatientManager getPatient() {
+		return patient;
+	}
+	
+	public int getLastId() {
+		int result = 0;
+		try {
+			String query = "SELECT last_insert_rowid() AS lastId";
+			PreparedStatement p = c.prepareStatement(query);
+			ResultSet rs= p.executeQuery();
+			result = rs.getInt("lastId");
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+
 }
