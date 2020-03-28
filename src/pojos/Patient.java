@@ -13,18 +13,18 @@ public class Patient implements Serializable {
 	private Integer id;
 	private String name;
 	private String lastname;
-	private float telephone;
+	private Float telephone;
 	private Date dof;
-	private boolean gender;
+	private Boolean gender;
 	private String problem;
-	private String addres;
+	private String address;
 	
 	
 	public Patient() {
 		super();
 	}
 
-	public Patient(Integer id, String name, String lastname, float telephone, Date dof, boolean gender, String problem,
+	public Patient(Integer id, String name, String lastname, Float telephone, Date dof, Boolean gender, String problem,
 			String addres) {
 		super();
 		this.id = id;
@@ -34,7 +34,7 @@ public class Patient implements Serializable {
 		this.dof = dof;
 		this.gender = gender;
 		this.problem = problem;
-		this.addres = addres;
+		this.address = addres;
 	}
 
 	
@@ -42,7 +42,7 @@ public class Patient implements Serializable {
 	@Override
 	public String toString() {
 		return "Patient [id=" + id + ", name=" + name + ", lastname=" + lastname + ", telephone=" + telephone + ", dof="
-				+ dof + ", gender=" + gender + ", problem=" + problem + ", addres=" + addres + "]";
+				+ dof + ", gender=" + gender + ", problem=" + problem + ", addres=" + address + "]";
 	}
 
 	@Override
@@ -141,12 +141,12 @@ public class Patient implements Serializable {
 
 
 	public String getAddres() {
-		return addres;
+		return address;
 	}
 
 
 	public void setAddres(String addres) {
-		this.addres = addres;
+		this.address = addres;
 	}
 	
 	

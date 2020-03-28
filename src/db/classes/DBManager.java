@@ -97,6 +97,32 @@ public class DBManager implements DBManagerinterface{
 			
 			stmt4.executeUpdate(sql4);
 			stmt4.close();
+			
+			Statement stmt5 = c.createStatement(); 
+			String sql5 = "CREATE TABLE BiomedEng "
+					+ "(BE_id	INTEGER NOT NULL UNIQUE,"
+					+ "name 	TEXT,"
+					+ "lastname		TEXT,"
+					+ "gender	TEXT"
+					+ "department 	TEXT"
+					+ "telephone 	INTEGER"
+					+ "hospital_id 	INTEGER"
+					+ "PRIMARY KEY('BE_id'),"
+					+ "FOREIGN KEY('Hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
+			
+			stmt5.executeUpdate(sql5);
+			stmt5.close();
+			
+			Statement stmt6 = c.createStatement(); 
+			String sql6 = "CREATE TABLE M_M "
+					+ "(BE_id	INTEGER NOT NULL UNIQUE,"
+
+					+ "PRIMARY KEY('BE_id'),"
+					+ "FOREIGN KEY('Hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
+			
+			stmt5.executeUpdate(sql6);
+			stmt5.close();
+			
 			System.out.println("Tables created.");
 			// Create table: end
 			//
