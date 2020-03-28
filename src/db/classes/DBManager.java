@@ -5,6 +5,9 @@ import db.inteface.*;
 
 public class DBManager implements DBManagerinterface{
 	private Connection c;
+	private DoctorManager doctor;
+	private HospitalManager hospital;
+	private PatientManager patient;
 	
 	public void connect() {
 		try {
@@ -13,6 +16,12 @@ public class DBManager implements DBManagerinterface{
 			c = DriverManager.getConnection("jdbc:sqlite:./db/Prosthetic_DB.db");
 			c.createStatement().execute("PRAGMA foreign_keys=ON");
 			System.out.println("Database connection opened.");
+			//create DoctorManager
+			doctor = new DoctorManager(c);
+			//create HospitalManager
+			hospital = new HospitalManager(c);
+			//create PatientManager
+			patient = new PatientManager(c);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

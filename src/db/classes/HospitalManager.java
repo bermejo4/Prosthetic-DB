@@ -12,6 +12,10 @@ import java.util.List;
 
 public class HospitalManager implements HospitalManagerInterface {
 	private Connection c;
+	
+	public HospitalManager(Connection c) {
+		this.c=c;
+	}
 
 	public void register(Hospital hospital) {
 
