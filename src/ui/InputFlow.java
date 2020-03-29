@@ -55,5 +55,30 @@ public class InputFlow {
         }
         return data;
     }
+    public static String takeGender(BufferedReader reader, String text) {
+    	String gender= " ";
+    	String answer;
+    	try {
+    	do {
+        System.out.println(text);
+        answer = reader.readLine();
+    	switch(answer) {
+    	case "M":
+    	case "m": gender="male";break;
+    	case "F":
+    	case "f": gender="female";break;
+    	default:
+    		System.out.println("The data introduced is NOT correct.");
+    		System.out.println("Please introduce m in case of Male or f in case of Female");
+    		System.out.println("Try again.");
+    		gender=" ";
+    		break;
+    	}
+    	}while(gender.equals(" "));
+    	}catch(IOException ex) {
+    		System.out.println("Error reading");
+    	}
+    	return gender;
+    }
 	
 }
