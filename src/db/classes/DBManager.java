@@ -79,6 +79,7 @@ public class DBManager implements DBManagerinterface{
 					   + "name    TEXT,"
 					   + "lastname        TEXT,"
 					   + "dob     DATE,"
+					   + "dof	  DATE,"
 					   + "address   TEXT,"
 					   + "telephone     FLOAT, "
 					   + "gender	TEXT,"
