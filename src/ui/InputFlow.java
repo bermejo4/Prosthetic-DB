@@ -60,7 +60,7 @@ public class InputFlow {
     	String answer;
     	try {
     	do {
-        System.out.println(text);
+        System.out.println(text+"(m/f)");
         answer = reader.readLine();
     	switch(answer) {
     	case "M":
