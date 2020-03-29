@@ -2,15 +2,12 @@ package ui;
 
 import java.io.*;
 
-import db.classes.DoctorManager;
-import pojos.Doctor;
-import 
+ 
 
 public class Menu {
 
 	private static BufferedReader reader;
 	private static int num;
-	private Doctor doc;
 
 	public static void main(String[] args) throws Exception {
 		reader = new BufferedReader(new InputStreamReader(System.in));
@@ -57,8 +54,6 @@ public class Menu {
 			switch (num) {
 			case 1: // Register
 				registerMenu();
-				
-				DoctorManager.register(doc);
 				break;
 			case 2: // Login
 				loginMenu();
