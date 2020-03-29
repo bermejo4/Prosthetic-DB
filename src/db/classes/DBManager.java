@@ -3,7 +3,7 @@ import java.sql.*;
 
 import db.inteface.*;
 
-public class DBManager implements DBManagerinterface{
+public class DBManager implements DBManagerInterface{
 	private Connection c;
 	private DoctorManager doctor;
 	private HospitalManager hospital;
@@ -132,15 +132,15 @@ public class DBManager implements DBManagerinterface{
 		}
 	}
 
-	public DoctorManager getDoctor() {
+	public DoctorManager getDoctorManager() {
 		return doctor;
 	}
 
-	public HospitalManager getHospital() {
+	public HospitalManager getHospitalManager() {
 		return hospital;
 	}
 
-	public PatientManager getPatient() {
+	public PatientManager getPatientManager() {
 		return patient;
 	}
 	

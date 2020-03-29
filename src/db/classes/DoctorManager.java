@@ -23,7 +23,26 @@ public class DoctorManager implements DoctorManagerInterface {
 
 	}
 
-	public void update(Doctor doc) {
+	public void update(Patient pat) {
+		try {
+			//Update every aspect for a particular dog
+			String sql = "UPDATE dogs SET name=?, lastname=?, dob=?, dof=?, address=?, telephone=?, gender=?, problem=?, doc_id=? WHERE id=?";
+			PreparedStatement s = c.prepareStatement(sql);
+			s.setString(1,pat.getName());
+			s.setString(2, pat.getLastname());
+			s.setDate(3, pat.getDob());
+			s.setDate(4, pat.getDof());
+			s.setString(5, pat.getAddres());
+			s.setFloat(6, pat.getTelephone());
+			s.setString(7, pat.getGender());
+			s.setString(8, pat.getProblem());
+			s.setInt(9, pat.getDoctor_id());
+			s.executeUpdate();
+			s.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
