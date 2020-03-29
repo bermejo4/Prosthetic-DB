@@ -3,7 +3,6 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Patient implements Serializable {
-//jeje
 	
 	/**
 	 * 
@@ -15,7 +14,7 @@ public class Patient implements Serializable {
 	private String lastname;
 	private float telephone;
 	private Date dof;
-	private boolean gender;
+	private String gender;
 	private String problem;
 	private String addres;
 	
@@ -24,7 +23,7 @@ public class Patient implements Serializable {
 		super();
 	}
 
-	public Patient(Integer id, String name, String lastname, float telephone, Date dof, boolean gender, String problem,
+	public Patient(Integer id, String name, String lastname, float telephone, Date dof, String gender, String problem,
 			String addres) {
 		super();
 		this.id = id;
@@ -120,12 +119,12 @@ public class Patient implements Serializable {
 	}
 
 
-	public boolean isGender() {
+	public String isGender() {
 		return gender;
 	}
 
 
-	public void setGender(boolean gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
