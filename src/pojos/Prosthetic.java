@@ -30,6 +30,14 @@ public class Prosthetic implements Serializable {
 		this.numberFailures = numberFailures;
 	}
 
+	
+	public Prosthetic(Integer id, String type) {
+		super();
+		this.id = id;
+		this.type = type;
+	}
+
+
 	// Empty constructor
 	public Prosthetic() {
 		super();
