@@ -170,6 +170,7 @@ public class Menu {
 	
 	public static void searchPatientByTelephone() {
 		float tel=InputFlow.takeFloat(reader, "Introduce the telephone number of the patient whose want to search:");
+		//
 		
 	}
 	
