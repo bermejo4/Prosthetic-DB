@@ -10,7 +10,7 @@ public class Doctor implements Serializable{
 	private Integer id;
 	private String name;
 	private String lastname;
-	private Float telephone;
+	private String telephone;
 	private Boolean gender;
 	private String department;
 	private Integer hospital_id;
@@ -22,7 +22,7 @@ public class Doctor implements Serializable{
 		
 	}
 
-	public Doctor(String name, String lastname, Float telephone, Boolean gender, String department,
+	public Doctor(String name, String lastname, String telephone, Boolean gender, String department,
 			Integer hospital_id) {
 		super();
 		this.name = name;
@@ -88,11 +88,11 @@ public class Doctor implements Serializable{
 		this.lastname = lastname;
 	}
 
-	public Float getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
 
-	public void setTelephone(Float telephone) {
+	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
