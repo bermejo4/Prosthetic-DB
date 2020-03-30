@@ -128,8 +128,8 @@ public class DBManager implements DBManagerInterface{
 					+ "FOREIGN KEY('prost_id')REFERENCES prosthetic('prosthetic_id') ON DELETE SET NULL ON UPDATE CASCADE,"
 					+ "FOREIGN KEY('be_id') REFERENCES biomedical_engineer('be_id') ON DELETE SET NULL ON UPDATE CASCADE)";
 			
-			stmt5.executeUpdate(sql6);
-			stmt5.close();
+			stmt6.executeUpdate(sql6);
+			stmt6.close();
 			
 			System.out.println("Tables created.");
 			// Create table: end
