@@ -14,11 +14,11 @@ public class Prosthetic implements Serializable {
 	private String material;
 	private Float price;
 	private Object dimensions;
-	private Boolean failures;
+	private String failures;
 	private Integer numberFailures;
 
 	// Constructor with all variables
-	public Prosthetic(Integer id, String type, String material, Float price, Object dimensions, Boolean failures,
+	public Prosthetic(Integer id, String type, String material, Float price, Object dimensions, String failures,
 			Integer numberFailures) {
 		super();
 		this.id = id;
@@ -85,11 +85,11 @@ public class Prosthetic implements Serializable {
 		this.dimensions = dimensions;
 	}
 
-	public Boolean getFailures() {
+	public String getFailures() {
 		return failures;
 	}
 
-	public void setFailures(Boolean failures) {
+	public void setFailures(String failures) {
 		this.failures = failures;
 	}
 
