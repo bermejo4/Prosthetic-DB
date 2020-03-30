@@ -9,7 +9,7 @@ public class Biomedical_Eng implements Serializable {
 	private Integer id;
 	private String name;
 	private String lastname;
-	private Float telephone;
+	private String telephone;
 	private Boolean gender;
 	private String speciality;
 	private String worklocation;
@@ -19,7 +19,7 @@ public class Biomedical_Eng implements Serializable {
 		
 	}
 	
-	public Biomedical_Eng( String name, String lastname, Float telephone,
+	public Biomedical_Eng( String name, String lastname, String telephone,
 			Boolean gender, String specialty, String worklocation) {
 		super();
 		
@@ -88,11 +88,11 @@ public class Biomedical_Eng implements Serializable {
 		this.lastname = lastname;
 	}
 
-	public Float getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
 
-	public void setTelephone(Float telephone) {
+	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
