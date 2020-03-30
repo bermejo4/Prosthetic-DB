@@ -1,10 +1,13 @@
 package ui;
 
 import java.io.*;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import db.classes.*;
 import db.inteface.*;
+import pojos.Patient;
 
 public class Menu {
 
@@ -71,6 +74,7 @@ public class Menu {
 				System.out.println("3.Select a Prosthetic.");
 				System.out.println("4.Date of fitting.");
 				System.out.println("5.Search a patients file.");
+				System.out.println("6.Add/Modify/Delete a patient.");
 				num = requestNumber(5);
 				switch (num) {
 				case 1: // Register
@@ -166,6 +170,52 @@ public class Menu {
 	
 	public static void searchPatientByTelephone() {
 		float tel=InputFlow.takeFloat(reader, "Introduce the telephone number of the patient whose want to search:");
+		
+	}
+	
+	public static void addModifyDelete() {
+		System.out.println("What dou you want to do?");
+		System.out.println(" 1.- Add patient");
+		System.out.println(" 2.- Modify patient");
+		System.out.println(" 3.- Delete patient");
+		
+		switch(requestNumber(3)) {
+		case 1: //Add Patient
+			
+		break;
+		case 2: //Modify Patient
+		break;
+		case 3: //Delete Patient
+		break;
+		
+		}
+	}
+	
+	public static void addPatient() throws Exception{
+		System.out.println("Name:");
+		String name = reader.readLine();
+		System.out.println("Lastname:");
+		String lastname= reader.readLine();
+		System.out.println("Phone number:");
+		String telephone=reader.readLine();
+		//dob
+		System.out.println("Day of Birthday (yyyy-MM-dd): ");
+		String dob=reader.readLine();
+		LocalDate dayofbirth= LocalDate.parse(dob, formatter);
+		//dof
+		System.out.println("Day of Fitting (yyyy-MM-dd)");
+		String dof=reader.readLine();
+		LocalDate dayoffitting=LocalDate.parse(dof,formatter);
+		System.out.println("Gender:");
+		String gender=reader.readLine();
+		System.out.println("Problem:");
+		String problem=reader.readLine();
+		System.out.println("Address:");
+		String address=reader.readLine();
+		int doctor_id=InputFlow.takeInteger(reader, "Doctor id: ");
+		
+		Patient pat= new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), Date.valueOf(dayoffitting), gender, problem, address, doctor_id);
+		doctorManagerInterface.addPatient(pat);
 		
 	}
 
