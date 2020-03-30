@@ -40,8 +40,20 @@ public class Patient implements Serializable {
 		this.address = addres;
 		this.doctor_id=doctor_id;
 	}
-
 	
+	public Patient(String name, String lastname, String telephone, Date dob, Date dof, String gender, String problem,
+			String address, Integer doctor_id) {
+		super();
+		this.name = name;
+		this.lastname = lastname;
+		this.telephone = telephone;
+		this.dob = dob;
+		this.dof = dof;
+		this.gender = gender;
+		this.problem = problem;
+		this.address = address;
+		this.doctor_id = doctor_id;
+	}
 
 
 	@Override
