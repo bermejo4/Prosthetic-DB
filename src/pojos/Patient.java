@@ -172,9 +172,6 @@ public class Patient implements Serializable {
 	public void setDoctor_id(Integer doctor_id) {
 		this.doctor_id = doctor_id;
 	}
-	
-	
-	
-	
+
 	
 }
