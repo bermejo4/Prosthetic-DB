@@ -163,5 +163,10 @@ public class Menu {
 		System.out.println("3.Telephone.");
 		System.out.println("4.Password.");
 	}
+	
+	public static void searchPatientByTelephone() {
+		float tel=InputFlow.takeFloat(reader, "Introduce the telephone number of the patient whose want to search:");
+		
+	}
 
 }

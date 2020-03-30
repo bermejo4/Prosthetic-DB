@@ -78,8 +78,6 @@ public class DoctorManager implements DoctorManagerInterface {
 	}
 
 	public List<Patient> searchPatientByTelephone(float tel) {
-		//- searchPatientByTelephone( telephone:Float) : List<Patient>
-		//;
 		//create an empty list of Patients
 		List<Patient> patientsList = new ArrayList<Patient>();
 		//search for all patients that fit the name
