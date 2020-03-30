@@ -50,7 +50,7 @@ public class DoctorManager implements DoctorManagerInterface {
 		//Insert the provided patient pat
 		try {
 			String sql = "INSERT INTO patients (name, lastname, dob, dof, address, telephone, gender, problem, doctor_id)"
-					+ "VALUES (?,?,?,?,?,?,?,?,?);";
+					+ " VALUES (?,?,?,?,?,?,?,?,?);";
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1, pat.getName());
 			prep.setString(2, pat.getLastname());

@@ -12,38 +12,22 @@ public class Patient implements Serializable {
 	private Integer id;
 	private String name;
 	private String lastname;
-<<<<<<< HEAD
-	private Float telephone;
-=======
-	private float telephone;
+	private String telephone;
 	private Date dob;
->>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 	private Date dof;
-<<<<<<< HEAD
-	private Boolean gender;
-=======
 	private String gender;
->>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 	private String problem;
-<<<<<<< HEAD
 	private String address;
-=======
-	private String addres;
 	private Integer doctor_id;
->>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 	
 	
 	public Patient() {
 		super();
 	}
 
-<<<<<<< HEAD
-	public Patient(Integer id, String name, String lastname, Float telephone, Date dof, Boolean gender, String problem,
-			String addres) {
-=======
-	public Patient(Integer id, String name, String lastname, float telephone, Date dof, Date dob, String gender, String problem,
+
+	public Patient(Integer id, String name, String lastname, String telephone, Date dof, Date dob, String gender, String problem,
 			String addres, Integer doctor_id) {
->>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 		super();
 		this.id = id;
 		this.name = name;
@@ -53,26 +37,14 @@ public class Patient implements Serializable {
 		this.dof = dof;
 		this.gender = gender;
 		this.problem = problem;
-<<<<<<< HEAD
 		this.address = addres;
-=======
-		this.addres = addres;
 		this.doctor_id=doctor_id;
->>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 	}
 
 	
 
-	@Override
-<<<<<<< HEAD
-	public String toString() {
-		return "Patient [id=" + id + ", name=" + name + ", lastname=" + lastname + ", telephone=" + telephone + ", dof="
-				+ dof + ", gender=" + gender + ", problem=" + problem + ", addres=" + address + "]";
-	}
 
 	@Override
-=======
->>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -101,7 +73,7 @@ public class Patient implements Serializable {
 	@Override
 	public String toString() {
 		return "Patient [id=" + id + ", name=" + name + ", lastname=" + lastname + ", telephone=" + telephone + ", dob="
-				+ dob + ", dof=" + dof + ", gender=" + gender + ", problem=" + problem + ", addres=" + addres
+				+ dob + ", dof=" + dof + ", gender=" + gender + ", problem=" + problem + ", addres=" + address
 				+ ", doctor_id=" + doctor_id + "]";
 	}
 
@@ -135,12 +107,12 @@ public class Patient implements Serializable {
 	}
 
 
-	public float getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
 
 
-	public void setTelephone(float telephone) {
+	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 	
