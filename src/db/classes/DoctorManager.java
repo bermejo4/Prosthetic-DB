@@ -33,7 +33,7 @@ public class DoctorManager implements DoctorManagerInterface {
 			s.setDate(3, pat.getDob());
 			s.setDate(4, pat.getDof());
 			s.setString(5, pat.getAddres());
-			s.setFloat(6, pat.getTelephone());
+			s.setString(6, pat.getTelephone());
 			s.setString(7, pat.getGender());
 			s.setString(8, pat.getProblem());
 			s.setInt(9, pat.getDoctor_id());
@@ -57,7 +57,7 @@ public class DoctorManager implements DoctorManagerInterface {
 			prep.setDate(3, pat.getDob());
 			prep.setDate(4, pat.getDof());
 			prep.setString(5, pat.getAddres());
-			prep.setFloat(6, pat.getTelephone());
+			prep.setString(6, pat.getTelephone());
 			prep.setString(7, pat.getGender());
 			prep.setString(8, pat.getProblem());
 			prep.setInt(9, pat.getDoctor_id());
@@ -95,7 +95,7 @@ public class DoctorManager implements DoctorManagerInterface {
 				Date dob = rs.getDate("dob");
 				Date dof = rs.getDate("dof");
 				String address = rs.getString("address");
-				float telephone = rs.getFloat("telephone");
+				String telephone = rs.getString("telephone");
 				String gender = rs.getString("gender");
 				String problem = rs.getString("problem");
 				int doctor_id=rs.getInt("doc_id");

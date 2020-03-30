@@ -46,7 +46,7 @@ public class DBManager implements DBManagerInterface{
 			//Connection c = DriverManager.getConnection("jdbc:sqlite:./db/Prosthetic_DB.db");
 			//c.createStatement().execute("PRAGMA foreign_keys=ON");
 			//System.out.println("Database connection opened.");
-			connect();
+			//connect();
 			
 			// Create tables: begin
 			Statement stmt1 = c.createStatement();
@@ -81,7 +81,7 @@ public class DBManager implements DBManagerInterface{
 					   + "dob     DATE,"
 					   + "dof	  DATE,"
 					   + "address   TEXT,"
-					   + "telephone     FLOAT, "
+					   + "telephone     TEXT, "
 					   + "gender	TEXT,"
 					   + "problem      TEXT, "
 					   + "doc_id     INTEGER, "
@@ -96,8 +96,8 @@ public class DBManager implements DBManagerInterface{
 					+ "(prosthetic_id	INTEGER NOT NULL UNIQUE,"
 					+ "material 	TEXT,"
 					+ "type		TEXT,"
-					+ "dimension	TEXT"
-					+ "failures   TEXT"
+					+ "dimension	TEXT,"
+					+ "failures   TEXT,"
 					+ "price 	REAL"
 					+ "patient_id	INTEGER,"
 					+ "hospital_id 	INTEGER"
@@ -109,25 +109,24 @@ public class DBManager implements DBManagerInterface{
 			
 			Statement stmt5 = c.createStatement(); 
 			String sql5 = "CREATE TABLE BiomedEng "
-					+ "(BE_id	INTEGER NOT NULL UNIQUE,"
+					+ "(be_id	INTEGER NOT NULL UNIQUE,"
 					+ "name 	TEXT,"
 					+ "lastname		TEXT,"
-					+ "gender	TEXT"
-					+ "department 	TEXT"
-					+ "telephone 	INTEGER"
-					+ "hospital_id 	INTEGER"
-					+ "PRIMARY KEY('BE_id'),"
-					+ "FOREIGN KEY('Hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
+					+ "gender	TEXT,"
+					+ "speciality TEXT,"
+					+ "worklocation TEXT"
+					+ "PRIMARY KEY('be_id')";
+					//+ "FOREIGN KEY('Hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
 			
 			stmt5.executeUpdate(sql5);
 			stmt5.close();
 			
 			Statement stmt6 = c.createStatement(); 
 			String sql6 = "CREATE TABLE M_M "
-					+ "(BE_id	INTEGER NOT NULL UNIQUE,"
-
-					+ "PRIMARY KEY('BE_id'),"
-					+ "FOREIGN KEY('Hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
+					+ "(prost_id	INTEGER NOT NULL,"
+					+ "be_id INTEGER NOT NULL,"
+					+ "FOREIGN KEY('prost_id')REFERENCES prosthetic('prosthetic_id') ON DELETE SET NULL ON UPDATE CASCADE,"
+					+ "FOREIGN KEY('be_id') REFERENCES biomedical_engineer('be_id') ON DELETE SET NULL ON UPDATE CASCADE)";
 			
 			stmt5.executeUpdate(sql6);
 			stmt5.close();
@@ -141,18 +140,18 @@ public class DBManager implements DBManagerInterface{
 			// are set when the first row is inserted, but since we
 			// are using JPA and JDBC in the same project, and JPA
 			// needs an initial value, we do this.
-			Statement stmtSeq = c.createStatement();
-			String sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('departments', 1)";
-			stmtSeq.executeUpdate(sqlSeq);
-			sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('employees', 1)";
-			stmtSeq.executeUpdate(sqlSeq);
-			sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('reports', 1)";
-			stmtSeq.executeUpdate(sqlSeq);
-			stmtSeq.close();
+			//Statement stmtSeq = c.createStatement();
+			//String sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('departments', 1)";
+			//stmtSeq.executeUpdate(sqlSeq);
+			//sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('employees', 1)";
+			//stmtSeq.executeUpdate(sqlSeq);
+			//sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('reports', 1)";
+			//stmtSeq.executeUpdate(sqlSeq);
+			//stmtSeq.close();
 			
 			// Close database connection
-			c.close();
-			System.out.println("Database connection closed.");
+			//c.close();
+			//System.out.println("Database connection closed.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
