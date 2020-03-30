@@ -2,6 +2,8 @@ package db.classes;
 import db.inteface.*;
 import pojos.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PatientManager implements PatientManagerInterface {
 	
@@ -19,4 +21,6 @@ public class PatientManager implements PatientManagerInterface {
 	public void viewDate(Date date) {
 		System.out.println("Hello! Your next appointment is: " + date);
 	}
+
+
 }
