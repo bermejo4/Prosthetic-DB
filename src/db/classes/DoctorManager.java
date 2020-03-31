@@ -77,7 +77,7 @@ public class DoctorManager implements DoctorManagerInterface {
 
 	}
 
-	public List<Patient> searchPatientByTelephone(float tel) {
+	public List<Patient> searchPatientByTelephone(String tel) {
 		//create an empty list of Patients
 		List<Patient> patientsList = new ArrayList<Patient>();
 		//search for all patients that fit the name
@@ -85,7 +85,7 @@ public class DoctorManager implements DoctorManagerInterface {
 			String sql = "SELECT * FROM patient WHERE telephone LIKE ?";
 			PreparedStatement prep = c.prepareStatement(sql);
 			//AQUÍ
-			prep.setFloat(1, tel);
+			prep.setString(1, "%"+tel+"%");
 			ResultSet rs = prep.executeQuery();
 			
 			while(rs.next()) {
