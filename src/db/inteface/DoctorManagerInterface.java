@@ -11,5 +11,5 @@ public interface DoctorManagerInterface {
 	public void addPatient(Patient pat);
 	public void selectProsthetic(Prosthetic prost);
 	public void assignProsthetic(Date date);
-	public List<Patient> searchPatientByTelephone(float tel);
+	public List<Patient> searchPatientByTelephone(String tel);
 }
