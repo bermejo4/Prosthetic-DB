@@ -88,6 +88,8 @@ public class InputFlow {
 	}
 
 	public static String takeTelephone(BufferedReader reader, String text) {
+		//check a telephone number
+		//and return a number telephone without +
 		String num = "error in takeTelephone()";
 		boolean check = true;
 		try {
@@ -109,7 +111,8 @@ public class InputFlow {
 				}
 			} while (check);
 			if(num.substring(0,1).contains("+")) {
-				num=num.substring(1,num.length());
+				//short to a number without +34
+				num=num.substring(3,num.length());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

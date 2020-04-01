@@ -24,7 +24,7 @@ public class Menu {
 	private static int num;
 
 	public static void main(String[] args) throws Exception {
-		// Connect with the database
+		// Connect with the database.
 		dbManagerInterface = new DBManager();
 		dbManagerInterface.connect();
 		doctorManagerInterface = dbManagerInterface.getDoctorManager();
