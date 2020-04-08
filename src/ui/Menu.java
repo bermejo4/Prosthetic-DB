@@ -61,11 +61,21 @@ public class Menu {
 					break;
 				case 2: // Login
 					loginMenu();
+					//Aqui introducimos un float del telefono, pues lo guardo y lo uso en view appointments
 					break;
 				case 3: // Select Hospital
 					break;
-				case 4: // View appointments
-					break;
+				case 4: 
+					//if(login==true) {
+						//uso el mismo float introducido en el login
+						//PatientManager.viewDate(telephone);
+						//break;
+					//}
+					//else {
+						float telephone = InputFlow.takeFloat(reader, "Introduce your telephone number: ");
+						patientManagerInterface.viewDate(telephone);
+						break;
+					//}
 				}
 				break;
 			case 2: // Doctor
@@ -157,7 +167,7 @@ public class Menu {
 	}
 
 	public static void loginMenu() {
-		System.out.println("REGISTER MENU:");
+		System.out.println("LOGIN MENU:");
 		System.out.println("1.Telephone.");
 		System.out.println("2.Password.");
 	}
