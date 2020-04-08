@@ -20,7 +20,7 @@ public class HospitalManager implements HospitalManagerInterface {
 	public void register(Hospital hospital) {
 
 	}
-
+ 
 	public void login(Hospital hospital) {
 
 	}
@@ -29,7 +29,7 @@ public class HospitalManager implements HospitalManagerInterface {
 		// we use this method to link a prosthetic to the catalogue of a hospital
 		List<Prosthetic> prostheticList = new ArrayList<Prosthetic>();
 
-		// we get all the prosthetic availables
+		// we get all the available prosthetics 
 
 		try {
 			String sql = "SELECT * FROM prosthetic";

@@ -84,7 +84,7 @@ public class Menu {
 				System.out.println("1.Register.");
 				System.out.println("2.Login.");
 				System.out.println("3.Select a Prosthetic.");
-				System.out.println("4.Date of fitting.");
+				System.out.println("4.Select date of fitting.");
 				System.out.println("5.Search a patients file.");
 				System.out.println("6.Add/Modify/Delete a patient.");
 				num = requestNumber(5);
@@ -108,7 +108,7 @@ public class Menu {
 				System.out.println("What do you want to do?");
 				System.out.println("1.Register.");
 				System.out.println("2.Login.");
-				System.out.println("3.Upload Prothesis information");
+				System.out.println("3.Upload Prosthetic information");
 				num = requestNumber(3);
 				switch (num) {
 				case 1: // Register
