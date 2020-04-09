@@ -61,11 +61,21 @@ public class Menu {
 					break;
 				case 2: // Login
 					loginMenu();
+					//Aqui introducimos un float del telefono, pues lo guardo y lo uso en view appointments
 					break;
 				case 3: // Select Hospital
 					break;
-				case 4: // View appointments
-					break;
+				case 4: 
+					//if(login==true) {
+						//uso el mismo float introducido en el login
+						//PatientManager.viewDate(telephone);
+						//break;
+					//}
+					//else {
+						float telephone = InputFlow.takeFloat(reader, "Introduce your telephone number: ");
+						patientManagerInterface.viewDate(telephone);
+						break;
+					//}
 				}
 				break;
 			case 2: // Doctor
@@ -74,7 +84,7 @@ public class Menu {
 				System.out.println("1.Register.");
 				System.out.println("2.Login.");
 				System.out.println("3.Select a Prosthetic.");
-				System.out.println("4.Date of fitting.");
+				System.out.println("4.Select date of fitting.");
 				System.out.println("5.Search a patients file.");
 				System.out.println("6.Add/Modify/Delete a patient.");
 				num = requestNumber(5);
@@ -98,7 +108,7 @@ public class Menu {
 				System.out.println("What do you want to do?");
 				System.out.println("1.Register.");
 				System.out.println("2.Login.");
-				System.out.println("3.Upload Prothesis information");
+				System.out.println("3.Upload Prosthetic information");
 				num = requestNumber(3);
 				switch (num) {
 				case 1: // Register
@@ -157,7 +167,7 @@ public class Menu {
 	}
 
 	public static void loginMenu() {
-		System.out.println("REGISTER MENU:");
+		System.out.println("LOGIN MENU:");
 		System.out.println("1.Telephone.");
 		System.out.println("2.Password.");
 	}
