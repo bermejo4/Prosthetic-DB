@@ -102,6 +102,7 @@ public class Menu {
 				case 5: // Search a patient file
 					break;
 				case 6: //Add/modify/Delete patient.
+					addModifyDelete();
 					break;
 				}
 				break;
@@ -153,7 +154,6 @@ public class Menu {
 		// int max is the maximun option that is acceptable
 		int num;
 		do {
-			max = 4;
 			num = InputFlow.takeInteger(reader, "Introduce the number: ");
 
 		} while (InputFlow.CheckOption(num, max));
@@ -182,14 +182,14 @@ public class Menu {
 		System.out.println("3.Telephone.");
 		System.out.println("4.Password.");
 	}
-	
+	//--------------------------------------------------------------------------
 	public static void searchPatientByTelephone() {
 		float tel=InputFlow.takeFloat(reader, "Introduce the telephone number of the patient whose want to search:");
 		
 		
 	}
 	
-	public static void addModifyDelete() {
+	public static void addModifyDelete() throws Exception {
 		System.out.println("What dou you want to do?");
 		System.out.println(" 1.- Add patient");
 		System.out.println(" 2.- Modify patient");
@@ -197,7 +197,7 @@ public class Menu {
 		
 		switch(requestNumber(3)) {
 		case 1: //Add Patient
-			
+			addPatient();
 		break;
 		case 2: //Modify Patient
 		break;
@@ -219,9 +219,9 @@ public class Menu {
 		String dob=reader.readLine();
 		LocalDate dayofbirth= LocalDate.parse(dob, formatter);
 		//dof
-		System.out.println("Day of Fitting (yyyy-MM-dd)");
-		String dof=reader.readLine();
-		LocalDate dayoffitting=LocalDate.parse(dof,formatter);
+		//System.out.println("Day of Fitting (yyyy-MM-dd)");
+		//String dof=reader.readLine();
+		//LocalDate dayoffitting=LocalDate.parse(dof,formatter);
 		System.out.println("Gender:");
 		String gender=reader.readLine();
 		System.out.println("Problem:");
@@ -230,7 +230,7 @@ public class Menu {
 		String address=reader.readLine();
 		int doctor_id=InputFlow.takeInteger(reader, "Doctor id: ");
 		
-		Patient pat= new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), Date.valueOf(dayoffitting), gender, problem, address, doctor_id);
+		Patient pat= new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor_id);
 		doctorManagerInterface.addPatient(pat);
 		
 	}
