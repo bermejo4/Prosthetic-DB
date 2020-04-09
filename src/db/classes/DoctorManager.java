@@ -49,7 +49,7 @@ public class DoctorManager implements DoctorManagerInterface {
 	public void addPatient(Patient pat) {
 		//Insert the provided patient pat
 		try {
-			String sql = "INSERT INTO patients (name, lastname, dob, dof, address, telephone, gender, problem, doctor_id)"
+			String sql = "INSERT INTO patient (name, lastname, dob, dof, address, telephone, gender, problem, doctor_id)"
 					+ " VALUES (?,?,?,?,?,?,?,?,?);";
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1, pat.getName());
