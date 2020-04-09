@@ -36,7 +36,7 @@ public class Menu {
 		//System.out.println("telefono cogío: "+ InputFlow.takeTelephone(reader, "Introduce a telephone: "));
 		
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
-		dbManagerInterface.createTables();
+		//dbManagerInterface.createTables();
 		while (true) {
 			System.out.println("Who are you?");
 			System.out.println("1.Patient");
@@ -87,7 +87,7 @@ public class Menu {
 				System.out.println("4.Select date of fitting.");
 				System.out.println("5.Search a patients file.");
 				System.out.println("6.Add/Modify/Delete a patient.");
-				num = requestNumber(5);
+				num = requestNumber(6);
 				switch (num) {
 				case 1: // Register
 					registerMenu();
@@ -100,6 +100,8 @@ public class Menu {
 				case 4: // date of fitting
 					break;
 				case 5: // Search a patient file
+					break;
+				case 6: //Add/modify/Delete patient.
 					break;
 				}
 				break;
