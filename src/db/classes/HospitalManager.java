@@ -72,3 +72,4 @@ public class HospitalManager implements HospitalManagerInterface {
 		
 	}
 }
+
