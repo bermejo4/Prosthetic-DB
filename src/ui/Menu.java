@@ -33,7 +33,7 @@ public class Menu {
 
 		reader = new BufferedReader(new InputStreamReader(System.in));
 		
-		System.out.println("telefono cogío: "+ InputFlow.takeTelephone(reader, "Introduce a telephone: "));
+		//System.out.println("telefono cogío: "+ InputFlow.takeTelephone(reader, "Introduce a telephone: "));
 		
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
 		dbManagerInterface.createTables();

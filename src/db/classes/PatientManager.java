@@ -12,9 +12,11 @@ public class PatientManager implements PatientManagerInterface {
 	public PatientManager(Connection connection) {
 		this.c=connection;
 	}
+	
 	public void register(Patient patient) {
 		
 	}
+	
 	public void login(Patient patient) {
 		
 	}
