@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.*;
+import java.util.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import db.classes.*;
 import db.inteface.*;
 import pojos.Patient;
+import pojos.Prosthetic;
 
 public class Menu {
 
@@ -158,7 +160,7 @@ public class Menu {
 					loginMenu();
 					break;
 				case 3: // Buy a prosthetic
-					//buyProsthetic();
+					buyProsthetic(hospital_id);
 					break;
 				}
 				break;
@@ -255,9 +257,20 @@ public class Menu {
 		
 	}
 	
-	public static void buyProsthetic(int prosthetic_id) {
+	public static void buyProsthetic(int hospital_id) throws Exception{
 		//Show the list of all available prosthetic on that specific hospital
-		//List<Prosthetic> prostheticList = HospitalManagerInterface.showProsthetic()
+		List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics();
+		for(Prosthetic prosthetic : prostheticList) {
+			System.out.println(prosthetic);
+		}
+		//Ask for the Id of the prosthetic you want to buy 
+		System.out.println("Please, type the ID of the prosthetic you want to buy: ");
+		int prosthetic_id = Integer.parseInt(reader.readLine());
+		
+		//the specific hospital buys the prosthetic choosed 
+		hospitalManagerInterface.buy(hospital_id, prosthetic_id);
+		
+		
 	}
 
 }
