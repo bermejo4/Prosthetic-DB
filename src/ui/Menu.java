@@ -158,6 +158,7 @@ public class Menu {
 					loginMenu();
 					break;
 				case 3: // Buy a prosthetic
+					//buyProsthetic();
 					break;
 				}
 				break;
@@ -252,6 +253,11 @@ public class Menu {
 		Patient pat= new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), Date.valueOf(dayoffitting), gender, problem, address, doctor_id);
 		doctorManagerInterface.addPatient(pat);
 		
+	}
+	
+	public static void buyProsthetic(int prosthetic_id) {
+		//Show the list of all available prosthetic on that specific hospital
+		//List<Prosthetic> prostheticList = HospitalManagerInterface.showProsthetic()
 	}
 
 }
