@@ -10,6 +10,6 @@ public interface DoctorManagerInterface {
 	public void update(Patient pat);
 	public void addPatient(Patient pat);
 	public void selectProsthetic(Prosthetic prost);
-	public void assignProsthetic(Date date);
+	public void assignProsthetic(Date date, Patient pac);
 	public List<Patient> searchPatientByTelephone(String tel);
 }

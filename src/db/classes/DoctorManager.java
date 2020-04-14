@@ -70,11 +70,11 @@ public class DoctorManager implements DoctorManagerInterface {
 	}
 
 	public void selectProsthetic(Prosthetic prost) {
-
+		
 	}
 
-	public void assignProsthetic(Date date) {
-
+	public void assignProsthetic(Date date, Patient pac) {
+		
 	}
 
 	public List<Patient> searchPatientByTelephone(String tel) {
