@@ -48,6 +48,7 @@ public class Menu {
 			System.out.println("3.Biomedical Engineer");
 			System.out.println("4.Hospital");
 			System.out.println("\n5.Exit");
+			System.out.println("---------\n");
 
 			num = requestNumber(5);
 

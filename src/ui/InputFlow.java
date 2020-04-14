@@ -89,24 +89,25 @@ public class InputFlow {
 
 	public static String takeTelephone(BufferedReader reader, String text) {
 		// check a telephone number
-		// and return a number telephone without +
+		// and return a number telephone without +34 prefix if the user have added.
 		String num = "error in takeTelephone()";
 		boolean check = true;
+		char cad[];
 		try {
 			do {
-				System.out.println(text);
+				System.out.println(text+" (without spaces)");
 				num = reader.readLine();
-				char cad[];
 				cad = num.toCharArray();
 				check = false;
 				for (int i = 0; i < num.length(); i++) {
-					if (Character.isDigit(cad[i]) || num.substring(0, 1).equals("+")) {
+					System.out.println(cad[i] + " y... "+Character.isDigit(cad[i]) );
+					if (Character.isDigit(cad[i]) || num.substring(0, 1).equals("+")|| !Character.isSpaceChar(cad[i])) {
 
 					} else {
 						check = true;
 					}
 				}
-				if (check == false) {
+				if (check == true) {
 					System.out.println("You don't introduce a telephone number.");
 					System.out.println("Please introduce numbers.");
 				}
@@ -114,7 +115,8 @@ public class InputFlow {
 			if (num.substring(0, 1).contains("+")) {
 				// short to a number without +34
 				num = num.substring(3, num.length());
-			}
+			}	
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
