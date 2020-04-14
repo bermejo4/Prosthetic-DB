@@ -37,7 +37,6 @@ public class Menu {
 
 		reader = new BufferedReader(new InputStreamReader(System.in));
 		
-		System.out.println("telefono cogío: "+ InputFlow.takeTelephone(reader, "Introduce a telephone: "));
 		
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
 		//dbManagerInterface.createTables();
@@ -238,15 +237,15 @@ public class Menu {
 		System.out.println("Lastname:");
 		String lastname= reader.readLine();
 		System.out.println("Phone number:");
-		String telephone=reader.readLine();
+		String telephone=InputFlow.takeTelephone(reader, "Introduce a telephone: ");
 		//dob
 		System.out.println("Day of Birthday (yyyy-MM-dd): ");
 		String dob=reader.readLine();
 		LocalDate dayofbirth= LocalDate.parse(dob, formatter);
 		//dof
-		System.out.println("Day of Fitting (yyyy-MM-dd)");
+		/*System.out.println("Day of Fitting (yyyy-MM-dd)");
 		String dof=reader.readLine();
-		LocalDate dayoffitting=LocalDate.parse(dof,formatter);
+		LocalDate dayoffitting=LocalDate.parse(dof,formatter);*/
 		System.out.println("Gender:");
 		String gender=reader.readLine();
 		System.out.println("Problem:");
@@ -257,6 +256,15 @@ public class Menu {
 		
 		Patient pat= new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), Date.valueOf(dayoffitting), gender, problem, address, doctor_id);
 		doctorManagerInterface.addPatient(pat);
+		
+	}
+	public static void selectDayOfFitting(Patient pac) throws IOException {
+		// NOO ESTAA TERMINADOO -------------------------------------------------------------------------<<<-------<<---------
+			System.out.println("Day of Fitting (yyyy-MM-dd)");
+			String dof=reader.readLine();
+			LocalDate dayoffitting=LocalDate.parse(dof,formatter);
+			doctorManagerInterface.assignProsthetic(dayoffitting, pac);
+			
 		
 	}
 	
