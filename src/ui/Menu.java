@@ -37,7 +37,7 @@ public class Menu {
 
 		reader = new BufferedReader(new InputStreamReader(System.in));
 		
-		//System.out.println("telefono cogío: "+ InputFlow.takeTelephone(reader, "Introduce a telephone: "));
+		System.out.println("telefono cogío: "+ InputFlow.takeTelephone(reader, "Introduce a telephone: "));
 		
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
 		//dbManagerInterface.createTables();
@@ -47,8 +47,9 @@ public class Menu {
 			System.out.println("2.Doctor");
 			System.out.println("3.Biomedical Engineer");
 			System.out.println("4.Hospital");
+			System.out.println("\n5.Exit");
 
-			num = requestNumber(4);
+			num = requestNumber(5);
 
 			switch (num) {
 			case 1: // patient
@@ -160,11 +161,12 @@ public class Menu {
 					loginMenu();
 					break;
 				case 3: // Buy a prosthetic
-					buyProsthetic(hospital_id);
+					//buyProsthetic(hospital_id);
 					break;
 				}
 				break;
-			default:
+			default:// Exit
+				System.exit(0);
 			}
 		}
 		// float number = InputFlow.takeFloat(reader, "Introduce a float: ");
@@ -175,7 +177,7 @@ public class Menu {
 		// int max is the maximun option that is acceptable
 		int num;
 		do {
-			max = 4;
+		
 			num = InputFlow.takeInteger(reader, "Introduce the number: ");
 
 		} while (InputFlow.CheckOption(num, max));

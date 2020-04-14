@@ -88,12 +88,13 @@ public class InputFlow {
 	}
 
 	public static String takeTelephone(BufferedReader reader, String text) {
-		//check a telephone number
-		//and return a number telephone without +
+		// check a telephone number
+		// and return a number telephone without +
 		String num = "error in takeTelephone()";
 		boolean check = true;
 		try {
 			do {
+				System.out.println(text);
 				num = reader.readLine();
 				char cad[];
 				cad = num.toCharArray();
@@ -104,15 +105,15 @@ public class InputFlow {
 					} else {
 						check = true;
 					}
-					if (check==false) {
-						System.out.println("You don't introduce a telephone number.");
-						System.out.println("Please introduce numbers.");
-					}
+				}
+				if (check == false) {
+					System.out.println("You don't introduce a telephone number.");
+					System.out.println("Please introduce numbers.");
 				}
 			} while (check);
-			if(num.substring(0,1).contains("+")) {
-				//short to a number without +34
-				num=num.substring(3,num.length());
+			if (num.substring(0, 1).contains("+")) {
+				// short to a number without +34
+				num = num.substring(3, num.length());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
