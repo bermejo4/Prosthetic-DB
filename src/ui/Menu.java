@@ -32,14 +32,13 @@ public class Menu {
 		doctorManagerInterface = dbManagerInterface.getDoctorManager();
 		patientManagerInterface = dbManagerInterface.getPatientManager();
 		hospitalManagerInterface = dbManagerInterface.getHospitalManager();
-		
-		boolean loggeado=false;
+
+		boolean loggeado = false;
 
 		reader = new BufferedReader(new InputStreamReader(System.in));
-		
-		
+
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
-		//dbManagerInterface.createTables();
+		// dbManagerInterface.createTables();
 		while (true) {
 			System.out.println("Who are you?");
 			System.out.println("1.Patient");
@@ -68,36 +67,40 @@ public class Menu {
 					loginMenu();
 					loggeado = true;
 					break;
-				case 3: 
-					System.out.println("Choose a Hospital:\n1.Hospital Universitario Fundacion Jimenez Diaz.\n2.Hospital Universitario La Paz.\n"
-							+ "3.Hospital Universitario 12 de Octubre.\n4.Hospital Universitario Ramon y Cajal.\n5.Hospital Nacional de Paraplejicos (Toledo).\n");
+				case 3:
+					System.out.println(
+							"Choose a Hospital:\n1.Hospital Universitario Fundacion Jimenez Diaz.\n2.Hospital Universitario La Paz.\n"
+									+ "3.Hospital Universitario 12 de Octubre.\n4.Hospital Universitario Ramon y Cajal.\n5.Hospital Nacional de Paraplejicos (Toledo).\n");
 					num = requestNumber(5);
-					switch(num) {
-						case 1: System.out.println("You have chosen 'Hospital Universitario Fundacion Jimenez Diaz'.");
-							break;
-						case 2: System.out.println("You have chosen 'Hospital Universitario La Paz'");
-							break;
-						case 3: System.out.println("You have chosen 'Hospital Universitario 12 de Octubre'.");
-							break;
-						case 4: System.out.println("You have chosen 'Hospital Universitario Ramon y Cajal'.");
-							break;
-						case 5:System.out.println("You have chosen 'Hospital Nacional de Paraplejicos'.");
-							break;
+					switch (num) {
+					case 1:
+						System.out.println("You have chosen 'Hospital Universitario Fundacion Jimenez Diaz'.");
+						break;
+					case 2:
+						System.out.println("You have chosen 'Hospital Universitario La Paz'");
+						break;
+					case 3:
+						System.out.println("You have chosen 'Hospital Universitario 12 de Octubre'.");
+						break;
+					case 4:
+						System.out.println("You have chosen 'Hospital Universitario Ramon y Cajal'.");
+						break;
+					case 5:
+						System.out.println("You have chosen 'Hospital Nacional de Paraplejicos'.");
+						break;
 					}
 					break;
-				case 4: 
-					//Voy a dejar este hasta que se haga lo del login para que funcione algo.
-					if(!loggeado) {
+				case 4:
+					// Voy a dejar este hasta que se haga lo del login para que funcione algo.
+					if (!loggeado) {
 						System.out.println("You need to login first.");
 						loginMenu();
-					}
-					else {
+					} else {
 						float telephone = InputFlow.takeFloat(reader, "Introduce your telephone number: ");
 						patientManagerInterface.viewDate(telephone);
 						break;
 					}
-						
-					
+
 				}
 				break;
 			case 2: // Doctor
@@ -120,15 +123,17 @@ public class Menu {
 				case 3: // Select prosthetic
 					break;
 				case 4: // date of fitting
+					selectDayOfFitting();
 					break;
 				case 5: // Search a patient file
+					searchPatientByTelephone();
 					break;
-				case 6: //Add/modify/Delete patient.
+				case 6: // Add/modify/Delete patient.
 					addModifyDelete();
 					break;
 				}
 				break;
-				
+
 			case 3: // Biomedical Engineer
 				System.out.println("BIOMEDICAL ENGINEER MENU:");
 				System.out.println("What do you want to do?");
@@ -162,7 +167,7 @@ public class Menu {
 					loginMenu();
 					break;
 				case 3: // Buy a prosthetic
-					//buyProsthetic(hospital_id);
+					// buyProsthetic(hospital_id);
 					break;
 				}
 				break;
@@ -178,7 +183,7 @@ public class Menu {
 		// int max is the maximun option that is acceptable
 		int num;
 		do {
-		
+
 			num = InputFlow.takeInteger(reader, "Introduce the number: ");
 
 		} while (InputFlow.CheckOption(num, max));
@@ -207,108 +212,124 @@ public class Menu {
 		System.out.println("3.Telephone.");
 		System.out.println("4.Password.");
 	}
-	
+
 	public static void searchPatientByTelephone() {
-		List<Patient> coiList =new ArrayList<Patient>();
+		List<Patient> coiList = new ArrayList<Patient>();
 		Patient pat;
-		String tel=InputFlow.takeTelephone(reader, "Introduce the telephone number of the patient whose want to search:");
-		coiList=doctorManagerInterface.searchPatientByTelephone(tel);
+		String tel = InputFlow.takeTelephone(reader,
+				"Introduce the telephone number of the patient whose want to search:");
+		coiList = doctorManagerInterface.searchPatientByTelephone(tel);
 		Iterator it = coiList.iterator();
-		while(it.hasNext()) {
-			pat=(Patient)it.next();
-			pat.toString();
+		while (it.hasNext()) {
+			pat = (Patient) it.next();
+			System.out.println(pat.toString());
+			System.out.println("");
 		}
-		
+
 	}
-	
+
 	public static void addModifyDelete() throws Exception {
 		System.out.println("What dou you want to do?");
 		System.out.println(" 1.- Add patient");
 		System.out.println(" 2.- Modify patient");
 		System.out.println(" 3.- Delete patient");
-		
-		switch(requestNumber(3)) {
-		case 1: //Add Patient
+
+		switch (requestNumber(3)) {
+		case 1: // Add Patient
 			addPatient(false);
-		break;
-		case 2: //Modify Patient
-			addPatient(true); //you are modifying also the dof
-		break;
-		case 3: //Delete Patient
-			
-		break;
-		
+			break;
+		case 2: // Modify Patient
+			addPatient(true); // you are modifying also the dof
+			break;
+		case 3: // Delete Patient
+
+			break;
+
 		}
 	}
-	
+
 	public static void DeletePatient() {
-		
+
 	}
-	
-	public static void addPatient(boolean mood) throws Exception{
+
+	public static void addPatient(boolean mood) throws Exception {
+		Patient pat;
 		System.out.println("Name:");
 		String name = reader.readLine();
 		System.out.println("Lastname:");
-		String lastname= reader.readLine();
+		String lastname = reader.readLine();
 		System.out.println("Phone number:");
-		String telephone=InputFlow.takeTelephone(reader, "Introduce a telephone: ");
-		//dob
+		String telephone = InputFlow.takeTelephone(reader, "Introduce a telephone: ");
+		// dob
 		System.out.println("Day of Birthday (yyyy-MM-dd): ");
-		String dob=reader.readLine();
-		LocalDate dayofbirth= LocalDate.parse(dob, formatter);
-		if(mood) {//If you are modifying the patient you can also modify the day of fitting
-		//dof
-		System.out.println("Day of Fitting (yyyy-MM-dd)");
-		String dof=reader.readLine();
-		LocalDate dayoffitting=LocalDate.parse(dof,formatter);
-		}
-		
-		System.out.println("Gender:");
-		String gender=reader.readLine();
-		System.out.println("Problem:");
-		String problem=reader.readLine();
-		System.out.println("Address:");
-		String address=reader.readLine();
-		int doctor_id=InputFlow.takeInteger(reader, "Doctor id: ");
-		//if(mood) {
-		//Patient pat= new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), Date.valueOf(dayoffitting), gender, problem, address, doctor_id);
-		//}else {
-		Patient pat= new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor_id);	
-		//}
-		doctorManagerInterface.addPatient(pat);
-		
-	}
-	public static void selectDayOfFitting(Patient pac) throws IOException {
-		// NOO ESTAA TERMINADOO -------------------------------------------------------------------------<<<-------<<---------
+		String dob = reader.readLine();
+		LocalDate dayofbirth = LocalDate.parse(dob, formatter);
+		if (mood) {// If you are modifying the patient you can also modify the day of fitting
+			// dof
 			System.out.println("Day of Fitting (yyyy-MM-dd)");
-			String dof=reader.readLine();
-			LocalDate dayoffitting=LocalDate.parse(dof,formatter);
-			doctorManagerInterface.assignProsthetic(dayoffitting, pac);
-			
-		
+			String dof = reader.readLine();
+			LocalDate dayoffitting = LocalDate.parse(dof, formatter);
+		}
+
+		System.out.println("Gender:");
+		String gender = reader.readLine();
+		System.out.println("Problem:");
+		String problem = reader.readLine();
+		System.out.println("Address:");
+		String address = reader.readLine();
+		int doctor_id = InputFlow.takeInteger(reader, "Doctor id: ");
+		if (mood) {
+			//No válidoo, repasar-------------------------------<--------<-------------<-------------------<<---------------
+			pat = new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor_id);
+			doctorManagerInterface.addPatient(pat);
+			// to modify date of fitting:
+			//selectDayOfFitting();
+		} else {
+			pat = new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor_id);
+			doctorManagerInterface.addPatient(pat);
+		}
+
 	}
-	
-	public static void buyProsthetic(int hospital_id) throws Exception{
-		//Show the list of all available prosthetic on that specific hospital
+
+	public static void selectDayOfFitting() throws IOException {
+		// NOO ESTAA TERMINADOO
+		// -------------------------------------------------------------------------<<<-------<<---------
+		// Método para buscar paciente por telefono
+		searchPatientByTelephone();
+		System.out.println("\nThis have been the coincidenses for the phone introduced.");
+		System.out.println("Now Introduce the Id number of the patient who want assign a date of fitting:\n");
+		int num_id=InputFlow.takeInteger(reader, "Id number:");
+		Patient pac = doctorManagerInterface.searchSpecificPatientById(num_id);
+		System.out.println("\nNow introduce the Day of Fitting (yyyy-MM-dd):");
+		String dof = reader.readLine();
+		LocalDate dayoffitting = LocalDate.parse(dof, formatter);
+		Date dateToPass = Date.valueOf(dayoffitting);
+		System.out.println(pac.toString());
+		doctorManagerInterface.assignProstheticDOF(dateToPass, pac);
+
+	}
+
+	public static void buyProsthetic(int hospital_id) throws Exception {
+		// Show the list of all available prosthetic on that specific hospital
 		List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics();
-		for(Prosthetic prosthetic : prostheticList) {
+		for (Prosthetic prosthetic : prostheticList) {
 			System.out.println(prosthetic);
 		}
-		//Ask for the Id of the prosthetic you want to buy 
+		// Ask for the Id of the prosthetic you want to buy
 		System.out.println("Please, type the ID of the prosthetic you want to buy: ");
 		int prosthetic_id = Integer.parseInt(reader.readLine());
-		
-		//the specific hospital buys the prosthetic choosed 
+
+		// the specific hospital buys the prosthetic choosed
 		hospitalManagerInterface.buy(hospital_id, prosthetic_id);
-		
-		
+
 	}
+
 	public static void pressEnter() {
 		System.out.println("Press enter to go to the main menu and continue...");
 		try {
 			String nothing;
-			nothing =reader.readLine();
-		}catch(IOException ex) {
+			nothing = reader.readLine();
+		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 	}
