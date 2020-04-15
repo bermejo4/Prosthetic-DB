@@ -124,6 +124,7 @@ public class Menu {
 				case 5: // Search a patient file
 					break;
 				case 6: //Add/modify/Delete patient.
+					addModifyDelete();
 					break;
 				}
 				break;
@@ -168,8 +169,8 @@ public class Menu {
 			default:// Exit
 				System.exit(0);
 			}
+			pressEnter();
 		}
-		// float number = InputFlow.takeFloat(reader, "Introduce a float: ");
 
 	}
 
@@ -209,11 +210,13 @@ public class Menu {
 	
 	public static void searchPatientByTelephone() {
 		List<Patient> coiList =new ArrayList<Patient>();
+		Patient pat;
 		String tel=InputFlow.takeTelephone(reader, "Introduce the telephone number of the patient whose want to search:");
 		coiList=doctorManagerInterface.searchPatientByTelephone(tel);
 		Iterator it = coiList.iterator();
 		while(it.hasNext()) {
-			coiList.toString();
+			pat=(Patient)it.next();
+			pat.toString();
 		}
 		
 	}
@@ -267,8 +270,11 @@ public class Menu {
 		System.out.println("Address:");
 		String address=reader.readLine();
 		int doctor_id=InputFlow.takeInteger(reader, "Doctor id: ");
-		
-		Patient pat= new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), Date.valueOf(dayoffitting), gender, problem, address, doctor_id);
+		//if(mood) {
+		//Patient pat= new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), Date.valueOf(dayoffitting), gender, problem, address, doctor_id);
+		//}else {
+		Patient pat= new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor_id);	
+		//}
 		doctorManagerInterface.addPatient(pat);
 		
 	}
@@ -296,6 +302,15 @@ public class Menu {
 		hospitalManagerInterface.buy(hospital_id, prosthetic_id);
 		
 		
+	}
+	public static void pressEnter() {
+		System.out.println("Press enter to go to the main menu and continue...");
+		try {
+			String nothing;
+			nothing =reader.readLine();
+		}catch(IOException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 }

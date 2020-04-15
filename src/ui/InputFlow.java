@@ -100,7 +100,7 @@ public class InputFlow {
 				cad = num.toCharArray();
 				check = false;
 				for (int i = 0; i < num.length(); i++) {
-					System.out.println(cad[i] + " y... "+Character.isDigit(cad[i]) );
+					//System.out.println(cad[i] + " y... "+Character.isDigit(cad[i]) );
 					if (Character.isDigit(cad[i]) || num.substring(0, 1).equals("+")|| !Character.isSpaceChar(cad[i])) {
 
 					} else {
