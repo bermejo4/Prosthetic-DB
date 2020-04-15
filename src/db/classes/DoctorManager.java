@@ -49,18 +49,18 @@ public class DoctorManager implements DoctorManagerInterface {
 	public void addPatient(Patient pat) {
 		//Insert the provided patient pat
 		try {
-			String sql = "INSERT INTO patient (name, lastname, dob, dof, address, telephone, gender, problem, doctor_id)"
-					+ " VALUES (?,?,?,?,?,?,?,?,?);";
+			String sql = "INSERT INTO patient (name, lastname, dob, address, telephone, gender, problem, doc_id)"
+					+ " VALUES (?,?,?,?,?,?,?,?);";
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1, pat.getName());
 			prep.setString(2, pat.getLastname());
 			prep.setDate(3, pat.getDob());
-			prep.setDate(4, pat.getDof());
-			prep.setString(5, pat.getAddres());
-			prep.setString(6, pat.getTelephone());
-			prep.setString(7, pat.getGender());
-			prep.setString(8, pat.getProblem());
-			prep.setInt(9, pat.getDoctor_id());
+			//prep.setDate(4, pat.getDof());
+			prep.setString(4, pat.getAddres());
+			prep.setString(5, pat.getTelephone());
+			prep.setString(6, pat.getGender());
+			prep.setString(7, pat.getProblem());
+			prep.setInt(8, pat.getDoctor_id());
 			prep.executeUpdate();
 			prep.close();
 		}catch(Exception e) {
