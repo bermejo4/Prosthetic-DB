@@ -74,22 +74,14 @@ public class DoctorManager implements DoctorManagerInterface {
 		
 	}
 
-	public void assignProsthetic(Date date, Patient pat) {
+	public void assignProstheticDOF(Date date, Patient pat) {
 		try {
-			String sql = "INSERT INTO patient (name, lastname, dob, dof, address, telephone, gender, problem, doctor_id)"
-					+ " VALUES (?,?,?,?,?,?,?,?,?);";
-			PreparedStatement prep = c.prepareStatement(sql);
-			prep.setString(1, pat.getName());
-			prep.setString(2, pat.getLastname());
-			prep.setDate(3, pat.getDob());
-			prep.setDate(4, date);
-			prep.setString(5, pat.getAddres());
-			prep.setString(6, pat.getTelephone());
-			prep.setString(7, pat.getGender());
-			prep.setString(8, pat.getProblem());
-			prep.setInt(9, pat.getDoctor_id());
-			prep.executeUpdate();
-			prep.close();
+			String sql = "UPDATE patient SET dof=? WHERE patient_id=?";
+			PreparedStatement up = c.prepareStatement(sql);
+			up.setDate(1, date);
+			up.setInt(2,pat.getId());
+			up.executeUpdate();
+			up.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -116,10 +108,12 @@ public class DoctorManager implements DoctorManagerInterface {
 				String telephone = rs.getString("telephone");
 				String gender = rs.getString("gender");
 				String problem = rs.getString("problem");
-				int doctor_id=rs.getInt("doc_id");
+				int doctor_id=rs.getInt("doctor_id");
 				// create a new patient
 				Patient newpatient = new Patient(id,name,lastname,telephone,dob,gender,problem,address,doctor_id);
 				// add it to the list
+				//newpatient.toString();
+				//System.out.println(newpatient.getName());
 				patientsList.add(newpatient);
 			}
 		}catch(Exception e) {
@@ -127,6 +121,35 @@ public class DoctorManager implements DoctorManagerInterface {
 		}
 		// Return the list
 		return patientsList;
+	}
+	public Patient searchSpecificPatientById(int num_id) {
+		//search the patient that fit the id
+		Patient patientfound=new Patient();
+		try {
+			String sql = "SELECT * FROM patient WHERE patient_id LIKE ?";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setInt(1, num_id);
+			ResultSet rs = prep.executeQuery();
+			
+			while(rs.next()) {
+				int id = rs.getInt("patient_id");
+				String name = rs.getString("name");
+				String lastname = rs.getString("lastname");
+				Date dob = rs.getDate("dob");
+				//Date dof = rs.getDate("dof");
+				String address = rs.getString("address");
+				String telephone = rs.getString("telephone");
+				String gender = rs.getString("gender");
+				String problem = rs.getString("problem");
+				int doctor_id=rs.getInt("doctor_id");
+				// create a new patient
+				patientfound = new Patient(id,name,lastname,telephone,dob,gender,problem,address,doctor_id);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		// Return the patient
+		return patientfound;
 	}
 
 }
