@@ -208,12 +208,17 @@ public class Menu {
 	}
 	
 	public static void searchPatientByTelephone() {
-		float tel=InputFlow.takeFloat(reader, "Introduce the telephone number of the patient whose want to search:");
-		
+		List<Patient> coiList =new ArrayList<Patient>();
+		String tel=InputFlow.takeTelephone(reader, "Introduce the telephone number of the patient whose want to search:");
+		coiList=doctorManagerInterface.searchPatientByTelephone(tel);
+		Iterator it = coiList.iterator();
+		while(it.hasNext()) {
+			coiList.toString();
+		}
 		
 	}
 	
-	public static void addModifyDelete() {
+	public static void addModifyDelete() throws Exception {
 		System.out.println("What dou you want to do?");
 		System.out.println(" 1.- Add patient");
 		System.out.println(" 2.- Modify patient");
@@ -221,17 +226,23 @@ public class Menu {
 		
 		switch(requestNumber(3)) {
 		case 1: //Add Patient
-			
+			addPatient(false);
 		break;
 		case 2: //Modify Patient
+			addPatient(true); //you are modifying also the dof
 		break;
 		case 3: //Delete Patient
+			
 		break;
 		
 		}
 	}
 	
-	public static void addPatient() throws Exception{
+	public static void DeletePatient() {
+		
+	}
+	
+	public static void addPatient(boolean mood) throws Exception{
 		System.out.println("Name:");
 		String name = reader.readLine();
 		System.out.println("Lastname:");
@@ -242,10 +253,13 @@ public class Menu {
 		System.out.println("Day of Birthday (yyyy-MM-dd): ");
 		String dob=reader.readLine();
 		LocalDate dayofbirth= LocalDate.parse(dob, formatter);
+		if(mood) {//If you are modifying the patient you can also modify the day of fitting
 		//dof
-		/*System.out.println("Day of Fitting (yyyy-MM-dd)");
+		System.out.println("Day of Fitting (yyyy-MM-dd)");
 		String dof=reader.readLine();
-		LocalDate dayoffitting=LocalDate.parse(dof,formatter);*/
+		LocalDate dayoffitting=LocalDate.parse(dof,formatter);
+		}
+		
 		System.out.println("Gender:");
 		String gender=reader.readLine();
 		System.out.println("Problem:");
