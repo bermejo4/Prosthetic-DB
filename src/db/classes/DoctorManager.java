@@ -151,5 +151,19 @@ public class DoctorManager implements DoctorManagerInterface {
 		// Return the patient
 		return patientfound;
 	}
+	
+	public void delete(Patient pat) {
+		try {
+			String sql = "DELETE FROM patient WHERE patient_id=?";
+			PreparedStatement del =c.prepareStatement(sql);
+			del.setInt(1, pat.getId());
+			del.executeUpdate();
+			del.close();
+			System.out.println("-->Delete completed<--");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }
