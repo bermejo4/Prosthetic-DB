@@ -239,17 +239,26 @@ public class Menu {
 			addPatient(false);
 			break;
 		case 2: // Modify Patient
+			//-----<----------<---MAAAAAALL
 			addPatient(true); // you are modifying also the dof
 			break;
 		case 3: // Delete Patient
-
+			DeletePatient();
 			break;
 
 		}
 	}
 
 	public static void DeletePatient() {
-
+		searchPatientByTelephone();
+		System.out.println("\nThis have been the coincidenses for the phone introduced.");
+		System.out.println("Now Introduce the Id number of the patient who want delete:\n");
+		int num_id=InputFlow.takeInteger(reader, "Id number:");
+		Patient pac = doctorManagerInterface.searchSpecificPatientById(num_id);
+		System.out.println("You have choose this patient:\n");
+		if(InputFlow.areYouSure(reader, "Are you sure that do you want to delete this patient?")) {
+			doctorManagerInterface.delete(pac);
+		}
 	}
 
 	public static void addPatient(boolean mood) throws Exception {
@@ -292,19 +301,17 @@ public class Menu {
 	}
 
 	public static void selectDayOfFitting() throws IOException {
-		// NOO ESTAA TERMINADOO
-		// -------------------------------------------------------------------------<<<-------<<---------
-		// Método para buscar paciente por telefono
 		searchPatientByTelephone();
 		System.out.println("\nThis have been the coincidenses for the phone introduced.");
 		System.out.println("Now Introduce the Id number of the patient who want assign a date of fitting:\n");
 		int num_id=InputFlow.takeInteger(reader, "Id number:");
 		Patient pac = doctorManagerInterface.searchSpecificPatientById(num_id);
+		System.out.println("You have choose this patient:\n");
+		System.out.println(pac.toString()+"\n");
 		System.out.println("\nNow introduce the Day of Fitting (yyyy-MM-dd):");
 		String dof = reader.readLine();
 		LocalDate dayoffitting = LocalDate.parse(dof, formatter);
 		Date dateToPass = Date.valueOf(dayoffitting);
-		System.out.println(pac.toString());
 		doctorManagerInterface.assignProstheticDOF(dateToPass, pac);
 
 	}

@@ -87,6 +87,33 @@ public class InputFlow {
 		return gender;
 	}
 
+	public static boolean areYouSure(BufferedReader reader, String text) {
+		boolean resp = false;
+		boolean loop = false;
+		String answer = "";
+		try {
+			do {
+				System.out.println(text+" (y/n):");
+				answer = reader.readLine();
+				if (answer.equals("y") || answer.equals("n")) {
+					loop = false;
+					if (answer.contains("y")) {
+						resp = true;
+					} else {
+						resp = false;
+					}
+				}else {
+					System.out.println("The answer is not correct. Try again.");
+				}
+
+			} while (loop);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+
 	public static String takeTelephone(BufferedReader reader, String text) {
 		// check a telephone number
 		// and return a number telephone without +34 prefix if the user have added.
@@ -95,13 +122,14 @@ public class InputFlow {
 		char cad[];
 		try {
 			do {
-				System.out.println(text+" (without spaces)");
+				System.out.println(text + " (without spaces)");
 				num = reader.readLine();
 				cad = num.toCharArray();
 				check = false;
 				for (int i = 0; i < num.length(); i++) {
-					//System.out.println(cad[i] + " y... "+Character.isDigit(cad[i]) );
-					if (Character.isDigit(cad[i]) || num.substring(0, 1).equals("+")|| !Character.isSpaceChar(cad[i])) {
+					// System.out.println(cad[i] + " y... "+Character.isDigit(cad[i]) );
+					if (Character.isDigit(cad[i]) || num.substring(0, 1).equals("+")
+							|| !Character.isSpaceChar(cad[i])) {
 
 					} else {
 						check = true;
@@ -115,8 +143,8 @@ public class InputFlow {
 			if (num.substring(0, 1).contains("+")) {
 				// short to a number without +34
 				num = num.substring(3, num.length());
-			}	
-			
+			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
