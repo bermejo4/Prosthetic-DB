@@ -23,22 +23,23 @@ public class DoctorManager implements DoctorManagerInterface {
 
 	}
 
-	public void update(Patient pat) {
+	public void modify(Patient pat, Date dof, int id) {
 		try {
-			//Update every aspect for a particular dog
-			String sql = "UPDATE dogs SET name=?, lastname=?, dob=?, dof=?, address=?, telephone=?, gender=?, problem=?, doc_id=? WHERE id=?";
-			PreparedStatement s = c.prepareStatement(sql);
-			s.setString(1,pat.getName());
-			s.setString(2, pat.getLastname());
-			s.setDate(3, pat.getDob());
-			s.setDate(4, pat.getDof());
-			s.setString(5, pat.getAddres());
-			s.setString(6, pat.getTelephone());
-			s.setString(7, pat.getGender());
-			s.setString(8, pat.getProblem());
-			s.setInt(9, pat.getDoctor_id());
-			s.executeUpdate();
-			s.close();
+			//Update every aspect for a particular patient including dof
+			String sql = "UPDATE patient SET name=?, lastname=?, dob=?, dof=?, address=?, telephone=?, gender=?, problem=?, doctor_id=? WHERE patient_id=?";
+			PreparedStatement mod = c.prepareStatement(sql);
+			mod.setString(1,pat.getName());
+			mod.setString(2, pat.getLastname());
+			mod.setDate(3, pat.getDob());
+			mod.setDate(4, dof);
+			mod.setString(5, pat.getAddres());
+			mod.setString(6, pat.getTelephone());
+			mod.setString(7, pat.getGender());
+			mod.setString(8, pat.getProblem());
+			mod.setInt(9, pat.getDoctor_id());
+			mod.setInt(10, id);
+			mod.executeUpdate();
+			mod.close();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -69,8 +70,32 @@ public class DoctorManager implements DoctorManagerInterface {
 
 	}
 
-	public void selectProsthetic(Prosthetic prost) {
-		
+	public List<Prosthetic> selectProsthetic(Prosthetic prost, String col, String find) {
+		List<Prosthetic> prostList = new ArrayList<Prosthetic>();
+		try {
+			String sql = "SELECT * FROM patient WHERE "+col+" LIKE ?";
+			PreparedStatement find1 = c.prepareStatement(sql);
+			find1.setString(1, "%"+find+"%");
+			ResultSet rs = find1.executeQuery();
+			while(rs.next()) {
+				int prosthetic_id = rs.getInt("prosthetic_id");
+				String material = rs.getString("material");
+				String type = rs.getString("type");
+				String dimension = rs.getString("dimension");
+				int numOF=rs.getInt("number_of_failures");
+				String failures = rs.getString("failures");
+				float price=rs.getFloat("price");
+				boolean available=rs.getBoolean("available");
+				int patient_id=rs.getInt("patient_id");
+				int hospital_id=rs.getInt("hospital_id");
+				Prosthetic newprosthetic = new Prosthetic(prosthetic_id, type, material, price, dimension, failures, numOF, available, patient_id, hospital_id);
+				prostList.add(newprosthetic);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return prostList;
 		
 	}
 
@@ -94,7 +119,6 @@ public class DoctorManager implements DoctorManagerInterface {
 		try {
 			String sql = "SELECT * FROM patient WHERE telephone LIKE ?";
 			PreparedStatement prep = c.prepareStatement(sql);
-			//AQUÍ
 			prep.setString(1, "%"+tel+"%");
 			ResultSet rs = prep.executeQuery();
 			

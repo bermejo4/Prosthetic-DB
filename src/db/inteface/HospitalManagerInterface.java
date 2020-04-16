@@ -11,7 +11,4 @@ public interface HospitalManagerInterface {
 	public void login(Hospital hospital);
 	
 	
-	
-	
-	
 }
