@@ -13,13 +13,26 @@ public class Prosthetic implements Serializable {
 	private String type;
 	private String material;
 	private Float price;
-	private Object dimensions;
+	private String dimensions;
 	private String failures;
 	private Integer numberFailures;
+	private boolean available;
+	private Integer patient_id;
+	private Integer hospital_id;
+
+	
+
+
+	
+	public Prosthetic(Integer id, String type) {
+		super();
+		this.id = id;
+		this.type = type;
+	}
 
 	// Constructor with all variables
-	public Prosthetic(Integer id, String type, String material, Float price, Object dimensions, String failures,
-			Integer numberFailures) {
+	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures,
+			Integer numberFailures, boolean available, Integer patient_id, Integer hospital_id) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -28,13 +41,9 @@ public class Prosthetic implements Serializable {
 		this.dimensions = dimensions;
 		this.failures = failures;
 		this.numberFailures = numberFailures;
-	}
-
-	
-	public Prosthetic(Integer id, String type) {
-		super();
-		this.id = id;
-		this.type = type;
+		this.available = available;
+		this.patient_id = patient_id;
+		this.hospital_id = hospital_id;
 	}
 
 
@@ -77,11 +86,11 @@ public class Prosthetic implements Serializable {
 		this.price = price;
 	}
 
-	public Object getDimensions() {
+	public String getDimensions() {
 		return dimensions;
 	}
 
-	public void setDimensions(Object dimensions) {
+	public void setDimensions(String dimensions) {
 		this.dimensions = dimensions;
 	}
 
@@ -101,15 +110,14 @@ public class Prosthetic implements Serializable {
 		this.numberFailures = numberFailures;
 	}
 
-	// ToString with all variables
 	@Override
 	public String toString() {
-		return "prosthetic [id=" + id + ", type=" + type + ", material=" + material + ", price=" + price
-				+ ", dimensions=" + dimensions + ", failures=" + failures + ", numberFailures=" + numberFailures + "]";
+		return "Prosthetic [id=" + id + ", type=" + type + ", material=" + material + ", price=" + price
+				+ ", dimensions=" + dimensions + ", failures=" + failures + ", numberFailures=" + numberFailures
+				+ ", available=" + available + "]";
 	}
-
+	
 	// HashCode and Equals methods only with the Id
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -133,6 +141,16 @@ public class Prosthetic implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 
 }

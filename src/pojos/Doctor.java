@@ -11,8 +11,6 @@ public class Doctor implements Serializable{
 	private String name;
 	private String lastname;
 	private String telephone;
-	private Boolean gender;
-	private String department;
 	private Integer hospital_id;
 	private List<Patient> patients;
 	
@@ -22,14 +20,11 @@ public class Doctor implements Serializable{
 		
 	}
 
-	public Doctor(String name, String lastname, String telephone, Boolean gender, String department,
-			Integer hospital_id) {
+	public Doctor(String name, String lastname, String telephone, Integer hospital_id) {
 		super();
 		this.name = name;
 		this.lastname = lastname;
 		this.telephone = telephone;
-		this.gender = gender;
-		this.department = department;
 		this.hospital_id = hospital_id;
 	}
 
@@ -61,7 +56,7 @@ public class Doctor implements Serializable{
 	@Override
 	public String toString() {
 		return "Doctor [id=" + id + ", name=" + name + ", lastname=" + lastname + ", telephone=" + telephone
-				+ ", gender=" + gender + ", department=" + department + ", hospital_id=" + hospital_id + "]";
+				+ ", hospital_id=" + hospital_id + "]";
 	}
 
 	public Integer getId() {
@@ -94,22 +89,6 @@ public class Doctor implements Serializable{
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
-	}
-
-	public Boolean getGender() {
-		return gender;
-	}
-
-	public void setGender(Boolean gender) {
-		this.gender = gender;
-	}
-
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
 	}
 
 	public Integer getHospital_id() {
