@@ -1,6 +1,8 @@
 package ui;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class InputFlow {
 
@@ -163,6 +165,18 @@ public class InputFlow {
 		float deep=takeFloat(reader, "Introduce the deep(cm):");
 		dimension=long_v+"x"+wide+"x"+deep;
 		return dimension;
+	}
+	
+	public boolean checkIdAndList(int id, ArrayList<Integer> list) {
+		boolean check=true;
+		Iterator<Integer> it = list.iterator();
+		while(it.hasNext()) {
+			int num=it.next();
+			if(num==id) {
+				check=false;
+			}
+		}
+		return check;
 	}
 	
 }
