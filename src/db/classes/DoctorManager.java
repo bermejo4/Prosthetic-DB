@@ -70,7 +70,7 @@ public class DoctorManager implements DoctorManagerInterface {
 
 	}
 
-	public List<Prosthetic> selectProsthetic(Prosthetic prost, String col, String find) {
+	public List<Prosthetic> selectProsthetic(String col, String find) {
 		List<Prosthetic> prostList = new ArrayList<Prosthetic>();
 		try {
 			String sql = "SELECT * FROM patient WHERE "+col+" LIKE ?";
@@ -99,12 +99,25 @@ public class DoctorManager implements DoctorManagerInterface {
 		
 	}
 
-	public void assignProstheticDOF(Date date, Patient pat) {
+	public void assignDOF(Date date, Patient pat) {
 		try {
 			String sql = "UPDATE patient SET dof=? WHERE patient_id=?";
 			PreparedStatement up = c.prepareStatement(sql);
 			up.setDate(1, date);
 			up.setInt(2,pat.getId());
+			up.executeUpdate();
+			up.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void assignProstheticToPatient(int prost_id, int pat_id) {
+		try {
+			String sql = "UPDATE prosthetic SET patient_id=? WHERE prosthetic_id=?";
+			PreparedStatement up = c.prepareStatement(sql);
+			up.setInt(1, pat_id);
+			up.setInt(2, prost_id);
 			up.executeUpdate();
 			up.close();
 		}catch(Exception e) {
