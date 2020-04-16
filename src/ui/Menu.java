@@ -198,6 +198,7 @@ public class Menu {
 		System.out.println("3.Telephone.");
 		System.out.println("4.Password.");
 	}
+
 	public static void register() {
 		System.out.println("Introduce your name:");
 		System.out.println("Introduce your lastname:");
@@ -219,7 +220,7 @@ public class Menu {
 		System.out.println("3.Telephone.");
 		System.out.println("4.Password.");
 	}
-	
+
 	public static void searchProstheticMenu() {
 		System.out.println("Select the type of search that dou you want to do?");
 		System.out.println("By...");
@@ -268,21 +269,21 @@ public class Menu {
 		searchPatientByTelephone();
 		System.out.println("\nThis have been the coincidenses for the phone introduced.");
 		System.out.println("Now Introduce the Id number of the patient who want delete:\n");
-		int num_id=InputFlow.takeInteger(reader, "Id number:");
+		int num_id = InputFlow.takeInteger(reader, "Id number:");
 		Patient pac = doctorManagerInterface.searchSpecificPatientById(num_id);
 		System.out.println("You have choose this patient:\n");
-		if(InputFlow.areYouSure(reader, "Are you sure that do you want to delete this patient?")) {
+		if (InputFlow.areYouSure(reader, "Are you sure that do you want to delete this patient?")) {
 			doctorManagerInterface.delete(pac);
 		}
 	}
 
 	public static void addPatient(boolean mood) throws Exception {
-		int num_id=0;
-		if(mood) {
+		int num_id = 0;
+		if (mood) {
 			searchPatientByTelephone();
 			System.out.println("\nThis have been the coincidenses for the phone introduced.");
 			System.out.println("Now Introduce the Id number of the patient who want modify:\n");
-			num_id=InputFlow.takeInteger(reader, "Id number:");
+			num_id = InputFlow.takeInteger(reader, "Id number:");
 		}
 		Patient pat;
 		System.out.println("Name:");
@@ -323,21 +324,60 @@ public class Menu {
 		searchPatientByTelephone();
 		System.out.println("\nThis have been the coincidenses for the phone introduced.");
 		System.out.println("Now Introduce the Id number of the patient who want assign a date of fitting:\n");
-		int num_id=InputFlow.takeInteger(reader, "Id number:");
+		int num_id = InputFlow.takeInteger(reader, "Id number:");
 		Patient pac = doctorManagerInterface.searchSpecificPatientById(num_id);
 		System.out.println("You have choose this patient:\n");
-		System.out.println(pac.toString()+"\n");
+		System.out.println(pac.toString() + "\n");
 		System.out.println("\nNow introduce the Day of Fitting (yyyy-MM-dd):");
 		String dof = reader.readLine();
 		LocalDate dayoffitting = LocalDate.parse(dof, formatter);
 		Date dateToPass = Date.valueOf(dayoffitting);
-		doctorManagerInterface.assignProstheticDOF(dateToPass, pac);
+		doctorManagerInterface.assignDOF(dateToPass, pac);
 
 	}
-	
+
 	public static void searchProsthetic() {
+		Prosthetic prost;
 		searchProstheticMenu();
-		
+		int option = requestNumber(4);
+		List<Prosthetic> prostheticList = new ArrayList<Prosthetic>();
+		try {
+			switch (option) {
+			case 1:// material
+				String materialpassed = reader.readLine();
+				prostheticList=doctorManagerInterface.selectProsthetic("material", materialpassed);
+				break;
+			case 2:// type
+				String typepassed = reader.readLine();
+				prostheticList=doctorManagerInterface.selectProsthetic("type", typepassed);
+				break;
+			case 3:// dimension
+				String dimensionpassed = InputFlow.takeDimension();
+				prostheticList=doctorManagerInterface.selectProsthetic("dimension", dimensionpassed);
+				break;
+			case 4:// failures
+				String failurespassed = reader.readLine();
+				prostheticList=doctorManagerInterface.selectProsthetic("failures", failurespassed);
+				break;
+			}
+			Iterator it =prostheticList.iterator();
+			while (it.hasNext()) {
+				prost = (Prosthetic) it.next();
+				if(prost.isAvailable()) {
+				System.out.println(prost.toString());
+				System.out.println("");
+				}
+			System.out.println("\nThis have been the coincidenses for your search.");
+			System.out.println("Now Introduce the Id number of the prosthetic which you want to select:\n");
+			int num_id_prost = InputFlow.takeInteger(reader, "Id number:");
+			System.out.println("And now introduce the id_number of your patient:");
+			int num_id_pat = InputFlow.takeInteger(reader, "Id number:");
+			doctorManagerInterface.assignProstheticToPatient(num_id_prost, num_id_pat);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void buyProsthetic(int hospital_id) throws Exception {

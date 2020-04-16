@@ -153,4 +153,16 @@ public class InputFlow {
 		return num;
 
 	}
+	
+	public static String takeDimension(){
+		String dimension="";
+		BufferedReader reader;
+		reader = new BufferedReader(new InputStreamReader(System.in));
+		float long_v=takeFloat(reader, "Introduce the long(cm):");
+		float wide=takeFloat(reader, "Introduce the wide(cm):");
+		float deep=takeFloat(reader, "Introduce the deep(cm):");
+		dimension=long_v+"x"+wide+"x"+deep;
+		return dimension;
+	}
+	
 }
