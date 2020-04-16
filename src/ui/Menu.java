@@ -198,6 +198,13 @@ public class Menu {
 		System.out.println("3.Telephone.");
 		System.out.println("4.Password.");
 	}
+	public static void register() {
+		System.out.println("Introduce your name:");
+		System.out.println("Introduce your lastname:");
+		System.out.println("Introduce your telephone:");
+		System.out.println("Introduce a password:");
+		System.out.println("Introduce again the password:");
+	}
 
 	public static void loginMenu() {
 		System.out.println("LOGIN MENU:");
@@ -211,6 +218,15 @@ public class Menu {
 		System.out.println("2.Location.");
 		System.out.println("3.Telephone.");
 		System.out.println("4.Password.");
+	}
+	
+	public static void searchProstheticMenu() {
+		System.out.println("Select the type of search that dou you want to do?");
+		System.out.println("By...");
+		System.out.println("1.Material");
+		System.out.println("2.Type.");
+		System.out.println("3.Dimension.");
+		System.out.println("4.Failures.");
 	}
 
 	public static void searchPatientByTelephone() {
@@ -239,7 +255,6 @@ public class Menu {
 			addPatient(false);
 			break;
 		case 2: // Modify Patient
-			//-----<----------<---MAAAAAALL
 			addPatient(true); // you are modifying also the dof
 			break;
 		case 3: // Delete Patient
@@ -262,6 +277,13 @@ public class Menu {
 	}
 
 	public static void addPatient(boolean mood) throws Exception {
+		int num_id=0;
+		if(mood) {
+			searchPatientByTelephone();
+			System.out.println("\nThis have been the coincidenses for the phone introduced.");
+			System.out.println("Now Introduce the Id number of the patient who want modify:\n");
+			num_id=InputFlow.takeInteger(reader, "Id number:");
+		}
 		Patient pat;
 		System.out.println("Name:");
 		String name = reader.readLine();
@@ -281,18 +303,15 @@ public class Menu {
 		}
 
 		System.out.println("Gender:");
-		String gender = reader.readLine();
+		String gender = InputFlow.takeGender(reader, "");
 		System.out.println("Problem:");
 		String problem = reader.readLine();
 		System.out.println("Address:");
 		String address = reader.readLine();
 		int doctor_id = InputFlow.takeInteger(reader, "Doctor id: ");
 		if (mood) {
-			//No válidoo, repasar-------------------------------<--------<-------------<-------------------<<---------------
 			pat = new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor_id);
-			doctorManagerInterface.addPatient(pat);
-			// to modify date of fitting:
-			//selectDayOfFitting();
+			doctorManagerInterface.modify(pat, Date.valueOf(dayofbirth), num_id);
 		} else {
 			pat = new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor_id);
 			doctorManagerInterface.addPatient(pat);
@@ -314,6 +333,11 @@ public class Menu {
 		Date dateToPass = Date.valueOf(dayoffitting);
 		doctorManagerInterface.assignProstheticDOF(dateToPass, pac);
 
+	}
+	
+	public static void searchProsthetic() {
+		searchProstheticMenu();
+		
 	}
 
 	public static void buyProsthetic(int hospital_id) throws Exception {

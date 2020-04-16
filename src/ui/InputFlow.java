@@ -67,11 +67,11 @@ public class InputFlow {
 				switch (answer) {
 				case "M":
 				case "m":
-					gender = "male";
+					gender = "Male";
 					break;
 				case "F":
 				case "f":
-					gender = "female";
+					gender = "Female";
 					break;
 				default:
 					System.out.println("The data introduced is NOT correct.");
@@ -104,6 +104,7 @@ public class InputFlow {
 					}
 				}else {
 					System.out.println("The answer is not correct. Try again.");
+					loop=true;
 				}
 
 			} while (loop);
