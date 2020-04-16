@@ -153,4 +153,21 @@ public class Prosthetic implements Serializable {
 		this.available = available;
 	}
 
+	public Integer getPatient_id() {
+		return patient_id;
+	}
+
+	public Integer getHospital_id() {
+		return hospital_id;
+	}
+
+	public void setPatient_id(Integer patient_id) {
+		this.patient_id = patient_id;
+	}
+
+	public void setHospital_id(Integer hospital_id) {
+		this.hospital_id = hospital_id;
+	}
+	
+
 }
