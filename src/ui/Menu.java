@@ -38,7 +38,7 @@ public class Menu {
 		reader = new BufferedReader(new InputStreamReader(System.in));
 
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
-		// dbManagerInterface.createTables();
+		dbManagerInterface.createTables();
 		while (true) {
 			System.out.println("Who are you?");
 			System.out.println("1.Patient");
