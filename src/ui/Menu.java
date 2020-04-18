@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 import db.classes.*;
 import db.inteface.*;
+import pojos.Doctor;
 import pojos.Patient;
 import pojos.Prosthetic;
 
@@ -21,7 +22,6 @@ public class Menu {
 
 	// Used for parsing dates
 	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
 	private static BufferedReader reader;
 	private static int num;
 
@@ -39,6 +39,10 @@ public class Menu {
 
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
 		dbManagerInterface.createTables();
+		Patient patientUser = new Patient();
+		Doctor doctorUser = new Doctor();//crear
+		boolean userOcuppation;
+		
 		while (true) {
 			System.out.println("Who are you?");
 			System.out.println("1.Patient");
@@ -49,7 +53,8 @@ public class Menu {
 			System.out.println("---------\n");
 
 			num = requestNumber(5);
-
+//------------------------------ while user ocupattion//num=1// en cada menu poner un back to the global menu
+			
 			switch (num) {
 			case 1: // patient
 				System.out.println("PATIENT MENU:");
@@ -58,7 +63,8 @@ public class Menu {
 				System.out.println("2.Login.");
 				System.out.println("3.Select a Hospital.");
 				System.out.println("4.View appointments.");
-				num = requestNumber(4);
+				System.out.println("\n5.Back to choose other user to the main menu.");
+				num = requestNumber(5);
 				switch (num) {
 				case 1: // Register
 					registerMenu();
