@@ -24,6 +24,15 @@ public class Menu {
 	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	private static BufferedReader reader;
 	private static int num;
+	
+	//Used for who is using the program
+	private static Patient patientUser = new Patient();
+	private static Doctor doctorUser = new Doctor();
+	private static Hospital hospitalUser = new Hospital();
+	private static Biomedical_Eng biomedical_engUser = new Biomedical_Eng(); 
+	private static boolean userUsing;
+	private static int userUsingNumber; //Only can be from 1 to 5
+	private static boolean logged;
 
 	public static void main(String[] args) throws Exception  {
 		// Connect with the database.
@@ -32,17 +41,18 @@ public class Menu {
 		doctorManagerInterface = dbManagerInterface.getDoctorManager();
 		patientManagerInterface = dbManagerInterface.getPatientManager();
 		hospitalManagerInterface = dbManagerInterface.getHospitalManager();
-
-		boolean loggeado = false;
+		
+		userUsing=false;
+		
+		logged=false;
 
 		reader = new BufferedReader(new InputStreamReader(System.in));
+		
+		int max;
 
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
 		dbManagerInterface.createTables();
-		Patient patientUser = new Patient();
-		Doctor doctorUser = new Doctor();//crear
-		Hospital hospitalUser = new Hospital();
-		boolean userOcuppation;
+		
 		
 		while (true) {
 			System.out.println("Who are you?");
@@ -54,25 +64,31 @@ public class Menu {
 			System.out.println("---------\n");
 
 			num = requestNumber(5);
+			userUsingNumber=num;
+			userUsing = true;
 //------------------------------ while user ocupattion//num=1// en cada menu poner un back to the global menu
-			
-			switch (num) {
+			while(userUsing) {
+			switch (userUsingNumber) {
 			case 1: // patient
 				System.out.println("PATIENT MENU:");
 				System.out.println("What do you want to do?");
 				System.out.println("1.Register.");
 				System.out.println("2.Login.");
+				max=2;
+				if(logged) {
 				System.out.println("3.Select a Hospital.");
 				System.out.println("4.View appointments.");
-				System.out.println("\n5.Back to choose other user to the main menu.");
-				num = requestNumber(5);
+				max=4;
+				}
+				System.out.println("\n0.Back to choose other user to the main menu.");
+				num = requestNumber(max);
 				switch (num) {
 				case 1: // Register
 					registerMenu();
 					break;
 				case 2: // Login
 					loginMenu();
-					loggeado = true;
+					logged = true;
 					break;
 				case 3:
 					System.out.println(
@@ -85,7 +101,7 @@ public class Menu {
 					break;
 				case 4:
 					// Voy a dejar este hasta que se haga lo del login para que funcione algo.
-					if (!loggeado) {
+					if (!logged) {
 						System.out.println("You need to login first.");
 						loginMenu();
 					} else {
@@ -93,6 +109,8 @@ public class Menu {
 						patientManagerInterface.viewDate(telephone);
 						break;
 					}
+				default: //back
+					userUsing=false;
 
 				}
 				break;
@@ -103,11 +121,16 @@ public class Menu {
 				System.out.println("What do you want to do?");
 				System.out.println("1.Register.");
 				System.out.println("2.Login.");
+				max=2;
+				if(logged) {
 				System.out.println("3.Select a Prosthetic.");
 				System.out.println("4.Select date of fitting.");
 				System.out.println("5.Search a patients file.");
 				System.out.println("6.Add/Modify/Delete a patient.");
-				num = requestNumber(6);
+				max=6;
+				}
+				System.out.println("\n0.Back to choose other user to the main menu.");
+				num = requestNumber(max);
 				switch (num) {
 				case 1: // Register
 					registerMenu();
@@ -126,6 +149,8 @@ public class Menu {
 				case 6: // Add/modify/Delete patient.
 					addModifyDelete();
 					break;
+				default: //back
+					userUsing=false;
 				}
 				break;
 				
@@ -133,9 +158,8 @@ public class Menu {
 
 			case 3: // Biomedical Engineer
 				BiomedEngMenu();
-				break;
-				
-				
+
+								
 //-----------------------------------------------------------------------------------
 			
 			case 4: // Hospital
@@ -143,8 +167,13 @@ public class Menu {
 				System.out.println("What do you want to do?");
 				System.out.println("1.Register.");
 				System.out.println("2.Login.");
-				System.out.println("3.Buy a Prosthetic.");
-				num = requestNumber(4);
+				max=2;
+				if(logged) {
+				System.out.println("3.Buy a Prosthetic.");	
+				max=3;
+				}
+				System.out.println("\n0.Back to choose other user to the main menu.");
+				num = requestNumber(max);
 				switch (num) {
 				case 1: // Register
 					registerHospitalMenu();
@@ -155,11 +184,15 @@ public class Menu {
 				case 3: // Buy a prosthetic
 					//buyProsthetic();
 					break;
+				default: //back
+					userUsing=false;
 				}
 				break;
 			default:// Exit
 				System.exit(0);
 			}
+			}
+			
 			pressEnter();
 		}
 
@@ -174,10 +207,13 @@ public class Menu {
 		System.out.println("What do you want to do?");
 		System.out.println("1.Register.");
 		System.out.println("2.Login.");
-		System.out.println("3.Upload new Prosthetic");
-		System.out.println("4.Modify Prosthetic information");
-
-		num = requestNumber(3);
+		int max=2;
+		if(logged) {
+			System.out.println("Upload Prosthetic information.");
+			max=3;
+		}
+		System.out.println("\n0.Back to choose other user to the main menu.");
+		num = requestNumber(max);
 		switch (num) {
 		case 1: // Register
 			registerMenu();
@@ -185,15 +221,19 @@ public class Menu {
 		case 2: // Login
 			loginMenu();
 			break;
+
 		case 3: // Upload Prosthetic 
 			uploadProsthetic();
 			break;
 		case 4: // Modify Prosthetic info
 			break;
+		default: //back
+			userUsing=false;
 		}
 		
-		
 	}
+
+
 	
 	public static void uploadProsthetic()throws Exception {
 		
