@@ -19,7 +19,7 @@ public class Doctor implements Serializable{
 		this.patients= new ArrayList<Patient>();
 		
 	}
-
+	
 	public Doctor(String name, String lastname, String telephone, Integer hospital_id) {
 		super();
 		this.name = name;
