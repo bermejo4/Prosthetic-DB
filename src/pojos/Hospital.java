@@ -38,6 +38,15 @@ public class Hospital implements Serializable{
 		this.doctors = new ArrayList<Doctor>();
 	}
 	
+	public Hospital(Integer id, String name, String addres, String telephone) {
+		super();
+		this.id=id;
+		this.name = name;
+		this.addres = addres;
+		this.telephone=telephone;
+		this.doctors = new ArrayList<Doctor>();
+	}
+	
 
 	public Hospital(Integer id, String name, String addres, Integer patient_id, String telephone,
 			List<Doctor> doctors) {
