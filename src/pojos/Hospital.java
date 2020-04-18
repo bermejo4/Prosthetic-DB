@@ -19,6 +19,17 @@ public class Hospital implements Serializable{
 		super();
 		this.doctors = new ArrayList<Doctor>();
 	}
+	
+	
+
+	public Hospital(Integer id, String name, List<Doctor> doctors) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.doctors = doctors;
+	}
+
+
 
 	public Hospital(String name, String addres) {
 		super();
