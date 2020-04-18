@@ -48,7 +48,7 @@ public class Prosthetic implements Serializable {
 		this.hospital_id = hospital_id;
 	}
 
-	//Cree un contructor para la lista de biomedical eng
+	//Created another constructor for a lists in biomedical eng
 	public Prosthetic(Integer id, String type, String material, Float price, String dimensions) {
 		super();
 		this.id = id;
@@ -57,6 +57,16 @@ public class Prosthetic implements Serializable {
 		this.price = price;
 		this.dimensions = dimensions;
 	}
+//created another constructor to insert prosthetic but without id, failures etc
+	public Prosthetic(String type, String material, Float price, String dimensions) {
+		super();
+		this.type = type;
+		this.material = material;
+		this.price = price;
+		this.dimensions = dimensions;
+	}
+
+
 
 	// Empty constructor
 	public Prosthetic() {
