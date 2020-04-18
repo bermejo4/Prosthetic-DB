@@ -25,6 +25,7 @@ public class HospitalManager implements HospitalManagerInterface {
 
 	}
 
+	
 	public List<Prosthetic> showProsthetics() {
 		// we use this method to link a prosthetic to the catalogue of a hospital
 		List<Prosthetic> prostheticList = new ArrayList<Prosthetic>();

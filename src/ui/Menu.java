@@ -3,6 +3,8 @@ package ui;
 import java.io.*;
 import java.util.*;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -11,6 +13,7 @@ import db.inteface.*;
 import pojos.Doctor;
 import pojos.Patient;
 import pojos.Prosthetic;
+import pojos.Hospital;
 
 public class Menu {
 
@@ -41,6 +44,7 @@ public class Menu {
 		dbManagerInterface.createTables();
 		Patient patientUser = new Patient();
 		Doctor doctorUser = new Doctor();//crear
+		Hospital hospitalUser = new Hospital();
 		boolean userOcuppation;
 		
 		while (true) {
@@ -75,26 +79,12 @@ public class Menu {
 					break;
 				case 3:
 					System.out.println(
-							"Choose a Hospital:\n1.Hospital Universitario Fundacion Jimenez Diaz.\n2.Hospital Universitario La Paz.\n"
-									+ "3.Hospital Universitario 12 de Octubre.\n4.Hospital Universitario Ramon y Cajal.\n5.Hospital Nacional de Paraplejicos (Toledo).\n");
+							"Choose a Hospital between the list of available hospitals:\n");
+					//showHospitals();
 					num = requestNumber(5);
-					switch (num) {
-					case 1:
-						System.out.println("You have chosen 'Hospital Universitario Fundacion Jimenez Diaz'.");
-						break;
-					case 2:
-						System.out.println("You have chosen 'Hospital Universitario La Paz'");
-						break;
-					case 3:
-						System.out.println("You have chosen 'Hospital Universitario 12 de Octubre'.");
-						break;
-					case 4:
-						System.out.println("You have chosen 'Hospital Universitario Ramon y Cajal'.");
-						break;
-					case 5:
-						System.out.println("You have chosen 'Hospital Nacional de Paraplejicos'.");
-						break;
-					}
+					System.out.println("Introduce the id of the chosen hospital:\n ");
+					
+					
 					break;
 				case 4:
 					// Voy a dejar este hasta que se haga lo del login para que funcione algo.
@@ -158,6 +148,9 @@ public class Menu {
 					break;
 				}
 				break;
+				
+				
+				
 			case 4: // Hospital
 				System.out.println("HOSPITAL MENU:");
 				System.out.println("What do you want to do?");
@@ -173,7 +166,7 @@ public class Menu {
 					loginMenu();
 					break;
 				case 3: // Buy a prosthetic
-					// buyProsthetic(hospital_id);
+					buyProsthetic();
 					break;
 				}
 				break;
@@ -251,6 +244,7 @@ public class Menu {
 		
 
 	}
+	
 
 	public static void addModifyDelete() throws Exception {
 		System.out.println("What dou you want to do?");
@@ -271,6 +265,7 @@ public class Menu {
 
 		}
 	}
+	
 
 	public static void DeletePatient() {
 		searchPatientByTelephone();
@@ -284,6 +279,7 @@ public class Menu {
 		}
 	}
 
+	
 	public static void addPatient(boolean mood) throws Exception {
 		int num_id = 0;
 		if (mood) {
@@ -387,7 +383,8 @@ public class Menu {
 		}
 	}
 
-	public static void buyProsthetic(int hospital_id) throws Exception {
+	public static void buyProsthetic() throws Exception {
+		int hospital_id = hospitalUser.getId(); 
 		// Show the list of all available prosthetic on that specific hospital
 		List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics();
 		for (Prosthetic prosthetic : prostheticList) {

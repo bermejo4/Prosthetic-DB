@@ -38,4 +38,26 @@ public class PatientManager implements PatientManagerInterface {
 		}
 	}
 	
+	public List<Hospital> showHospitals() {
+		// To show all Hospitals in our data base
+		List<Hospital> hospitalList = new ArrayList<Hospital>();
+		try {
+			String sql = "SELECT * FROM hospital";
+			PreparedStatement prep = c.prepareStatement(sql);
+			ResultSet rs = prep.executeQuery();
+			while (rs.next()) {
+				Integer hosId = rs.getInt("id");
+				String hosName = rs.getString("name");
+				String hosLocat = rs.getString("location");
+				String hosTele = rs.getString("telephone");
+				
+				Hospital newHospital = new Hospital(hosId, hosName, hosLocat, hosTele);
+				hospitalList.add(newHospital);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return hospitalList;
+	}
 }
