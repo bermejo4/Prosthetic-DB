@@ -11,6 +11,7 @@ import db.inteface.*;
 import pojos.Doctor;
 import pojos.Patient;
 import pojos.Prosthetic;
+import pojos.Hospital;
 
 public class Menu {
 
@@ -41,6 +42,7 @@ public class Menu {
 		dbManagerInterface.createTables();
 		Patient patientUser = new Patient();
 		Doctor doctorUser = new Doctor();//crear
+		Hospital hospitalUser = new Hospital();
 		boolean userOcuppation;
 		
 		while (true) {
@@ -158,6 +160,9 @@ public class Menu {
 					break;
 				}
 				break;
+				
+				
+				
 			case 4: // Hospital
 				System.out.println("HOSPITAL MENU:");
 				System.out.println("What do you want to do?");
@@ -173,7 +178,7 @@ public class Menu {
 					loginMenu();
 					break;
 				case 3: // Buy a prosthetic
-					// buyProsthetic(hospital_id);
+					buyProsthetic();
 					break;
 				}
 				break;
@@ -271,6 +276,7 @@ public class Menu {
 
 		}
 	}
+	
 
 	public static void DeletePatient() {
 		searchPatientByTelephone();
@@ -284,6 +290,7 @@ public class Menu {
 		}
 	}
 
+	
 	public static void addPatient(boolean mood) throws Exception {
 		int num_id = 0;
 		if (mood) {
@@ -387,7 +394,8 @@ public class Menu {
 		}
 	}
 
-	public static void buyProsthetic(int hospital_id) throws Exception {
+	public static void buyProsthetic() throws Exception {
+		int hospital_id = hospitalUser.getId(); 
 		// Show the list of all available prosthetic on that specific hospital
 		List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics();
 		for (Prosthetic prosthetic : prostheticList) {
