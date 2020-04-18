@@ -1,4 +1,4 @@
-package db.classes;
+ package db.classes;
 import java.sql.*;
 
 import db.inteface.*;
@@ -8,6 +8,11 @@ public class DBManager implements DBManagerInterface{
 	private DoctorManager doctor;
 	private HospitalManager hospital;
 	private PatientManager patient;
+	
+	public DBManager() {
+		super();
+	}
+
 	
 	public void connect() {
 		try {
@@ -28,6 +33,20 @@ public class DBManager implements DBManagerInterface{
 		}
 	}
 	
+	
+	
+	protected Connection getConnection() {
+		return c;
+	}
+
+
+
+	public void setC(Connection c) {
+		this.c = c;
+	}
+
+
+
 	public void disconnect() {
 		try {			
 			// Close database connection
@@ -52,12 +71,12 @@ public class DBManager implements DBManagerInterface{
 			Statement stmt1 = c.createStatement();
 			String sql1 = "CREATE TABLE doctor "
 					+ "(doctor_id	INTEGER NOT NULL UNIQUE,"
-					+ "name TEXT,"
-					+ "telephone TEXT,"
-					+ "department TEXT,"
+					+ "name 	TEXT,"
+					+ "department	TEXT,"
 					+ "Hosp_id	INTEGER,"
+					+ "Date_of_fitting	DATE,"
 					+ "PRIMARY KEY('doctor_id'),"
-					+ "FOREIGN KEY('hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
+					+ "FOREIGN KEY('Hosp_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
 			
 			stmt1.executeUpdate(sql1);
 			stmt1.close();
@@ -65,9 +84,8 @@ public class DBManager implements DBManagerInterface{
 			Statement stmt2 = c.createStatement();
 			String sql2 = "CREATE TABLE hospital "
 					+ "(hospital_id	INTEGER NOT NULL UNIQUE,"
-					+ "name TEXT,"
-					+ "location TEXT,"
-					+ "telephone TEXT,"
+					+ "name 	TEXT,"
+					+ "location 	TEXT,"
 					+ "patient_id	INTEGER,"
 					+ "PRIMARY KEY('hospital_id'))";
 			
@@ -75,61 +93,55 @@ public class DBManager implements DBManagerInterface{
 			stmt2.close();
 			
 			Statement stmt3 = c.createStatement();
-			String sql3 = "CREATE TABLE patient"
+			String sql3 = "CREATE TABLE patient "
 					   + "patient_id INTEGER NOT NULL UNIQUE,"
-					   + "name TEXT,"
-					   + "lastname TEXT,"
-					   + "dob DATE,"
-					   + "dof DATE,"
-					   + "address TEXT,"
-					   + "telephone TEXT,"
-					   + "gender TEXT,"
-					   + "problem TEXT,"
-					   + "doctor_id INTEGER,"
+					   + "name    TEXT,"
+					   + "lastname        TEXT,"
+					   + "dob     DATE,"
+					   + "dof	  DATE,"
+					   + "address   TEXT,"
+					   + "telephone     TEXT, "
+					   + "gender	TEXT,"
+					   + "problem      TEXT, "
+					   + "doc_id     INTEGER, "
 					   + "PRIMARY KEY('patient_id'),"
-					   + "FOREIGN KEY('doctor_id') REFERENCES doctor(doctor_id) ON DELETE SET NULL ON UPDATE CASCADE)";
-			
+					   + "FOREIGN KEY('doc_id') REFERENCES doctor(doctor_id)"
+					   + "ON DELETE SET NULL ON UPDATE CASCADE)";
 			stmt3.executeUpdate(sql3);
 			stmt3.close();
 			
 			Statement stmt4 = c.createStatement(); 
 			String sql4 = "CREATE TABLE prosthetic "
 					+ "(prosthetic_id	INTEGER NOT NULL UNIQUE,"
-					+ "material TEXT,"
-					+ "type TEXT,"
-					+ "dimension TEXT,"
-					+ "failures TEXT,"
-					+ "price REAL"
-					+ "available BOOLEAN"
+					+ "material 	TEXT,"
+					+ "type		TEXT,"
+					+ "dimension	TEXT,"
+					+ "failures   TEXT,"
+					//falta el number_failures
+					+ "price 	REAL"
 					+ "patient_id	INTEGER,"
 					+ "hospital_id 	INTEGER"
 					+ "PRIMARY KEY('prosthetic_id'),"
-					+ "FOREIGN KEY('hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE,"
-					+ "FOREIGN KEY(patient_id) REFERENCES patient('patient_id') ON DELETE SER NULL ON UPDATE CASCADE)";
+					+ "FOREIGN KEY('Hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
 			
 			stmt4.executeUpdate(sql4);
 			stmt4.close();
 			
 			Statement stmt5 = c.createStatement(); 
-			String sql5 = "CREATE TABLE biomedical_engineer"
-					+ "(be_id	INTEGER NOT NULL UNIQUE,"
-					+ "name 	TEXT,"
-					+ "lastname		TEXT,"
-					+ "telephone TEXT,"
-					//+ "gender	TEXT,"
-					//+ "speciality TEXT,"
-					//+ "worklocation TEXT"
-					+ "PRIMARY KEY('be_id')";
-					//+ "FOREIGN KEY('Hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
+			String sql5 = "CREATE TABLE BiomedEng "
+					+ "(be_id		INTEGER NOT NULL UNIQUE,"
+					+ " name 		TEXT NOT NULL,"
+					+ " lastname	TEXT NOT NULL,"
+					+ " PRIMARY KEY('be_id')";
 			
 			stmt5.executeUpdate(sql5);
 			stmt5.close();
 			
 			Statement stmt6 = c.createStatement(); 
-			String sql6 = "CREATE TABLE m_m"
-					+ "(prosthetic_id	INTEGER NOT NULL,"
+			String sql6 = "CREATE TABLE M_M "
+					+ "(prost_id	INTEGER NOT NULL,"
 					+ "be_id INTEGER NOT NULL,"
-					+ "FOREIGN KEY('prosthetic_id')REFERENCES prosthetic('prosthetic_id') ON DELETE SET NULL ON UPDATE CASCADE,"
+					+ "FOREIGN KEY('prost_id')REFERENCES prosthetic('prosthetic_id') ON DELETE SET NULL ON UPDATE CASCADE,"
 					+ "FOREIGN KEY('be_id') REFERENCES biomedical_engineer('be_id') ON DELETE SET NULL ON UPDATE CASCADE)";
 			
 			stmt6.executeUpdate(sql6);
@@ -156,11 +168,8 @@ public class DBManager implements DBManagerInterface{
 			// Close database connection
 			//c.close();
 			//System.out.println("Database connection closed.");
-		} catch (SQLException e) {
-			if (e.getMessage().contains("already exists")) {
-			} else {
-				e.printStackTrace();
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
