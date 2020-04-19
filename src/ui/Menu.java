@@ -279,8 +279,22 @@ public class Menu {
 
 		Prosthetic prosToModify = biomedManagerInterface.getProsthetic(prosID);
 		System.out.println("Actual type: " + prosToModify.getType());
-		System.out.println("Introduce the new name or press enter to leave it as it is:");
+		System.out.println("Establish the new name or press enter to leave it as it is:");
 		String newType = reader.readLine();
+		if(newType.equals(" ")) {
+			
+			newType = prosToModify.getType();
+			
+		}
+		System.out.println("Establish the new name or press enter to leave it as it is:");
+		String newMaterial = reader.readLine();
+		if(newType.equals(" ")) {
+			
+			newType = prosToModify.getType();
+			
+		}
+		System.out.println("Establish the new name or press enter to leave it as it is:");
+		String newDimensions = reader.readLine();
 		if(newType.equals(" ")) {
 			
 			newType = prosToModify.getType();
