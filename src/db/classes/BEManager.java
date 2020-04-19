@@ -31,7 +31,23 @@ public class BEManager implements db.inteface.BEManagerInterface {
 
 	@Override
 	public void upadate(Prosthetic pros) {
-		// TODO Auto-generated method stub
+		// we create a prepared statement fot our connection
+		try {
+			String sql = "UPDATE prosthetic SET  material = ?, type = ?, dimension = ?, failures = ? ,price = ?"
+					+ "WHERE prosthetic_id = ?";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setString(1, pros.getMaterial());
+			prep.setString(2, pros.getType());
+			prep.setString(3, pros.getDimensions());
+			prep.setString(4, pros.getFailures());
+			prep.setFloat(5, pros.getPrice());
+			prep.setInt(6, pros.getId());
+			prep.executeUpdate();
+			prep.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -52,6 +68,31 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public Prosthetic getProsthetic(int prostheticID) {
+		Prosthetic newProsthetic = null;
+		try {
+			String sql = "SELECT * FROM prosthetic WHERE prosthetic_id = ?";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setInt(1,prostheticID );
+			ResultSet rs = prep.executeQuery(); //we only get one answer
+			rs.next();
+			int id = rs.getInt("id");
+			String material = rs.getString("material");
+			String pros_type = rs.getString("type");
+			String dimensions = rs.getString("dimension");
+			float price = rs.getFloat("price");
+			String failures = rs.getString("failures");
+			newProsthetic = new Prosthetic (id, pros_type, material,  price,  dimensions,failures);
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return newProsthetic;
 	}
 
 	// search prosthetic por type? y el doctor no busca la prosthetic? y el patient?
@@ -84,5 +125,6 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		return listProsthetics;
 
 	}
+
 
 }

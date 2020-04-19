@@ -47,6 +47,20 @@ public class Prosthetic implements Serializable {
 		this.patient_id = patient_id;
 		this.hospital_id = hospital_id;
 	}
+	
+	
+
+	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.material = material;
+		this.price = price;
+		this.dimensions = dimensions;
+		this.failures = failures;
+	}
+
+
 
 	//Created another constructor for a lists in biomedical eng
 	public Prosthetic(Integer id, String type, String material, Float price, String dimensions) {
