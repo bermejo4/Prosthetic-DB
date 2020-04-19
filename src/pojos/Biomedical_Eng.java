@@ -10,26 +10,20 @@ public class Biomedical_Eng implements Serializable {
 	private String name;
 	private String lastname;
 	private String telephone;
-	private Boolean gender;
-	private String speciality;
-	private String worklocation;
+
+
 	
 	public Biomedical_Eng() {
 		super ();
 	}
 	
-	public Biomedical_Eng( String name, String lastname, String telephone,
-			Boolean gender, String specialty, String worklocation) {
+	public Biomedical_Eng( String name, String lastname, String telephone) {
 		super();
 		
 		this.name = name;
 		this.lastname = lastname;
 		this.telephone = telephone;
-		this.gender = gender;
-		this.speciality = specialty;
-		this.worklocation = worklocation;
-			
-		
+					
 	}
 
 	@Override
@@ -57,10 +51,12 @@ public class Biomedical_Eng implements Serializable {
 		return true;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Biomedical_Eng [id=" + id + ", name=" + name + ", lastname=" + lastname + ", telephone=" + telephone
-				+ ", gender=" + gender + ", speciality=" + speciality + ", worklocation=" + worklocation + "]";
+				+ "]";
 	}
 
 	public Integer getId() {
@@ -94,32 +90,7 @@ public class Biomedical_Eng implements Serializable {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-
-	public Boolean getGender() {
-		return gender;
-	}
-
-	public void setGender(Boolean gender) {
-		this.gender = gender;
-	}
-
-	public String getSpeciality() {
-		return speciality;
-	}
-
-	public void setSpeciality(String speciality) {
-		this.speciality = speciality;
-	}
-
-	public String getWorklocation() {
-		return worklocation;
-	}
-
-	public void setWorklocation(String worklocation) {
-		this.worklocation = worklocation;
-	}
 	
-	
-	
+		
 }
 

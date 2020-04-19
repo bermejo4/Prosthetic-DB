@@ -51,7 +51,7 @@ public class InputFlow {
 			} catch (IOException ex) {
 				System.out.println("Error reading");
 			} catch (NumberFormatException nfex) {
-				System.out.println("You have not introduced a Float, you must do it.");
+				System.out.println("You have not introduced a valid number. Try again.");
 				System.out.println(text);
 			}
 

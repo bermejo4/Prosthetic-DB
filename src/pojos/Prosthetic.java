@@ -30,6 +30,8 @@ public class Prosthetic implements Serializable {
 		this.type = type;
 	}
 
+	
+	
 	// Constructor with all variables
 	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures,
 			Integer numberFailures, boolean available, Integer patient_id, Integer hospital_id) {
@@ -45,6 +47,25 @@ public class Prosthetic implements Serializable {
 		this.patient_id = patient_id;
 		this.hospital_id = hospital_id;
 	}
+
+	//Created another constructor for a lists in biomedical eng
+	public Prosthetic(Integer id, String type, String material, Float price, String dimensions) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.material = material;
+		this.price = price;
+		this.dimensions = dimensions;
+	}
+//created another constructor to insert prosthetic but without id, failures etc
+	public Prosthetic(String type, String material, Float price, String dimensions) {
+		super();
+		this.type = type;
+		this.material = material;
+		this.price = price;
+		this.dimensions = dimensions;
+	}
+
 
 
 	// Empty constructor

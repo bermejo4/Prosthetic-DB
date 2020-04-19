@@ -4,7 +4,7 @@ import java.util.List;
 
 import pojos.*;
 
-public interface BEManager {
+public interface BEManagerInterface {
 
 	public void register(Biomedical_Eng BE);
 
@@ -14,6 +14,8 @@ public interface BEManager {
 
 	public void insert(Prosthetic pros);
 
-	public List<Prosthetic> searchByID(int id);
+	//public List<Prosthetic> searchByID(int id);
+	public List<Prosthetic> searchBytype(String type);
+
 
 }

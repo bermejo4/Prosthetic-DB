@@ -10,11 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 import db.classes.*;
 import db.inteface.*;
-import pojos.Biomedical_Eng;
-import pojos.Doctor;
-import pojos.Patient;
-import pojos.Prosthetic;
-import pojos.Hospital;
+import pojos.*;
 
 public class Menu {
 
@@ -38,7 +34,7 @@ public class Menu {
 	private static int userUsingNumber; //Only can be from 1 to 5
 	private static boolean logged;
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception  {
 		// Connect with the database.
 		dbManagerInterface = new DBManager();
 		dbManagerInterface.connect();
@@ -118,6 +114,8 @@ public class Menu {
 
 				}
 				break;
+				
+//-----------------------------------------------------------------------------------
 			case 2: // Doctor
 				System.out.println("DOCTOR MENU:");
 				System.out.println("What do you want to do?");
@@ -155,35 +153,15 @@ public class Menu {
 					userUsing=false;
 				}
 				break;
+				
+//-----------------------------------------------------------------------------------
 
 			case 3: // Biomedical Engineer
-				System.out.println("BIOMEDICAL ENGINEER MENU:");
-				System.out.println("What do you want to do?");
-				System.out.println("1.Register.");
-				System.out.println("2.Login.");
-				max=2;
-				if(logged) {
-					System.out.println("3.Upload Prosthetic information.");
-					max=3;
-				}
-				System.out.println("\n0.Back to choose other user to the main menu.");
-				num = requestNumber(max);
-				switch (num) {
-				case 1: // Register
-					registerMenu();
-					break;
-				case 2: // Login
-					loginMenu();
-					break;
-				case 3: // Upload Prosthetic information
-					break;
-				default: //back
-					userUsing=false;
-				}
-				break;
-				
-				
-				
+				BiomedEngMenu();
+
+								
+//-----------------------------------------------------------------------------------
+			
 			case 4: // Hospital
 				System.out.println("HOSPITAL MENU:");
 				System.out.println("What do you want to do?");
@@ -204,7 +182,7 @@ public class Menu {
 					loginMenu();
 					break;
 				case 3: // Buy a prosthetic
-					buyProsthetic();
+					//buyProsthetic();
 					break;
 				default: //back
 					userUsing=false;
@@ -219,7 +197,62 @@ public class Menu {
 		}
 
 	}
+	
+//-----------------------------------------------------------------------------------
+	//MENUS
+	
+	private static void BiomedEngMenu()throws Exception{
+		
+		System.out.println("BIOMEDICAL ENGINEER MENU:");
+		System.out.println("What do you want to do?");
+		System.out.println("1.Register.");
+		System.out.println("2.Login.");
+		int max=2;
+		if(logged) {
+			System.out.println("Upload Prosthetic information.");
+			max=3;
+		}
+		System.out.println("\n0.Back to choose other user to the main menu.");
+		num = requestNumber(max);
+		switch (num) {
+		case 1: // Register
+			registerMenu();
+			break;
+		case 2: // Login
+			loginMenu();
+			break;
 
+		case 3: // Upload Prosthetic 
+			uploadProsthetic();
+			break;
+		case 4: // Modify Prosthetic info
+			break;
+		default: //back
+			userUsing=false;
+		}
+		
+	}
+
+
+	
+	public static void uploadProsthetic()throws Exception {
+		
+		System.out.println("Introduce the new Prosthetic: ");
+		//System.out.print("Name:");
+		//String name = reader.readLine();
+		System.out.print("Type of Prosthetic(ex. Below the knee, Auricular, etc):");
+		String pros_type = reader.readLine();
+		System.out.print("Material made of:");
+		String material = reader.readLine();
+		System.out.print("Prosthetic dimensions:");
+		String dimensions = reader.readLine();
+		Float price  = InputFlow.takeFloat(reader, "Prosthetic price:");
+		//Float price = Float.parseFloat(reader.readLine());
+		Prosthetic createProsthetic = new Prosthetic(pros_type, material, price, dimensions);
+		
+		
+	}
+	
 	public static int requestNumber(int max) {
 		// int max is the maximun option that is acceptable
 		int num;
@@ -425,7 +458,7 @@ public class Menu {
 		}
 	}
 
-	public static void buyProsthetic() throws Exception {
+/*	public static void buyProsthetic() throws Exception {
 		int hospital_id = hospitalUser.getId(); 
 		// Show the list of all available prosthetic on that specific hospital
 		List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics();
@@ -439,7 +472,7 @@ public class Menu {
 		// the specific hospital buys the prosthetic choosed
 		hospitalManagerInterface.buy(hospital_id, prosthetic_id);
 
-	}
+	}*/
 
 	public static void pressEnter() {
 		System.out.println("Press enter to go to the main menu and continue...");
