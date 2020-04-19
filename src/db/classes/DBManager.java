@@ -8,6 +8,7 @@ public class DBManager implements DBManagerInterface{
 	private DoctorManager doctor;
 	private HospitalManager hospital;
 	private PatientManager patient;
+	private BEManager biomed; //no creamos al hacer la connection c
 	
 	public DBManager() {
 		super();
@@ -27,6 +28,9 @@ public class DBManager implements DBManagerInterface{
 			hospital = new HospitalManager(c);
 			//create PatientManager
 			patient = new PatientManager(c);
+			//create Biomed manager
+			biomed = new BEManager(c);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -34,11 +38,6 @@ public class DBManager implements DBManagerInterface{
 	}
 	
 	
-	
-	protected Connection getConnection() {
-		return c;
-	}
-
 
 
 	public void setC(Connection c) {
@@ -197,6 +196,13 @@ public class DBManager implements DBManagerInterface{
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+
+	@Override
+	public BEManagerInterface getBiomedManager() {
+		// how to generate a biomed manager
+		return biomed;
 	}
 	
 
