@@ -16,7 +16,6 @@ public class Biomedical_Eng implements Serializable {
 	
 	public Biomedical_Eng() {
 		super ();
-		
 	}
 	
 	public Biomedical_Eng( String name, String lastname, String telephone,
