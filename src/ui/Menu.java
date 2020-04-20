@@ -126,13 +126,13 @@ public class Menu {
 				System.out.println("1.Register.");
 				System.out.println("2.Login.");
 				max=2;
-				if(logged) {
+				//if(logged) {
 				System.out.println("3.Select a Prosthetic.");
 				System.out.println("4.Select date of fitting.");
 				System.out.println("5.Search a patients file.");
 				System.out.println("6.Add/Modify/Delete a patient.");
 				max=6;
-				}
+				//}
 				System.out.println("\n0.Back to choose other user to the main menu.");
 				num = requestNumber(max);
 				switch (num) {
@@ -171,7 +171,8 @@ public class Menu {
 				System.out.println("What do you want to do?");
 				System.out.println("1.Register.");
 				System.out.println("2.Login.");
-				max=2;
+				System.out.println("3.Buy prosthetic.");
+				max=3;
 				if(logged) {
 				System.out.println("3.Buy a Prosthetic.");	
 				max=3;
@@ -186,7 +187,7 @@ public class Menu {
 					loginMenu();
 					break;
 				case 3: // Buy a prosthetic
-					//buyProsthetic();
+					buyProsthetic();
 					break;
 				default: //back
 					userUsing=false;
@@ -544,7 +545,7 @@ public class Menu {
 		}
 	}
 
-/*	public static void buyProsthetic() throws Exception {
+	public static void buyProsthetic() throws Exception {
 		int hospital_id = hospitalUser.getId(); 
 		// Show the list of all available prosthetic on that specific hospital
 		List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics();
@@ -558,7 +559,7 @@ public class Menu {
 		// the specific hospital buys the prosthetic choosed
 		hospitalManagerInterface.buy(hospital_id, prosthetic_id);
 
-	}*/
+	}
 
 	public static void pressEnter() {
 		System.out.println("Press enter to go to the main menu and continue...");
