@@ -8,4 +8,5 @@ public interface DBManagerInterface {
 	public DoctorManagerInterface getDoctorManager();
 	public HospitalManagerInterface getHospitalManager();
 	public PatientManagerInterface getPatientManager();
+	public BEManagerInterface getBiomedManager();
 }

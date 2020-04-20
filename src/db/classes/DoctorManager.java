@@ -73,7 +73,7 @@ public class DoctorManager implements DoctorManagerInterface {
 	public List<Prosthetic> selectProsthetic(String col, String find) {
 		List<Prosthetic> prostList = new ArrayList<Prosthetic>();
 		try {
-			String sql = "SELECT * FROM patient WHERE "+col+" LIKE ?";
+			String sql = "SELECT * FROM prosthetic WHERE "+col+" LIKE ?";
 			PreparedStatement find1 = c.prepareStatement(sql);
 			find1.setString(1, "%"+find+"%");
 			ResultSet rs = find1.executeQuery();

@@ -16,6 +16,7 @@ public interface BEManagerInterface {
 
 	//public List<Prosthetic> searchByID(int id);
 	public List<Prosthetic> searchBytype(String type);
+	public Prosthetic getProsthetic(int prostheticID); 
 
 
 }

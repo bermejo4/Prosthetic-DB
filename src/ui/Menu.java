@@ -19,6 +19,8 @@ public class Menu {
 	private static DoctorManagerInterface doctorManagerInterface;
 	private static PatientManagerInterface patientManagerInterface;
 	private static HospitalManagerInterface hospitalManagerInterface;
+	private static BEManagerInterface biomedManagerInterface;
+
 
 	// Used for parsing dates
 	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -41,6 +43,8 @@ public class Menu {
 		doctorManagerInterface = dbManagerInterface.getDoctorManager();
 		patientManagerInterface = dbManagerInterface.getPatientManager();
 		hospitalManagerInterface = dbManagerInterface.getHospitalManager();
+		biomedManagerInterface = dbManagerInterface.getBiomedManager();		
+		
 		
 		userUsing=false;
 		
@@ -203,32 +207,50 @@ public class Menu {
 	
 	private static void BiomedEngMenu()throws Exception{
 		
-		System.out.println("BIOMEDICAL ENGINEER MENU:");
-		System.out.println("What do you want to do?");
-		System.out.println("1.Register.");
-		System.out.println("2.Login.");
-		int max=2;
-		if(logged) {
-			System.out.println("Upload Prosthetic information.");
-			max=3;
-		}
-		System.out.println("\n0.Back to choose other user to the main menu.");
-		num = requestNumber(max);
-		switch (num) {
-		case 1: // Register
-			registerMenu();
-			break;
-		case 2: // Login
-			loginMenu();
-			break;
+		while(true) {
+			
+			System.out.println("BIOMEDICAL ENGINEER MENU:");
+			System.out.println("What do you want to do?");
+			System.out.println("1.Register.");
+			System.out.println("2.Login.");
+			int max=4;//cambiar a 2 ;solo para probar
+			
+		/*	if(logged) {
+				System.out.println("What do want to do?: ");
+				
+				System.out.println("1. View Uploaded Prosthetics.");
+				System.out.println("2. Upload a new Prosthetic.");
+				System.out.println("3. Modify a Prosthetic information.");
 
-		case 3: // Upload Prosthetic 
-			uploadProsthetic();
-			break;
-		case 4: // Modify Prosthetic info
-			break;
-		default: //back
-			userUsing=false;
+				max=3;
+			}
+			System.out.println("\n0.Back to choose other user to the main menu.");*/
+			num = requestNumber(max);
+			switch (num) {
+			case 1: // Register
+				registerMenu();
+				break;
+			case 2: // Login
+				loginMenu();
+				break;
+
+			case 3: // Upload Prosthetic 
+
+				uploadProsthetic();
+				break;
+			case 4: // Modify Prosthetic info
+				searchProsType();
+				
+				int choice = InputFlow.takeInteger(reader, "Introduce the id of the desired prosthetic:");
+				modifyProstheticInfo(choice);
+				break;
+			default: //back
+				userUsing=false;
+			}
+			
+			
+			
+			
 		}
 		
 	}
@@ -249,9 +271,73 @@ public class Menu {
 		Float price  = InputFlow.takeFloat(reader, "Prosthetic price:");
 		//Float price = Float.parseFloat(reader.readLine());
 		Prosthetic createProsthetic = new Prosthetic(pros_type, material, price, dimensions);
-		
+		biomedManagerInterface.insert(createProsthetic);
 		
 	}
+	
+	public static void modifyProstheticInfo(int prosID) throws Exception{
+
+		Prosthetic prosToModify = biomedManagerInterface.getProsthetic(prosID);
+		System.out.println("Actual prosthetic type: " + prosToModify.getType());
+		System.out.println("Establish the new name or press enter to leave it as it is:");
+		String newType = reader.readLine();
+		if(newType.equals(" ")) {
+			
+			newType = prosToModify.getType();
+			
+		}
+		System.out.println("Actual prosthetic material: " + prosToModify.getMaterial());
+		System.out.println("Establish a new material or press enter to leave it as it is:");
+		String newMaterial = reader.readLine();
+		if(newMaterial.equals(" ")) {
+			
+			newMaterial = prosToModify.getMaterial();
+			
+		}
+		System.out.println("Actual prosthetic dimensions: " + prosToModify.getDimensions());
+		System.out.println("Establish new dimensions or press enter to leave it as it is:");
+		String newDimensions = reader.readLine();
+		if(newDimensions.equals(" ")) {
+			
+			newDimensions = prosToModify.getDimensions();
+			
+		}
+		System.out.println("Actual prosthetic price: " + prosToModify.getPrice());
+		
+		Float newPrice = InputFlow.takeFloat(reader, "Establish a new price or press enter to leave it as it is:");
+		if(newPrice.equals(" ")) {
+			
+			newPrice = prosToModify.getPrice();
+			
+		}
+		System.out.println("Actual prosthetic failures/limitations: " + prosToModify.getFailures());
+		System.out.println("Edit failures/limitations or press enter to leave it as it is:");
+		String newFailures = reader.readLine();
+		if(newFailures.equals(" ")) {
+			
+			newFailures = prosToModify.getFailures();
+			
+		}
+		
+		Prosthetic updatedaPros = new Prosthetic ( prosID,  newType,  newMaterial, newPrice,  newDimensions,  newFailures) ;
+		biomedManagerInterface.upadate(updatedaPros);
+		
+	}
+	public static void searchProsType() throws Exception{
+		
+		System.out.println("Search for the prosthetic you want to modify...");
+		System.out.println("Filter by type (ex. Below the knee, Auricular, etc):");
+		String pros_type = reader.readLine();
+		List<Prosthetic> pros = biomedManagerInterface.searchBytype(pros_type);
+		//now we need to print the list
+		for (Prosthetic prosthetic : pros) {
+			System.out.println(prosthetic);
+
+		}
+			
+		
+	}
+	
 	
 	public static int requestNumber(int max) {
 		// int max is the maximun option that is acceptable
@@ -296,7 +382,7 @@ public class Menu {
 	}
 
 	public static void searchProstheticMenu() {
-		System.out.println("Select the type of search that dou you want to do?");
+		System.out.println("Select the type of search that you want to do?");
 		System.out.println("By...");
 		System.out.println("1.Material");
 		System.out.println("2.Type.");
