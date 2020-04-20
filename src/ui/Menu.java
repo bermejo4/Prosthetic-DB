@@ -55,7 +55,7 @@ public class Menu {
 		int max;
 
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
-		dbManagerInterface.deleteTables();
+		//dbManagerInterface.deleteTables();
 		dbManagerInterface.createTables();
 		
 		
@@ -234,6 +234,8 @@ public class Menu {
 				}
 				break;
 			default:// Exit
+				//dbManagerInterface.deleteTables(); Quitar // cuando esté terminada la práctica
+				dbManagerInterface.disconnect();
 				System.exit(0);
 			}
 			}
