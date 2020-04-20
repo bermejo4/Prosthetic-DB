@@ -23,7 +23,6 @@ public class Menu {
 
 
 	// Used for parsing dates
-	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	private static BufferedReader reader;
 	private static int num;
 	
@@ -55,7 +54,9 @@ public class Menu {
 		int max;
 
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
-		dbManagerInterface.createTables();
+		//dbManagerInterface.deleteTables();
+		//dbManagerInterface.createTables();
+		
 		
 		
 		while (true) {
@@ -193,6 +194,8 @@ public class Menu {
 				}
 				break;
 			default:// Exit
+				//dbManagerInterface.deleteTables(); Quitar // cuando esté terminada la práctica
+				dbManagerInterface.disconnect();
 				System.exit(0);
 			}
 			}
@@ -457,14 +460,10 @@ public class Menu {
 		System.out.println("Phone number:");
 		String telephone = InputFlow.takeTelephone(reader, "Introduce a telephone: ");
 		// dob
-		System.out.println("Day of Birthday (yyyy-MM-dd): ");
-		String dob = reader.readLine();
-		LocalDate dayofbirth = LocalDate.parse(dob, formatter);
+		LocalDate dayofbirth = InputFlow.takeDate(reader, "Day of Birthday (yyyy-MM-dd): ");
 		if (mood) {// If you are modifying the patient you can also modify the day of fitting
 			// dof
-			System.out.println("Day of Fitting (yyyy-MM-dd)");
-			String dof = reader.readLine();
-			LocalDate dayoffitting = LocalDate.parse(dof, formatter);
+			LocalDate dayoffitting = InputFlow.takeDate(reader, "Day of Fitting (yyyy-MM-dd)");
 		}
 
 		System.out.println("Gender:");
@@ -492,9 +491,7 @@ public class Menu {
 		Patient pac = doctorManagerInterface.searchSpecificPatientById(num_id);
 		System.out.println("You have choose this patient:\n");
 		System.out.println(pac.toString() + "\n");
-		System.out.println("\nNow introduce the Day of Fitting (yyyy-MM-dd):");
-		String dof = reader.readLine();
-		LocalDate dayoffitting = LocalDate.parse(dof, formatter);
+		LocalDate dayoffitting = InputFlow.takeDate(reader, "\nNow introduce the Day of Fitting (yyyy-MM-dd):");
 		Date dateToPass = Date.valueOf(dayoffitting);
 		doctorManagerInterface.assignDOF(dateToPass, pac);
 
