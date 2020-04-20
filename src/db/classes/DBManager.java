@@ -64,22 +64,33 @@ public class DBManager implements DBManagerInterface {
 
 			// Create tables: begin
 			Statement stmt1 = c.createStatement();
-			String sql1 = "CREATE TABLE doctor " + "(doctor_id	INTEGER NOT NULL UNIQUE," + "name TEXT,"
-					+ "telephone TEXT," + "department TEXT," + "Hosp_id	INTEGER," + "PRIMARY KEY('doctor_id'),"
+			String sql1 = "CREATE TABLE doctor " 
+					+ "(doctor_id	INTEGER NOT NULL UNIQUE," 
+					+ "name TEXT,"
+					+ "telephone TEXT," 
+					+ "department TEXT," 
+					+ "Hosp_id	INTEGER," 
+					+ "PRIMARY KEY('doctor_id'),"
 					+ "FOREIGN KEY('hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
 
 			stmt1.executeUpdate(sql1);
 			stmt1.close();
 
 			Statement stmt2 = c.createStatement();
-			String sql2 = "CREATE TABLE hospital " + "(hospital_id	INTEGER NOT NULL UNIQUE," + "name TEXT,"
-					+ "location TEXT," + "telephone TEXT," + "patient_id	INTEGER," + "PRIMARY KEY('hospital_id'))";
+			String sql2 = "CREATE TABLE hospital " 
+					+ "(hospital_id	INTEGER NOT NULL UNIQUE," 
+					+ "name TEXT,"
+					+ "location TEXT," 
+					+ "telephone TEXT," 
+					+ "patient_id	INTEGER," 
+					+ "PRIMARY KEY('hospital_id'))";
 
 			stmt2.executeUpdate(sql2);
 			stmt2.close();
 
 			Statement stmt3 = c.createStatement();
-			String sql3 = "CREATE TABLE patient" + "(patient_id INTEGER NOT NULL UNIQUE," + "name TEXT,"
+			String sql3 = "CREATE TABLE patient" 
+					+ "(patient_id INTEGER NOT NULL UNIQUE," + "name TEXT,"
 					+ "lastname TEXT," + "dob DATE," + "dof DATE," + "address TEXT," + "telephone TEXT,"
 					+ "gender TEXT," + "problem TEXT," + "doctor_id INTEGER," + "PRIMARY KEY('patient_id'),"
 					+ "FOREIGN KEY('doctor_id') REFERENCES doctor(doctor_id) ON DELETE SET NULL ON UPDATE CASCADE)";
@@ -175,7 +186,7 @@ public class DBManager implements DBManagerInterface {
 	}
 	 	
 
-	public void DeleteTables() {
+	public void deleteTables() {
 		try {
 
 			// Drop tables: begin
@@ -206,9 +217,6 @@ public class DBManager implements DBManagerInterface {
 			System.out.println("Tables removed.");
 			// Drop tables: end
 
-			// Close database connection
-			c.close();
-			System.out.println("Database connection closed.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
