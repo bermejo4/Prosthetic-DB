@@ -173,6 +173,7 @@ public class DBManager implements DBManagerInterface {
 		}
 		return result;
 	}
+	 	
 
 	public void DeleteTables() {
 		try {
