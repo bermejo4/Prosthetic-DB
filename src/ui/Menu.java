@@ -278,7 +278,7 @@ public class Menu {
 	public static void modifyProstheticInfo(int prosID) throws Exception{
 
 		Prosthetic prosToModify = biomedManagerInterface.getProsthetic(prosID);
-		System.out.println("Actual type: " + prosToModify.getType());
+		System.out.println("Actual prosthetic type: " + prosToModify.getType());
 		System.out.println("Establish the new name or press enter to leave it as it is:");
 		String newType = reader.readLine();
 		if(newType.equals(" ")) {
@@ -286,22 +286,41 @@ public class Menu {
 			newType = prosToModify.getType();
 			
 		}
-		System.out.println("Establish the new name or press enter to leave it as it is:");
+		System.out.println("Actual prosthetic material: " + prosToModify.getMaterial());
+		System.out.println("Establish a new material or press enter to leave it as it is:");
 		String newMaterial = reader.readLine();
-		if(newType.equals(" ")) {
+		if(newMaterial.equals(" ")) {
 			
-			newType = prosToModify.getType();
+			newMaterial = prosToModify.getMaterial();
 			
 		}
-		System.out.println("Establish the new name or press enter to leave it as it is:");
+		System.out.println("Actual prosthetic dimensions: " + prosToModify.getDimensions());
+		System.out.println("Establish new dimensions or press enter to leave it as it is:");
 		String newDimensions = reader.readLine();
-		if(newType.equals(" ")) {
+		if(newDimensions.equals(" ")) {
 			
-			newType = prosToModify.getType();
+			newDimensions = prosToModify.getDimensions();
+			
+		}
+		System.out.println("Actual prosthetic price: " + prosToModify.getPrice());
+		
+		Float newPrice = InputFlow.takeFloat(reader, "Establish a new price or press enter to leave it as it is:");
+		if(newPrice.equals(" ")) {
+			
+			newPrice = prosToModify.getPrice();
+			
+		}
+		System.out.println("Actual prosthetic failures/limitations: " + prosToModify.getFailures());
+		System.out.println("Edit failures/limitations or press enter to leave it as it is:");
+		String newFailures = reader.readLine();
+		if(newFailures.equals(" ")) {
+			
+			newFailures = prosToModify.getFailures();
 			
 		}
 		
-		
+		Prosthetic updatedaPros = new Prosthetic ( prosID,  newType,  newMaterial, newPrice,  newDimensions,  newFailures) ;
+		biomedManagerInterface.upadate(updatedaPros);
 		
 	}
 	public static void searchProsType() throws Exception{
