@@ -161,7 +161,46 @@ public class Menu {
 //-----------------------------------------------------------------------------------
 
 			case 3: // Biomedical Engineer
-				BiomedEngMenu();
+				System.out.println("BIOMEDICAL ENGINEER MENU:");
+				System.out.println("What do you want to do?");
+				System.out.println("1.Register.");
+				System.out.println("2.Login.");
+				max=4;//cambiar a 2 ;solo para probar
+				
+				if(logged) {
+					System.out.println("What do want to do?: ");
+					
+					System.out.println("1. View Uploaded Prosthetics.");
+					System.out.println("2. Upload a new Prosthetic.");
+					System.out.println("3. Modify a Prosthetic information.");
+
+					max=3;
+				}
+				System.out.println("\n0.Back to choose other user to the main menu.");
+				num = requestNumber(max);
+				
+				//arreglar para meter un while 
+				switch (num) {
+				case 1: // Register
+					registerMenu();
+					break;
+				case 2: // Login
+					loginMenu();
+					break;
+
+				case 3: // Upload Prosthetic 
+
+					uploadProsthetic();
+					break;
+				case 4: // Modify Prosthetic info
+					searchProsType();
+					
+					int choice = InputFlow.takeInteger(reader, "Introduce the id of the desired prosthetic:");
+					modifyProstheticInfo(choice);
+					break;
+				default: //back
+					userUsing=false;
+				}
 
 								
 //-----------------------------------------------------------------------------------
@@ -204,58 +243,7 @@ public class Menu {
 	}
 	
 //-----------------------------------------------------------------------------------
-	//MENUS
 	
-	private static void BiomedEngMenu()throws Exception{
-		
-		while(true) {
-			
-			System.out.println("BIOMEDICAL ENGINEER MENU:");
-			System.out.println("What do you want to do?");
-			System.out.println("1.Register.");
-			System.out.println("2.Login.");
-			int max=4;//cambiar a 2 ;solo para probar
-			
-		/*	if(logged) {
-				System.out.println("What do want to do?: ");
-				
-				System.out.println("1. View Uploaded Prosthetics.");
-				System.out.println("2. Upload a new Prosthetic.");
-				System.out.println("3. Modify a Prosthetic information.");
-
-				max=3;
-			}
-			System.out.println("\n0.Back to choose other user to the main menu.");*/
-			num = requestNumber(max);
-			switch (num) {
-			case 1: // Register
-				registerMenu();
-				break;
-			case 2: // Login
-				loginMenu();
-				break;
-
-			case 3: // Upload Prosthetic 
-
-				uploadProsthetic();
-				break;
-			case 4: // Modify Prosthetic info
-				searchProsType();
-				
-				int choice = InputFlow.takeInteger(reader, "Introduce the id of the desired prosthetic:");
-				modifyProstheticInfo(choice);
-				break;
-			default: //back
-				userUsing=false;
-			}
-			
-			
-			
-			
-		}
-		
-	}
-
 
 	
 	public static void uploadProsthetic()throws Exception {
