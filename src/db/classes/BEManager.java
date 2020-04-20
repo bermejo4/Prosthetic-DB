@@ -96,6 +96,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 	}
 
 	// search prosthetic por type? y el doctor no busca la prosthetic? y el patient?
+	//falta la parte de poder modificar date of fitting
 	@Override
 	public List<Prosthetic> searchBytype(String type) {
 		List<Prosthetic> listProsthetics = new ArrayList<Prosthetic>();
