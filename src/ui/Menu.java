@@ -23,7 +23,6 @@ public class Menu {
 
 
 	// Used for parsing dates
-	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	private static BufferedReader reader;
 	private static int num;
 	
