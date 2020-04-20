@@ -72,6 +72,8 @@ public class Prosthetic implements Serializable {
 	public Prosthetic() {
 		super();
 	}
+	
+	
 
 	// Getters and Setters
 
