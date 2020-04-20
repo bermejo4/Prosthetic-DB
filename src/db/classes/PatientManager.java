@@ -60,4 +60,28 @@ public class PatientManager implements PatientManagerInterface {
 		}
 		return hospitalList;
 	}
+
+	//No esta bien hecho, lo tengo que cambiar
+	public List<Hospital> selectHospital(String nom, String find) {
+		List<Hospital> hospitalList = new ArrayList<Hospital>();
+		try {
+			String sql = "SELECT * FROM hospital WHERE "+nom+" LIKE ?";
+			PreparedStatement find1 = c.prepareStatement(sql);
+			find1.setString(1, "%"+find+"%");
+			ResultSet rs = find1.executeQuery();
+			while(rs.next()) {
+				int hospital_id = rs.getInt("hospital_id");
+				String name = rs.getString("name");
+				String location = rs.getString("location");
+				String telephone = rs.getString("telephone");
+				Hospital newHospital = new Hospital(hospital_id, name, location, telephone);
+				hospitalList.add(newHospital);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return hospitalList;
+		
+	}
 }
