@@ -246,15 +246,6 @@
 	 		} catch (Exception e) {
 	 			e.printStackTrace();
 	 		}
-
-
-
-	 	@Override
-	 	public BEManagerInterface getBiomedManager() {
-	 		// how to generate a biomed manager
-	 		return biomed;
-
-	 	}
 	 	
 
 	 }
@@ -262,8 +253,8 @@
 
 		@Override
 		public BEManagerInterface getBiomedManager() {
-			// TODO Auto-generated method stub
-			return null;
+		
+			return biomed;
 		}
 
 }
