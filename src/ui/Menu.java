@@ -162,7 +162,50 @@ public class Menu {
 //-----------------------------------------------------------------------------------
 
 			case 3: // Biomedical Engineer
+<<<<<<< HEAD
 				BiomedEngMenu();
+=======
+				System.out.println("BIOMEDICAL ENGINEER MENU:");
+				System.out.println("What do you want to do?");
+				System.out.println("1.Register.");
+				System.out.println("2.Login.");
+				max=2;//cambiar a 2 ;solo para probar
+				
+				//if(logged) {
+					System.out.println("What do want to do?: ");
+					
+					System.out.println("3. View Uploaded Prosthetics.");
+					System.out.println("4. Upload a new Prosthetic.");
+					System.out.println("5. Modify a Prosthetic information.");
+
+					max=5;
+				//}
+				System.out.println("\n0.Back to choose other user to the main menu.");
+				num = requestNumber(max);
+				
+				//arreglar para meter un while 
+				switch (num) {
+				case 1: // Register
+					registerMenu();
+					break;
+				case 2: // Login
+					loginMenu();
+					break;
+
+				case 3: // Upload Prosthetic 
+
+					uploadProsthetic();
+					break;
+				case 4: // Modify Prosthetic info
+					searchProsType();
+					
+					int choice = InputFlow.takeInteger(reader, "Introduce the id of the desired prosthetic:");
+					modifyProstheticInfo(choice);
+					break;
+				default: //back
+					userUsing=false;
+				}
+>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 
 								
 //-----------------------------------------------------------------------------------
@@ -407,6 +450,51 @@ public class Menu {
 		}
 		
 
+	}
+	public List<Hospital> showHospitals() {
+		// To show all Hospitals in our data base
+		List<Hospital> hospitalList = new ArrayList<Hospital>();
+		try {
+			String sql = "SELECT * FROM hospital";
+			PreparedStatement prep = c.prepareStatement(sql);
+			ResultSet rs = prep.executeQuery();
+			while (rs.next()) {
+				Integer hosId = rs.getInt("id");
+				String hosName = rs.getString("name");
+				String hosLocat = rs.getString("location");
+				String hosTele = rs.getString("telephone");
+				
+				Hospital newHospital = new Hospital(hosId, hosName, hosLocat, hosTele);
+				hospitalList.add(newHospital);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return hospitalList;
+	}
+
+	//Aun no se si esta bien hecho porque no se que se supone que hay que hacer cuando seleccionas ese hospital, pero seleccionado queda jajajajaja
+	public Hospital selectHospitalByID(int id) {
+		Hospital hosSelected= new Hospital();
+		try {
+			String sql = "SELECT * FROM hospital WHERE hospital_id LIKE ?";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setInt(1, id);
+			ResultSet rs = prep.executeQuery();
+			while(rs.next()) {
+				int hospital_id = rs.getInt("hospital_id");
+				String name = rs.getString("name");
+				String location = rs.getString("location");
+				String telephone = rs.getString("telephone");
+				hosSelected= new Hospital(hospital_id, name, location, telephone);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return hosSelected;
+		
 	}
 	
 

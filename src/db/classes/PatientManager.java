@@ -61,27 +61,26 @@ public class PatientManager implements PatientManagerInterface {
 		return hospitalList;
 	}
 
-	//No esta bien hecho, lo tengo que cambiar!!
-	public List<Hospital> selectHospital(String nom, String find) {
-		List<Hospital> hospitalList = new ArrayList<Hospital>();
+	//Aun no se si esta bien hecho porque no se que se supone que hay que hacer cuando seleccionas ese hospital, pero seleccionado queda jajajajaja
+	public Hospital selectHospitalByID(int id) {
+		Hospital hosSelected= new Hospital();
 		try {
-			String sql = "SELECT * FROM hospital WHERE "+nom+" LIKE ?";
-			PreparedStatement find1 = c.prepareStatement(sql);
-			find1.setString(1, "%"+find+"%");
-			ResultSet rs = find1.executeQuery();
+			String sql = "SELECT * FROM hospital WHERE hospital_id LIKE ?";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setInt(1, id);
+			ResultSet rs = prep.executeQuery();
 			while(rs.next()) {
 				int hospital_id = rs.getInt("hospital_id");
 				String name = rs.getString("name");
 				String location = rs.getString("location");
 				String telephone = rs.getString("telephone");
-				Hospital newHospital = new Hospital(hospital_id, name, location, telephone);
-				hospitalList.add(newHospital);
+				hosSelected= new Hospital(hospital_id, name, location, telephone);
 			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return hospitalList;
+		return hosSelected;
 		
 	}
 }
