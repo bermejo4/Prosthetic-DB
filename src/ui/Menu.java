@@ -97,10 +97,11 @@ public class Menu {
 					break;
 				case 3:
 					//First, we show all the hospitals
-					System.out.println("Choose a Hospital between the list of available hospitals:\n");
+					System.out.println("The list of the vailable hospitals is:\n");
 					showHospitals();
 					
 					//Then, they select the hospital
+					System.out.println("Now, you need to choose one of them.")
 					selectHospitalByID();
 					
 					break;
@@ -467,7 +468,7 @@ public class Menu {
 	//Aun no se si esta bien hecho mañana sigo sorry
 	public static void selectHospitalByID() {
 		Hospital hosp;
-		int id = InputFlow.takeInteger(reader, "Now, introduce the id of the hospital you want to select:");
+		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
 	    hosp = patientManagerInterface.selectHospitalByID(id);
 	    System.out.println(hosp.toString());
 	    System.out.println("");
