@@ -124,6 +124,7 @@ public class InputFlow {
 		return resp;
 	}
 
+	
 	public static String takeTelephone(BufferedReader reader, String text) {
 		// check a telephone number
 		// and return a number telephone without +34 prefix if the user have added.
@@ -137,12 +138,16 @@ public class InputFlow {
 				cad = num.toCharArray();
 				check = false;
 				for (int i = 0; i < num.length(); i++) {
-					// System.out.println(cad[i] + " y... "+Character.isDigit(cad[i]) );
-					if (Character.isDigit(cad[i]) || num.substring(0, 1).equals("+")
-							|| !Character.isSpaceChar(cad[i])) {
-
-					} else {
+					System.out.println(cad[i] + " y... "+Character.isDigit(cad[i]) );
+					System.out.println(cad[i] + " espa... "+Character.isSpaceChar(cad[i]));
+					if (Character.isDigit(cad[i]) || cad[i]=='+') {
+						
+					}else if(Character.isSpaceChar(cad[i])) {
+						check=true;
+						break;
+					}else {
 						check = true;
+						break;
 					}
 				}
 				if (check == true) {
