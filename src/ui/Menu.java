@@ -101,7 +101,7 @@ public class Menu {
 					showHospitals();
 					
 					//Then, they select the hospital
-					System.out.println("Now, you need to choose one of them.")
+					System.out.println("Now, you need to choose one of them.");
 					selectHospitalByID();
 					
 					break;
@@ -163,16 +163,16 @@ public class Menu {
 //-----------------------------------------------------------------------------------
 
 			case 3: // Biomedical Engineer
-<<<<<<< HEAD
+//<<<<<<< HEAD
 				BiomedEngMenu();
-=======
+//=======
 				System.out.println("BIOMEDICAL ENGINEER MENU:");
 				System.out.println("What do you want to do?");
 				System.out.println("1.Register.");
 				System.out.println("2.Login.");
 				max=2;//cambiar a 2 ;solo para probar
 				
-				//if(logged) {
+				if(logged) {
 					System.out.println("What do want to do?: ");
 					
 					System.out.println("3. View Uploaded Prosthetics.");
@@ -180,7 +180,7 @@ public class Menu {
 					System.out.println("5. Modify a Prosthetic information.");
 
 					max=5;
-				//}
+				}
 				System.out.println("\n0.Back to choose other user to the main menu.");
 				num = requestNumber(max);
 				
@@ -206,7 +206,7 @@ public class Menu {
 				default: //back
 					userUsing=false;
 				}
->>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
+//>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 
 								
 //-----------------------------------------------------------------------------------
