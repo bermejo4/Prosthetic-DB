@@ -61,7 +61,7 @@ public class PatientManager implements PatientManagerInterface {
 		return hospitalList;
 	}
 
-	//No esta bien hecho, lo tengo que cambiar
+	//No esta bien hecho, lo tengo que cambiar!!
 	public List<Hospital> selectHospital(String nom, String find) {
 		List<Hospital> hospitalList = new ArrayList<Hospital>();
 		try {
