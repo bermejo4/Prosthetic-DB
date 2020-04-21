@@ -55,7 +55,6 @@ public class Menu {
 		dbManagerInterface.deleteTables();
 		dbManagerInterface.createTables();
 		
-		System.out.println(InputFlow.takeTelephone(reader, "take tel:"));
 
 		while (true) {
 			System.out.println("Who are you?");
@@ -126,13 +125,13 @@ public class Menu {
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
 					max = 2;
-					if (logged) {
+					//if (logged) {
 						System.out.println("3.Select a Prosthetic.");
 						System.out.println("4.Select date of fitting.");
 						System.out.println("5.Search a patients file.");
 						System.out.println("6.Add/Modify/Delete a patient.");
 						max = 6;
-					}
+					//}
 					System.out.println("\n0.Back to choose other user to the main menu.");
 					num = requestNumber(max);
 					switch (num) {
