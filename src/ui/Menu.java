@@ -96,12 +96,12 @@ public class Menu {
 					logged = true;
 					break;
 				case 3:
+					//First, we show all the hospitals
 					System.out.println("Choose a Hospital between the list of available hospitals:\n");
-					//showHospitals();
+					showHospitals();
 					
-					num = requestNumber(5);
-					System.out.println("Introduce the id of the chosen hospital:\n ");
-					//selecHospital();
+					//Then, they select the hospital
+					selectHospitalByID();
 					
 					break;
 				case 4:
@@ -451,50 +451,26 @@ public class Menu {
 		
 
 	}
-	public List<Hospital> showHospitals() {
+	public static void showHospitals() {
 		// To show all Hospitals in our data base
 		List<Hospital> hospitalList = new ArrayList<Hospital>();
-		try {
-			String sql = "SELECT * FROM hospital";
-			PreparedStatement prep = c.prepareStatement(sql);
-			ResultSet rs = prep.executeQuery();
-			while (rs.next()) {
-				Integer hosId = rs.getInt("id");
-				String hosName = rs.getString("name");
-				String hosLocat = rs.getString("location");
-				String hosTele = rs.getString("telephone");
-				
-				Hospital newHospital = new Hospital(hosId, hosName, hosLocat, hosTele);
-				hospitalList.add(newHospital);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		Hospital hosp;
+		hospitalList = patientManagerInterface.showHospitals();
+		Iterator it = hospitalList.iterator();
+		while (it.hasNext()) {
+			hosp = (Hospital) it.next();
+			System.out.println(hosp.toString());
+			System.out.println("");
 		}
-		return hospitalList;
 	}
 
-	//Aun no se si esta bien hecho porque no se que se supone que hay que hacer cuando seleccionas ese hospital, pero seleccionado queda jajajajaja
-	public Hospital selectHospitalByID(int id) {
-		Hospital hosSelected= new Hospital();
-		try {
-			String sql = "SELECT * FROM hospital WHERE hospital_id LIKE ?";
-			PreparedStatement prep = c.prepareStatement(sql);
-			prep.setInt(1, id);
-			ResultSet rs = prep.executeQuery();
-			while(rs.next()) {
-				int hospital_id = rs.getInt("hospital_id");
-				String name = rs.getString("name");
-				String location = rs.getString("location");
-				String telephone = rs.getString("telephone");
-				hosSelected= new Hospital(hospital_id, name, location, telephone);
-			}
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return hosSelected;
-		
+	//Aun no se si esta bien hecho mañana sigo sorry
+	public static void selectHospitalByID() {
+		Hospital hosp;
+		int id = InputFlow.takeInteger(reader, "Now, introduce the id of the hospital you want to select:");
+	    hosp = patientManagerInterface.selectHospitalByID(id);
+	    System.out.println(hosp.toString());
+	    System.out.println("");
 	}
 	
 
