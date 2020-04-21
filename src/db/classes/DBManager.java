@@ -173,6 +173,8 @@ public class DBManager implements DBManagerInterface {
 		} catch (SQLException e) {
 			if (e.getMessage().contains("already exists")) {
 			} else if(e.getMessage().contains("no such table")){	
+			}else if(e.getMessage().contains("abort due to constraint violation")) {
+				System.out.println("The id introduced is not available in the database.");
 			}else{
 				e.printStackTrace();
 			}
