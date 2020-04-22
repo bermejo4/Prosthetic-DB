@@ -1,10 +1,17 @@
 package ui;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+
+
 public class InputFlow {
+	
+	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 	public static boolean CheckOption(int num, int max) {
 		if (num > max || num < 0) {
@@ -95,7 +102,7 @@ public class InputFlow {
 		String answer = "";
 		try {
 			do {
-				System.out.println(text+" (y/n):");
+				System.out.println(text + " (y/n):");
 				answer = reader.readLine();
 				if (answer.equals("y") || answer.equals("n")) {
 					loop = false;
@@ -104,9 +111,9 @@ public class InputFlow {
 					} else {
 						resp = false;
 					}
-				}else {
+				} else {
 					System.out.println("The answer is not correct. Try again.");
-					loop=true;
+					loop = true;
 				}
 
 			} while (loop);
@@ -117,6 +124,7 @@ public class InputFlow {
 		return resp;
 	}
 
+	
 	public static String takeTelephone(BufferedReader reader, String text) {
 		// check a telephone number
 		// and return a number telephone without +34 prefix if the user have added.
@@ -130,12 +138,15 @@ public class InputFlow {
 				cad = num.toCharArray();
 				check = false;
 				for (int i = 0; i < num.length(); i++) {
-					// System.out.println(cad[i] + " y... "+Character.isDigit(cad[i]) );
-					if (Character.isDigit(cad[i]) || num.substring(0, 1).equals("+")
-							|| !Character.isSpaceChar(cad[i])) {
-
-					} else {
+					
+					if (Character.isDigit(cad[i]) || cad[i]=='+') {
+						
+					}else if(Character.isSpaceChar(cad[i])) {
+						check=true;
+						break;
+					}else {
 						check = true;
+						break;
 					}
 				}
 				if (check == true) {
@@ -155,28 +166,48 @@ public class InputFlow {
 		return num;
 
 	}
-	
-	public static String takeDimension(){
-		String dimension="";
+
+	public static String takeDimension() {
+		String dimension = "";
 		BufferedReader reader;
 		reader = new BufferedReader(new InputStreamReader(System.in));
-		float long_v=takeFloat(reader, "Introduce the long(cm):");
-		float wide=takeFloat(reader, "Introduce the wide(cm):");
-		float deep=takeFloat(reader, "Introduce the deep(cm):");
-		dimension=long_v+"x"+wide+"x"+deep;
+		float long_v = takeFloat(reader, "Introduce the long(cm):");
+		float wide = takeFloat(reader, "Introduce the wide(cm):");
+		float deep = takeFloat(reader, "Introduce the deep(cm):");
+		dimension = long_v + "x" + wide + "x" + deep;
 		return dimension;
 	}
-	
+
+	public static LocalDate takeDate(BufferedReader reader, String text) {
+		boolean check = false;
+		String data="";
+		LocalDate day = LocalDate.now();
+		System.out.println(text);
+		while (!check || data.equals("")) {
+			try {
+				data = reader.readLine();
+				day = LocalDate.parse(data, formatter);
+				check = true;
+			} catch (IOException ex) {
+				System.out.println("Error reading");
+			} catch (DateTimeParseException nfex) {
+				System.out.println("You have not introduced a valid Date. Try again.");
+				System.out.println(text);
+			}
+		}
+		return day;
+	}
+
 	public boolean checkIdAndList(int id, ArrayList<Integer> list) {
-		boolean check=true;
+		boolean check = true;
 		Iterator<Integer> it = list.iterator();
-		while(it.hasNext()) {
-			int num=it.next();
-			if(num==id) {
-				check=false;
+		while (it.hasNext()) {
+			int num = it.next();
+			if (num == id) {
+				check = false;
 			}
 		}
 		return check;
 	}
-	
+
 }
