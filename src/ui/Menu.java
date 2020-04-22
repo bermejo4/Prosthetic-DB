@@ -58,10 +58,10 @@ public class Menu {
 		dbManagerInterface.initializeDoctors("Juan", "657901456", "", hospital_id);
 		
 		dbManagerInterface.initializeHospitals("La Paz", "Madrid", "902120120");
-		dbManagerInterface.initializeHospitals("La Paz", "Madrid", "902100900");
-		dbManagerInterface.initializeHospitals("La Paz", "Madrid", "900333222");
-		dbManagerInterface.initializeHospitals("La Paz", "Madrid", "932564786");
-		dbManagerInterface.initializeHospitals("La Paz", "Madrid", "987640998");
+		dbManagerInterface.initializeHospitals("12 de Octubre", "Madrid", "902100900");
+		dbManagerInterface.initializeHospitals("Fundacion Jimenez Diaz", "Madrid", "900333222");
+		dbManagerInterface.initializeHospitals("Ramon y Cajal", "Madrid", "932564786");
+		dbManagerInterface.initializeHospitals("Nacional de Paraplejicos", "Madrid", "987640998");
 		
 
 		while (true) {
