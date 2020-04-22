@@ -176,12 +176,12 @@ public class Menu {
 				
 				//if(logged) {
 					
-//<<<<<<< HEAD
+
 					
 					//System.out.println("1. View Uploaded Prosthetics.");
-//=======
 
-//>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
+
+
 					System.out.println("3. Upload a new Prosthetic.");
 					System.out.println("4. Modify a Prosthetic information.");
 					System.out.println("5. View Uploaded Prosthetics.");
@@ -204,10 +204,6 @@ public class Menu {
 				case 3: //Upload a new Prosthetic
 					uploadProsthetic();
 					break;
-//<<<<<<< HEAD
-//=======
-
-//>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 				
 				case 4: // Modify Prosthetic info
 					searchProsType();
