@@ -191,6 +191,7 @@ public class Menu {
 					
 				case 3: //Upload a new Prosthetic
 					uploadProsthetic();
+					break;
 				
 				case 4: // Modify Prosthetic info
 					searchProsType();
@@ -263,6 +264,7 @@ public class Menu {
 		// Float price = Float.parseFloat(reader.readLine());
 		Prosthetic createProsthetic = new Prosthetic(pros_type, material, price, dimensions);
 		biomedManagerInterface.insert(createProsthetic);
+		System.out.println("Your new prosthetic has been successfully uploaded! ");
 
 	}
 
