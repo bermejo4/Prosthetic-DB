@@ -167,7 +167,7 @@ public class Menu {
 				/*if(logged) {*/
 					
 					
-					//System.out.println("1. View Uploaded Prosthetics.");
+					System.out.println("1. View Uploaded Prosthetics.");
 					System.out.println("3. Upload a new Prosthetic.");
 					System.out.println("4. Modify a Prosthetic information.");
 					max = 4;
@@ -191,7 +191,10 @@ public class Menu {
 					
 				case 3: //Upload a new Prosthetic
 					uploadProsthetic();
+//<<<<<<< HEAD
+//=======
 					break;
+//>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 				
 				case 4: // Modify Prosthetic info
 					searchProsType();
@@ -592,6 +595,7 @@ public class Menu {
 	}
 
 	
+	
 	  public static void buyProsthetic() throws Exception { 
 	  int hospital_id = hospitalUser.getId(); // Show the list of all available prosthetic on that specific hospital
 	  List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics(); 
@@ -603,6 +607,8 @@ public class Menu {
 	 // the specific hospital buys the prosthetic choosed
 	  hospitalManagerInterface.buy(hospital_id, prosthetic_id);
 	 }
+	  
+	  
 
 	public static void pressEnter() {
 		System.out.println("Press enter to go to the main menu and continue...");
