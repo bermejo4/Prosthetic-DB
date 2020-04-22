@@ -112,6 +112,7 @@ public class DBManager implements DBManagerInterface {
 					+ "material TEXT,"
 					+ "type TEXT," 
 					+ "dimension TEXT," 
+					+ "number_of_failures INTEGER,"
 					+ "failures TEXT," 
 					+ "price REAL," 
 					+ "available BOOLEAN,"

@@ -55,6 +55,8 @@ public class Menu {
 		dbManagerInterface.deleteTables();
 		dbManagerInterface.createTables();
 		
+		dbManagerInterface.initializeDoctors("Juan", "657901456", "", hospital_id);
+		
 		
 		
 
