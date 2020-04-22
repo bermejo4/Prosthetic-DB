@@ -219,6 +219,16 @@ public class DBManager implements DBManagerInterface {
 		}
 		
 	}
+	public void initializeHospitals(String name, String location, String telephone) {
+		try {
+			Statement stat = c.createStatement();
+			String sql = "INSERT INTO hospital (name, location, telephone) + VALUES ('"+name+"' , '"+location+"' , '"+telephone+"')";
+			stat.executeUpdate(sql);
+			stat.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	 	
 
 	public void deleteTables() {
