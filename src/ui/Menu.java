@@ -57,7 +57,11 @@ public class Menu {
 		
 		dbManagerInterface.initializeDoctors("Juan", "657901456", "", hospital_id);
 		
-		
+		dbManagerInterface.initializeHospitals("La Paz", "Madrid", "902120120");
+		dbManagerInterface.initializeHospitals("La Paz", "Madrid", "902100900");
+		dbManagerInterface.initializeHospitals("La Paz", "Madrid", "900333222");
+		dbManagerInterface.initializeHospitals("La Paz", "Madrid", "932564786");
+		dbManagerInterface.initializeHospitals("La Paz", "Madrid", "987640998");
 		
 
 		while (true) {
@@ -615,7 +619,6 @@ public class Menu {
 	 // the specific hospital buys the prosthetic choosed
 	  hospitalManagerInterface.buy(hospital_id, prosthetic_id);
 	 }
-	  
 	  
 
 	public static void pressEnter() {
