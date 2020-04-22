@@ -246,8 +246,7 @@ public class DBManager implements DBManagerInterface {
 
 	@Override
 	public BEManagerInterface getBiomedManager() {
-		// TODO Auto-generated method stub
-		return null;
+		return biomed;
 	}
 
 }
