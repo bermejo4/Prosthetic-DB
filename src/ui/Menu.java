@@ -169,15 +169,15 @@ public class Menu {
 				System.out.println("2.Login.");
 				max=4;//cambiar a 2 ;solo para probar
 				
-				if(logged) {
+				/*if(logged) {*/
 					System.out.println("What do want to do?: ");
 					
 					System.out.println("1. View Uploaded Prosthetics.");
-					System.out.println("2. Upload a new Prosthetic.");
-					System.out.println("3. Modify a Prosthetic information.");
+					System.out.println("3. Upload a new Prosthetic.");
+					System.out.println("4. Modify a Prosthetic information.");
 
-					max=3;
-				}
+					//max=3;
+				
 				System.out.println("\n0.Back to choose other user to the main menu.");
 				num = requestNumber(max);
 				
@@ -203,6 +203,7 @@ public class Menu {
 				default: //back
 					userUsing=false;
 				}
+				break;
 
 								
 //-----------------------------------------------------------------------------------
