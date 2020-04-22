@@ -112,6 +112,7 @@ public class DBManager implements DBManagerInterface {
 					+ "material TEXT,"
 					+ "type TEXT," 
 					+ "dimension TEXT," 
+					+ "number_of_failures INTEGER,"
 					+ "failures TEXT," 
 					+ "price REAL," 
 					+ "available BOOLEAN,"
@@ -205,6 +206,19 @@ public class DBManager implements DBManagerInterface {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public void initializeDoctors(String name, String telephone, String department, int hospital_id){
+		try {
+		Statement stmt = c.createStatement();
+		String sql = "INSERT INTO doctor (name, telephone, department, hospital_id) "
+				+ "VALUES ('" + name + "', '" + telephone + "','"+ department + "', '" + hospital_id + "');";
+			stmt.executeUpdate(sql);
+			stmt.close();	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	 	
 
