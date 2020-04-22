@@ -54,15 +54,17 @@ public class Menu {
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
 		dbManagerInterface.deleteTables();
 		dbManagerInterface.createTables();
-		
-		dbManagerInterface.initializeDoctors("Juan", "657901456", "", hospital_id);
-		
 		dbManagerInterface.initializeHospitals("La Paz", "Madrid", "902120120");
 		dbManagerInterface.initializeHospitals("12 de Octubre", "Madrid", "902100900");
 		dbManagerInterface.initializeHospitals("Fundacion Jimenez Diaz", "Madrid", "900333222");
 		dbManagerInterface.initializeHospitals("Ramon y Cajal", "Madrid", "932564786");
 		dbManagerInterface.initializeHospitals("Nacional de Paraplejicos", "Madrid", "987640998");
 		
+		
+		dbManagerInterface.initializeDoctors("Juan", "657901456", "traumatologist", 1);
+		dbManagerInterface.initializeDoctors("Rosa", "646321211", "cardiologist", 2);
+		
+	
 
 		while (true) {
 			System.out.println("Who are you?");
