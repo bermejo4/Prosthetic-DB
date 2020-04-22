@@ -55,6 +55,8 @@ public class Menu {
 		dbManagerInterface.deleteTables();
 		dbManagerInterface.createTables();
 		
+		
+		
 
 		while (true) {
 			System.out.println("Who are you?");
@@ -77,12 +79,12 @@ public class Menu {
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
 					max = 2;
-					if (logged) {
+					//if (logged) {
 						System.out.println("3.Select a Hospital.");
 						System.out.println("4.View appointments.");
 						max = 4;
-					}
-					System.out.println("\n0.Back to choose other user to the main menu.");
+					//}
+					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
 					switch (num) {
 					case 1: // Register
@@ -103,15 +105,11 @@ public class Menu {
 
 						break;
 					case 4:
-						// Voy a dejar este hasta que se haga lo del login para que funcione algo.
-						if (!logged) {
-							System.out.println("You need to login first.");
-							loginMenu();
-						} else {
+						
 							float telephone = InputFlow.takeFloat(reader, "Introduce your telephone number: ");
 							patientManagerInterface.viewDate(telephone);
 							break;
-						}
+						
 					default: // back
 						userUsing = false;
 
@@ -132,7 +130,7 @@ public class Menu {
 						System.out.println("6.Add/Modify/Delete a patient.");
 						max = 6;
 					//}
-					System.out.println("\n0.Back to choose other user to the main menu.");
+					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
 					switch (num) {
 					case 1: // Register
@@ -179,6 +177,10 @@ public class Menu {
 				System.out.println("\n0.Back to choose other user to the main menu.");
 				num = requestNumber(max);
 
+//<<<<<<< HEAD
+					//if (logged) {
+						System.out.println("What do want to do?: ");
+//=======
 				
 				//arreglar para meter un while 
 				switch (num) {
@@ -193,6 +195,10 @@ public class Menu {
 					uploadProsthetic();
 
 					break;
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 				
 				case 4: // Modify Prosthetic info
 					searchProsType();
@@ -203,8 +209,41 @@ public class Menu {
 				default: //back
 					userUsing=false;
 				}
-				break;
 
+						System.out.println("3. View Uploaded Prosthetics.");
+						System.out.println("4. Upload a new Prosthetic.");
+						System.out.println("5. Modify a Prosthetic information.");
+
+						max = 5;
+					//}
+					System.out.println("\n0.Back to choose other user to the main menu.\n");
+					num = requestNumber(max);
+
+					// arreglar para meter un while
+					switch (num) {
+					case 1: // Register
+						registerMenu();
+						break;
+					case 2: // Login
+						loginMenu();
+						break;
+
+					case 3: // Upload Prosthetic
+
+						uploadProsthetic();
+						break;
+					case 4: // Modify Prosthetic info
+						searchProsType();
+
+						int choice = InputFlow.takeInteger(reader, "Introduce the id of the desired prosthetic:");
+						modifyProstheticInfo(choice);
+						break;
+					default: // back
+						userUsing = false;
+					}
+//>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
+//=======
+//>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 
 //-----------------------------------------------------------------------------------
 
@@ -218,7 +257,7 @@ public class Menu {
 						System.out.println("3.Buy a Prosthetic.");
 						max = 3;
 					//}
-					System.out.println("\n0.Back to choose other user to the main menu.");
+					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
 					switch (num) {
 					case 1: // Register
@@ -411,13 +450,14 @@ public class Menu {
 		}
 	}
 
-	// Aun no se si esta bien hecho ma�ana sigo sorry
+	
 	public static void selectHospitalByID() {
 		Hospital hosp;
 		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
 		hosp = patientManagerInterface.selectHospitalByID(id);
-		System.out.println(hosp.toString());
+		System.out.println("You have chosen:\n" + hosp.toString());
 		System.out.println("");
+		
 	}
 
 	public static void addModifyDelete() throws Exception {
