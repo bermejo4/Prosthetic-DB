@@ -454,13 +454,14 @@ public class Menu {
 		}
 	}
 
-	// Aun no se si esta bien hecho ma�ana sigo sorry
+	
 	public static void selectHospitalByID() {
 		Hospital hosp;
 		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
 		hosp = patientManagerInterface.selectHospitalByID(id);
-		System.out.println(hosp.toString());
+		System.out.println("You have chosen:\n" + hosp.toString());
 		System.out.println("");
+		
 	}
 
 	public static void addModifyDelete() throws Exception {
