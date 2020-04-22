@@ -191,10 +191,9 @@ public class Menu {
 					
 				case 3: //Upload a new Prosthetic
 					uploadProsthetic();
-//<<<<<<< HEAD
-//=======
+
 					break;
-//>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
+
 				
 				case 4: // Modify Prosthetic info
 					searchProsType();
@@ -205,10 +204,7 @@ public class Menu {
 				default: //back
 					userUsing=false;
 				}
-				break;
-//>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 
-//<<<<<<< HEAD
 						System.out.println("3. View Uploaded Prosthetics.");
 						System.out.println("4. Upload a new Prosthetic.");
 						System.out.println("5. Modify a Prosthetic information.");
