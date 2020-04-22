@@ -54,12 +54,19 @@ public class Menu {
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
 		dbManagerInterface.deleteTables();
 		dbManagerInterface.createTables();
+
+		dbManagerInterface.initializeHospitals("La Paz", "Madrid", "902120120");
+		dbManagerInterface.initializeHospitals("12 de Octubre", "Madrid", "902100900");
+		dbManagerInterface.initializeHospitals("Fundacion Jimenez Diaz", "Madrid", "900333222");
+		dbManagerInterface.initializeHospitals("Ramon y Cajal", "Madrid", "932564786");
+		dbManagerInterface.initializeHospitals("Nacional de Paraplejicos", "Madrid", "987640998");
+
 		
-		//dbManagerInterface.initializeDoctors("Juan", "657901456", "traumatologist", 1);
-		//dbManagerInterface.initializeDoctors("Rosa", "646321211", "cardiologist", 2);
 		
+		dbManagerInterface.initializeDoctors("Juan", "657901456", "traumatologist", 1);
+		dbManagerInterface.initializeDoctors("Rosa", "646321211", "cardiologist", 2);
 		
-		
+	
 
 		while (true) {
 			System.out.println("Who are you?");
@@ -167,25 +174,27 @@ public class Menu {
 				System.out.println("What do you want to do?");
 				System.out.println("1.Register.");
 				System.out.println("2.Login.");
-				max=2;//cambiar a 2 ;solo para probar
+				max=2;
 				
-				/*if(logged) {*/
+				//if(logged) {
 					
+//<<<<<<< HEAD
 					
-					System.out.println("1. View Uploaded Prosthetics.");
+					//System.out.println("1. View Uploaded Prosthetics.");
+//=======
+
+//>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 					System.out.println("3. Upload a new Prosthetic.");
 					System.out.println("4. Modify a Prosthetic information.");
+					System.out.println("5. View Uploaded Prosthetics.");
 					max = 4;
-					//}
+					//}*
 				System.out.println("\n0.Back to choose other user to the main menu.");
 				num = requestNumber(max);
+				max = 5;
 
-//<<<<<<< HEAD
-					//if (logged) {
-						System.out.println("What do want to do?: ");
-//=======
-				
-				//arreglar para meter un while 
+	
+			
 				switch (num) {
 				case 1: // Register
 					registerMenu();
@@ -196,9 +205,11 @@ public class Menu {
 					
 				case 3: //Upload a new Prosthetic
 					uploadProsthetic();
-
 					break;
+//<<<<<<< HEAD
+//=======
 
+//>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 				
 				case 4: // Modify Prosthetic info
 					searchProsType();
@@ -209,41 +220,8 @@ public class Menu {
 				default: //back
 					userUsing=false;
 				}
+				break;
 
-						System.out.println("3. View Uploaded Prosthetics.");
-						System.out.println("4. Upload a new Prosthetic.");
-						System.out.println("5. Modify a Prosthetic information.");
-
-						max = 5;
-					//}
-					System.out.println("\n0.Back to choose other user to the main menu.\n");
-					num = requestNumber(max);
-
-					// arreglar para meter un while
-					switch (num) {
-					case 1: // Register
-						registerMenu();
-						break;
-					case 2: // Login
-						loginMenu();
-						break;
-
-					case 3: // Upload Prosthetic
-
-						uploadProsthetic();
-						break;
-					case 4: // Modify Prosthetic info
-						searchProsType();
-
-						int choice = InputFlow.takeInteger(reader, "Introduce the id of the desired prosthetic:");
-						modifyProstheticInfo(choice);
-						break;
-					default: // back
-						userUsing = false;
-					}
-//>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
-//=======
-//>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 
 //-----------------------------------------------------------------------------------
 
@@ -598,17 +576,21 @@ public class Menu {
 	
 	
 	  public static void buyProsthetic() throws Exception { 
-	  int hospital_id = hospitalUser.getId(); // Show the list of all available prosthetic on that specific hospital
+	  int hospital_id = hospitalUser.getId(); 
+	  
+	  // Show the list of all available prosthetic on that specific hospital
 	  List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics(); 
+	  
 	  for (Prosthetic prosthetic :prostheticList) { 
-	  System.out.println(prosthetic); } // Ask for the Id of the prosthetic you want to buy
+	  System.out.println(prosthetic); } 
+	  
+	  // Ask for the Id of the prosthetic you want to buy
 	  System.out.println("Please, type the ID of the prosthetic you want to buy: " ); 
 	 int prosthetic_id = Integer.parseInt(reader.readLine());
 	  
 	 // the specific hospital buys the prosthetic choosed
 	  hospitalManagerInterface.buy(hospital_id, prosthetic_id);
 	 }
-	  
 	  
 
 	public static void pressEnter() {
