@@ -90,9 +90,9 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 					//if (logged) {
-						System.out.println("3.Select a Hospital.");
-						System.out.println("4.View appointments.");
-						max = 4;
+						System.out.println("3.Select a Hospital."); //no lo he probado 
+						System.out.println("4.View appointments."); //no funciona att api (estoy probando todos)
+						max = 4; 
 					//}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
@@ -131,7 +131,8 @@ public class Menu {
 					System.out.println("DOCTOR MENU:");
 					System.out.println("What do you want to do?");
 					System.out.println("1.Register.");
-					System.out.println("2.Login.");
+					System.out.println("2.Login.");   // todos funcionan perfecto menos el select prosthetic porque no hay prosthetics 
+					
 					max = 2;
 					//if (logged) {
 						System.out.println("3.Select a Prosthetic.");
@@ -183,7 +184,7 @@ public class Menu {
 					//System.out.println("1. View Uploaded Prosthetics.");
 
 
-
+					//hay problemas con el menu del biomedical engineer( att api)
 					System.out.println("3. Upload a new Prosthetic.");
 					System.out.println("4. Modify a Prosthetic information.");
 					System.out.println("5. View Uploaded Prosthetics.");
@@ -228,7 +229,8 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 					//if (logged) {
-						System.out.println("3.Buy a Prosthetic.");
+						System.out.println("3.Buy a Prosthetic."); //da un null pointer exception y no entiendo porque
+						
 						max = 3;
 					//}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
