@@ -22,7 +22,7 @@ public class PatientManager implements PatientManagerInterface {
 	}
 	
 	
-	public void viewDate(float telephone) {
+	public void viewDate(String telephone) {
 		try {
 			String sql = "SELECT d.date_of_fitting FROM doctor AS d JOIN patient AS p ON d.doctor_id=p.doc_id; WHERE p.telephone LIKE ?";
 			PreparedStatement prep = c.prepareStatement(sql);
