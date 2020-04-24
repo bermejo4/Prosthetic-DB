@@ -1,0 +1,28 @@
+This week we expected to be able to do...
+=========================================
+- Learn to use JDBC
+- distribute more code work
+- assign the manager clases of each user pojo to the different components o$
+- assign the dbmanager
+
+Optional: Reasons why
+---------------------
+
+This week we did...
+===================
+We have done everything that we expected to do.
+We have meetings with hangouts and blackboard.
+
+Optional: Reasons why
+---------------------
+
+Next weeks we will do...
+========================
+- decide to do an InputFlow Class to control the data introduced by the user. 
+- distribute more code work
+- code
+- prepare the presentation and finish it.
+- Show to the other groups our project in the presentation-date.         
+
+Optional: Reasons why
+---------------------

@@ -54,17 +54,8 @@ public class Menu {
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
 		dbManagerInterface.deleteTables();
 		dbManagerInterface.createTables();
+		initializeDatabaseWithSomeValues();
 
-		dbManagerInterface.initializeHospitals("La Paz", "Madrid", "902120120");
-		dbManagerInterface.initializeHospitals("12 de Octubre", "Madrid", "902100900");
-		dbManagerInterface.initializeHospitals("Fundacion Jimenez Diaz", "Madrid", "900333222");
-		dbManagerInterface.initializeHospitals("Ramon y Cajal", "Madrid", "932564786");
-		dbManagerInterface.initializeHospitals("Nacional de Paraplejicos", "Madrid", "987640998");
-
-		
-		
-		dbManagerInterface.initializeDoctors("Juan", "657901456", "traumatologist", 1);
-		dbManagerInterface.initializeDoctors("Rosa", "646321211", "cardiologist", 2);
 		
 	
 
@@ -359,20 +350,23 @@ public class Menu {
 		return num;
 	}
 
+	public static void initializeDatabaseWithSomeValues() {
+		dbManagerInterface.initializeHospitals("La Paz", "Madrid", "902120120");
+		dbManagerInterface.initializeHospitals("12 de Octubre", "Madrid", "902100900");
+		dbManagerInterface.initializeHospitals("Fundacion Jimenez Diaz", "Madrid", "900333222");
+		dbManagerInterface.initializeHospitals("Ramon y Cajal", "Madrid", "932564786");
+		dbManagerInterface.initializeHospitals("Nacional de Paraplejicos", "Madrid", "987640998");
+
+		dbManagerInterface.initializeDoctors("Juan", "657901456", "traumatologist", 1);
+		dbManagerInterface.initializeDoctors("Rosa", "646321211", "cardiologist", 2);
+	}
+	
 	public static void registerMenu() {
 		System.out.println("REGISTER MENU:");
 		System.out.println("1.Name.");
 		System.out.println("2.Lastname.");
 		System.out.println("3.Telephone.");
 		System.out.println("4.Password.");
-	}
-
-	public static void register() {
-		System.out.println("Introduce your name:");
-		System.out.println("Introduce your lastname:");
-		System.out.println("Introduce your telephone:");
-		System.out.println("Introduce a password:");
-		System.out.println("Introduce again the password:");
 	}
 
 	public static void loginMenu() {
@@ -396,6 +390,28 @@ public class Menu {
 		System.out.println("2.Type.");
 		System.out.println("3.Dimension.");
 		System.out.println("4.Failures.");
+	}
+	
+	public static void login() {
+		boolean check=true;
+		do {
+		String telephone=InputFlow.takeTelephone(reader, "Introduce the phone number:");
+		byte[] password=InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
+		doctorUser=doctorManagerInterface.login(telephone, password);
+		if(check) {
+			System.out.println("You have introduced a wrong password or phone, please try again.");
+		}
+		
+		}while(check);
+		
+	}
+	
+	public static void register() {
+		String name=InputFlow.takeString(reader, "Introduce your Name:");
+		String lastname=InputFlow.takeString(reader, "Introduce your Lastname:");
+		String telephone=InputFlow.takeTelephone(reader, "Introduce your phone number:");
+		byte[] password=InputFlow.takePasswordAndHashIt(reader, "Introduce a password:");
+		
 	}
 
 	public static void searchPatientByTelephone() {

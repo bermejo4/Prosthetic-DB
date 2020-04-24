@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.*;
+import java.security.MessageDigest;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -208,6 +209,34 @@ public class InputFlow {
 			}
 		}
 		return check;
+	}
+	
+	public static byte[] takePasswordAndHashIt(BufferedReader reader, String text) {
+		System.out.println(text);
+		byte[] returnValue = null;
+		try {
+			String password=reader.readLine();
+			// Create the password's hash
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(password.getBytes());
+			returnValue = md.digest();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return returnValue;
+		
+	}
+	
+	public static String takeString(BufferedReader reader, String text) {
+		String string="";
+		System.out.println(text);
+		try {
+			string =reader.readLine();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return string;
 	}
 
 }
