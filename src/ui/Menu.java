@@ -439,7 +439,7 @@ public class Menu {
 		while (it.hasNext()) {
 			hosp = (Hospital) it.next();
 			System.out.println(hosp.toString());
-			System.out.println("\n");
+			System.out.println("");
 		}
 	}
 
