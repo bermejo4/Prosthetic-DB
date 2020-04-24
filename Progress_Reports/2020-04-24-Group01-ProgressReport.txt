@@ -1,0 +1,28 @@
+This week we expected to be able to do...
+=========================================
+- Write more code
+- lessons of JPA.
+- learn to use JPA.
+- learn to use GitHub correctly, fockusing in commit->pull->push
+
+Optional: Reasons why
+---------------------
+
+This week we did...
+===================
+We have done everything that we expected to do.
+We have meetings with hangouts and blackboard.
+
+Optional: Reasons why
+---------------------
+
+Next weeks we will do...
+========================
+- Write more code
+- Create pojos with JPA. One will be User.
+- Adapt the persistance.xml to our project
+- Modify tables to include a password column.
+- Finalize the login and register methods.
+
+Optional: Reasons why
+---------------------

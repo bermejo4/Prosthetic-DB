@@ -1,0 +1,27 @@
+This week we expected to be able to do...
+=========================================
+- Create de UML diagram
+- distribute the code work
+- assign the pojos to the different components of the group.
+- assign the database interface
+
+Optional: Reasons why
+---------------------
+
+This week we did...
+===================
+We have done everything that we expected to do.
+COVID-19 is in our lives.
+
+Optional: Reasons why
+---------------------
+
+Next weeks we will do...
+========================
+- Learn to use JDBC
+- distribute the more code work
+- assign the manager clases of each user pojo to the different components of the group.
+- assign the dbmanager
+
+Optional: Reasons why
+---------------------
