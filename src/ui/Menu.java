@@ -54,7 +54,7 @@ public class Menu {
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
 		dbManagerInterface.deleteTables();
 		dbManagerInterface.createTables();
-		//initializeDatabaseWithSomeValues();
+		initializeDatabaseWithSomeValues();
 
 		
 	
