@@ -54,7 +54,8 @@ public class BEManager implements db.inteface.BEManagerInterface {
 	@Override
 	public void insert(Prosthetic pros) {
 		try {
-			String sql = "INSERT INTO prosthetic ( material, type , dimension, price) " + "VALUES (?,?,?,?,?);";
+			String sql = "INSERT INTO prosthetic ( material, type , dimension, price) "
+		+ "VALUES (?,?,?,?,?);";
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1, pros.getMaterial());
 			prep.setString(2, pros.getType());
