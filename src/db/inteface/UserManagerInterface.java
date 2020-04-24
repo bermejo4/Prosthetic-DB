@@ -6,7 +6,7 @@ public interface UserManagerInterface {
 	public void connect();
 	public void disconnect();
 	public void createUser(User user);
-	public User checkPassword(String username, String password);
+	public int checkPassword(String username, byte[] password, String table, String name_id);
 	
 
 }
