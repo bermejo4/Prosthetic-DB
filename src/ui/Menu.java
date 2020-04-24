@@ -393,8 +393,16 @@ public class Menu {
 	}
 	
 	public static void login() {
+		boolean check=true;
+		do {
 		String telephone=InputFlow.takeTelephone(reader, "Introduce the phone number:");
 		byte[] password=InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
+		doctorUser=doctorManagerInterface.login(telephone, password);
+		if(check) {
+			System.out.println("You have introduced a wrong password or phone, please try again.");
+		}
+		
+		}while(check);
 		
 	}
 	
