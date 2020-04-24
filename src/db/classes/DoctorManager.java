@@ -196,7 +196,7 @@ public class DoctorManager implements DoctorManagerInterface {
 				String name = rs.getString("name");
 				String lastname = rs.getString("lastname");
 				Date dob = rs.getDate("dob");
-				//Date dof = rs.getDate("dof");
+				Date dof = rs.getDate("dof");
 				String address = rs.getString("address");
 				String telephone = rs.getString("telephone");
 				String gender = rs.getString("gender");
