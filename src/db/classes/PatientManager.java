@@ -24,12 +24,12 @@ public class PatientManager implements PatientManagerInterface {
 	
 	public void viewDate(String telephone) {
 		try {
-<<<<<<< HEAD
+
 			String sql = "SELECT dof FROM patient WHERE telephone LIKE ?";
 			//AS p JOIN doctor AS d ON d.doctor_id=p.doc_id;
-=======
+
 			String sql = "SELECT date_of_fitting FROM doctor AS d JOIN patient AS p ON d.doctor_id=p.doc_id; WHERE p.telephone LIKE ?";
->>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
+
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1, "%"+telephone+"%");
 			ResultSet rs = prep.executeQuery();
