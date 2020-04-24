@@ -28,21 +28,7 @@ public class DoctorManager implements DoctorManagerInterface {
 	}
 
 	public Doctor login(String phone, byte[] password) {
-		Doctor docRet=new Doctor();
-		// Get the entity manager
-		EntityManager em = Persistence.createEntityManagerFactory("company-provider").createEntityManager();
-		em.getTransaction().begin();
-		em.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
-		em.getTransaction().commit();
 
-		Query q1 = em.createNativeQuery("SELECT * FROM doctor WHERE telephone LIKE ?", Doctor.class);
-		q1.setParameter(1, phone);
-		
-		List<Department> deps = (List<Department>) q1.getResultList();
-				// Print the departments
-				for (Department department : deps) {
-					System.out.println(department);
-				}
 		
 	}
 
