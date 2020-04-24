@@ -52,8 +52,9 @@ public class Menu {
 		int max;
 
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
-		dbManagerInterface.deleteTables();
+		//dbManagerInterface.deleteTables();
 		dbManagerInterface.createTables();
+		
 		initializeDatabaseWithSomeValues();
 
 		
@@ -107,7 +108,7 @@ public class Menu {
 						break;
 					case 4:
 						
-							float telephone = InputFlow.takeFloat(reader, "Introduce your telephone number: ");
+							String telephone = InputFlow.takeTelephone(reader, "Introduce your telephone number: ");
 							patientManagerInterface.viewDate(telephone);
 							break;
 						
