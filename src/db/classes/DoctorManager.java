@@ -203,7 +203,7 @@ public class DoctorManager implements DoctorManagerInterface {
 				String problem = rs.getString("problem");
 				int doctor_id=rs.getInt("doctor_id");
 				// create a new patient
-				patientfound = new Patient(id,name,lastname,telephone,dob,gender,problem,address,doctor_id);
+				patientfound = new Patient(id,name,lastname,telephone,dob,dof,gender,problem,address,doctor_id);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
