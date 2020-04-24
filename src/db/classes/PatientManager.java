@@ -61,7 +61,7 @@ public class PatientManager implements PatientManagerInterface {
 		return hospitalList;
 	}
 
-	//Aun no se si esta bien hecho porque no se que se supone que hay que hacer cuando seleccionas ese hospital, pero seleccionado queda jajajajaja
+
 	public Hospital selectHospitalByID(int id) {
 		Hospital hosSelected= new Hospital();
 		try {
