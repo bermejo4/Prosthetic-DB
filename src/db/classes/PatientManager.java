@@ -24,7 +24,7 @@ public class PatientManager implements PatientManagerInterface {
 	
 	public void viewDate(String telephone) {
 		try {
-			String sql = "SELECT d.date_of_fitting FROM doctor AS d JOIN patient AS p ON d.doctor_id=p.doc_id; WHERE p.telephone LIKE ?";
+			String sql = "SELECT p.date_of_fitting FROM doctor AS d JOIN patient AS p ON d.doctor_id=p.doc_id; WHERE p.telephone LIKE ?";
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1, "%"+telephone+"%");
 			ResultSet rs = prep.executeQuery();
@@ -46,7 +46,7 @@ public class PatientManager implements PatientManagerInterface {
 			PreparedStatement prep = c.prepareStatement(sql);
 			ResultSet rs = prep.executeQuery();
 			while (rs.next()) {
-				Integer hosId = rs.getInt("id");
+				Integer hosId = rs.getInt("hospital_id");
 				String hosName = rs.getString("name");
 				String hosLocat = rs.getString("location");
 				String hosTele = rs.getString("telephone");
