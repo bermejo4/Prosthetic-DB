@@ -163,14 +163,14 @@ public class DoctorManager implements DoctorManagerInterface {
 				String name = rs.getString("name");
 				String lastname = rs.getString("lastname");
 				Date dob = rs.getDate("dob");
-				//Date dof = rs.getDate("dof");
+				Date dof = rs.getDate("dof");
 				String address = rs.getString("address");
 				String telephone = rs.getString("telephone");
 				String gender = rs.getString("gender");
 				String problem = rs.getString("problem");
 				int doctor_id=rs.getInt("doctor_id");
 				// create a new patient
-				Patient newpatient = new Patient(id,name,lastname,telephone,dob,gender,problem,address,doctor_id);
+				Patient newpatient = new Patient(id,name,lastname,telephone,dob,dof,gender,problem,address,doctor_id);
 				// add it to the list
 				//newpatient.toString();
 				//System.out.println(newpatient.getName());
