@@ -3,7 +3,7 @@ package pojos;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-public class Doctor implements Serializable{
+public class Doctor extends User implements Serializable{
 
 	private static final long serialVersionUID = 3556611086750634776L;
 	
