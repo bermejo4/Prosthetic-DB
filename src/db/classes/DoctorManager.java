@@ -1,7 +1,6 @@
 package db.classes;
 
 import pojos.*;
-import sample.db.pojos.Department;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -23,14 +22,14 @@ public class DoctorManager implements DoctorManagerInterface {
 		this.c = c;
 	}
 
-	public Doctor register(Doctor doc) {
+	/*public Doctor register(Doctor doc) {
 
 	}
 
 	public Doctor login(String phone, byte[] password) {
 
 		
-	}
+	}*/
 
 	public void modify(Patient pat, Date dof, int id) {
 		try {

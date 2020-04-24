@@ -5,8 +5,8 @@ import java.util.List;
 
 
 public interface DoctorManagerInterface {
-	public Doctor register(Doctor doc);
-	public Doctor login(String tel, byte[] password);
+	/*public Doctor register(Doctor doc);
+	public Doctor login(String tel, byte[] password);*/
 	public void modify(Patient pat, Date date, int id);
 	public void delete(Patient pat);
 	public void addPatient(Patient pat);
