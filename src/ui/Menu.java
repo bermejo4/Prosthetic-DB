@@ -270,6 +270,7 @@ public class Menu {
 		System.out.print("Prosthetic dimensions:");
 		String dimensions = reader.readLine();
 		Float price = InputFlow.takeFloat(reader, "Prosthetic price:");
+		System.out.println("");
 		// Float price = Float.parseFloat(reader.readLine());
 		Prosthetic createProsthetic = new Prosthetic(pros_type, material, price, dimensions);
 		biomedManagerInterface.insert(createProsthetic);
