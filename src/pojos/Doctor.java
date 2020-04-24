@@ -12,11 +12,11 @@ public class Doctor extends User implements Serializable{
 	private String lastname;
 	private String telephone;
 	private Integer hospital_id;
-	private List<Patient> patients;
+	private User doctorUser;
+	
 	
 	public Doctor() {
 		super();
-		this.patients= new ArrayList<Patient>();
 		
 	}
 	
@@ -99,23 +99,13 @@ public class Doctor extends User implements Serializable{
 		this.hospital_id = hospital_id;
 	}
 
-	public List<Patient> getPatients() {
-		return patients;
+	public User getDoctorUser() {
+		return doctorUser;
 	}
 
-	public void setPatients(List<Patient> patients) {
-		this.patients = patients;
-	}
-
-// create additional method to add to a list
-
-	
-// create additional method to remove from a list
-
-
-
-
-	
+	public void setDoctorUser(User doctorUser) {
+		this.doctorUser = doctorUser;
+	}	
 
 
 }

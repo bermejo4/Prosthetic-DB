@@ -35,7 +35,7 @@ public class PatientManager implements PatientManagerInterface {
 
 			while (rs.next()) {
 				Date dateOf = rs.getDate("dof");
-				System.out.println("Hello! Your next appointment is: " + dateOf);
+				System.out.println("Hello! Your next appointment is: " + dateOf + "\n");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

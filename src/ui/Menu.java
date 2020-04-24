@@ -141,6 +141,7 @@ public class Menu {
 						break;
 					case 2: // Login
 						loginMenu();
+						login();
 						break;
 					case 3: // Select prosthetic and assign it
 						searchProsthetic();

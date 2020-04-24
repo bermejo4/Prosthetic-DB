@@ -19,6 +19,7 @@ public class Patient implements Serializable {
 	private String problem;
 	private String address;
 	private Integer doctor_id;
+	private User patientUser;
 	
 	
 	public Patient() {
