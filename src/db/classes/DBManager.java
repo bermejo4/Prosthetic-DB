@@ -70,6 +70,7 @@ public class DBManager implements DBManagerInterface {
 					+ "telephone TEXT," 
 					+ "department TEXT," 
 					+ "hospital_id	INTEGER," 
+					+ "password BLOB,"
 					+ "PRIMARY KEY('doctor_id'),"
 					+ "FOREIGN KEY('hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
 
@@ -82,6 +83,7 @@ public class DBManager implements DBManagerInterface {
 					+ "name TEXT,"
 					+ "location TEXT," 
 					+ "telephone TEXT," 
+					+ "password BLOB,"
 					+ "patient_id	INTEGER," 
 					+ "PRIMARY KEY('hospital_id'))";
 
@@ -99,7 +101,8 @@ public class DBManager implements DBManagerInterface {
 					+ "telephone TEXT,"
 					+ "gender TEXT," 
 					+ "problem TEXT," 
-					+ "doctor_id INTEGER," 
+					+ "doctor_id INTEGER,"
+					+ "password BLOB,"
 					+ "PRIMARY KEY('patient_id'),"
 					+ "FOREIGN KEY('doctor_id') REFERENCES doctor(doctor_id) ON DELETE SET NULL ON UPDATE CASCADE)";
 
@@ -127,8 +130,11 @@ public class DBManager implements DBManagerInterface {
 
 			Statement stmt5 = c.createStatement();
 			String sql5 = "CREATE TABLE biomedical_engineer" 
-					+ "(be_id	INTEGER NOT NULL UNIQUE," + "name 	TEXT,"
-					+ "lastname		TEXT," + "telephone TEXT,"
+					+ "(be_id	INTEGER NOT NULL UNIQUE,"
+					+ "name 	TEXT,"
+					+ "lastname		TEXT,"
+					+ "telephone TEXT,"
+					+ "password BLOB,"
 					// + "gender TEXT,"
 					// + "speciality TEXT,"
 					// + "worklocation TEXT"
