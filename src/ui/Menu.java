@@ -52,7 +52,7 @@ public class Menu {
 		int max;
 
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
-		//dbManagerInterface.deleteTables();
+		dbManagerInterface.deleteTables();
 		dbManagerInterface.createTables();
 		//initializeDatabaseWithSomeValues();
 
