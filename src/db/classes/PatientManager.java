@@ -28,7 +28,6 @@ public class PatientManager implements PatientManagerInterface {
 			String sql = "SELECT dof FROM patient WHERE telephone LIKE ?";
 			//AS p JOIN doctor AS d ON d.doctor_id=p.doc_id;
 
-			String sql = "SELECT date_of_fitting FROM doctor AS d JOIN patient AS p ON d.doctor_id=p.doc_id; WHERE p.telephone LIKE ?";
 
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1, "%"+telephone+"%");
