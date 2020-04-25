@@ -4,6 +4,7 @@ package db.classes;
 import java.sql.*;
 
 import db.inteface.*;
+import pojos.User;
 
 public class DBManager implements DBManagerInterface {
 	private Connection c;
@@ -112,13 +113,13 @@ public class DBManager implements DBManagerInterface {
 			Statement stmt4 = c.createStatement();
 			String sql4 = "CREATE TABLE prosthetic " 
 					+ "(prosthetic_id INTEGER NOT NULL UNIQUE," 
-					+ "material TEXT,"
-					+ "type TEXT," 
+					+ "type TEXT,"
+					+ "material TEXT," 
 					+ "dimension TEXT," 
 					+ "number_of_failures INTEGER,"
-					+ "failures TEXT," 
+					+ "failures TEXT NULL," 
 					+ "price REAL," 
-					+ "available BOOLEAN,"
+					+ "available BOOLEAN DEFAULT true,"
 					+ "patient_id INTEGER," 
 					+ "hospital_id INTEGER," 
 					+ "PRIMARY KEY('prosthetic_id'),"
@@ -135,12 +136,8 @@ public class DBManager implements DBManagerInterface {
 					+ "lastname		TEXT,"
 					+ "telephone TEXT,"
 					+ "password BLOB,"
-					// + "gender TEXT,"
-					// + "speciality TEXT,"
-					// + "worklocation TEXT"
 					+ "PRIMARY KEY('be_id'))";
-			// + "FOREIGN KEY('hospital_id') REFERENCES hospital('hospital_id') ON DELETE
-			// SET NULL ON UPDATE CASCADE)";
+
 
 			stmt5.executeUpdate(sql5);
 			stmt5.close();
@@ -199,6 +196,7 @@ public class DBManager implements DBManagerInterface {
 	public PatientManager getPatientManager() {
 		return patient;
 	}
+	
 
 	public int getLastId() {
 		int result = 0;

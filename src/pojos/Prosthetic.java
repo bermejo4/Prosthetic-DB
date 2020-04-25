@@ -50,7 +50,7 @@ public class Prosthetic implements Serializable {
 	
 	
 
-	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures) {
+	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures, boolean available ) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -58,19 +58,20 @@ public class Prosthetic implements Serializable {
 		this.price = price;
 		this.dimensions = dimensions;
 		this.failures = failures;
+		this.available = available;
 	}
-
-
-
-	//Created another constructor for a lists in biomedical eng
-	public Prosthetic(Integer id, String type, String material, Float price, String dimensions) {
+	
+	public Prosthetic( String type, String material, Float price, String dimensions, String failures, boolean available ) {
 		super();
-		this.id = id;
 		this.type = type;
 		this.material = material;
 		this.price = price;
 		this.dimensions = dimensions;
+		this.failures = failures;
+		this.available = available;
 	}
+
+
 //created another constructor to insert prosthetic but without id, failures etc
 	public Prosthetic(String type, String material, Float price, String dimensions) {
 		super();
@@ -146,6 +147,7 @@ public class Prosthetic implements Serializable {
 	public void setNumberFailures(Integer numberFailures) {
 		this.numberFailures = numberFailures;
 	}
+	
 
 	@Override
 	public String toString() {
@@ -181,7 +183,17 @@ public class Prosthetic implements Serializable {
 	}
 
 
-	public boolean isAvailable() {
+	public String getisAvailable() {
+		String state;
+		if(available == true) {
+		return state = "Available";
+		
+		} else {
+			return state = "NO longer available";
+		}
+	}
+
+	public boolean getAvailable() {
 		return available;
 	}
 

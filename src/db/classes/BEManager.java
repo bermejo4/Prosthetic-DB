@@ -54,16 +54,22 @@ public class BEManager implements db.inteface.BEManagerInterface {
 	@Override
 	public void insert(Prosthetic pros) {
 		try {
+<<<<<<< HEAD
 			String sql = "INSERT INTO prosthetic ( material, type , dimension, price, failure, numberFailures, ) "
+=======
+			String sql = "INSERT INTO prosthetic ( type,material, dimension, failures, price, available) "
+>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 		+ "VALUES (?,?,?,?,?,?);";
 			PreparedStatement prep = c.prepareStatement(sql);
-			prep.setString(1, pros.getMaterial());
-			prep.setString(2, pros.getType());
+			
+			prep.setString(1, pros.getType());
+			prep.setString(2, pros.getMaterial());
 			prep.setString(3, pros.getDimensions());
-			// prep.setString(4, pros.getFailures());
-			// prep.setFloat(3, pros.getNumberFailures());
-			prep.setFloat(4, pros.getPrice());
-
+			prep.setString(4, pros.getFailures());
+			prep.setFloat(5, pros.getPrice());
+			prep.setBoolean(6, pros.getAvailable());
+			
+			
 			prep.executeUpdate();
 			prep.close();
 		} catch (Exception e) {
@@ -86,7 +92,8 @@ public class BEManager implements db.inteface.BEManagerInterface {
 			String dimensions = rs.getString("dimension");
 			float price = rs.getFloat("price");
 			String failures = rs.getString("failures");
-			newProsthetic = new Prosthetic (id, pros_type, material,  price,  dimensions,failures);
+			boolean available = rs.getBoolean("available");
+			newProsthetic = new Prosthetic (id, pros_type, material,  price,  dimensions,failures,available);
 			
 		} catch (SQLException e) {
 			
@@ -116,9 +123,9 @@ public class BEManager implements db.inteface.BEManagerInterface {
 				float price = rs.getFloat("price");
 
 				// Create a new prosthetic for the list
-				Prosthetic newPros = new Prosthetic(id, pros_type, material, price, dimensions);
+				//Prosthetic newPros = new Prosthetic(id, pros_type, material, price, dimensions);
 				// Add it to the list
-				listProsthetics.add(newPros);
+				//listProsthetics.add(newPros);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

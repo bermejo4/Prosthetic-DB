@@ -19,7 +19,7 @@ public class UserManager implements UserManagerInterface {
 	
 	@Override
 	public void connect() {
-		em = Persistence.createEntityManagerFactory("dog-provider").createEntityManager();
+		em = Persistence.createEntityManagerFactory("Prosthetic-provider").createEntityManager();
 		em.getTransaction().begin();
 		em.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
 		em.getTransaction().commit();
@@ -61,25 +61,24 @@ public class UserManager implements UserManagerInterface {
 	*/
 
 	@Override
-	public User checkPassword(String username, String password) {
-		User user = null;
+	public int checkPassword(String telephone, byte[] password, String table, String name_id) {
+		int num=0;
 		try {
-			// Create a MessageDigest
+			/*// Create a MessageDigest
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			md.update(password.getBytes());
-			byte[] hash = md.digest();
+			byte[] hash = md.digest();*/
 			// Create the query
-			Query q = em.createNativeQuery("SELECT * FROM users WHERE username = ? AND password = ?", User.class);
-			q.setParameter(1, username);
-			q.setParameter(2, hash);
-			user = (User) q.getSingleResult();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			Query q = em.createNativeQuery("SELECT "+name_id+" FROM "+table+" WHERE telephone = ? AND password = ?", User.class);
+			q.setParameter(1, telephone);
+			q.setParameter(2, "rojo");
+			num = (Integer) q.getSingleResult();
+			System.out.println("num:"+num);
 		} catch (NoResultException nre) {
 			// This is what happens when no result is retrieved
-			return null;
+			return 0;
 		}
-		return user;
+		return num;
 	}
 
 }
