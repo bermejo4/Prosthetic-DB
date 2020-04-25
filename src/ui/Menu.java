@@ -81,8 +81,8 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 					//if (logged) {
-						System.out.println("3.Select a Hospital."); //no lo he probado 
-						System.out.println("4.View appointments."); //no funciona att api (estoy probando todos)
+						System.out.println("3.Select a Hospital."); //ya funciona perfecto 
+						System.out.println("4.View appointments."); //sigue sin funcionar att api
 						max = 4; 
 					//}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
@@ -173,7 +173,7 @@ public class Menu {
 					System.out.println("3. Upload a new Prosthetic.");
 					System.out.println("4. Modify a Prosthetic information.");
 					System.out.println("5. View Uploaded Prosthetics.");
-					max = 4;
+					max = 5;
 					//}*
 				System.out.println("\n0.Back to choose other user to the main menu.");
 				num = requestNumber(max);
@@ -198,6 +198,9 @@ public class Menu {
 					
 					int choice = InputFlow.takeInteger(reader, "Introduce the id of the desired prosthetic:");
 					modifyProstheticInfo(choice);
+					break;
+				case 5:
+					//viewProsthetics
 					break;
 				default: //back
 					userUsing=false;

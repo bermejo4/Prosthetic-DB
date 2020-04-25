@@ -54,11 +54,10 @@ public class BEManager implements db.inteface.BEManagerInterface {
 	@Override
 	public void insert(Prosthetic pros) {
 		try {
-<<<<<<< HEAD
+
 			String sql = "INSERT INTO prosthetic ( material, type , dimension, price, failure, numberFailures, ) "
-=======
+
 			String sql = "INSERT INTO prosthetic ( type,material, dimension, failures, price, available) "
->>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 		+ "VALUES (?,?,?,?,?,?);";
 			PreparedStatement prep = c.prepareStatement(sql);
 			
