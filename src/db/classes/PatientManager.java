@@ -22,16 +22,20 @@ public class PatientManager implements PatientManagerInterface {
 	}
 	
 	
-	public void viewDate(float telephone) {
+	public void viewDate(String telephone) {
 		try {
-			String sql = "SELECT d.date_of_fitting FROM doctor AS d JOIN patient AS p ON d.doctor_id=p.doc_id; WHERE p.telephone LIKE ?";
+
+			String sql = "SELECT dof FROM patient WHERE telephone LIKE ?";
+			//AS p JOIN doctor AS d ON d.doctor_id=p.doc_id;
+
+
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1, "%"+telephone+"%");
 			ResultSet rs = prep.executeQuery();
 
 			while (rs.next()) {
 				Date dateOf = rs.getDate("dof");
-				System.out.println("Hello! Your next appointment is: " + dateOf);
+				System.out.println("Hello! Your next appointment is: " + dateOf + "\n");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -46,7 +50,7 @@ public class PatientManager implements PatientManagerInterface {
 			PreparedStatement prep = c.prepareStatement(sql);
 			ResultSet rs = prep.executeQuery();
 			while (rs.next()) {
-				Integer hosId = rs.getInt("id");
+				int hosId = rs.getInt("hospital_id");
 				String hosName = rs.getString("name");
 				String hosLocat = rs.getString("location");
 				String hosTele = rs.getString("telephone");
@@ -61,7 +65,7 @@ public class PatientManager implements PatientManagerInterface {
 		return hospitalList;
 	}
 
-	//Aun no se si esta bien hecho porque no se que se supone que hay que hacer cuando seleccionas ese hospital, pero seleccionado queda jajajajaja
+
 	public Hospital selectHospitalByID(int id) {
 		Hospital hosSelected= new Hospital();
 		try {

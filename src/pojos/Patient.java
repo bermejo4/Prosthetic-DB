@@ -19,6 +19,7 @@ public class Patient implements Serializable {
 	private String problem;
 	private String address;
 	private Integer doctor_id;
+	private User patientUser;
 	
 	
 	public Patient() {
@@ -26,7 +27,7 @@ public class Patient implements Serializable {
 	}
 
 
-	public Patient(Integer id, String name, String lastname, String telephone, Date dof, Date dob, String gender, String problem,
+	public Patient(Integer id, String name, String lastname, String telephone, Date dob, Date dof, String gender, String problem,
 			String addres, Integer doctor_id) {
 		super();
 		this.id = id;

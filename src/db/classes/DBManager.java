@@ -4,6 +4,7 @@ package db.classes;
 import java.sql.*;
 
 import db.inteface.*;
+import pojos.User;
 
 public class DBManager implements DBManagerInterface {
 	private Connection c;
@@ -199,6 +200,7 @@ public class DBManager implements DBManagerInterface {
 	public PatientManager getPatientManager() {
 		return patient;
 	}
+	
 
 	public int getLastId() {
 		int result = 0;

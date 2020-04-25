@@ -2,6 +2,7 @@ package ui;
 
 import java.io.*;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -220,6 +221,9 @@ public class InputFlow {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			md.update(password.getBytes());
 			returnValue = md.digest();
+			
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

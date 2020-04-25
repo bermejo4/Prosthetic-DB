@@ -1,7 +1,6 @@
 package db.classes;
 
 import pojos.*;
-import sample.db.pojos.Department;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -23,28 +22,14 @@ public class DoctorManager implements DoctorManagerInterface {
 		this.c = c;
 	}
 
-	public Doctor register(Doctor doc) {
+	/*public Doctor register(Doctor doc) {
 
 	}
 
 	public Doctor login(String phone, byte[] password) {
-		Doctor docRet=new Doctor();
-		// Get the entity manager
-		EntityManager em = Persistence.createEntityManagerFactory("company-provider").createEntityManager();
-		em.getTransaction().begin();
-		em.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
-		em.getTransaction().commit();
 
-		Query q1 = em.createNativeQuery("SELECT * FROM doctor WHERE telephone LIKE ?", Doctor.class);
-		q1.setParameter(1, phone);
 		
-		List<Department> deps = (List<Department>) q1.getResultList();
-				// Print the departments
-				for (Department department : deps) {
-					System.out.println(department);
-				}
-		
-	}
+	}*/
 
 	public void modify(Patient pat, Date dof, int id) {
 		try {
@@ -196,14 +181,14 @@ public class DoctorManager implements DoctorManagerInterface {
 				String name = rs.getString("name");
 				String lastname = rs.getString("lastname");
 				Date dob = rs.getDate("dob");
-				//Date dof = rs.getDate("dof");
+				Date dof = rs.getDate("dof");
 				String address = rs.getString("address");
 				String telephone = rs.getString("telephone");
 				String gender = rs.getString("gender");
 				String problem = rs.getString("problem");
 				int doctor_id=rs.getInt("doctor_id");
 				// create a new patient
-				patientfound = new Patient(id,name,lastname,telephone,dob,gender,problem,address,doctor_id);
+				patientfound = new Patient(id,name,lastname,telephone,dob,dof,gender,problem,address,doctor_id);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

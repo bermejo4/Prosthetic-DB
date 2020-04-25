@@ -31,8 +31,9 @@ public class Hospital implements Serializable{
 
 
 
-	public Hospital(String name, String addres) {
+	public Hospital(int id, String name, String addres) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.addres = addres;
 		this.doctors = new ArrayList<Doctor>();
@@ -87,7 +88,7 @@ public class Hospital implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Hospital [name=" + name + ", addres=" + addres + ", patient_id=" + patient_id + ", telephone="
+		return "Hospital [id= " + id + ", name=" + name + ", addres=" + addres + ", patient_id=" + patient_id + ", telephone="
 				+ telephone + "]";
 	}
 

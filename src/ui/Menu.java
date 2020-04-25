@@ -20,6 +20,7 @@ public class Menu {
 	private static PatientManagerInterface patientManagerInterface;
 	private static HospitalManagerInterface hospitalManagerInterface;
 	private static BEManagerInterface biomedManagerInterface;
+	private static UserManagerInterface userManagerInterface;
 
 	// Used for parsing dates
 	private static BufferedReader reader;
@@ -42,6 +43,8 @@ public class Menu {
 		patientManagerInterface = dbManagerInterface.getPatientManager();
 		hospitalManagerInterface = dbManagerInterface.getHospitalManager();
 		biomedManagerInterface = dbManagerInterface.getBiomedManager();
+		userManagerInterface = new UserManager();
+		userManagerInterface.connect();
 
 		userUsing = false;
 
@@ -54,7 +57,7 @@ public class Menu {
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
 		//dbManagerInterface.deleteTables();
 		dbManagerInterface.createTables();
-		initializeDatabaseWithSomeValues();
+		//initializeDatabaseWithSomeValues();
 
 		
 	
@@ -107,7 +110,7 @@ public class Menu {
 						break;
 					case 4:
 						
-							float telephone = InputFlow.takeFloat(reader, "Introduce your telephone number: ");
+							String telephone = InputFlow.takeTelephone(reader, "Introduce your telephone number: ");
 							patientManagerInterface.viewDate(telephone);
 							break;
 						
@@ -140,6 +143,7 @@ public class Menu {
 						break;
 					case 2: // Login
 						loginMenu();
+						login("doctor");
 						break;
 					case 3: // Select prosthetic and assign it
 						searchProsthetic();
@@ -244,6 +248,7 @@ public class Menu {
 					// dbManagerInterface.deleteTables(); Quitar // cuando esté terminada la
 					// práctica
 					dbManagerInterface.disconnect();
+					userManagerInterface.disconnect();
 					System.exit(0);
 				}
 			}
@@ -392,17 +397,28 @@ public class Menu {
 		System.out.println("4.Failures.");
 	}
 	
-	public static void login() {
+	public static void login(String table) {
 		boolean check=true;
-		do {
+		
 		String telephone=InputFlow.takeTelephone(reader, "Introduce the phone number:");
 		byte[] password=InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
-		doctorUser=doctorManagerInterface.login(telephone, password);
-		if(check) {
-			System.out.println("You have introduced a wrong password or phone, please try again.");
+		System.out.println(password);
+		System.out.println(telephone);
+		int user_id = userManagerInterface.checkPassword(telephone, password, table, "doctor_id");
+		/*if(userManagerInterface.checkPassword(telephone, password, table)) {
+			System.out.println("Wrong passwor or user");
+		}else {
+			user= userManagerInterface.checkPassword(telephone, password, table);
+			System.out.println(user.toString());
+		}*/
+		//System.out.println("return value:"+userManagerInterface.checkPassword(telephone, password, table).toString());
+		
+		if (user_id == 0) {
+			System.out.println("Wrong credentials, please try again!");
+		}else {
+			System.out.println("The id number is:"+user_id);
 		}
 		
-		}while(check);
 		
 	}
 	
