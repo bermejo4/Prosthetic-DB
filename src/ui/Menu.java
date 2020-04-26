@@ -176,9 +176,9 @@ public class Menu {
 					max = 4;
 					//}*
 				System.out.println("\n0.Back to choose other user to the main menu.");
-				num = requestNumber(max);
+				//num = requestNumber(max);
 				max = 5;
-
+				num = requestNumber(max);
 	
 			
 				switch (num) {
@@ -193,12 +193,18 @@ public class Menu {
 					uploadProsthetic();
 					break;
 				
-				case 4: // Modify Prosthetic info
-					searchProsType();
+				case 4: // Modify Prosthetic information
+					searchProsthetic();
 					
-					int choice = InputFlow.takeInteger(reader, "Introduce the id of the desired prosthetic:");
+					int choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be modified:");
 					modifyProstheticInfo(choice);
+					System.out.println("Your prosthetic has been updated!");
 					break;
+				case 5://View Uploaded Prosthetics
+					System.out.println("Here are all the existing prosthetics: ");
+					showProsthetics();
+					
+					
 				default: //back
 					userUsing=false;
 				}
@@ -277,6 +283,7 @@ public class Menu {
 	}
 
 	public static void modifyProstheticInfo(int prosID) throws Exception {
+		
 
 		Prosthetic prosToModify = biomedManagerInterface.getProsthetic(prosID);
 		System.out.println("Actual prosthetic type: " + prosToModify.getType());
@@ -337,20 +344,24 @@ public class Menu {
 		biomedManagerInterface.upadate(updatedaPros);
 
 	}
-
-	public static void searchProsType() throws Exception {
-
-		System.out.println("Search for the prosthetic you want to modify...");
-		System.out.println("Filter by type (ex. Below the knee, Auricular, etc):");
-		String pros_type = reader.readLine();
-		List<Prosthetic> pros = biomedManagerInterface.searchBytype(pros_type);
-		// now we need to print the list
-		for (Prosthetic prosthetic : pros) {
-			System.out.println(prosthetic);
-
+	
+	public static void showProsthetics() {
+		
+		List<Prosthetic> prosList = new ArrayList<Prosthetic>();
+		
+		Prosthetic pros;
+		prosList = biomedManagerInterface.showProsthetic();
+		Iterator it = prosList.iterator();
+		while (it.hasNext()) {
+			pros = (Prosthetic) it.next();
+			System.out.println(pros.toString());
+			System.out.println("");
 		}
-
+		
+		
 	}
+	
+
 
 	public static int requestNumber(int max) {
 		// int max is the maximun option that is acceptable
@@ -551,6 +562,7 @@ public class Menu {
 
 	}
 
+
 	public static void searchProsthetic() {
 		Prosthetic prost;
 		searchProstheticMenu();
@@ -587,6 +599,8 @@ public class Menu {
 			e.printStackTrace();
 		}
 	}
+	
+
 
 	public static void assignProsthetic() {
 		try {

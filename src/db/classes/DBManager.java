@@ -120,7 +120,7 @@ public class DBManager implements DBManagerInterface {
 					+ "failures TEXT NULL," 
 					+ "price REAL," 
 					+ "available BOOLEAN DEFAULT true,"
-					+ "patient_id INTEGER," 
+					+ "patient_id INTEGER," //9
 					+ "hospital_id INTEGER," 
 					+ "PRIMARY KEY('prosthetic_id'),"
 					+ "FOREIGN KEY('hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE,"
@@ -143,11 +143,12 @@ public class DBManager implements DBManagerInterface {
 			stmt5.close();
 
 			Statement stmt6 = c.createStatement();
-			String sql6 = "CREATE TABLE m_m" 
-					+ "(prosthetic_id	INTEGER NOT NULL," 
-					+ "be_id INTEGER NOT NULL,"
-					+ "FOREIGN KEY('prosthetic_id')REFERENCES prosthetic('prosthetic_id') ON DELETE SET NULL ON UPDATE CASCADE,"
-					+ "FOREIGN KEY('be_id') REFERENCES biomedical_engineer('be_id') ON DELETE SET NULL ON UPDATE CASCADE)";
+			String sql6 = "CREATE TABLE Biomed_Pros" 
+					+ "(prosID	INTEGER NOT NULL," 
+					+ "beID INTEGER NOT NULL,"
+					+ "FOREIGN KEY('prosID')REFERENCES prosthetic('prosthetic_id') ON DELETE SET NULL ON UPDATE CASCADE,"
+					+ "FOREIGN KEY('beID') REFERENCES biomedical_engineer('be_id') ON DELETE SET NULL ON UPDATE CASCADE)"
+					+ "PRIMARY KEY(prosID,beID)";
 
 			stmt6.executeUpdate(sql6);
 			stmt6.close();

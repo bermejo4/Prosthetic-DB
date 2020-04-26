@@ -1,6 +1,8 @@
 package pojos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Prosthetic implements Serializable {
 
@@ -19,6 +21,7 @@ public class Prosthetic implements Serializable {
 	private boolean available;
 	private Integer patient_id;
 	private Integer hospital_id;
+	private List<Biomedical_Eng> biomeds; //for the many to many relationship
 
 	
 
@@ -28,11 +31,33 @@ public class Prosthetic implements Serializable {
 		super();
 		this.id = id;
 		this.type = type;
+		this.biomeds = new ArrayList<Biomedical_Eng>();
+		
+		
 	}
 
 	
 	
 	// Constructor with all variables
+	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures,
+			Integer numberFailures, boolean available, Integer patient_id, Integer hospital_id,
+			List<Biomedical_Eng> biomeds) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.material = material;
+		this.price = price;
+		this.dimensions = dimensions;
+		this.failures = failures;
+		this.numberFailures = numberFailures;
+		this.available = available;
+		this.patient_id = patient_id;
+		this.hospital_id = hospital_id;
+		this.biomeds = biomeds;
+	} 
+	
+	
+
 	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures,
 			Integer numberFailures, boolean available, Integer patient_id, Integer hospital_id) {
 		super();
@@ -46,9 +71,10 @@ public class Prosthetic implements Serializable {
 		this.available = available;
 		this.patient_id = patient_id;
 		this.hospital_id = hospital_id;
+		this.biomeds = new ArrayList<Biomedical_Eng>();
 	}
-	
-	
+
+
 
 	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures, boolean available ) {
 		super();
@@ -59,8 +85,13 @@ public class Prosthetic implements Serializable {
 		this.dimensions = dimensions;
 		this.failures = failures;
 		this.available = available;
+		this.biomeds = new ArrayList<Biomedical_Eng>();
+
 	}
 	
+
+
+
 	public Prosthetic( String type, String material, Float price, String dimensions, String failures, boolean available ) {
 		super();
 		this.type = type;
@@ -69,6 +100,7 @@ public class Prosthetic implements Serializable {
 		this.dimensions = dimensions;
 		this.failures = failures;
 		this.available = available;
+		this.biomeds = new ArrayList<Biomedical_Eng>();
 	}
 
 
@@ -79,6 +111,7 @@ public class Prosthetic implements Serializable {
 		this.material = material;
 		this.price = price;
 		this.dimensions = dimensions;
+		this.biomeds = new ArrayList<Biomedical_Eng>();
 	}
 
 
@@ -86,6 +119,7 @@ public class Prosthetic implements Serializable {
 	// Empty constructor
 	public Prosthetic() {
 		super();
+		biomeds = new ArrayList<Biomedical_Eng>();
 	}
 	
 	
@@ -216,6 +250,18 @@ public class Prosthetic implements Serializable {
 
 	public void setHospital_id(Integer hospital_id) {
 		this.hospital_id = hospital_id;
+	}
+
+
+
+	public List<Biomedical_Eng> getBiomeds() {
+		return biomeds;
+	}
+
+
+
+	public void setBiomeds(List<Biomedical_Eng> biomeds) {
+		this.biomeds = biomeds;
 	}
 	
 
