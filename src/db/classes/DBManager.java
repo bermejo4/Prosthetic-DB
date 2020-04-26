@@ -144,14 +144,14 @@ public class DBManager implements DBManagerInterface {
 
 			Statement stmt6 = c.createStatement();
 			String sql6 = "CREATE TABLE Biomed_Pros" 
-					+ "(prosID	INTEGER NOT NULL," 
-					+ "beID INTEGER NOT NULL,"
-					+ "FOREIGN KEY('prosID')REFERENCES prosthetic('prosthetic_id') ON DELETE SET NULL ON UPDATE CASCADE,"
-					+ "FOREIGN KEY('beID') REFERENCES biomedical_engineer('be_id') ON DELETE SET NULL ON UPDATE CASCADE)"
+					+ "(prosID	INTEGER REFERENCES prosthetic(prosthetic_id) ON DELETE SET NULL ON UPDATE CASCADE," 
+					+ "beID INTEGER  REFERENCES biomedical_engineer(be_id) ON DELETE SET NULL ON UPDATE CASCADE,"
 					+ "PRIMARY KEY(prosID,beID)";
 
 			stmt6.executeUpdate(sql6);
 			stmt6.close();
+			
+			
 
 			System.out.println("Tables created.");
 			// Create table: end
@@ -236,6 +236,19 @@ public class DBManager implements DBManagerInterface {
 			e.printStackTrace();
 		}
 	}
+	
+	public void initializeBiomedics(String name, String lastname) {
+		try {
+			Statement stat = c.createStatement();
+			String sql = "INSERT INTO biomedical_engineer (name, lastname)"
+					+ " VALUES ('"+name+"' , '"+lastname+"')";
+			stat.executeUpdate(sql);
+			stat.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	 	
 
 	public void deleteTables() {
