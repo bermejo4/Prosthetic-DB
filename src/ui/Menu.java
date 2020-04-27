@@ -117,12 +117,11 @@ public class Menu {
 					System.out.println("DOCTOR MENU:");
 					System.out.println("What do you want to do?");
 					System.out.println("1.Register.");
-					System.out.println("2.Login."); // todos funcionan perfecto menos el select prosthetic porque no hay
-													// prosthetics
+					System.out.println("2.Login."); 
 
 					max = 2;
 					// if (logged) {
-					System.out.println("3.Select a Prosthetic.");
+					System.out.println("3.Select a Prosthetic."); //funciona att api 
 					System.out.println("4.Select date of fitting.");
 					System.out.println("5.Search a patients file.");
 					System.out.println("6.Add/Modify/Delete a patient.");
@@ -216,8 +215,7 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 					// if (logged) {
-					System.out.println("3.Buy a Prosthetic."); // da un null pointer exception y no entiendo porque
-
+					System.out.println("3.Buy a Prosthetic."); 
 					max = 3;
 					// }
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
@@ -229,8 +227,8 @@ public class Menu {
 					case 2: // Login
 						loginMenu();
 						break;
-					case 3: // Buy a prosthetic
-						buyProsthetic();
+					case 3: // Buy a prosthetic //ya funciona 
+						buyProsthetic(); 
 						break;
 					default: // back
 						userUsing = false;
@@ -376,8 +374,8 @@ public class Menu {
 		dbManagerInterface.initializeDoctors("Juan", "657901456", "traumatologist", 1);
 		dbManagerInterface.initializeDoctors("Rosa", "646321211", "cardiologist", 2);
 
-		dbManagerInterface.initializeBiomedics("Gabriela", "Api");
-		dbManagerInterface.initializeBiomedics("Marina", "Gonzales");
+		dbManagerInterface.initializeBiomedics("Gabriela", "Apicella");
+		dbManagerInterface.initializeBiomedics("Marina", "Miguelez");
 		dbManagerInterface.initializeBiomedics("Jaime", "Bermejo");
 		dbManagerInterface.initializeBiomedics("Maria Celeste", "Ortega");
 
