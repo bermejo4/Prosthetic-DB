@@ -33,12 +33,12 @@ public class HospitalManager implements HospitalManagerInterface {
 		// we get all the available prosthetics 
 
 		try {
-			String sql = "SELECT * FROM prosthetic WHERE available LIKE true";
+			String sql = "SELECT * FROM prosthetic WHERE available LIKE 1";
 			PreparedStatement prep = c.prepareStatement(sql);
 			ResultSet rs = prep.executeQuery();
 
 			while (rs.next()) {
-				Integer prosthId = rs.getInt("id");
+				Integer prosthId = rs.getInt("prosthetic_id");
 				String prosthType = rs.getString("type");
 				Prosthetic newProsthetic = new Prosthetic(prosthId, prosthType);
 				prostheticList.add(newProsthetic);

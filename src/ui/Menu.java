@@ -626,7 +626,7 @@ public class Menu {
 	}
 
 	public static void buyProsthetic() throws Exception {
-		int hospital_id = hospitalUser.getId();
+		//int hospital_id = hospitalUser.getId();
 
 		// Show the list of all available prosthetic on that specific hospital
 		List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics();
@@ -640,7 +640,7 @@ public class Menu {
 		int prosthetic_id = Integer.parseInt(reader.readLine());
 
 		// the specific hospital buys the prosthetic choosed
-		hospitalManagerInterface.buy(hospital_id, prosthetic_id);
+		hospitalManagerInterface.buy(/*hospital_id*/1, prosthetic_id);
 	}
 
 	public static void pressEnter() {
