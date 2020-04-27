@@ -58,11 +58,10 @@ public class HospitalManager implements HospitalManagerInterface {
 		//will link a prosthetic to a hospital
 		
 		try {
-			String sql = "INSERT INTO prosthetic(hospital_id, prosthetic_id)"
-					+ "VALUES (?,?);";
+			String sql = "INSERT INTO prosthetic(hospital_id)"
+					+ "VALUES (?);";
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setInt(1, hospital_id);
-			prep.setInt(2, prosthetic_id);
 			prep.executeUpdate();
 			prep.close();
 			
