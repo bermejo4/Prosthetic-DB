@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import db.inteface.UserManagerInterface;
+import pojos.Doctor;
 import pojos.User;
 
 
@@ -69,9 +70,9 @@ public class UserManager implements UserManagerInterface {
 			md.update(password.getBytes());
 			byte[] hash = md.digest();*/
 			// Create the query
-			Query q = em.createNativeQuery("SELECT "+name_id+" FROM "+table+" WHERE telephone = ? AND password = ?", User.class);
+			Query q = em.createNativeQuery("SELECT "+name_id+" FROM "+table+" WHERE telephone = ? AND password = ?", Integer.class);
 			q.setParameter(1, telephone);
-			q.setParameter(2, "rojo");
+			q.setParameter(2, password);
 			num = (Integer) q.getSingleResult();
 			System.out.println("num:"+num);
 		} catch (NoResultException nre) {
