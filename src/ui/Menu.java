@@ -103,9 +103,7 @@ public class Menu {
 
 						break;
 					case 4:
-
-						float telephone = InputFlow.takeFloat(reader, "Introduce your telephone number: ");
-						// patientManagerInterface.viewDate(telephone);
+						viewDate();
 						break;
 
 					default: // back
@@ -473,6 +471,14 @@ public class Menu {
 		System.out.println("You have chosen:\n" + hosp.toString());
 		System.out.println("");
 
+	}
+	public static void viewDate() {
+		// To view your own date of fitting
+		
+		String telephone =InputFlow.takeTelephone(reader,"Introduce your telephone number: ");
+		patientManagerInterface.viewDate(telephone);
+		
+		
 	}
 
 	public static void addModifyDelete() throws Exception {
