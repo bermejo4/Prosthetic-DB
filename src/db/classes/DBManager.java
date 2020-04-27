@@ -146,7 +146,7 @@ public class DBManager implements DBManagerInterface {
 			String sql6 = "CREATE TABLE Biomed_Pros" 
 					+ "(prosID	INTEGER REFERENCES prosthetic(prosthetic_id) ON DELETE SET NULL ON UPDATE CASCADE," 
 					+ "beID INTEGER  REFERENCES biomedical_engineer(be_id) ON DELETE SET NULL ON UPDATE CASCADE,"
-					+ "PRIMARY KEY(prosID,beID)";
+					+ "PRIMARY KEY(prosID,beID))";
 
 			stmt6.executeUpdate(sql6);
 			stmt6.close();
