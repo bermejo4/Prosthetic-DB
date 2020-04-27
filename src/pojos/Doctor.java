@@ -2,16 +2,35 @@ package pojos;
 
 import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+
 import java.util.ArrayList;
-public class Doctor extends User implements Serializable{
+
+@Entity
+@Table(name = "doctor")
+public class Doctor implements Serializable{
 
 	private static final long serialVersionUID = 3556611086750634776L;
 	
+	@Id
+	@GeneratedValue(generator="doctor")
+	@TableGenerator(name="doctor", table="sqlite_sequence",
+	    pkColumnName="name", valueColumnName="seq", pkColumnValue="doctor")
 	private Integer id;
 	private String name;
 	private String lastname;
 	private String telephone;
-	private Integer hospital_id;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "hospital_id")
+	private Hospital hospital_id;
 	private User doctorUser;
 	
 	
