@@ -103,9 +103,7 @@ public class Menu {
 
 						break;
 					case 4:
-
-						float telephone = InputFlow.takeFloat(reader, "Introduce your telephone number: ");
-						// patientManagerInterface.viewDate(telephone);
+						viewDate();
 						break;
 
 					default: // back
@@ -119,12 +117,11 @@ public class Menu {
 					System.out.println("DOCTOR MENU:");
 					System.out.println("What do you want to do?");
 					System.out.println("1.Register.");
-					System.out.println("2.Login."); // todos funcionan perfecto menos el select prosthetic porque no hay
-													// prosthetics
+					System.out.println("2.Login."); 
 
 					max = 2;
 					// if (logged) {
-					System.out.println("3.Select a Prosthetic.");
+					System.out.println("3.Select a Prosthetic."); //funciona att api 
 					System.out.println("4.Select date of fitting.");
 					System.out.println("5.Search a patients file.");
 					System.out.println("6.Add/Modify/Delete a patient.");
@@ -195,7 +192,7 @@ public class Menu {
 
 						int choice = InputFlow.takeInteger(reader,
 								"Introduce the ID of the prosthetic to be modified:");
-						modifyProstheticInfo(choice);
+						modifyProstheticInfo(choice); //no esta funcionando
 						System.out.println("Your prosthetic has been updated!");
 						break;
 
@@ -218,8 +215,7 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 					// if (logged) {
-					System.out.println("3.Buy a Prosthetic."); // da un null pointer exception y no entiendo porque
-
+					System.out.println("3.Buy a Prosthetic."); 
 					max = 3;
 					// }
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
@@ -231,8 +227,8 @@ public class Menu {
 					case 2: // Login
 						loginMenu();
 						break;
-					case 3: // Buy a prosthetic
-						buyProsthetic();
+					case 3: // Buy a prosthetic //ya funciona 
+						buyProsthetic(); 
 						break;
 					default: // back
 						userUsing = false;
@@ -262,7 +258,7 @@ public class Menu {
 		String pros_type = reader.readLine();
 		System.out.print("Material made of:");
 		String material = reader.readLine();
-		System.out.print("Prosthetic dimensions:");
+		System.out.print("Prosthetic dimensions:");//hacer con metodo
 		String dimensions = reader.readLine();
 		Float price = InputFlow.takeFloat(reader, "Prosthetic price:");
 		System.out.println("Prosthetic Failures/limitations:");
@@ -276,6 +272,17 @@ public class Menu {
 		biomedManagerInterface.insert(createProsthetic);
 		System.out.println("Your new prosthetic has been successfully uploaded! ");
 
+	}
+	
+	public static void designProsthetic(int prosID)throws Exception{
+		
+		
+		
+		//System.out.println(" your ID is :" + );
+		
+		// biomedManagerInterface.design(prosID, be_id);
+		
+		
 	}
 
 	public static void modifyProstheticInfo(int prosID) throws Exception {
@@ -378,10 +385,15 @@ public class Menu {
 		dbManagerInterface.initializeDoctors("Juan", "657901456", "traumatologist", 1);
 		dbManagerInterface.initializeDoctors("Rosa", "646321211", "cardiologist", 2);
 
-		dbManagerInterface.initializeBiomedics("Gabriela", "Api");
+<<<<<<< HEAD
+	/*	dbManagerInterface.initializeBiomedics("Gabriela", "Api");
 		dbManagerInterface.initializeBiomedics("Marina", "Gonzales");
+=======
+		dbManagerInterface.initializeBiomedics("Gabriela", "Apicella");
+		dbManagerInterface.initializeBiomedics("Marina", "Miguelez");
+>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 		dbManagerInterface.initializeBiomedics("Jaime", "Bermejo");
-		dbManagerInterface.initializeBiomedics("Maria Celeste", "Ortega");
+		dbManagerInterface.initializeBiomedics("Maria Celeste", "Ortega");*/
 
 	}
 
@@ -473,6 +485,14 @@ public class Menu {
 		System.out.println("You have chosen:\n" + hosp.toString());
 		System.out.println("");
 
+	}
+	public static void viewDate() {
+		// To view your own date of fitting
+		
+		String telephone =InputFlow.takeTelephone(reader,"Introduce your telephone number: ");
+		patientManagerInterface.viewDate(telephone);
+		
+		
 	}
 
 	public static void addModifyDelete() throws Exception {
@@ -626,7 +646,7 @@ public class Menu {
 	}
 
 	public static void buyProsthetic() throws Exception {
-		int hospital_id = hospitalUser.getId();
+		//int hospital_id = hospitalUser.getId();
 
 		// Show the list of all available prosthetic on that specific hospital
 		List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics();
@@ -640,7 +660,7 @@ public class Menu {
 		int prosthetic_id = Integer.parseInt(reader.readLine());
 
 		// the specific hospital buys the prosthetic choosed
-		hospitalManagerInterface.buy(hospital_id, prosthetic_id);
+		hospitalManagerInterface.buy(/*hospital_id*/1, prosthetic_id);
 	}
 
 	public static void pressEnter() {

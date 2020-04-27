@@ -187,7 +187,7 @@ public class Prosthetic implements Serializable {
 	public String toString() {
 		return "Prosthetic [id=" + id + ", type=" + type + ", material=" + material + ", price=" + price
 				+ ", dimensions=" + dimensions + ", failures=" + failures + ", numberFailures=" + numberFailures
-				+ ", available=" + available + "]";
+				+ ", available=" + available + ", hospital_id=" +hospital_id+"]";
 	}
 	
 	// HashCode and Equals methods only with the Id
