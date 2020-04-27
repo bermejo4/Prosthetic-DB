@@ -9,10 +9,8 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
-
 public class InputFlow {
-	
+
 	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 	public static boolean CheckOption(int num, int max) {
@@ -98,6 +96,40 @@ public class InputFlow {
 		return gender;
 	}
 
+	public static boolean takeAvailable(String choice) {
+
+		boolean answer = true;
+		boolean loop ;
+
+		try {
+			do {
+				// System.out.println("Is this prosthetic available for sale? (y/n):");
+
+				if (choice.equalsIgnoreCase("a") || choice.equalsIgnoreCase("na")) {
+					loop = false;
+					if (choice.equalsIgnoreCase("a")) {
+						answer = true;
+
+					} else {
+						answer = false;
+					}
+
+				} else {
+					System.out.println("The answer given is not correct. Try again.");
+					System.out.println("Please introduce 'A' for available or 'NA' for not available");
+					loop = true;
+				}
+			
+			} while (loop);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return answer;
+
+	}
+
 	public static boolean areYouSure(BufferedReader reader, String text) {
 		boolean resp = false;
 		boolean loop = false;
@@ -106,7 +138,7 @@ public class InputFlow {
 			do {
 				System.out.println(text + " (y/n):");
 				answer = reader.readLine();
-				if (answer.equals("y") || answer.equals("n")) {
+				if (answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("n")) {
 					loop = false;
 					if (answer.contains("y")) {
 						resp = true;
@@ -126,7 +158,6 @@ public class InputFlow {
 		return resp;
 	}
 
-	
 	public static String takeTelephone(BufferedReader reader, String text) {
 		// check a telephone number
 		// and return a number telephone without +34 prefix if the user have added.
@@ -140,13 +171,13 @@ public class InputFlow {
 				cad = num.toCharArray();
 				check = false;
 				for (int i = 0; i < num.length(); i++) {
-					
-					if (Character.isDigit(cad[i]) || cad[i]=='+') {
-						
-					}else if(Character.isSpaceChar(cad[i])) {
-						check=true;
+
+					if (Character.isDigit(cad[i]) || cad[i] == '+') {
+
+					} else if (Character.isSpaceChar(cad[i])) {
+						check = true;
 						break;
-					}else {
+					} else {
 						check = true;
 						break;
 					}
@@ -182,7 +213,7 @@ public class InputFlow {
 
 	public static LocalDate takeDate(BufferedReader reader, String text) {
 		boolean check = false;
-		String data="";
+		String data = "";
 		LocalDate day = LocalDate.now();
 		System.out.println(text);
 		while (!check || data.equals("")) {
@@ -211,32 +242,32 @@ public class InputFlow {
 		}
 		return check;
 	}
-	
+
 	public static byte[] takePasswordAndHashIt(BufferedReader reader, String text) {
 		System.out.println(text);
 		byte[] returnValue = null;
 		try {
-			String password=reader.readLine();
+			String password = reader.readLine();
 			// Create the password's hash
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			md.update(password.getBytes());
 			returnValue = md.digest();
-			
+
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return returnValue;
-		
+
 	}
-	
+
 	public static String takeString(BufferedReader reader, String text) {
-		String string="";
+		String string = "";
 		System.out.println(text);
 		try {
-			string =reader.readLine();
+			string = reader.readLine();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

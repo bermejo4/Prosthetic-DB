@@ -14,9 +14,11 @@ public interface BEManagerInterface {
 
 	public void insert(Prosthetic pros);
 
-	//public List<Prosthetic> searchByID(int id);
-	public List<Prosthetic> searchBytype(String type);
 	public Prosthetic getProsthetic(int prostheticID); 
+	
+	public void design(int prosthetic_id, int be_id);
+	
+	public List<Prosthetic> showProsthetic();
 
 
 }

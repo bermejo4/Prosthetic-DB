@@ -20,7 +20,6 @@ public class Menu {
 	private static PatientManagerInterface patientManagerInterface;
 	private static HospitalManagerInterface hospitalManagerInterface;
 	private static BEManagerInterface biomedManagerInterface;
-	private static UserManagerInterface userManagerInterface;
 
 	// Used for parsing dates
 	private static BufferedReader reader;
@@ -43,8 +42,6 @@ public class Menu {
 		patientManagerInterface = dbManagerInterface.getPatientManager();
 		hospitalManagerInterface = dbManagerInterface.getHospitalManager();
 		biomedManagerInterface = dbManagerInterface.getBiomedManager();
-		userManagerInterface = new UserManager();
-		userManagerInterface.connect();
 
 		userUsing = false;
 
@@ -55,12 +52,9 @@ public class Menu {
 		int max;
 
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
-		//dbManagerInterface.deleteTables();
+		// dbManagerInterface.deleteTables();
 		dbManagerInterface.createTables();
-		//initializeDatabaseWithSomeValues();
-
-		
-	
+		initializeDatabaseWithSomeValues();
 
 		while (true) {
 			System.out.println("Who are you?");
@@ -83,11 +77,11 @@ public class Menu {
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
 					max = 2;
-					//if (logged) {
-						System.out.println("3.Select a Hospital."); //no lo he probado 
-						System.out.println("4.View appointments."); //no funciona att api (estoy probando todos)
-						max = 4; 
-					//}
+					// if (logged) {
+					System.out.println("3.Select a Hospital."); // ya funciona perfecto
+					System.out.println("4.View appointments."); // sigue sin funcionar att api
+					max = 4;
+					// }
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
 					switch (num) {
@@ -109,11 +103,11 @@ public class Menu {
 
 						break;
 					case 4:
-						
-							String telephone = InputFlow.takeTelephone(reader, "Introduce your telephone number: ");
-							patientManagerInterface.viewDate(telephone);
-							break;
-						
+
+						float telephone = InputFlow.takeFloat(reader, "Introduce your telephone number: ");
+						// patientManagerInterface.viewDate(telephone);
+						break;
+
 					default: // back
 						userUsing = false;
 
@@ -125,16 +119,17 @@ public class Menu {
 					System.out.println("DOCTOR MENU:");
 					System.out.println("What do you want to do?");
 					System.out.println("1.Register.");
-					System.out.println("2.Login.");   // todos funcionan perfecto menos el select prosthetic porque no hay prosthetics 
-					
+					System.out.println("2.Login."); // todos funcionan perfecto menos el select prosthetic porque no hay
+													// prosthetics
+
 					max = 2;
-					//if (logged) {
-						System.out.println("3.Select a Prosthetic.");
-						System.out.println("4.Select date of fitting.");
-						System.out.println("5.Search a patients file.");
-						System.out.println("6.Add/Modify/Delete a patient.");
-						max = 6;
-					//}
+					// if (logged) {
+					System.out.println("3.Select a Prosthetic.");
+					System.out.println("4.Select date of fitting.");
+					System.out.println("5.Search a patients file.");
+					System.out.println("6.Add/Modify/Delete a patient.");
+					max = 6;
+					// }
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
 					switch (num) {
@@ -143,7 +138,6 @@ public class Menu {
 						break;
 					case 2: // Login
 						loginMenu();
-						login("doctor");
 						break;
 					case 3: // Select prosthetic and assign it
 						searchProsthetic();
@@ -165,55 +159,55 @@ public class Menu {
 
 //-----------------------------------------------------------------------------------
 
-			case 3: // Biomedical Engineer
-				System.out.println("BIOMEDICAL ENGINEER MENU:");
-				System.out.println("What do you want to do?");
-				System.out.println("1.Register.");
-				System.out.println("2.Login.");
-				max=2;
-				
-				//if(logged) {
-					
+				case 3: // Biomedical Engineer
+					System.out.println("BIOMEDICAL ENGINEER MENU:");
+					System.out.println("What do you want to do?");
+					System.out.println("1.Register.");
+					System.out.println("2.Login.");
+					max = 2;
 
-					
-					//System.out.println("1. View Uploaded Prosthetics.");
+					// if(logged) {
 
-
-					//hay problemas con el menu del biomedical engineer( att api)
 					System.out.println("3. Upload a new Prosthetic.");
 					System.out.println("4. Modify a Prosthetic information.");
 					System.out.println("5. View Uploaded Prosthetics.");
-					max = 4;
-					//}*
-				System.out.println("\n0.Back to choose other user to the main menu.");
-				num = requestNumber(max);
-				max = 5;
+					max = 5;
+					// }*
+					System.out.println("\n0.Back to choose other user to the main menu.");
+					// num = requestNumber(max);
+					max = 5;
+					num = requestNumber(max);
 
-	
-			
-				switch (num) {
-				case 1: // Register
-					registerMenu();
-					break;
-				case 2: // Login
-					loginMenu();
-					break;
-					
-				case 3: //Upload a new Prosthetic
-					uploadProsthetic();
-					break;
-				
-				case 4: // Modify Prosthetic info
-					searchProsType();
-					
-					int choice = InputFlow.takeInteger(reader, "Introduce the id of the desired prosthetic:");
-					modifyProstheticInfo(choice);
-					break;
-				default: //back
-					userUsing=false;
-				}
-				break;
+					switch (num) {
+					case 1: // Register
+						registerMenu();
+						break;
+					case 2: // Login
+						loginMenu();
+						break;
 
+					case 3: // Upload a new Prosthetic
+						uploadProsthetic();
+						break;
+
+					case 4: // Modify Prosthetic information
+						searchProsthetic();
+
+						int choice = InputFlow.takeInteger(reader,
+								"Introduce the ID of the prosthetic to be modified:");
+						modifyProstheticInfo(choice);
+						System.out.println("Your prosthetic has been updated!");
+						break;
+
+					case 5:// View Uploaded Prosthetics
+						System.out.println("Here are all the existing prosthetics: ");
+						showProsthetics();
+						break;
+
+					default: // back
+						userUsing = false;
+					}
+					break;
 
 //-----------------------------------------------------------------------------------
 
@@ -223,11 +217,11 @@ public class Menu {
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
 					max = 2;
-					//if (logged) {
-						System.out.println("3.Buy a Prosthetic."); //da un null pointer exception y no entiendo porque
-						
-						max = 3;
-					//}
+					// if (logged) {
+					System.out.println("3.Buy a Prosthetic."); // da un null pointer exception y no entiendo porque
+
+					max = 3;
+					// }
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
 					switch (num) {
@@ -248,7 +242,6 @@ public class Menu {
 					// dbManagerInterface.deleteTables(); Quitar // cuando esté terminada la
 					// práctica
 					dbManagerInterface.disconnect();
-					userManagerInterface.disconnect();
 					System.exit(0);
 				}
 			}
@@ -260,21 +253,26 @@ public class Menu {
 
 //-----------------------------------------------------------------------------------
 
-
 	public static void uploadProsthetic() throws Exception {
 
 		System.out.println("Introduce the new Prosthetic: ");
 		// System.out.print("Name:");
 		// String name = reader.readLine();
-		System.out.print("Type of Prosthetic(ex. Below the knee, Auricular, etc):");
+		System.out.print("Specify Prosthetic type(ex. Below the knee, Auricular, etc):");
 		String pros_type = reader.readLine();
 		System.out.print("Material made of:");
 		String material = reader.readLine();
 		System.out.print("Prosthetic dimensions:");
 		String dimensions = reader.readLine();
 		Float price = InputFlow.takeFloat(reader, "Prosthetic price:");
-		// Float price = Float.parseFloat(reader.readLine());
-		Prosthetic createProsthetic = new Prosthetic(pros_type, material, price, dimensions);
+		System.out.println("Prosthetic Failures/limitations:");
+		String failures = reader.readLine();
+		System.out.print("Prosthetic Availability:");
+		System.out.println("Type 'A' for available or 'NA' for not available");
+		String newAV = reader.readLine();
+		boolean available = InputFlow.takeAvailable(newAV);
+
+		Prosthetic createProsthetic = new Prosthetic(pros_type, material, price, dimensions, failures, available);
 		biomedManagerInterface.insert(createProsthetic);
 		System.out.println("Your new prosthetic has been successfully uploaded! ");
 
@@ -324,21 +322,36 @@ public class Menu {
 
 		}
 
-		Prosthetic updatedaPros = new Prosthetic(prosID, newType, newMaterial, newPrice, newDimensions, newFailures);
+		System.out.println("Actual prosthetic availability: " + prosToModify.getisAvailable());
+		System.out.println("To change availability type 'A' for available or 'NA' for not available");
+		System.out.println("For no change, press enter to leave it as it is:");
+
+		String newAV = reader.readLine();
+		boolean av = InputFlow.takeAvailable(newAV);
+
+		if (newAV.equals(" ")) {
+
+			av = prosToModify.getAvailable();
+
+		}
+
+		Prosthetic updatedaPros = new Prosthetic(prosID, newType, newMaterial, newPrice, newDimensions, newFailures,
+				av);
 		biomedManagerInterface.upadate(updatedaPros);
 
 	}
 
-	public static void searchProsType() throws Exception {
+	public static void showProsthetics() {
 
-		System.out.println("Search for the prosthetic you want to modify...");
-		System.out.println("Filter by type (ex. Below the knee, Auricular, etc):");
-		String pros_type = reader.readLine();
-		List<Prosthetic> pros = biomedManagerInterface.searchBytype(pros_type);
-		// now we need to print the list
-		for (Prosthetic prosthetic : pros) {
-			System.out.println(prosthetic);
+		List<Prosthetic> prosList = new ArrayList<Prosthetic>();
 
+		Prosthetic pros;
+		prosList = biomedManagerInterface.showProsthetic();
+		Iterator it = prosList.iterator();
+		while (it.hasNext()) {
+			pros = (Prosthetic) it.next();
+			System.out.println(pros.toString());
+			System.out.println("");
 		}
 
 	}
@@ -364,8 +377,14 @@ public class Menu {
 
 		dbManagerInterface.initializeDoctors("Juan", "657901456", "traumatologist", 1);
 		dbManagerInterface.initializeDoctors("Rosa", "646321211", "cardiologist", 2);
+
+		dbManagerInterface.initializeBiomedics("Gabriela", "Api");
+		dbManagerInterface.initializeBiomedics("Marina", "Gonzales");
+		dbManagerInterface.initializeBiomedics("Jaime", "Bermejo");
+		dbManagerInterface.initializeBiomedics("Maria Celeste", "Ortega");
+
 	}
-	
+
 	public static void registerMenu() {
 		System.out.println("REGISTER MENU:");
 		System.out.println("1.Name.");
@@ -396,38 +415,27 @@ public class Menu {
 		System.out.println("3.Dimension.");
 		System.out.println("4.Failures.");
 	}
-	
-	public static void login(String table) {
-		boolean check=true;
-		
-		String telephone=InputFlow.takeTelephone(reader, "Introduce the phone number:");
-		byte[] password=InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
-		System.out.println(password);
-		System.out.println(telephone);
-		int user_id = userManagerInterface.checkPassword(telephone, password, table, "doctor_id");
-		/*if(userManagerInterface.checkPassword(telephone, password, table)) {
-			System.out.println("Wrong passwor or user");
-		}else {
-			user= userManagerInterface.checkPassword(telephone, password, table);
-			System.out.println(user.toString());
-		}*/
-		//System.out.println("return value:"+userManagerInterface.checkPassword(telephone, password, table).toString());
-		
-		if (user_id == 0) {
-			System.out.println("Wrong credentials, please try again!");
-		}else {
-			System.out.println("The id number is:"+user_id);
-		}
-		
-		
+
+	public static void login() {
+		boolean check = true;
+		do {
+			String telephone = InputFlow.takeTelephone(reader, "Introduce the phone number:");
+			byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
+			doctorUser = doctorManagerInterface.login(telephone, password);
+			if (check) {
+				System.out.println("You have introduced a wrong password or phone, please try again.");
+			}
+
+		} while (check);
+
 	}
-	
+
 	public static void register() {
-		String name=InputFlow.takeString(reader, "Introduce your Name:");
-		String lastname=InputFlow.takeString(reader, "Introduce your Lastname:");
-		String telephone=InputFlow.takeTelephone(reader, "Introduce your phone number:");
-		byte[] password=InputFlow.takePasswordAndHashIt(reader, "Introduce a password:");
-		
+		String name = InputFlow.takeString(reader, "Introduce your Name:");
+		String lastname = InputFlow.takeString(reader, "Introduce your Lastname:");
+		String telephone = InputFlow.takeTelephone(reader, "Introduce your phone number:");
+		byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce a password:");
+
 	}
 
 	public static void searchPatientByTelephone() {
@@ -458,14 +466,13 @@ public class Menu {
 		}
 	}
 
-	
 	public static void selectHospitalByID() {
 		Hospital hosp;
 		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
 		hosp = patientManagerInterface.selectHospitalByID(id);
 		System.out.println("You have chosen:\n" + hosp.toString());
 		System.out.println("");
-		
+
 	}
 
 	public static void addModifyDelete() throws Exception {
@@ -561,29 +568,44 @@ public class Menu {
 		try {
 			switch (option) {
 			case 1:// material
+				System.out.println("Name of the material you are looking for:");
 				String materialpassed = reader.readLine();
 				prostheticList = doctorManagerInterface.selectProsthetic("material", materialpassed);
 				break;
 			case 2:// type
+				System.out.println("Specify which type of prosthetic you are looking for:");
 				String typepassed = reader.readLine();
 				prostheticList = doctorManagerInterface.selectProsthetic("type", typepassed);
 				break;
 			case 3:// dimension
+				System.out.println("Specify the dimensions of prosthetic you are looking for:");
 				String dimensionpassed = InputFlow.takeDimension();
 				prostheticList = doctorManagerInterface.selectProsthetic("dimension", dimensionpassed);
 				break;
 			case 4:// failures
+				System.out.println("Specify the kind of failures you are looking for:");
 				String failurespassed = reader.readLine();
 				prostheticList = doctorManagerInterface.selectProsthetic("failures", failurespassed);
 				break;
 			}
-			Iterator it = prostheticList.iterator();
-			while (it.hasNext()) {
-				prost = (Prosthetic) it.next();
-				if (prost.isAvailable()) {
+
+			
+			if (prostheticList.isEmpty()) {
+
+				System.out.println("No file found for that search..Try again");
+				searchProsthetic();
+			
+			} else {
+
+				Iterator it = prostheticList.iterator();
+				while (it.hasNext()) {
+					prost = (Prosthetic) it.next();
+
 					System.out.println(prost.toString());
 					System.out.println("");
+
 				}
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -603,25 +625,23 @@ public class Menu {
 		}
 	}
 
-	
-	
-	  public static void buyProsthetic() throws Exception { 
-	  int hospital_id = hospitalUser.getId(); 
-	  
-	  // Show the list of all available prosthetic on that specific hospital
-	  List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics(); 
-	  
-	  for (Prosthetic prosthetic :prostheticList) { 
-	  System.out.println(prosthetic); } 
-	  
-	  // Ask for the Id of the prosthetic you want to buy
-	  System.out.println("Please, type the ID of the prosthetic you want to buy: " ); 
-	 int prosthetic_id = Integer.parseInt(reader.readLine());
-	  
-	 // the specific hospital buys the prosthetic choosed
-	  hospitalManagerInterface.buy(hospital_id, prosthetic_id);
-	 }
-	  
+	public static void buyProsthetic() throws Exception {
+		int hospital_id = hospitalUser.getId();
+
+		// Show the list of all available prosthetic on that specific hospital
+		List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics();
+
+		for (Prosthetic prosthetic : prostheticList) {
+			System.out.println(prosthetic);
+		}
+
+		// Ask for the Id of the prosthetic you want to buy
+		System.out.println("Please, type the ID of the prosthetic you want to buy: ");
+		int prosthetic_id = Integer.parseInt(reader.readLine());
+
+		// the specific hospital buys the prosthetic choosed
+		hospitalManagerInterface.buy(hospital_id, prosthetic_id);
+	}
 
 	public static void pressEnter() {
 		System.out.println("Press enter to go to the main menu and continue...");

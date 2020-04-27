@@ -1,6 +1,8 @@
 package pojos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Biomedical_Eng implements Serializable {
 
@@ -10,19 +12,35 @@ public class Biomedical_Eng implements Serializable {
 	private String name;
 	private String lastname;
 	private String telephone;
-
+	private List<Prosthetic> prostheticsList;
 
 	
+
+
 	public Biomedical_Eng() {
 		super ();
+		this.prostheticsList =  new ArrayList<Prosthetic>();
+
 	}
 	
+	
+	
+	public Biomedical_Eng(Integer id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.prostheticsList =  new ArrayList<Prosthetic>();
+	}
+
+
+
 	public Biomedical_Eng( String name, String lastname, String telephone) {
 		super();
 		
 		this.name = name;
 		this.lastname = lastname;
 		this.telephone = telephone;
+		this.prostheticsList =  new ArrayList<Prosthetic>();
 					
 	}
 
@@ -56,7 +74,7 @@ public class Biomedical_Eng implements Serializable {
 	@Override
 	public String toString() {
 		return "Biomedical_Eng [id=" + id + ", name=" + name + ", lastname=" + lastname + ", telephone=" + telephone
-				+ "]";
+				+ ", prostheticsList=" + prostheticsList + "]";
 	}
 
 	public Integer getId() {
@@ -89,6 +107,14 @@ public class Biomedical_Eng implements Serializable {
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
+	}
+	
+	public List<Prosthetic> getProstheticsList() {
+		return prostheticsList;
+	}
+
+	public void setProstheticsList(List<Prosthetic> prostheticsList) {
+		this.prostheticsList = prostheticsList;
 	}
 	
 		

@@ -113,14 +113,14 @@ public class DBManager implements DBManagerInterface {
 			Statement stmt4 = c.createStatement();
 			String sql4 = "CREATE TABLE prosthetic " 
 					+ "(prosthetic_id INTEGER NOT NULL UNIQUE," 
-					+ "material TEXT,"
-					+ "type TEXT," 
+					+ "type TEXT,"
+					+ "material TEXT," 
 					+ "dimension TEXT," 
 					+ "number_of_failures INTEGER,"
-					+ "failures TEXT," 
+					+ "failures TEXT NULL," 
 					+ "price REAL," 
-					+ "available BOOLEAN,"
-					+ "patient_id INTEGER," 
+					+ "available BOOLEAN DEFAULT true,"
+					+ "patient_id INTEGER," //9
 					+ "hospital_id INTEGER," 
 					+ "PRIMARY KEY('prosthetic_id'),"
 					+ "FOREIGN KEY('hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE,"
@@ -136,25 +136,22 @@ public class DBManager implements DBManagerInterface {
 					+ "lastname		TEXT,"
 					+ "telephone TEXT,"
 					+ "password BLOB,"
-					// + "gender TEXT,"
-					// + "speciality TEXT,"
-					// + "worklocation TEXT"
 					+ "PRIMARY KEY('be_id'))";
-			// + "FOREIGN KEY('hospital_id') REFERENCES hospital('hospital_id') ON DELETE
-			// SET NULL ON UPDATE CASCADE)";
+
 
 			stmt5.executeUpdate(sql5);
 			stmt5.close();
 
 			Statement stmt6 = c.createStatement();
-			String sql6 = "CREATE TABLE m_m" 
-					+ "(prosthetic_id	INTEGER NOT NULL," 
-					+ "be_id INTEGER NOT NULL,"
-					+ "FOREIGN KEY('prosthetic_id')REFERENCES prosthetic('prosthetic_id') ON DELETE SET NULL ON UPDATE CASCADE,"
-					+ "FOREIGN KEY('be_id') REFERENCES biomedical_engineer('be_id') ON DELETE SET NULL ON UPDATE CASCADE)";
+			String sql6 = "CREATE TABLE Biomed_Pros" 
+					+ "(prosID	INTEGER REFERENCES prosthetic(prosthetic_id) ON DELETE SET NULL ON UPDATE CASCADE," 
+					+ "beID INTEGER  REFERENCES biomedical_engineer(be_id) ON DELETE SET NULL ON UPDATE CASCADE,"
+					+ "PRIMARY KEY(prosID,beID)";
 
 			stmt6.executeUpdate(sql6);
 			stmt6.close();
+			
+			
 
 			System.out.println("Tables created.");
 			// Create table: end
@@ -239,6 +236,19 @@ public class DBManager implements DBManagerInterface {
 			e.printStackTrace();
 		}
 	}
+	
+	public void initializeBiomedics(String name, String lastname) {
+		try {
+			Statement stat = c.createStatement();
+			String sql = "INSERT INTO biomedical_engineer (name, lastname)"
+					+ " VALUES ('"+name+"' , '"+lastname+"')";
+			stat.executeUpdate(sql);
+			stat.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	 	
 
 	public void deleteTables() {
