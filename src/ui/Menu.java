@@ -260,7 +260,7 @@ public class Menu {
 		String pros_type = reader.readLine();
 		System.out.print("Material made of:");
 		String material = reader.readLine();
-		System.out.print("Prosthetic dimensions:");
+		System.out.print("Prosthetic dimensions:");//hacer con metodo
 		String dimensions = reader.readLine();
 		Float price = InputFlow.takeFloat(reader, "Prosthetic price:");
 		System.out.println("Prosthetic Failures/limitations:");
