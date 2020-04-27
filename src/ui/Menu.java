@@ -374,8 +374,8 @@ public class Menu {
 		dbManagerInterface.initializeDoctors("Juan", "657901456", "traumatologist", 1);
 		dbManagerInterface.initializeDoctors("Rosa", "646321211", "cardiologist", 2);
 
-		dbManagerInterface.initializeBiomedics("Gabriela", "Api");
-		dbManagerInterface.initializeBiomedics("Marina", "Gonzales");
+		dbManagerInterface.initializeBiomedics("Gabriela", "Apicella");
+		dbManagerInterface.initializeBiomedics("Marina", "Miguelez");
 		dbManagerInterface.initializeBiomedics("Jaime", "Bermejo");
 		dbManagerInterface.initializeBiomedics("Maria Celeste", "Ortega");
 
