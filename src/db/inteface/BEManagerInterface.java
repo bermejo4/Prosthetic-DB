@@ -26,3 +26,4 @@ public interface BEManagerInterface {
 //preguntas: pq salen todos los initialized repetidos
 // pq esta fallando el modify ?
 //no se crea la tabla de many to many
+//metodo design prosthetic para link los dos?
