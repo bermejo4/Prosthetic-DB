@@ -175,6 +175,18 @@ public class DBManager implements DBManagerInterface {
 			// Close database connection
 			// c.close();
 			// System.out.println("Database connection closed.");
+			
+			stmt6 = c.createStatement();
+			String sqlbiomed1 = "INSERT INTO biomedical_engineer (name, lastname) VALUES ('Silvia','Torres') "; 
+			stmt6.executeUpdate(sqlbiomed1);
+			
+			
+			String sqlbiomed2 = "INSERT INTO biomedical_engineer (name, lastname) VALUES ('Hector','Fernandez') "; 
+			stmt6.executeUpdate(sqlbiomed2);
+			stmt6.close();
+			
+			
+			
 		} catch (SQLException e) {
 			if (e.getMessage().contains("already exists")) {
 			} else if(e.getMessage().contains("no such table")){	
@@ -197,7 +209,11 @@ public class DBManager implements DBManagerInterface {
 	public PatientManager getPatientManager() {
 		return patient;
 	}
-	
+	@Override
+	public BEManagerInterface getBiomedManager() {
+		return biomed;
+	}
+
 
 	public int getLastId() {
 		int result = 0;
@@ -287,9 +303,5 @@ public class DBManager implements DBManagerInterface {
 		}
 	}
 
-	@Override
-	public BEManagerInterface getBiomedManager() {
-		return biomed;
-	}
 
 }

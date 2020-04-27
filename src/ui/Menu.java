@@ -195,7 +195,7 @@ public class Menu {
 
 						int choice = InputFlow.takeInteger(reader,
 								"Introduce the ID of the prosthetic to be modified:");
-						modifyProstheticInfo(choice);
+						modifyProstheticInfo(choice); //no esta funcionando
 						System.out.println("Your prosthetic has been updated!");
 						break;
 
@@ -276,6 +276,16 @@ public class Menu {
 		biomedManagerInterface.insert(createProsthetic);
 		System.out.println("Your new prosthetic has been successfully uploaded! ");
 
+	}
+	
+	public static void designProsthetic(int prosID)throws Exception{
+		
+		
+		//System.out.println(" your ID is :" + );
+		
+		// biomedManagerInterface.design(prosID, be_id);
+		
+		
 	}
 
 	public static void modifyProstheticInfo(int prosID) throws Exception {
@@ -378,10 +388,10 @@ public class Menu {
 		dbManagerInterface.initializeDoctors("Juan", "657901456", "traumatologist", 1);
 		dbManagerInterface.initializeDoctors("Rosa", "646321211", "cardiologist", 2);
 
-		dbManagerInterface.initializeBiomedics("Gabriela", "Api");
+	/*	dbManagerInterface.initializeBiomedics("Gabriela", "Api");
 		dbManagerInterface.initializeBiomedics("Marina", "Gonzales");
 		dbManagerInterface.initializeBiomedics("Jaime", "Bermejo");
-		dbManagerInterface.initializeBiomedics("Maria Celeste", "Ortega");
+		dbManagerInterface.initializeBiomedics("Maria Celeste", "Ortega");*/
 
 	}
 
