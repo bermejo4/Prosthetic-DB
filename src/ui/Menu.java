@@ -103,9 +103,7 @@ public class Menu {
 
 						break;
 					case 4:
-
-						float telephone = InputFlow.takeFloat(reader, "Introduce your telephone number: ");
-						// patientManagerInterface.viewDate(telephone);
+						viewDate();
 						break;
 
 					default: // back
@@ -485,6 +483,14 @@ public class Menu {
 		System.out.println("");
 
 	}
+	public static void viewDate() {
+		// To view your own date of fitting
+		
+		String telephone =InputFlow.takeTelephone(reader,"Introduce your telephone number: ");
+		patientManagerInterface.viewDate(telephone);
+		
+		
+	}
 
 	public static void addModifyDelete() throws Exception {
 		System.out.println("What dou you want to do?");
@@ -637,7 +643,7 @@ public class Menu {
 	}
 
 	public static void buyProsthetic() throws Exception {
-		int hospital_id = hospitalUser.getId();
+		//int hospital_id = hospitalUser.getId();
 
 		// Show the list of all available prosthetic on that specific hospital
 		List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics();
@@ -651,7 +657,7 @@ public class Menu {
 		int prosthetic_id = Integer.parseInt(reader.readLine());
 
 		// the specific hospital buys the prosthetic choosed
-		hospitalManagerInterface.buy(hospital_id, prosthetic_id);
+		hospitalManagerInterface.buy(/*hospital_id*/1, prosthetic_id);
 	}
 
 	public static void pressEnter() {
