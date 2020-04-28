@@ -561,11 +561,12 @@ public class Menu {
 		System.out.println("Address:");
 		String address = reader.readLine();
 		int doctor_id = InputFlow.takeInteger(reader, "Doctor id: ");
+		Doctor doctor=new Doctor(doctor_id);
 		if (mood) {
-			pat = new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor_id);
+			pat = new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor);
 			doctorManagerInterface.modify(pat, Date.valueOf(dayofbirth), num_id);
 		} else {
-			pat = new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor_id);
+			pat = new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor);
 			doctorManagerInterface.addPatient(pat);
 		}
 
