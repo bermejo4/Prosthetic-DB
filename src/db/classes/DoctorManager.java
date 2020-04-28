@@ -44,7 +44,7 @@ public class DoctorManager implements DoctorManagerInterface {
 			mod.setString(6, pat.getTelephone());
 			mod.setString(7, pat.getGender());
 			mod.setString(8, pat.getProblem());
-			mod.setInt(9, pat.getDoctor_id());
+			mod.setInt(9, pat.getDoctor().getId());
 			mod.setInt(10, id);
 			mod.executeUpdate();
 			mod.close();
@@ -69,7 +69,7 @@ public class DoctorManager implements DoctorManagerInterface {
 			prep.setString(5, pat.getTelephone());
 			prep.setString(6, pat.getGender());
 			prep.setString(7, pat.getProblem());
-			prep.setInt(8, pat.getDoctor_id());
+			prep.setInt(8, pat.getDoctor().getId());
 			prep.executeUpdate();
 			prep.close();
 		}catch(Exception e) {
@@ -96,7 +96,9 @@ public class DoctorManager implements DoctorManagerInterface {
 				boolean available=rs.getBoolean("available");
 				int patient_id=rs.getInt("patient_id");
 				int hospital_id=rs.getInt("hospital_id");
-				Prosthetic newprosthetic = new Prosthetic(prosthetic_id, type, material, price, dimension, failures, numOF, available, patient_id, hospital_id);
+				Patient patient = new Patient(patient_id);
+				Hospital hospital= new Hospital(hospital_id);
+				Prosthetic newprosthetic = new Prosthetic(prosthetic_id, type, material, price, dimension, failures, numOF, available, patient, hospital);
 				prostList.add(newprosthetic);
 			}
 			
@@ -154,8 +156,9 @@ public class DoctorManager implements DoctorManagerInterface {
 				String gender = rs.getString("gender");
 				String problem = rs.getString("problem");
 				int doctor_id=rs.getInt("doctor_id");
+				Doctor doctor =new Doctor(doctor_id);
 				// create a new patient
-				Patient newpatient = new Patient(id,name,lastname,telephone,dob,dof,gender,problem,address,doctor_id);
+				Patient newpatient = new Patient(id,name,lastname,telephone,dob,dof,gender,problem,address,doctor);
 				// add it to the list
 				//newpatient.toString();
 				//System.out.println(newpatient.getName());
@@ -187,8 +190,9 @@ public class DoctorManager implements DoctorManagerInterface {
 				String gender = rs.getString("gender");
 				String problem = rs.getString("problem");
 				int doctor_id=rs.getInt("doctor_id");
+				Doctor doctor = new Doctor(doctor_id);
 				// create a new patient
-				patientfound = new Patient(id,name,lastname,telephone,dob,dof,gender,problem,address,doctor_id);
+				patientfound = new Patient(id,name,lastname,telephone,dob,dof,gender,problem,address,doctor);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
