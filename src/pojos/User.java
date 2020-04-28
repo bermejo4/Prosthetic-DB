@@ -3,7 +3,6 @@ package pojos;
 import java.io.Serializable;
 import java.util.Arrays;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,19 +32,19 @@ public class User implements Serializable {
 	private String username;
 	@Lob
 	private byte[] password;
-	//@ManyToOne(fetch = FetchType.LAZY)
-	//@JoinColumn(name = "role_id")
-	//private Role role;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "role_id")
+	private Role role;
 	
 	public User() {
 		super();
 	}
 	
-	public User(String username, byte[] password/*, Role role*/) {
+	public User(String username, byte[] password, Role role) {
 		super();
 		this.username = username;
 		this.password = password;
-		//this.role = role;
+		this.role = role;
 	}
 
 	public Integer getId() {
@@ -66,13 +65,12 @@ public class User implements Serializable {
 	public void setPassword(byte[] password) {
 		this.password = password;
 	}
-	
-	/*public Role getRole() {
+	public Role getRole() {
 		return role;
 	}
 	public void setRole(Role role) {
 		this.role = role;
-	}*/
+	}
 
 	@Override
 	public int hashCode() {
@@ -102,7 +100,7 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + Arrays.toString(password) + ", role="
-				+ /*role + */"]";
+				+ role + "]";
 	}
 	
 }
