@@ -25,6 +25,15 @@ public class Doctor implements Serializable{
 		
 	}
 	
+	
+	
+	public Doctor(Integer id) {
+		super();
+		this.id = id;
+	}
+
+
+
 	public Doctor(String name, String lastname, String telephone, Hospital hospital) {
 		super();
 		this.name = name;

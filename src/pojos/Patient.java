@@ -27,6 +27,12 @@ public class Patient implements Serializable {
 	}
 
 
+	public Patient(Integer id) {
+		super();
+		this.id = id;
+	}
+
+
 	public Patient(Integer id, String name, String lastname, String telephone, Date dob, Date dof, String gender, String problem,
 			String addres, Doctor doctor) {
 		super();

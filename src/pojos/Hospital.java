@@ -20,7 +20,10 @@ public class Hospital implements Serializable{
 		this.doctors = new ArrayList<Doctor>();
 	}
 	
-	
+	public Hospital(Integer id) {
+		super();
+		this.id = id;
+	}
 
 	public Hospital(Integer id, String name, List<Doctor> doctors) {
 		super();
