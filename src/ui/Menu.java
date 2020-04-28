@@ -40,12 +40,29 @@ public class Menu {
 		// Connect with the database.
 		dbManagerInterface = new DBManager();
 		dbManagerInterface.connect();
+		//dbManagerInterface.deleteTables();
+		dbManagerInterface.createTables();
+		initializeDatabaseWithSomeValues();
+
 		doctorManagerInterface = dbManagerInterface.getDoctorManager();
 		patientManagerInterface = dbManagerInterface.getPatientManager();
 		hospitalManagerInterface = dbManagerInterface.getHospitalManager();
 		biomedManagerInterface = dbManagerInterface.getBiomedManager();
+		
 		userManagerInterface = new UserManager();
 		userManagerInterface.connect();
+		
+		Role patientRole=new Role("patient");
+		System.out.println(patientRole.toString());
+		//userManagerInterface.createRole(patientRole);//id => 1
+		/*Role doctorRole=new Role("doctor");
+		userManagerInterface.createRole(doctorRole);//id => 2
+		Role hospitalRole=new Role("hospital");
+		userManagerInterface.createRole(hospitalRole);//id => 3
+		Role biomedicalRole=new Role("biomedical_Engineer");
+		userManagerInterface.createRole(biomedicalRole);//id => 4
+		*/
+
 
 		userUsing = false;
 
@@ -57,8 +74,7 @@ public class Menu {
 
 		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
 		// dbManagerInterface.deleteTables();
-		dbManagerInterface.createTables();
-		initializeDatabaseWithSomeValues();
+		//initializeDatabaseWithSomeValues();
 
 		while (true) {
 			System.out.println("Who are you?");
@@ -136,6 +152,7 @@ public class Menu {
 					switch (num) {
 					case 1: // Register
 						registerMenu();
+						//register(doctorRole);
 						break;
 					case 2: // Login
 						loginMenu();
@@ -389,9 +406,9 @@ public class Menu {
 
 		dbManagerInterface.initializeDoctors("Juan", "657901456", "traumatologist", 1);
 		dbManagerInterface.initializeDoctors("Rosa", "646321211", "cardiologist", 2);
-
+/*
 <<<<<<< HEAD
-	/*	dbManagerInterface.initializeBiomedics("Gabriela", "Api");
+		dbManagerInterface.initializeBiomedics("Gabriela", "Api");
 		dbManagerInterface.initializeBiomedics("Marina", "Gonzales");
 =======
 		dbManagerInterface.initializeBiomedics("Gabriela", "Apicella");
@@ -447,11 +464,17 @@ public class Menu {
 
 	}
 
-	public static void register() {
+	public static void register(Role role) {
 		String name = InputFlow.takeString(reader, "Introduce your Name:");
 		String lastname = InputFlow.takeString(reader, "Introduce your Lastname:");
 		String telephone = InputFlow.takeTelephone(reader, "Introduce your phone number:");
 		byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce a password:");
+		//Role role = new Role(user_type);
+		// Get the chosen role from the database
+		//Role chosenRole = userManagerInterface.getRole(num_role);
+		// Create the user and store it
+		User user = new User(telephone, password, role);
+		userManagerInterface.createUser(user);
 
 	}
 
