@@ -11,7 +11,7 @@ public class Hospital implements Serializable{
 	private Integer id;
 	private String name;
 	private String addres;
-	private Integer patient_id;
+	private Patient patient;
 	private String telephone;
 	private List<Doctor> doctors;
 	
@@ -49,13 +49,13 @@ public class Hospital implements Serializable{
 	}
 	
 
-	public Hospital(Integer id, String name, String addres, Integer patient_id, String telephone,
+	public Hospital(Integer id, String name, String addres, Patient patient, String telephone,
 			List<Doctor> doctors) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.addres = addres;
-		this.patient_id = patient_id;
+		this.patient = patient;
 		this.telephone = telephone;
 		this.doctors = doctors;
 	}
@@ -88,7 +88,7 @@ public class Hospital implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Hospital [id= " + id + ", name=" + name + ", addres=" + addres + ", patient_id=" + patient_id + ", telephone="
+		return "Hospital [id= " + id + ", name=" + name + ", addres=" + addres + ", patient_id=" + patient.getId() + ", telephone="
 				+ telephone + "]";
 	}
 
@@ -125,12 +125,13 @@ public class Hospital implements Serializable{
 		this.telephone = telephone;
 	}
 
-	public Integer getPatient_id() {
-		return patient_id;
+
+	public Patient getPatient() {
+		return patient;
 	}
 
-	public void setPatient_id(Integer patient_id) {
-		this.patient_id = patient_id;
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 
 	public List<Doctor> getDoctors() {

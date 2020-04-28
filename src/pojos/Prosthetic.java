@@ -19,8 +19,8 @@ public class Prosthetic implements Serializable {
 	private String failures;
 	private Integer numberFailures;
 	private boolean available;
-	private Integer patient_id;
-	private Integer hospital_id;
+	private Patient patient;
+	private Hospital hospital;
 	private List<Biomedical_Eng> biomeds; //for the many to many relationship
 
 	
@@ -40,7 +40,7 @@ public class Prosthetic implements Serializable {
 	
 	// Constructor with all variables
 	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures,
-			Integer numberFailures, boolean available, Integer patient_id, Integer hospital_id,
+			Integer numberFailures, boolean available, Patient patient, Hospital hospital,
 			List<Biomedical_Eng> biomeds) {
 		super();
 		this.id = id;
@@ -51,15 +51,15 @@ public class Prosthetic implements Serializable {
 		this.failures = failures;
 		this.numberFailures = numberFailures;
 		this.available = available;
-		this.patient_id = patient_id;
-		this.hospital_id = hospital_id;
+		this.patient= patient;
+		this.hospital = hospital;
 		this.biomeds = biomeds;
 	} 
 	
 	
 
 	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures,
-			Integer numberFailures, boolean available, Integer patient_id, Integer hospital_id) {
+			Integer numberFailures, boolean available, Patient patient, Hospital hospital) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -69,8 +69,8 @@ public class Prosthetic implements Serializable {
 		this.failures = failures;
 		this.numberFailures = numberFailures;
 		this.available = available;
-		this.patient_id = patient_id;
-		this.hospital_id = hospital_id;
+		this.patient = patient;
+		this.hospital = hospital;
 		this.biomeds = new ArrayList<Biomedical_Eng>();
 	}
 
@@ -187,7 +187,7 @@ public class Prosthetic implements Serializable {
 	public String toString() {
 		return "Prosthetic [id=" + id + ", type=" + type + ", material=" + material + ", price=" + price
 				+ ", dimensions=" + dimensions + ", failures=" + failures + ", numberFailures=" + numberFailures
-				+ ", available=" + available + ", hospital_id=" +hospital_id+"]";
+				+ ", available=" + available + ", hospital_id=" +hospital.getId()+"]";
 	}
 	
 	// HashCode and Equals methods only with the Id
@@ -236,20 +236,20 @@ public class Prosthetic implements Serializable {
 		this.available = available;
 	}
 
-	public Integer getPatient_id() {
-		return patient_id;
+	public Patient getPatient() {
+		return patient;
 	}
 
-	public Integer getHospital_id() {
-		return hospital_id;
+	public Hospital getHospital() {
+		return hospital;
 	}
 
-	public void setPatient_id(Integer patient_id) {
-		this.patient_id = patient_id;
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 
-	public void setHospital_id(Integer hospital_id) {
-		this.hospital_id = hospital_id;
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
 	}
 
 

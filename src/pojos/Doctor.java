@@ -1,36 +1,22 @@
 package pojos;
 
 import java.io.Serializable;
-import java.util.List;
+//import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 
-import java.util.ArrayList;
 
-@Entity
-@Table(name = "doctor")
+//import java.util.ArrayList;
+
+
 public class Doctor implements Serializable{
 
 	private static final long serialVersionUID = 3556611086750634776L;
 	
-	@Id
-	@GeneratedValue(generator="doctor")
-	@TableGenerator(name="doctor", table="sqlite_sequence",
-	    pkColumnName="name", valueColumnName="seq", pkColumnValue="doctor")
 	private Integer id;
 	private String name;
 	private String lastname;
 	private String telephone;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "hospital_id")
-	private Hospital hospital_id;
+	private Hospital hospital;
 	private User doctorUser;
 	
 	
@@ -39,12 +25,12 @@ public class Doctor implements Serializable{
 		
 	}
 	
-	public Doctor(String name, String lastname, String telephone, Integer hospital_id) {
+	public Doctor(String name, String lastname, String telephone, Hospital hospital) {
 		super();
 		this.name = name;
 		this.lastname = lastname;
 		this.telephone = telephone;
-		this.hospital_id = hospital_id;
+		this.hospital = hospital;
 	}
 
 	@Override
@@ -75,7 +61,7 @@ public class Doctor implements Serializable{
 	@Override
 	public String toString() {
 		return "Doctor [id=" + id + ", name=" + name + ", lastname=" + lastname + ", telephone=" + telephone
-				+ ", hospital_id=" + hospital_id + "]";
+				+ ", hospital_id=" + hospital.getId()+ "]";
 	}
 
 	public Integer getId() {
@@ -110,12 +96,12 @@ public class Doctor implements Serializable{
 		this.telephone = telephone;
 	}
 
-	public Integer getHospital_id() {
-		return hospital_id;
+	public Hospital getHospital() {
+		return hospital;
 	}
 
-	public void setHospital_id(Integer hospital_id) {
-		this.hospital_id = hospital_id;
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
 	}
 
 	public User getDoctorUser() {

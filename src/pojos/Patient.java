@@ -18,7 +18,7 @@ public class Patient implements Serializable {
 	private String gender;
 	private String problem;
 	private String address;
-	private Integer doctor_id;
+	private Doctor doctor;
 	private User patientUser;
 	
 	
@@ -28,7 +28,7 @@ public class Patient implements Serializable {
 
 
 	public Patient(Integer id, String name, String lastname, String telephone, Date dob, Date dof, String gender, String problem,
-			String addres, Integer doctor_id) {
+			String addres, Doctor doctor) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -39,11 +39,11 @@ public class Patient implements Serializable {
 		this.gender = gender;
 		this.problem = problem;
 		this.address = addres;
-		this.doctor_id=doctor_id;
+		this.doctor=doctor;
 	}
 	
 	public Patient(String name, String lastname, String telephone, Date dob, Date dof, String gender, String problem,
-			String address, Integer doctor_id) {
+			String address, Doctor doctor) {
 		super();
 		this.name = name;
 		this.lastname = lastname;
@@ -53,12 +53,12 @@ public class Patient implements Serializable {
 		this.gender = gender;
 		this.problem = problem;
 		this.address = address;
-		this.doctor_id = doctor_id;
+		this.doctor = doctor;
 	}
 
 
 	public Patient(Integer id, String name, String lastname, String telephone, Date dob, String gender, String problem,
-			String address, Integer doctor_id) {
+			String address, Doctor doctor) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -68,12 +68,12 @@ public class Patient implements Serializable {
 		this.gender = gender;
 		this.problem = problem;
 		this.address = address;
-		this.doctor_id = doctor_id;
+		this.doctor = doctor;
 	}
 
 
 	public Patient(String name, String lastname, String telephone, Date dob, String gender, String problem,
-			String address, Integer doctor_id) {
+			String address, Doctor doctor) {
 		super();
 		this.name = name;
 		this.lastname = lastname;
@@ -82,7 +82,7 @@ public class Patient implements Serializable {
 		this.gender = gender;
 		this.problem = problem;
 		this.address = address;
-		this.doctor_id = doctor_id;
+		this.doctor = doctor;
 	}
 
 
@@ -116,7 +116,7 @@ public class Patient implements Serializable {
 	public String toString() {
 		return "Patient [id=" + id + ", name=" + name + ", lastname=" + lastname + ", telephone=" + telephone + ", dob="
 				+ dob + ", dof=" + dof + ", gender=" + gender + ", problem=" + problem + ", addres=" + address
-				+ ", doctor_id=" + doctor_id + "]";
+				+ ", doctor_id=" + doctor.getId() + "]";
 	}
 
 	public Integer getId() {
@@ -207,12 +207,24 @@ public class Patient implements Serializable {
 		this.address = addres;
 	}
 
-	public Integer getDoctor_id() {
-		return doctor_id;
+
+	public String getAddress() {
+		return address;
 	}
 
-	public void setDoctor_id(Integer doctor_id) {
-		this.doctor_id = doctor_id;
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
 
 	
