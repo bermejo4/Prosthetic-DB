@@ -143,7 +143,7 @@ public class DBManager implements DBManagerInterface {
 			stmt5.close();
 
 			Statement stmt6 = c.createStatement();
-			String sql6 = "CREATE TABLE Biomed_Pros" 
+			String sql6 = "CREATE TABLE biomed_pros" 
 					+ "(prosID	INTEGER REFERENCES prosthetic(prosthetic_id) ON DELETE SET NULL ON UPDATE CASCADE," 
 					+ "beID INTEGER  REFERENCES biomedical_engineer(be_id) ON DELETE SET NULL ON UPDATE CASCADE,"
 					+ "PRIMARY KEY(prosID,beID))";
@@ -292,7 +292,7 @@ public class DBManager implements DBManagerInterface {
 			stmt5.executeUpdate(sql5);
 			stmt5.close();
 			Statement stmt6 = c.createStatement();
-			String sql6 = "DROP TABLE m_m";
+			String sql6 = "DROP TABLE biomed_pros";
 			stmt6.executeUpdate(sql6);
 			stmt6.close();
 			System.out.println("Tables removed.");
