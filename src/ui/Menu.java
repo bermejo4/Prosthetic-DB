@@ -20,6 +20,8 @@ public class Menu {
 	private static PatientManagerInterface patientManagerInterface;
 	private static HospitalManagerInterface hospitalManagerInterface;
 	private static BEManagerInterface biomedManagerInterface;
+	private static UserManagerInterface userManagerInterface;
+
 
 	// Used for parsing dates
 	private static BufferedReader reader;
@@ -42,6 +44,8 @@ public class Menu {
 		patientManagerInterface = dbManagerInterface.getPatientManager();
 		hospitalManagerInterface = dbManagerInterface.getHospitalManager();
 		biomedManagerInterface = dbManagerInterface.getBiomedManager();
+		userManagerInterface = new UserManager();
+		userManagerInterface.connect();
 
 		userUsing = false;
 
@@ -238,6 +242,7 @@ public class Menu {
 					// dbManagerInterface.deleteTables(); Quitar // cuando esté terminada la
 					// práctica
 					dbManagerInterface.disconnect();
+					userManagerInterface.disconnect();
 					System.exit(0);
 				}
 			}
