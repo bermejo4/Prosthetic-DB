@@ -6,6 +6,7 @@ import java.util.List;
 
 import pojos.Biomedical_Eng;
 import pojos.Hospital;
+import pojos.Patient;
 import pojos.Prosthetic;
 
 public class BEManager implements db.inteface.BEManagerInterface {
@@ -151,8 +152,10 @@ public class BEManager implements db.inteface.BEManagerInterface {
 				boolean available = rs.getBoolean("available");
 				int patient_id = rs.getInt("patient_id");
 				int hospital_id = rs.getInt("hospital_id");
+				Patient patient=new Patient(patient_id);
+				Hospital hospital=new Hospital(hospital_id);
 				Prosthetic newprosthetic = new Prosthetic(prosthetic_id, type, material, price, dimension, failures,
-						numOF, available, patient_id, hospital_id);
+						numOF, available, patient, hospital);
 				prosList.add(newprosthetic);
 			}
 
