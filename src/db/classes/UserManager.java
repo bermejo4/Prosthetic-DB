@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import db.inteface.UserManagerInterface;
 import pojos.Doctor;
 import pojos.User;
+import pojos.Role;
 
 
 public class UserManager implements UserManagerInterface {
@@ -38,13 +39,14 @@ public class UserManager implements UserManagerInterface {
 		em.getTransaction().commit();
 	}
 
-	/*@Override
+	@Override
 	public void createRole(Role role) {
 		em.getTransaction().begin();
 		em.persist(role);
 		em.getTransaction().commit();
-	}*/
-/*
+		}
+	
+
 	@Override
 	public Role getRole(int id) {
 		Query q = em.createNativeQuery("SELECT * FROM roles WHERE id = ?", Role.class);
@@ -59,7 +61,7 @@ public class UserManager implements UserManagerInterface {
 		List<Role> roles = (List<Role>) q.getResultList();
 		return roles;
 	}
-	*/
+	
 
 	@Override
 	public int checkPassword(String telephone, byte[] password, String table, String name_id) {
@@ -70,7 +72,7 @@ public class UserManager implements UserManagerInterface {
 			md.update(password.getBytes());
 			byte[] hash = md.digest();*/
 			// Create the query
-			Query q = em.createNativeQuery("SELECT "+name_id+" FROM "+table+" WHERE telephone = ? AND password = ?", Integer.class);
+			Query q = em.createNativeQuery("SELECT * FROM users WHERE username = ? AND password = ?", User.class);
 			q.setParameter(1, telephone);
 			q.setParameter(2, password);
 			num = (Integer) q.getSingleResult();
