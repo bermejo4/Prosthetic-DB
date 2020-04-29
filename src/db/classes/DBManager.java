@@ -158,7 +158,17 @@ public class DBManager implements DBManagerInterface {
 			Statement stmtSeq = c.createStatement();
 			String sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES('doctor', 1)";
 			stmtSeq.executeUpdate(sqlSeq);
+			sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('patient', 1)";
+			stmtSeq.executeUpdate(sqlSeq);
+			sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('hospital', 1)";
+			stmtSeq.executeUpdate(sqlSeq);
+			sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('prosthetic', 1)";
+			stmtSeq.executeUpdate(sqlSeq);
+			sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('biomedical_engineer', 1)";
+			stmtSeq.executeUpdate(sqlSeq);
 			stmtSeq.close();
+			
+		
 
 			// Close database connection
 			// c.close();
