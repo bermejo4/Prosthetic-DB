@@ -54,14 +54,14 @@ public class Menu {
 		
 		Role patientRole=new Role("patient");
 		System.out.println(patientRole.toString());
-		//userManagerInterface.createRole(patientRole);//id => 1
-		/*Role doctorRole=new Role("doctor");
+		userManagerInterface.createRole(patientRole);//id => 1
+		Role doctorRole=new Role("doctor");
 		userManagerInterface.createRole(doctorRole);//id => 2
 		Role hospitalRole=new Role("hospital");
 		userManagerInterface.createRole(hospitalRole);//id => 3
 		Role biomedicalRole=new Role("biomedical_Engineer");
 		userManagerInterface.createRole(biomedicalRole);//id => 4
-		*/
+		
 
 
 		userUsing = false;
@@ -455,7 +455,7 @@ public class Menu {
 		do {
 			String telephone = InputFlow.takeTelephone(reader, "Introduce the phone number:");
 			byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
-			doctorUser = doctorManagerInterface.login(telephone, password, "doctor", "doctor");
+			//doctorUser = doctorManagerInterface.login(telephone, password, "doctor", "doctor");
 			if (check) {
 				System.out.println("You have introduced a wrong password or phone, please try again.");
 			}
