@@ -187,7 +187,6 @@ public class DBManager implements DBManagerInterface {
 			
 		} catch (SQLException e) {
 			if (e.getMessage().contains("already exists")) {
-			
 			}else{
 				e.printStackTrace();
 			}

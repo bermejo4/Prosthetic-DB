@@ -106,7 +106,6 @@ public class DoctorManager implements DoctorManagerInterface {
 			e.printStackTrace();
 		}
 		return prostList;
-		
 	}
 
 	public void assignDOF(Date date, Patient pat) {
