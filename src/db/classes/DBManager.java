@@ -66,13 +66,12 @@ public class DBManager implements DBManagerInterface {
 			// Create tables: begin
 			Statement stmt1 = c.createStatement();
 			String sql1 = "CREATE TABLE doctor " 
-					+ " (doctor_id	INTEGER NOT NULL UNIQUE," 
+					+ " (doctor_id	INTEGER PRIMARY KEY AUTOINCREMENT," 
 					+ "name TEXT,"
 					+ "telephone TEXT," 
 					+ "department TEXT," 
 					+ "hospital_id	INTEGER," 
 					+ "password BLOB,"
-					+ "PRIMARY KEY('doctor_id'),"
 					+ "FOREIGN KEY('hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
 
 			stmt1.executeUpdate(sql1);
@@ -80,20 +79,18 @@ public class DBManager implements DBManagerInterface {
 
 			Statement stmt2 = c.createStatement();
 			String sql2 = "CREATE TABLE hospital " 
-					+ "(hospital_id	INTEGER NOT NULL UNIQUE," 
+					+ "(hospital_id	INTEGER PRIMARY KEY AUTOINCREMENT," 
 					+ "name TEXT,"
 					+ "location TEXT," 
 					+ "telephone TEXT," 
-					+ "password BLOB,"
-					+ "patient_id	INTEGER," 
-					+ "PRIMARY KEY('hospital_id'))";
+					+ "patient_id	INTEGER)";
 
 			stmt2.executeUpdate(sql2);
 			stmt2.close();
 
 			Statement stmt3 = c.createStatement();
 			String sql3 = "CREATE TABLE patient" 
-					+ "(patient_id INTEGER NOT NULL UNIQUE,"
+					+ "(patient_id INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ "name TEXT,"
 					+ "lastname TEXT,"
 					+ "dob DATE,"
@@ -103,8 +100,6 @@ public class DBManager implements DBManagerInterface {
 					+ "gender TEXT," 
 					+ "problem TEXT," 
 					+ "doctor_id INTEGER,"
-					+ "password BLOB,"
-					+ "PRIMARY KEY('patient_id'),"
 					+ "FOREIGN KEY('doctor_id') REFERENCES doctor(doctor_id) ON DELETE SET NULL ON UPDATE CASCADE)";
 
 			stmt3.executeUpdate(sql3);
@@ -112,7 +107,7 @@ public class DBManager implements DBManagerInterface {
 
 			Statement stmt4 = c.createStatement();
 			String sql4 = "CREATE TABLE prosthetic " 
-					+ "(prosthetic_id INTEGER NOT NULL UNIQUE," 
+					+ "(prosthetic_id INTEGER PRIMARY KEY AUTOINCREMENT," 
 					+ "type TEXT,"
 					+ "material TEXT," 
 					+ "dimension TEXT," 
@@ -122,7 +117,6 @@ public class DBManager implements DBManagerInterface {
 					+ "available BOOLEAN DEFAULT true,"
 					+ "patient_id INTEGER," //9
 					+ "hospital_id INTEGER," 
-					+ "PRIMARY KEY('prosthetic_id'),"
 					+ "FOREIGN KEY('hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE,"
 					+ "FOREIGN KEY('patient_id') REFERENCES patient('patient_id') ON DELETE SET NULL ON UPDATE CASCADE)";
 
@@ -131,12 +125,10 @@ public class DBManager implements DBManagerInterface {
 
 			Statement stmt5 = c.createStatement();
 			String sql5 = "CREATE TABLE biomedical_engineer" 
-					+ "(be_id	INTEGER NOT NULL UNIQUE,"
+					+ "(be_id	INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ "name 	TEXT,"
 					+ "lastname		TEXT,"
-					+ "telephone TEXT,"
-					+ "password BLOB,"
-					+ "PRIMARY KEY('be_id'))";
+					+ "telephone TEXT)";
 
 
 			stmt5.executeUpdate(sql5);
@@ -162,15 +154,11 @@ public class DBManager implements DBManagerInterface {
 			// are set when the first row is inserted, but since we
 			// are using JPA and JDBC in the same project, and JPA
 			// needs an initial value, we do this.
-			// Statement stmtSeq = c.createStatement();
-			// String sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES
-			// ('departments', 1)";
-			// stmtSeq.executeUpdate(sqlSeq);
-			// sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('employees', 1)";
-			// stmtSeq.executeUpdate(sqlSeq);
-			// sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('reports', 1)";
-			// stmtSeq.executeUpdate(sqlSeq);
-			// stmtSeq.close();
+			
+			Statement stmtSeq = c.createStatement();
+			String sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES('doctor', 1)";
+			stmtSeq.executeUpdate(sqlSeq);
+			stmtSeq.close();
 
 			// Close database connection
 			// c.close();
@@ -189,9 +177,7 @@ public class DBManager implements DBManagerInterface {
 			
 		} catch (SQLException e) {
 			if (e.getMessage().contains("already exists")) {
-			} else if(e.getMessage().contains("no such table")){	
-			}else if(e.getMessage().contains("abort due to constraint violation")) {
-				System.out.println("The id introduced is not available in the database.");
+			
 			}else{
 				e.printStackTrace();
 			}
