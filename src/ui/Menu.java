@@ -53,7 +53,7 @@ public class Menu {
 		userManagerInterface.connect();
 		
 		Role patientRole=new Role("patient");
-		System.out.println(patientRole.toString());
+		//System.out.println(patientRole.toString());
 		userManagerInterface.createRole(patientRole);//id => 1
 		Role doctorRole=new Role("doctor");
 		userManagerInterface.createRole(doctorRole);//id => 2
@@ -152,7 +152,7 @@ public class Menu {
 					switch (num) {
 					case 1: // Register
 						registerMenu();
-						//register(doctorRole);
+						register(doctorRole);
 						break;
 					case 2: // Login
 						loginMenu();
@@ -473,8 +473,10 @@ public class Menu {
 		// Get the chosen role from the database
 		//Role chosenRole = userManagerInterface.getRole(num_role);
 		// Create the user and store it
+		//System.out.println("The password hashed is:"+password); //to control that hash function
 		User user = new User(telephone, password, role);
 		userManagerInterface.createUser(user);
+		System.out.println(user.toString());
 
 	}
 
