@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -26,7 +27,7 @@ public class Role implements Serializable {
 	    pkColumnName="name", valueColumnName="seq", pkColumnValue="roles")
 	private Integer id;
 	private String role;
-	@OneToMany(mappedBy = "role")
+	@OneToMany(mappedBy = "role",fetch = FetchType.LAZY)
 	private List<User> users;
 	
 	public Role() {
