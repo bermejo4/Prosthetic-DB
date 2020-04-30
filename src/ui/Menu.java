@@ -35,6 +35,7 @@ public class Menu {
 	private static boolean userUsing;
 	private static int userUsingNumber; // Only can be from 1 to 5
 	private static boolean logged;
+	//private static String userTYpe; //seran los cuatri tipos de user doctor, paciente, hospital y biomedical Engineer
 
 	public static void main(String[] args) throws Exception {
 		// Connect with the database.
@@ -54,14 +55,14 @@ public class Menu {
 		
 		Role patientRole=new Role("patient");
 		System.out.println(patientRole.toString());
-		//userManagerInterface.createRole(patientRole);//id => 1
-		/*Role doctorRole=new Role("doctor");
+		userManagerInterface.createRole(patientRole);//id => 1
+		Role doctorRole=new Role("doctor");
 		userManagerInterface.createRole(doctorRole);//id => 2
 		Role hospitalRole=new Role("hospital");
 		userManagerInterface.createRole(hospitalRole);//id => 3
 		Role biomedicalRole=new Role("biomedical_Engineer");
 		userManagerInterface.createRole(biomedicalRole);//id => 4
-		*/
+		
 
 
 		userUsing = false;
@@ -465,17 +466,36 @@ public class Menu {
 	}
 
 	public static void register(Role role) {
+		//queremos que esto no se repita siempre, asi que lo hago aqui arriba y luego se decide que role eres y se creara el paciente y tal
 		System.out.println("Type the following information to register:");
 		String name = InputFlow.takeString(reader, "Introduce your Name:");
 		String lastname = InputFlow.takeString(reader, "Introduce your Lastname:");
 		String telephone = InputFlow.takeTelephone(reader, "Introduce your phone number:");
 		byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce a password:");
+		
+		//yo creo que a partir de aqui deberiamos de 
 		//Role role = new Role(user_type);
 		// Get the chosen role from the database
 		//Role chosenRole = userManagerInterface.getRole(num_role);
 		// Create the user and store it
 		User user = new User(telephone, password, role);
 		userManagerInterface.createUser(user);
+		
+		
+		System.out.println("To register, please specify your role:");
+		System.out.println("1. Patient");
+		System.out.println("2. Doctor");
+		System.out.println("3. Biomedical Engineer");
+		System.out.println("4. Hospital");
+		
+		int num = requestNumber(4);
+		
+		switch(num) {
+		case 1: //Patient 
+			
+			
+		}
+		
 		
 	}
 
