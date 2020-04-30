@@ -454,6 +454,7 @@ public class Menu {
 	public static void login() {
 		boolean check = true;
 		do {
+			System.out.println("Please, introduce your information: ");
 			String telephone = InputFlow.takeTelephone(reader, "Introduce the phone number:");
 			byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
 			doctorUser = doctorManagerInterface.login(telephone, password, "doctor", "doctor");

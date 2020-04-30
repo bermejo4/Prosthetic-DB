@@ -24,10 +24,10 @@ public class DoctorManager implements DoctorManagerInterface {
 
 	/*public Doctor register(Doctor doc) {
 
-	}
+	} 
 
 	public Doctor login(String phone, byte[] password) {
-
+		
 		
 	}*/
 
