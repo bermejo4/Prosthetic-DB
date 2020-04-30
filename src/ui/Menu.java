@@ -464,6 +464,8 @@ public class Menu {
 		} while (check);
 
 	}
+	
+	
 
 	public static void register(Role role) {
 		//queremos que esto no se repita siempre, asi que lo hago aqui arriba y luego se decide que role eres y se creara el paciente y tal
@@ -473,13 +475,13 @@ public class Menu {
 		String telephone = InputFlow.takeTelephone(reader, "Introduce your phone number:");
 		byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce a password:");
 		
-		//yo creo que a partir de aqui deberiamos de 
+		//yo creo que a partir de aqui deberiamos de ponerlo en cada case ya que crearias un role especifico y luego creas el user 
 		//Role role = new Role(user_type);
 		// Get the chosen role from the database
 		//Role chosenRole = userManagerInterface.getRole(num_role);
 		// Create the user and store it
-		User user = new User(telephone, password, role);
-		userManagerInterface.createUser(user);
+		//User user = new User(telephone, password, role);
+		//userManagerInterface.createUser(user);
 		
 		
 		System.out.println("To register, please specify your role:");
@@ -490,9 +492,43 @@ public class Menu {
 		
 		int num = requestNumber(4);
 		
+		
 		switch(num) {
-		case 1: //Patient 
+		case 1: 
+			Role patientRole=new Role("patient");
+			System.out.println(patientRole.toString());
+			userManagerInterface.createRole(patientRole);
 			
+			User patientUser = new User(telephone, password, patientRole);
+			userManagerInterface.createUser(patientUser);
+			
+			break;
+		
+		case 2:
+			Role doctorRole=new Role("doctor");
+			userManagerInterface.createRole(doctorRole);
+			
+			User doctorUser = new User (telephone, password, doctorRole);
+			userManagerInterface.createUser(doctorUser);
+			
+			break;
+		
+		case 3:
+			Role hospitalRole=new Role("hospital");
+			userManagerInterface.createRole(hospitalRole);
+			
+			User hospitalUser = new User(telephone, password, hospitalRole);
+			userManagerInterface.createUser(hospitalUser);
+			
+			break;
+		
+		case 4:
+			Role biomedicalRole=new Role("biomedical_Engineer");
+			userManagerInterface.createRole(biomedicalRole);
+			
+			User biomedUser = new User(telephone, password, biomedicalRole);
+			userManagerInterface.createUser(biomedUser);
+			break;
 			
 		}
 		

@@ -63,6 +63,9 @@ public class UserManager implements UserManagerInterface {
 	}
 	
 
+	
+	// its going to be a real user if the password is checked
+	
 	@Override
 	public int checkPassword(String telephone, byte[] password, String table, String name_id) {
 		int num=0;
