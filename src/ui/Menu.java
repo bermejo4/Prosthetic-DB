@@ -145,7 +145,7 @@ public class Menu {
 
 					max = 2;
 					if (logged) {
-					System.out.println("3.Select a Prosthetic."); //funciona att api 
+					System.out.println("3.Select a Prosthetic."); 
 					System.out.println("4.Select date of fitting.");
 					System.out.println("5.Search a patients file.");
 					System.out.println("6.Add/Modify/Delete a patient.");
@@ -252,7 +252,7 @@ public class Menu {
 					case 2: // Login
 						loginMenu();
 						break;
-					case 3: // Buy a prosthetic //ya funciona 
+					case 3: // Buy a prosthetic 
 						buyProsthetic(); 
 						break;
 					default: // back
