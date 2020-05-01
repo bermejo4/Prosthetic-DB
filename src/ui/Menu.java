@@ -460,7 +460,7 @@ public class Menu {
 			String telephone = InputFlow.takeTelephone(reader, "Introduce the phone number:");
 			byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
 			User user = new User(telephone, password, role);
-			User userCheck = new UserManager.checkPassword(user);
+			User userCheck = UserManager.checkPassword(user);
 			if(userCheck==null) {
 				System.out.println("Wrong credentials. Introduce them again.");
 			}
