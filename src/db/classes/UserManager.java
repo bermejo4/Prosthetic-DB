@@ -83,24 +83,19 @@ public class UserManager implements UserManagerInterface {
 	// its going to be a real user if the password is checked
 	
 	@Override
-	public int checkPassword(String telephone, byte[] password, String table, String name_id) {
-		int num=0;
+	public User checkPassword(User userps) {
+		User user = null;
 		try {
-			/*// Create a MessageDigest
-			MessageDigest md = MessageDigest.getInstance("MD5");
-			md.update(password.getBytes());
-			byte[] hash = md.digest();*/
 			// Create the query
 			Query q = em.createNativeQuery("SELECT * FROM users WHERE username = ? AND password = ?", User.class);
-			q.setParameter(1, telephone);
-			q.setParameter(2, password);
-			num = (Integer) q.getSingleResult();
-			System.out.println("num:"+num);
+			q.setParameter(1, userps.getUsername());
+			q.setParameter(2, userps.getPassword());
+			user = (User) q.getSingleResult();
 		} catch (NoResultException nre) {
 			// This is what happens when no result is retrieved
-			return 0;
+			return null;
 		}
-		return num;
+		return user;
 	}
 
 }
