@@ -543,7 +543,9 @@ public class Menu {
 			break;
 		
 		case "biomedical_Engineer":
-			
+			Biomedical_Eng newbiomed = new Biomedical_Eng(name, lastname, telephone);
+			biomedManagerInterface.addBiomedbyRegister(newbiomed);
+			break;
 			
 		default :
 			System.out.println("Error in register");
