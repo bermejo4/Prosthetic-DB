@@ -68,6 +68,7 @@ public class DBManager implements DBManagerInterface {
 			String sql1 = "CREATE TABLE doctor " 
 					+ " (doctor_id	INTEGER PRIMARY KEY AUTOINCREMENT," 
 					+ "name TEXT,"
+					+ "lastname TEXT,"
 					+ "telephone TEXT," 
 					+ "department TEXT," 
 					+ "hospital_id	INTEGER," 

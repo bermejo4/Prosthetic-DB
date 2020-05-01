@@ -215,7 +215,7 @@ public class DoctorManager implements DoctorManagerInterface {
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1, doc.getName());
 			prep.setString(2, doc.getLastname());
-			prep.setString(5, doc.getTelephone());
+			prep.setString(3, doc.getTelephone());
 			prep.executeUpdate();
 			prep.close();
 		}catch(Exception e) {

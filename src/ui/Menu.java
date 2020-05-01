@@ -43,7 +43,7 @@ public class Menu {
 		dbManagerInterface.connect();
 		//dbManagerInterface.deleteTables();
 		dbManagerInterface.createTables();
-		initializeDatabaseWithSomeValues();
+		//initializeDatabaseWithSomeValues();
 
 		doctorManagerInterface = dbManagerInterface.getDoctorManager();
 		patientManagerInterface = dbManagerInterface.getPatientManager();
