@@ -470,7 +470,13 @@ public class Menu {
 
 	public static void register(Role role) {
 		String name = InputFlow.takeString(reader, "Introduce your Name:");
-		String lastname = InputFlow.takeString(reader, "Introduce your Lastname:");
+		if(role.getRole().equals("hospital")) {
+			String address = InputFlow.takeString(reader, "Introduce the address: ");
+		}
+		else {
+			String lastname = InputFlow.takeString(reader, "Introduce your Lastname:");
+		}
+		
 		String telephone = InputFlow.takeTelephone(reader, "Introduce your phone number:");
 		byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce a password:");
 
@@ -490,15 +496,12 @@ public class Menu {
 			break;
 			
 		case "hospital":
-			
+			Hospital newhosp = new Hospital(name, address, telephone);
+			hospitalManagerInterface.addhospitalbyRegister(newhosp);
+			break;
 		
 		case "biomedical_Engineer":
-			Role biomedicalRole=new Role("biomedical_Engineer");
-			userManagerInterface.createRole(biomedicalRole);
 			
-			User biomedUser = new User(telephone, password, biomedicalRole);
-			userManagerInterface.createUser(biomedUser);
-			break;
 			
 		default :
 			System.out.println("Error in register");
