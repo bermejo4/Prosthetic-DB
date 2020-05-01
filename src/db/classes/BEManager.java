@@ -167,3 +167,4 @@ public class BEManager implements db.inteface.BEManagerInterface {
 	}
 
 }
+//hacer delete de jpa

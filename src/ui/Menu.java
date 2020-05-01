@@ -191,10 +191,10 @@ public class Menu {
 					System.out.println("4. Modify a Prosthetic information.");
 					System.out.println("5. View Uploaded Prosthetics.");
 					max = 5;
-					// }*
+					}
 					System.out.println("\n0.Back to choose other user to the main menu.");
-					// num = requestNumber(max);
-					max = 5;
+
+					
 					num = requestNumber(max);
 
 					switch (num) {
