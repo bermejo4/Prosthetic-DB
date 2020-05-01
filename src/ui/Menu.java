@@ -35,7 +35,7 @@ public class Menu {
 	private static boolean userUsing;
 	private static int userUsingNumber; // Only can be from 1 to 5
 	private static boolean logged;
-	//private static String userTYpe; //seran los cuatri tipos de user doctor, paciente, hospital y biomedical Engineer
+	private static String userTYpe; //seran los cuatri tipos de user doctor, paciente, hospital y biomedical Engineer
 
 	public static void main(String[] args) throws Exception {
 		// Connect with the database.
@@ -491,7 +491,7 @@ public class Menu {
 		System.out.println("3. Biomedical Engineer");
 		System.out.println("4. Hospital");
 		
-		int num = requestNumber(4);
+		String roletaken = 
 		
 		
 		switch(num) {
