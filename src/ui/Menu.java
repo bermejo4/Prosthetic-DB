@@ -28,17 +28,14 @@ public class Menu {
 	private static int num;
 
 	// Used for who is using the program
-	private static Patient patientUser = new Patient();
-	private static Doctor doctorUser = new Doctor();
-	private static Hospital hospitalUser = new Hospital();
-	private static Biomedical_Eng biomedical_engUser = new Biomedical_Eng();
+	private static Patient patientUsing = new Patient();
+	private static Doctor doctorUsing = new Doctor();
+	private static Hospital hospitalUsing = new Hospital();
+	private static Biomedical_Eng biomedical_engUsing = new Biomedical_Eng();
 	private static boolean userUsing;
 	private static int userUsingNumber; // Only can be from 1 to 5
 	private static boolean logged;
-<<<<<<< HEAD
-	private static String userTYpe; //seran los cuatri tipos de user doctor, paciente, hospital y biomedical Engineer
-=======
->>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
+
 
 	public static void main(String[] args) throws Exception {
 		// Connect with the database.
@@ -145,7 +142,7 @@ public class Menu {
 
 					max = 2;
 					if (logged) {
-					System.out.println("3.Select a Prosthetic."); //funciona att api 
+					System.out.println("3.Select a Prosthetic."); 
 					System.out.println("4.Select date of fitting.");
 					System.out.println("5.Search a patients file.");
 					System.out.println("6.Add/Modify/Delete a patient.");
@@ -252,7 +249,7 @@ public class Menu {
 					case 2: // Login
 						loginMenu();
 						break;
-					case 3: // Buy a prosthetic //ya funciona 
+					case 3: // Buy a prosthetic 
 						buyProsthetic(); 
 						break;
 					default: // back
@@ -494,7 +491,7 @@ public class Menu {
 					System.out.println("You are in a hospital.");
 					logged=true;
 					break;
-				case "biomed_engineer":
+				case "biomedical_Engineer":
 					System.out.println("Welcome biomedical engineer!");
 					logged=true;
 					break;
