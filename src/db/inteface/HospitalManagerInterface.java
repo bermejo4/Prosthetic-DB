@@ -9,6 +9,7 @@ public interface HospitalManagerInterface {
 	public void buy(int hospital_id, int prosthetic_id);
 	public void register(Hospital hospital);
 	public void login(Hospital hospital);
+	public void addhospitalbyRegister(Hospital hosp);
 	
 	
 }

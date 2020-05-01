@@ -10,7 +10,7 @@ public class Hospital implements Serializable{
 	
 	private Integer id;
 	private String name;
-	private String addres;
+	private String address;
 	private Patient patient;
 	private String telephone;
 	private List<Doctor> doctors;
@@ -34,30 +34,39 @@ public class Hospital implements Serializable{
 
 
 
-	public Hospital(int id, String name, String addres) {
+	public Hospital(int id, String name, String address) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.addres = addres;
+		this.address = address;
 		this.doctors = new ArrayList<Doctor>();
 	}
 	
-	public Hospital(Integer id, String name, String addres, String telephone) {
+	public Hospital(Integer id, String name, String address, String telephone) {
 		super();
 		this.id=id;
 		this.name = name;
-		this.addres = addres;
+		this.address = address;
 		this.telephone=telephone;
 		this.doctors = new ArrayList<Doctor>();
 	}
 	
+	
 
-	public Hospital(Integer id, String name, String addres, Patient patient, String telephone,
+	public Hospital(String name, String address, String telephone) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.telephone = telephone;
+	}
+	
+
+	public Hospital(Integer id, String name, String address, Patient patient, String telephone,
 			List<Doctor> doctors) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.addres = addres;
+		this.address = address;
 		this.patient = patient;
 		this.telephone = telephone;
 		this.doctors = doctors;
@@ -91,7 +100,7 @@ public class Hospital implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Hospital [id= " + id + ", name=" + name + ", addres=" + addres + ", patient_id=" + patient.getId() + ", telephone="
+		return "Hospital [id= " + id + ", name=" + name + ", address=" + address + ", patient_id=" + patient.getId() + ", telephone="
 				+ telephone + "]";
 	}
 
@@ -111,12 +120,12 @@ public class Hospital implements Serializable{
 		this.name = name;
 	}
 
-	public String getAddres() {
-		return addres;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAddres(String addres) {
-		this.addres = addres;
+	public void setAddres(String address) {
+		this.address = address;
 	}
 
 	

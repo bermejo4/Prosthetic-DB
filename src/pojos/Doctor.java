@@ -41,6 +41,17 @@ public class Doctor implements Serializable{
 		this.telephone = telephone;
 		this.hospital = hospital;
 	}
+	
+	
+
+	public Doctor(String name, String lastname, String telephone) {
+		super();
+		this.name = name;
+		this.lastname = lastname;
+		this.telephone = telephone;
+	}
+
+
 
 	@Override
 	public int hashCode() {
