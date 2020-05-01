@@ -78,7 +78,6 @@ public class UserManager implements UserManagerInterface {
 		
 		em.getTransaction().commit();
 		em.close();
-		
 	}
 	
 	// its going to be a real user if the password is checked

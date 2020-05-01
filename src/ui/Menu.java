@@ -450,13 +450,17 @@ public class Menu {
 		System.out.println("4.Failures.");
 	}
 
-	public static void login() {
+	public static void login() throws Exception {
 		boolean check = true;
 		do {
 			String telephone = InputFlow.takeTelephone(reader, "Introduce the phone number:");
 			byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
-
+			User user = userManager.checkPassword(telephone, password);
+			if(user==null) {
+				System.out.println("Wrong credentials.  introduce them again.");
+			}
 		} while (check);
+		
 
 	}
 
