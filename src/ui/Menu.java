@@ -98,11 +98,11 @@ public class Menu {
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
 					max = 2;
-					// if (logged) {
+					if (logged) {
 					System.out.println("3.Select a Hospital."); // ya funciona perfecto
 					System.out.println("4.View appointments."); // sigue sin funcionar att api
 					max = 4;
-					// }
+					 }
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
 					switch (num) {
@@ -141,13 +141,13 @@ public class Menu {
 					System.out.println("2.Login."); 
 
 					max = 2;
-					// if (logged) {
+					if (logged) {
 					System.out.println("3.Select a Prosthetic."); //funciona att api 
 					System.out.println("4.Select date of fitting.");
 					System.out.println("5.Search a patients file.");
 					System.out.println("6.Add/Modify/Delete a patient.");
 					max = 6;
-					// }
+					}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
 					switch (num) {
@@ -185,7 +185,7 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 
-					// if(logged) {
+					if(logged) {
 
 					System.out.println("3. Upload a new Prosthetic.");
 					System.out.println("4. Modify a Prosthetic information.");
@@ -236,10 +236,10 @@ public class Menu {
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
 					max = 2;
-					// if (logged) {
+					if (logged) {
 					System.out.println("3.Buy a Prosthetic."); 
 					max = 3;
-					// }
+					 }
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
 					switch (num) {
@@ -282,7 +282,7 @@ public class Menu {
 		System.out.print("Material made of:");
 		String material = reader.readLine();
 		System.out.print("Prosthetic dimensions:");//hacer con metodo
-		String dimensions = reader.readLine();
+		String dimensions = InputFlow.takeDimension();
 		Float price = InputFlow.takeFloat(reader, "Prosthetic price:");
 		System.out.println("Prosthetic Failures/limitations:");
 		String failures = reader.readLine();
@@ -307,6 +307,9 @@ public class Menu {
 		
 		
 	}
+	
+	
+	
 
 	public static void modifyProstheticInfo(int prosID) throws Exception {
 
@@ -352,7 +355,7 @@ public class Menu {
 
 		}
 
-		System.out.println("Actual prosthetic availability: " + prosToModify.getisAvailable());
+		System.out.println("Actual prosthetic availability: " + getAvailable(prosID));
 		System.out.println("To change availability type 'A' for available or 'NA' for not available");
 		System.out.println("For no change, press enter to leave it as it is:");
 
@@ -369,6 +372,18 @@ public class Menu {
 				av);
 		biomedManagerInterface.upadate(updatedaPros);
 
+	}
+	
+	public static String getAvailable(int prosID) {
+		Prosthetic prosToModify = biomedManagerInterface.getProsthetic(prosID);
+		
+		String state;
+		if(prosToModify.getAvailable() == true) {
+		return state = "Available";
+		
+		} else {
+			return state = "NO longer available";
+		}
 	}
 
 	public static void showProsthetics() {
@@ -451,14 +466,38 @@ public class Menu {
 		System.out.println("4.Failures.");
 	}
 
-	public static void login() throws Exception {
+	public static void login(Role role) throws Exception {
 		boolean check = true;
 		do {
 			String telephone = InputFlow.takeTelephone(reader, "Introduce the phone number:");
 			byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
-			User user = userManager.checkPassword(telephone, password);
-			if(user==null) {
-				System.out.println("Wrong credentials.  introduce them again.");
+			User user = new User(telephone, password, role);
+			User userCheck = userManagerInterface.checkPassword(user);
+			
+			if(userCheck==null) {
+				System.out.println("Wrong credentials. Introduce them again.");
+			}
+			else {	
+			switch (userCheck.getRole().getRole()) {
+				case "patient":
+					System.out.println("Welcome patient!");
+					logged=true;
+					break;
+				case "doctor":
+					System.out.println("Welcome doctor!");
+					logged=true;
+					break;
+				case "hospital":
+					System.out.println("You are in a hospital.");
+					logged=true;
+					break;
+				case "biomed_engineer":
+					System.out.println("Welcome biomedical engineer!");
+					logged=true;
+					break;
+				default: System.out.println("Invalid role.");
+				break;
+			}
 			}
 		} while (check);
 		
