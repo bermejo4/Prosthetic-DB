@@ -85,4 +85,23 @@ public class PatientManager implements PatientManagerInterface {
 		return hosSelected;
 		
 	}
+	
+	public void addpatientbyRegister(Patient pat) {
+		try {
+			String sql = "INSERT INTO patient (name, lastname, telephone)"
+					+ " VALUES (?,?,?);";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setString(1, pat.getName());
+			prep.setString(2, pat.getLastname());
+			prep.setString(3, pat.getTelephone());
+			prep.executeUpdate();
+			prep.close();
+			}
+		catch(Exception e) {
+			e.printStackTrace();
+			}
+	}
+		
+	
+	
 }

@@ -22,14 +22,6 @@ public class DoctorManager implements DoctorManagerInterface {
 		this.c = c;
 	}
 
-	/*public Doctor register(Doctor doc) {
-
-	} 
-
-	public Doctor login(String phone, byte[] password) {
-		
-		
-	}*/
 
 	public void modify(Patient pat, Date dof, int id) {
 		try {
@@ -54,6 +46,7 @@ public class DoctorManager implements DoctorManagerInterface {
 		}
 
 	}
+	
 
 	public void addPatient(Patient pat) {
 		//Insert the provided patient pat
@@ -212,6 +205,23 @@ public class DoctorManager implements DoctorManagerInterface {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void addDoctorbyRegister(Doctor doc) {
+		//Insert the provided patient pat
+		try {
+			String sql = "INSERT INTO doctor (name, lastname,  telephone)"
+					+ " VALUES (?,?,?);";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setString(1, doc.getName());
+			prep.setString(2, doc.getLastname());
+			prep.setString(5, doc.getTelephone());
+			prep.executeUpdate();
+			prep.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

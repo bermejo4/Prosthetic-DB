@@ -71,5 +71,23 @@ public class HospitalManager implements HospitalManagerInterface {
 		}
 		
 	}
+	
+	public void addhospitalbyRegister(Hospital hosp) {
+		//Insert the provided patient pat
+		try {
+			String sql = "INSERT INTO patient (name, address telephone)"
+					+ " VALUES (?,?,?);";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setString(1, hosp.getName());
+			prep.setString(4, hosp.getAddress());
+			prep.setString(5, hosp.getTelephone());
+			prep.executeUpdate();
+			prep.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 }
 
