@@ -473,6 +473,7 @@ public class Menu {
 		User user = new User(telephone, password, role);
 		userManagerInterface.createUser(user);
 		System.out.println(user.toString());
+		
 
 	}
 
