@@ -28,17 +28,14 @@ public class Menu {
 	private static int num;
 
 	// Used for who is using the program
-	private static Patient patientUser = new Patient();
-	private static Doctor doctorUser = new Doctor();
-	private static Hospital hospitalUser = new Hospital();
-	private static Biomedical_Eng biomedical_engUser = new Biomedical_Eng();
+	private static Patient patientUsing = new Patient();
+	private static Doctor doctorUsing = new Doctor();
+	private static Hospital hospitalUsing = new Hospital();
+	private static Biomedical_Eng biomedical_engUsing = new Biomedical_Eng();
 	private static boolean userUsing;
 	private static int userUsingNumber; // Only can be from 1 to 5
 	private static boolean logged;
-<<<<<<< HEAD
-	private static String userTYpe; //seran los cuatri tipos de user doctor, paciente, hospital y biomedical Engineer
-=======
->>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
+
 
 	public static void main(String[] args) throws Exception {
 		// Connect with the database.
