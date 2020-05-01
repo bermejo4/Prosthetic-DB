@@ -494,7 +494,7 @@ public class Menu {
 					System.out.println("You are in a hospital.");
 					logged=true;
 					break;
-				case "biomed_engineer":
+				case "biomedical_Engineer":
 					System.out.println("Welcome biomedical engineer!");
 					logged=true;
 					break;
