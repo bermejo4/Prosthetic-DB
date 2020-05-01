@@ -459,9 +459,17 @@ public class Menu {
 		do {
 			String telephone = InputFlow.takeTelephone(reader, "Introduce the phone number:");
 			byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
-			User user = userManager.checkPassword(telephone, password);
-			if(user==null) {
-				System.out.println("Wrong credentials.  introduce them again.");
+			User user = new User(telephone, password);
+			User userCheck = UserManager.checkPassword(user);
+			if(userCheck==null) {
+				System.out.println("Wrong credentials. Introduce them again.");
+			}
+			swith(userCheck.getRole()) {
+				
+			}
+			else if(userCheck.getRole().getRole().equalsIgnoreCase("patient")) {
+				System.out.println("Welcome doctor " + telephone);
+				doctorMenu();
 			}
 		} while (check);
 		
