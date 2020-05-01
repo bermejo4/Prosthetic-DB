@@ -85,4 +85,42 @@ public class PatientManager implements PatientManagerInterface {
 		return hosSelected;
 		
 	}
+	/*public void addPatient(Patient pat) {
+		//Insert the provided patient pat
+		try {
+			String sql = "INSERT INTO patient (name, lastname, dob, address, telephone, gender, problem, doctor_id)"
+					+ " VALUES (?,?,?,?,?,?,?,?);";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setString(1, pat.getName());
+			prep.setString(2, pat.getLastname());
+			prep.setDate(3, pat.getDob());
+			//prep.setDate(4, pat.getDof());
+			prep.setString(4, pat.getAddres());
+			prep.setString(5, pat.getTelephone());
+			prep.setString(6, pat.getGender());
+			prep.setString(7, pat.getProblem());
+			prep.setInt(8, pat.getDoctor().getId());
+			prep.executeUpdate();
+			prep.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}*/
+	public void addpatientbyRegister(Patient pat) {
+		try {
+			String sql = "INSERT INTO patient (name, lastname, telephone)"
+					+ " VALUES (?,?,?);";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setString(1, pat.getName());
+			prep.setString(2, pat.getLastname());
+			prep.setString(3, pat.getTelephone());
+			prep.executeUpdate();
+			prep.close();
+			}
+		catch(Exception e) {
+			e.printStackTrace();
+			}
+	}
+		
+	
+	
 }
