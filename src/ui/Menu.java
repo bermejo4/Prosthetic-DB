@@ -506,8 +506,8 @@ public class Menu {
 
 	public static void register(Role role) {
 		String name = InputFlow.takeString(reader, "Introduce your Name:");
-		String lastname;
-		String address;
+		String lastname="error";
+		String address="error";
 		
 		if(role.getRole().equals("hospital")) {
 			address = InputFlow.takeString(reader, "Introduce the address: ");
