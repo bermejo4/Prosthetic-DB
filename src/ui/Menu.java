@@ -281,7 +281,7 @@ public class Menu {
 		System.out.print("Material made of:");
 		String material = reader.readLine();
 		System.out.print("Prosthetic dimensions:");//hacer con metodo
-		String dimensions = reader.readLine();
+		String dimensions = InputFlow.takeDimension();
 		Float price = InputFlow.takeFloat(reader, "Prosthetic price:");
 		System.out.println("Prosthetic Failures/limitations:");
 		String failures = reader.readLine();
@@ -306,6 +306,9 @@ public class Menu {
 		
 		
 	}
+	
+	
+	
 
 	public static void modifyProstheticInfo(int prosID) throws Exception {
 
@@ -351,7 +354,7 @@ public class Menu {
 
 		}
 
-		System.out.println("Actual prosthetic availability: " + prosToModify.getisAvailable());
+		System.out.println("Actual prosthetic availability: " + getAvailable(prosID));
 		System.out.println("To change availability type 'A' for available or 'NA' for not available");
 		System.out.println("For no change, press enter to leave it as it is:");
 
@@ -368,6 +371,18 @@ public class Menu {
 				av);
 		biomedManagerInterface.upadate(updatedaPros);
 
+	}
+	
+	public static String getAvailable(int prosID) {
+		Prosthetic prosToModify = biomedManagerInterface.getProsthetic(prosID);
+		
+		String state;
+		if(prosToModify.getAvailable() == true) {
+		return state = "Available";
+		
+		} else {
+			return state = "NO longer available";
+		}
 	}
 
 	public static void showProsthetics() {
