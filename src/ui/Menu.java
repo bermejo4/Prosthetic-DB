@@ -35,6 +35,7 @@ public class Menu {
 	private static boolean userUsing;
 	private static int userUsingNumber; // Only can be from 1 to 5
 	private static boolean logged;
+	//private static String userTYpe; //seran los cuatri tipos de user doctor, paciente, hospital y biomedical Engineer
 
 	public static void main(String[] args) throws Exception {
 		// Connect with the database.
@@ -53,7 +54,7 @@ public class Menu {
 		userManagerInterface.connect();
 		
 		Role patientRole=new Role("patient");
-		//System.out.println(patientRole.toString());
+		System.out.println(patientRole.toString());
 		userManagerInterface.createRole(patientRole);//id => 1
 		Role doctorRole=new Role("doctor");
 		userManagerInterface.createRole(doctorRole);//id => 2
@@ -98,8 +99,8 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 					// if (logged) {
-					System.out.println("3.Select a Hospital."); // ya funciona perfecto
-					System.out.println("4.View appointments."); // sigue sin funcionar att api
+					System.out.println("3.Select a Hospital."); 
+					System.out.println("4.View appointments."); 
 					max = 4;
 					// }
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
@@ -152,7 +153,7 @@ public class Menu {
 					switch (num) {
 					case 1: // Register
 						registerMenu();
-						register(doctorRole);
+						//register(doctorRole);
 						break;
 					case 2: // Login
 						loginMenu();
@@ -248,7 +249,7 @@ public class Menu {
 					case 2: // Login
 						loginMenu();
 						break;
-					case 3: // Buy a prosthetic //ya funciona 
+					case 3: // Buy a prosthetic  
 						buyProsthetic(); 
 						break;
 					default: // back
@@ -453,28 +454,95 @@ public class Menu {
 	public static void login() {
 		boolean check = true;
 		do {
+			System.out.println("Please, introduce your information: ");
 			String telephone = InputFlow.takeTelephone(reader, "Introduce the phone number:");
 			byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
+			doctorUser = doctorManagerInterface.login(telephone, password, "doctor", "doctor");
+			if (check) {
+				System.out.println("You have introduced a wrong password or phone, please try again.");
+			}
 
 		} while (check);
 
 	}
+	
+	
 
 	public static void register(Role role) {
+		//queremos que esto no se repita siempre, asi que lo hago aqui arriba y luego se decide que role eres y se creara el paciente y tal
+		System.out.println("Type the following information to register:");
 		String name = InputFlow.takeString(reader, "Introduce your Name:");
 		String lastname = InputFlow.takeString(reader, "Introduce your Lastname:");
 		String telephone = InputFlow.takeTelephone(reader, "Introduce your phone number:");
 		byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce a password:");
+		
+		//yo creo que a partir de aqui deberiamos de ponerlo en cada case ya que crearias un role especifico y luego creas el user 
 		//Role role = new Role(user_type);
 		// Get the chosen role from the database
 		//Role chosenRole = userManagerInterface.getRole(num_role);
 		// Create the user and store it
+<<<<<<< HEAD
 		//System.out.println("The password hashed is:"+password); //to control that hash function
 		User user = new User(telephone, password, role);
 		userManagerInterface.createUser(user);
 		System.out.println(user.toString());
 		
 
+=======
+		//User user = new User(telephone, password, role);
+		//userManagerInterface.createUser(user);
+		
+		
+		System.out.println("To register, please specify your role:");
+		System.out.println("1. Patient");
+		System.out.println("2. Doctor");
+		System.out.println("3. Biomedical Engineer");
+		System.out.println("4. Hospital");
+		
+		int num = requestNumber(4);
+		
+		
+		switch(num) {
+		case 1: 
+			Role patientRole=new Role("patient");
+			System.out.println(patientRole.toString());
+			userManagerInterface.createRole(patientRole);
+			
+			User patientUser = new User(telephone, password, patientRole);
+			userManagerInterface.createUser(patientUser);
+			
+			break;
+		
+		case 2:
+			Role doctorRole=new Role("doctor");
+			userManagerInterface.createRole(doctorRole);
+			
+			User doctorUser = new User (telephone, password, doctorRole);
+			userManagerInterface.createUser(doctorUser);
+			
+			break;
+		
+		case 3:
+			Role hospitalRole=new Role("hospital");
+			userManagerInterface.createRole(hospitalRole);
+			
+			User hospitalUser = new User(telephone, password, hospitalRole);
+			userManagerInterface.createUser(hospitalUser);
+			
+			break;
+		
+		case 4:
+			Role biomedicalRole=new Role("biomedical_Engineer");
+			userManagerInterface.createRole(biomedicalRole);
+			
+			User biomedUser = new User(telephone, password, biomedicalRole);
+			userManagerInterface.createUser(biomedUser);
+			break;
+			
+		}
+		
+		
+>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 	}
 
 	public static void searchPatientByTelephone() {
