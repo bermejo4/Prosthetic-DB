@@ -62,7 +62,7 @@ public class UserManager implements UserManagerInterface {
 		List<Role> roles = (List<Role>) q.getResultList();
 		return roles;
 	}
-	
+	@Override
 	public void updateUser(User user, int num) {
 		em = Persistence.createEntityManagerFactory("Prosthetic-provider").createEntityManager();
 		
