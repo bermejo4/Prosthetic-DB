@@ -481,8 +481,8 @@ public class Menu {
 		// Get the chosen role from the database
 		//Role chosenRole = userManagerInterface.getRole(num_role);
 		// Create the user and store it
-		//User user = new User(telephone, password, role);
-		//userManagerInterface.createUser(user);
+		User user = new User(telephone, password, role);
+		userManagerInterface.createUser(user);
 		
 		
 		System.out.println("To register, please specify your role:");
@@ -491,11 +491,11 @@ public class Menu {
 		System.out.println("3. Biomedical Engineer");
 		System.out.println("4. Hospital");
 		
-		String roletaken = 
 		
 		
-		switch(num) {
-		case 1: 
+		
+		switch(user.getRole().getRole()) {
+		case "patient": 
 			Role patientRole=new Role("patient");
 			System.out.println(patientRole.toString());
 			userManagerInterface.createRole(patientRole);
@@ -505,7 +505,7 @@ public class Menu {
 			
 			break;
 		
-		case 2:
+		case "doctor":
 			Role doctorRole=new Role("doctor");
 			userManagerInterface.createRole(doctorRole);
 			
@@ -514,7 +514,7 @@ public class Menu {
 			
 			break;
 		
-		case 3:
+		case "hospital":
 			Role hospitalRole=new Role("hospital");
 			userManagerInterface.createRole(hospitalRole);
 			
@@ -523,7 +523,7 @@ public class Menu {
 			
 			break;
 		
-		case 4:
+		case "biomedical_Engineer":
 			Role biomedicalRole=new Role("biomedical_Engineer");
 			userManagerInterface.createRole(biomedicalRole);
 			
@@ -531,10 +531,14 @@ public class Menu {
 			userManagerInterface.createUser(biomedUser);
 			break;
 			
+		default :
+			System.out.println("Error in register");
+			
 		}
 		
 		
 	}
+	
 
 	public static void searchPatientByTelephone() {
 		List<Patient> coiList = new ArrayList<Patient>();
