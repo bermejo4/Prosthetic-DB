@@ -217,15 +217,6 @@ public class Prosthetic implements Serializable {
 	}
 
 
-	public String getisAvailable() {
-		String state;
-		if(available == true) {
-		return state = "Available";
-		
-		} else {
-			return state = "NO longer available";
-		}
-	}
 
 	public boolean getAvailable() {
 		return available;
