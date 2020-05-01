@@ -13,6 +13,7 @@ public interface UserManagerInterface {
 	Role getRole(int id);
 	void createRole(Role role);
 	List<Role> getRoles();
+	public void updateUser(User user, int num);
 	
 
 }

@@ -500,8 +500,6 @@ public class Menu {
 			}
 			}
 		} while (check);
-		
-
 	}
 
 	public static void register(Role role) {
