@@ -454,22 +454,34 @@ public class Menu {
 		System.out.println("4.Failures.");
 	}
 
-	public static void login() throws Exception {
+	public static void login(Role role) throws Exception {
 		boolean check = true;
 		do {
 			String telephone = InputFlow.takeTelephone(reader, "Introduce the phone number:");
 			byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
-			User user = new User(telephone, password);
-			User userCheck = UserManager.checkPassword(user);
+			User user = new User(telephone, password, role);
+			User userCheck = new UserManager.checkPassword(user);
 			if(userCheck==null) {
 				System.out.println("Wrong credentials. Introduce them again.");
 			}
-			swith(userCheck.getRole()) {
+			else {	
+			switch (userCheck.getRole().getRole()) {
+				case "patient":
+					System.out.println("Welcome patient!");
 				
+					break;
+				case "doctor":
+					System.out.println("Welcome doctor!");
+					break;
+				case "hospital":
+					System.out.println("You are in a hospital.");
+					break;
+				case "biomed_engineer":
+					System.out.println("Welcome biomedical engineer!");
+					break;
+				default: System.out.println("Invalid role.");
+				break;
 			}
-			else if(userCheck.getRole().getRole().equalsIgnoreCase("patient")) {
-				System.out.println("Welcome doctor " + telephone);
-				doctorMenu();
 			}
 		} while (check);
 		
