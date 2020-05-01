@@ -36,7 +36,7 @@ public class Menu {
 	private static int userUsingNumber; // Only can be from 1 to 5
 	private static boolean logged;
 <<<<<<< HEAD
-	private static String userTYpe; //seran los cuatri tipos de user doctor, paciente, hospital y biomedical Engineer
+	//private static String userTYpe; //seran los cuatri tipos de user doctor, paciente, hospital y biomedical Engineer
 =======
 >>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 
@@ -469,7 +469,7 @@ public class Menu {
 		System.out.println("4.Failures.");
 	}
 
-	public static void login(Role role) throws Exception {
+	/*public static void login(Role role) throws Exception {
 		boolean check = true;
 		do {
 			String telephone = InputFlow.takeTelephone(reader, "Introduce the phone number:");
@@ -501,7 +501,7 @@ public class Menu {
 		} while (check);
 		
 
-	}
+	}*/
 
 	public static void register(Role role) {
 		String name = InputFlow.takeString(reader, "Introduce your Name:");
