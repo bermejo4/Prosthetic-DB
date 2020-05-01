@@ -477,7 +477,7 @@ public class Menu {
 		switch(user.getRole().getRole()) {
 		case "patient": 
 			Patient newpatient = new Patient(name, lastname, telephone);
-			patientManagerInterface.addPatientbyRegister(newpatient);
+			patientManagerInterface.addpatientbyRegister(newpatient);
 			break;
 		
 		case "doctor":

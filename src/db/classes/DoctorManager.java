@@ -205,5 +205,22 @@ public class DoctorManager implements DoctorManagerInterface {
 			e.printStackTrace();
 		}
 	}
+	
+	public void addDoctorbyRegister(Doctor doc) {
+		//Insert the provided patient pat
+		try {
+			String sql = "INSERT INTO doctor (name, lastname,  telephone)"
+					+ " VALUES (?,?,?);";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setString(1, doc.getName());
+			prep.setString(2, doc.getLastname());
+			prep.setString(5, doc.getTelephone());
+			prep.executeUpdate();
+			prep.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 
 }
