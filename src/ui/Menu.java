@@ -470,11 +470,14 @@ public class Menu {
 
 	public static void register(Role role) {
 		String name = InputFlow.takeString(reader, "Introduce your Name:");
+		String lastname;
+		String address;
+		
 		if(role.getRole().equals("hospital")) {
-			String address = InputFlow.takeString(reader, "Introduce the address: ");
+			address = InputFlow.takeString(reader, "Introduce the address: ");
 		}
 		else {
-			String lastname = InputFlow.takeString(reader, "Introduce your Lastname:");
+			lastname = InputFlow.takeString(reader, "Introduce your lastname: ");
 		}
 		
 		String telephone = InputFlow.takeTelephone(reader, "Introduce your phone number:");
