@@ -477,19 +477,11 @@ public class Menu {
 		switch(user.getRole().getRole()) {
 		case "patient": 
 			Patient newpatient = new Patient(name, lastname, telephone);
-			patientManagerInterface.
-			
+			patientManagerInterface.addPatientbyRegister(newpatient);
 			break;
 		
 		case "doctor":
-			Role doctorRole=new Role("doctor");
-			userManagerInterface.createRole(doctorRole);
 			
-			User doctorUser = new User (telephone, password, doctorRole);
-			userManagerInterface.createUser(doctorUser);
-			
-			break;
-		
 		case "hospital":
 			Role hospitalRole=new Role("hospital");
 			userManagerInterface.createRole(hospitalRole);
