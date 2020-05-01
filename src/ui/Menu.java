@@ -101,11 +101,11 @@ public class Menu {
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
 					max = 2;
-					// if (logged) {
+					if (logged) {
 					System.out.println("3.Select a Hospital."); // ya funciona perfecto
 					System.out.println("4.View appointments."); // sigue sin funcionar att api
 					max = 4;
-					// }
+					 }
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
 					switch (num) {
@@ -460,7 +460,8 @@ public class Menu {
 			String telephone = InputFlow.takeTelephone(reader, "Introduce the phone number:");
 			byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
 			User user = new User(telephone, password, role);
-			User userCheck = UserManager.checkPassword(user);
+			User userCheck = userManagerInterface.checkPassword(user);
+			
 			if(userCheck==null) {
 				System.out.println("Wrong credentials. Introduce them again.");
 			}
@@ -468,16 +469,19 @@ public class Menu {
 			switch (userCheck.getRole().getRole()) {
 				case "patient":
 					System.out.println("Welcome patient!");
-				
+					logged=true;
 					break;
 				case "doctor":
 					System.out.println("Welcome doctor!");
+					logged=true;
 					break;
 				case "hospital":
 					System.out.println("You are in a hospital.");
+					logged=true;
 					break;
 				case "biomed_engineer":
 					System.out.println("Welcome biomedical engineer!");
+					logged=true;
 					break;
 				default: System.out.println("Invalid role.");
 				break;
