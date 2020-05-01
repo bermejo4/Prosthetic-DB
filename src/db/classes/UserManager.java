@@ -11,6 +11,7 @@ import javax.persistence.Query;
 
 import db.inteface.UserManagerInterface;
 import pojos.Doctor;
+import pojos.Patient;
 import pojos.User;
 import pojos.Role;
 
@@ -62,7 +63,23 @@ public class UserManager implements UserManagerInterface {
 		return roles;
 	}
 	
-
+	public void updateUser(User user, int num) {
+		em = Persistence.createEntityManagerFactory("Prosthetic-provider").createEntityManager();
+		
+		em.getTransaction().begin();
+		
+		switch(num) {
+			case 1: user.setUsername(user.getUsername()); //If you want to modify only your username(telephone)
+			case 2: user.setPassword(user.getPassword());
+			default: //To modify both of them
+				user.setUsername(user.getUsername());
+				user.setPassword(user.getPassword());
+			}
+		
+		em.getTransaction().commit();
+		em.close();
+		
+	}
 	
 	// its going to be a real user if the password is checked
 	

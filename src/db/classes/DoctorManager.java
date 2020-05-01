@@ -54,6 +54,7 @@ public class DoctorManager implements DoctorManagerInterface {
 		}
 
 	}
+	
 
 	public void addPatient(Patient pat) {
 		//Insert the provided patient pat

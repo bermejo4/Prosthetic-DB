@@ -658,9 +658,9 @@ public class Menu {
 		LocalDate dayoffitting = InputFlow.takeDate(reader, "\nNow introduce the Day of Fitting (yyyy-MM-dd):");
 		Date dateToPass = Date.valueOf(dayoffitting);
 		doctorManagerInterface.assignDOF(dateToPass, pac);
-
 	}
 
+	
 	public static void searchProsthetic() {
 		Prosthetic prost;
 		searchProstheticMenu();
