@@ -105,11 +105,20 @@ public class PatientManager implements PatientManagerInterface {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}*/
-	public void addpatientbyRegister() {
+	public void addpatientbyRegister(Patient pat) {
 		try {
-			
-		}
-		catch() {
+			String sql = "INSERT INTO patient (name, lastname, telephone)"
+					+ " VALUES (?,?,?);";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setString(1, pat.getName());
+			prep.setString(2, pat.getLastname());
+			prep.setString(3, pat.getTelephone());
+			prep.executeUpdate();
+			prep.close();
+			}
+		catch(Exception e) {
+			e.printStackTrace();
+			}
 	}
 		
 	

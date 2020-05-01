@@ -15,4 +15,5 @@ public interface PatientManagerInterface {
 	public void viewDate(String telephone);
 	public Hospital selectHospitalByID(int id);
 	public List<Hospital> showHospitals();
+	public void addPatientbyRegister(Patient pat);
 }
