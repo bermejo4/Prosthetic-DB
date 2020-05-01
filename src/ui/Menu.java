@@ -485,15 +485,12 @@ public class Menu {
 			break;
 		
 		case "doctor":
+			Doctor newdoc = new Doctor(name,lastname,telephone);
+			doctorManagerInterface.addDoctorbyRegister(newdoc);
+			break;
 			
 		case "hospital":
-			Role hospitalRole=new Role("hospital");
-			userManagerInterface.createRole(hospitalRole);
 			
-			User hospitalUser = new User(telephone, password, hospitalRole);
-			userManagerInterface.createUser(hospitalUser);
-			
-			break;
 		
 		case "biomedical_Engineer":
 			Role biomedicalRole=new Role("biomedical_Engineer");

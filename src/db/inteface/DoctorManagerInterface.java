@@ -14,4 +14,5 @@ public interface DoctorManagerInterface {
 	public List<Patient> searchPatientByTelephone(String tel);
 	public Patient searchSpecificPatientById(int num_id);
 	public void assignProstheticToPatient(int prost_id, int pat_id);
+	public void addDoctorbyRegister(Doctor doc);
 }
