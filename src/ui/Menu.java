@@ -144,13 +144,13 @@ public class Menu {
 					System.out.println("2.Login."); 
 
 					max = 2;
-					// if (logged) {
+					if (logged) {
 					System.out.println("3.Select a Prosthetic."); //funciona att api 
 					System.out.println("4.Select date of fitting.");
 					System.out.println("5.Search a patients file.");
 					System.out.println("6.Add/Modify/Delete a patient.");
 					max = 6;
-					// }
+					}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
 					switch (num) {
@@ -188,7 +188,7 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 
-					// if(logged) {
+					if(logged) {
 
 					System.out.println("3. Upload a new Prosthetic.");
 					System.out.println("4. Modify a Prosthetic information.");
@@ -239,10 +239,10 @@ public class Menu {
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
 					max = 2;
-					// if (logged) {
+					if (logged) {
 					System.out.println("3.Buy a Prosthetic."); 
 					max = 3;
-					// }
+					 }
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
 					switch (num) {
