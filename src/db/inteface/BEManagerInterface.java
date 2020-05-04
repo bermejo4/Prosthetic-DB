@@ -19,6 +19,8 @@ public interface BEManagerInterface {
 	public void design(int prosthetic_id, int be_id);
 	
 	public List<Prosthetic> showProsthetic();
+	
+	public void addBiomedbyRegister(Biomedical_Eng biomed);
 
 
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pojos.Biomedical_Eng;
+import pojos.Doctor;
 import pojos.Hospital;
 import pojos.Patient;
 import pojos.Prosthetic;
@@ -165,5 +166,23 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		return prosList;
 
 	}
+	
+	public void addBiomedbyRegister(Biomedical_Eng biomed) {
+		//Insert the provided patient pat
+		try {
+			String sql = "INSERT INTO doctor (name, lastname,  telephone)"
+					+ " VALUES (?,?,?);";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setString(1, biomed.getName());
+			prep.setString(2, biomed.getLastname());
+			prep.setString(5, biomed.getTelephone());
+			prep.executeUpdate();
+			prep.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 
 }
+//hacer delete de jpa

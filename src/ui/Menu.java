@@ -43,7 +43,7 @@ public class Menu {
 		dbManagerInterface.connect();
 		//dbManagerInterface.deleteTables();
 		dbManagerInterface.createTables();
-		initializeDatabaseWithSomeValues();
+		//initializeDatabaseWithSomeValues();
 
 		doctorManagerInterface = dbManagerInterface.getDoctorManager();
 		patientManagerInterface = dbManagerInterface.getPatientManager();
@@ -142,7 +142,7 @@ public class Menu {
 
 					max = 2;
 					if (logged) {
-					System.out.println("3.Select a Prosthetic."); //funciona att api 
+					System.out.println("3.Select a Prosthetic."); 
 					System.out.println("4.Select date of fitting.");
 					System.out.println("5.Search a patients file.");
 					System.out.println("6.Add/Modify/Delete a patient.");
@@ -191,10 +191,10 @@ public class Menu {
 					System.out.println("4. Modify a Prosthetic information.");
 					System.out.println("5. View Uploaded Prosthetics.");
 					max = 5;
-					// }*
+					}
 					System.out.println("\n0.Back to choose other user to the main menu.");
-					// num = requestNumber(max);
-					max = 5;
+
+					
 					num = requestNumber(max);
 
 					switch (num) {
@@ -227,6 +227,7 @@ public class Menu {
 						userUsing = false;
 					}
 					break;
+					
 
 //-----------------------------------------------------------------------------------
 
@@ -249,7 +250,7 @@ public class Menu {
 					case 2: // Login
 						loginMenu();
 						break;
-					case 3: // Buy a prosthetic //ya funciona 
+					case 3: // Buy a prosthetic 
 						buyProsthetic(); 
 						break;
 					default: // back
@@ -491,7 +492,7 @@ public class Menu {
 					System.out.println("You are in a hospital.");
 					logged=true;
 					break;
-				case "biomed_engineer":
+				case "biomedical_Engineer":
 					System.out.println("Welcome biomedical engineer!");
 					logged=true;
 					break;
@@ -500,13 +501,20 @@ public class Menu {
 			}
 			}
 		} while (check);
-		
-
 	}
 
 	public static void register(Role role) {
 		String name = InputFlow.takeString(reader, "Introduce your Name:");
-		String lastname = InputFlow.takeString(reader, "Introduce your Lastname:");
+		String lastname="error";
+		String address="error";
+		
+		if(role.getRole().equals("hospital")) {
+			address = InputFlow.takeString(reader, "Introduce the address: ");
+		}
+		else {
+			lastname = InputFlow.takeString(reader, "Introduce your lastname: ");
+		}
+		
 		String telephone = InputFlow.takeTelephone(reader, "Introduce your phone number:");
 		byte[] password = InputFlow.takePasswordAndHashIt(reader, "Introduce a password:");
 
@@ -526,14 +534,13 @@ public class Menu {
 			break;
 			
 		case "hospital":
-			
+			Hospital newhosp = new Hospital(name, address, telephone);
+			hospitalManagerInterface.addhospitalbyRegister(newhosp);
+			break;
 		
 		case "biomedical_Engineer":
-			Role biomedicalRole=new Role("biomedical_Engineer");
-			userManagerInterface.createRole(biomedicalRole);
-			
-			User biomedUser = new User(telephone, password, biomedicalRole);
-			userManagerInterface.createUser(biomedUser);
+			Biomedical_Eng newbiomed = new Biomedical_Eng(name, lastname, telephone);
+			biomedManagerInterface.addBiomedbyRegister(newbiomed);
 			break;
 			
 		default :
