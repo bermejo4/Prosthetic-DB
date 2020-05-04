@@ -620,6 +620,7 @@ public class Menu {
 		if (InputFlow.areYouSure(reader, "Are you sure that do you want to delete this patient?")) {
 			doctorManagerInterface.delete(pac);
 		}
+		
 	}
 
 	public static void addPatient(boolean mood) throws Exception {
