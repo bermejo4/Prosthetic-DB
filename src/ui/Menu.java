@@ -108,9 +108,11 @@ public class Menu {
 					switch (num) {
 					case 1: // Register
 						registerMenu();
+						register(patientRole);
 						break;
 					case 2: // Login
 						loginMenu();
+						login(patientRole);
 						logged = true;
 						break;
 					case 3:
@@ -157,6 +159,7 @@ public class Menu {
 						break;
 					case 2: // Login
 						loginMenu();
+						login(doctorRole);
 						break;
 					case 3: // Select prosthetic and assign it
 						searchProsthetic();
@@ -200,9 +203,11 @@ public class Menu {
 					switch (num) {
 					case 1: // Register
 						registerMenu();
+						register(biomedicalRole);
 						break;
 					case 2: // Login
 						loginMenu();
+						login(biomedicalRole);
 						break;
 
 					case 3: // Upload a new Prosthetic
@@ -246,9 +251,11 @@ public class Menu {
 					switch (num) {
 					case 1: // Register
 						registerHospitalMenu();
+						register(hospitalRole);
 						break;
 					case 2: // Login
 						loginMenu();
+						login(hospitalRole);
 						break;
 					case 3: // Buy a prosthetic 
 						buyProsthetic(); 
