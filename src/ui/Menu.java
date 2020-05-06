@@ -112,11 +112,11 @@ public class Menu {
 						break;
 					case 3:
 						// First, we show all the hospitals
-						System.out.println("The list of the available hospitals is:\n");
-						showHospitals();
+						//System.out.println("The list of the available hospitals is:\n");
+						//showHospitals();
 
 						// Then, they select the hospital
-						System.out.println("Now, you need to choose one of them.");
+						//System.out.println("Now, you need to choose one of them.");
 						selectHospitalByID();
 
 						break;
@@ -577,8 +577,8 @@ public class Menu {
 		}
 
 	}
-
-	/*public static ArrayList<Hospital> showHospitals() {
+	//Este es el de antes cuando funcionaba y ahora no:(((((((((((((((((
+	/*public static void showHospitals() {
 		// To show all Hospitals in our data base
 		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
 		Hospital hosp;
@@ -603,8 +603,8 @@ public class Menu {
 			System.out.println("");
 		}
 	}
-	
-	public static void selectHospitalByID() {
+	//Este es el de antes cuando funcionaba y ahora no:(((((((((((((((((
+	/*public static void selectHospitalByID() {
 		Hospital hosp;
 		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
 	
@@ -612,18 +612,19 @@ public class Menu {
 		System.out.println("You have chosen:\n" + hosp.toString());
 		System.out.println("");
 
-	}
+	}*/
 
-	/*public static void selectHospitalByID() {
+	public static void selectHospitalByID() {
+		
+		ArrayList<Hospital> hospitalList;
 		Hospital hosp;
-		ArrayList<Hospital> hospitalList=Menu.showHospitals();
-		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
-		int idChecked = InputFlow.checkIdAndListHospital(id, hospitalList);
+		hospitalList = patientManagerInterface.showHospitals();
+		int idChecked = InputFlow.checkIdAndListHospital(hospitalList);
 		hosp = patientManagerInterface.selectHospitalByID(idChecked);
 		System.out.println("You have chosen:\n" + hosp.toString());
 		System.out.println("");
 
-	}*/
+	}
 
 	public static void viewDate() {
 		// To view your own date of fitting
@@ -674,6 +675,7 @@ public class Menu {
 			System.out.println("\nThis have been the coincidenses for the phone introduced.");
 			System.out.println("Now Introduce the Id number of the patient who want modify:\n");
 			num_id = InputFlow.takeInteger(reader, "Id number:");
+			
 		}
 		Patient pat;
 		System.out.println("Name:");
@@ -695,7 +697,9 @@ public class Menu {
 		String problem = reader.readLine();
 		System.out.println("Address:");
 		String address = reader.readLine();
-		int doctor_id = InputFlow.takeInteger(reader, "Doctor id: ");
+		doctorManagerInterface.doctorsInDatabase();
+		int doctor_id =InputFlow.checkIdAndListDoctor(InputFlow.takeInteger(reader, "Doctor id: "), doctorManagerInterface.doctorsInDatabase());
+		
 		Doctor doctor = new Doctor(doctor_id);
 		if (mood) {
 			pat = new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor);
