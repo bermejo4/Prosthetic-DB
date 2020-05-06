@@ -74,7 +74,7 @@ public class Biomedical_Eng implements Serializable {
 	@Override
 	public String toString() {
 		return "Biomedical_Eng [id=" + id + ", name=" + name + ", lastname=" + lastname + ", telephone=" + telephone
-				+ ", prostheticsList=" + prostheticsList + "]";
+				+ ", prostheticsList =" + prostheticsList + "]";
 	}
 
 	public Integer getId() {

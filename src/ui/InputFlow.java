@@ -98,20 +98,24 @@ public class InputFlow {
 
 	public static boolean takeAvailable(String choice) {
 
+		BufferedReader reader =  new BufferedReader(new InputStreamReader(System.in));;
 		boolean answer = true;
-		boolean loop ;
+		boolean loop=false ;
 
 		try {
 			do {
-				// System.out.println("Is this prosthetic available for sale? (y/n):");
+				if(loop==true) {
+					choice = reader.readLine();
+					
+				}
 
 				if (choice.equalsIgnoreCase("a") || choice.equalsIgnoreCase("na")) {
 					loop = false;
-					if (choice.equalsIgnoreCase("a")) {
-						answer = true;
+					if (choice.contains("n")) {
+						answer = false;
 
 					} else {
-						answer = false;
+						answer = true;
 					}
 
 				} else {
