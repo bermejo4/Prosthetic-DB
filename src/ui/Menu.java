@@ -490,18 +490,22 @@ public class Menu {
 				case "patient":
 					System.out.println("Welcome patient!");
 					logged = true;
+					check=false;
 					break;
 				case "doctor":
 					System.out.println("Welcome doctor!");
 					logged = true;
+					check=false;
 					break;
 				case "hospital":
 					System.out.println("You are in a hospital.");
 					logged = true;
+					check=false;
 					break;
 				case "biomedical_Engineer":
 					System.out.println("Welcome biomedical engineer!");
 					logged = true;
+					check=false;
 					break;
 				default:
 					System.out.println("Invalid role.");
