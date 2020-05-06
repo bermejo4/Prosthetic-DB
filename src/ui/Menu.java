@@ -665,7 +665,7 @@ public class Menu {
 		String problem = reader.readLine();
 		System.out.println("Address:");
 		String address = reader.readLine();
-		int doctor_id = InputFlow.takeInteger(reader, "Doctor id: ");
+		int doctor_id =InputFlow.checkIdAndListDoctor(InputFlow.takeInteger(reader, "Doctor id: "), doctorManagerInterface.doctorsInDatabase());
 		Doctor doctor = new Doctor(doctor_id);
 		if (mood) {
 			pat = new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor);

@@ -296,7 +296,7 @@ public class InputFlow {
 		
 		return id;
 	}
-	public int checkIdAndListDoctor(int id, ArrayList<Doctor> list) {
+	public static int checkIdAndListDoctor(int id, ArrayList<Doctor> list) {
 		boolean check = true;
 		Iterator<Doctor> it = list.iterator();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
