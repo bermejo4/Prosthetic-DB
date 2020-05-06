@@ -3,11 +3,15 @@ package ui;
 import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import pojos.Doctor;
+import pojos.Patient;
 
 public class InputFlow {
 
@@ -98,7 +102,7 @@ public class InputFlow {
 
 	public static boolean takeAvailable(String choice) {
 
-		BufferedReader reader =  new BufferedReader(new InputStreamReader(System.in));;
+		BufferedReader reader =  new BufferedReader(new InputStreamReader(System.in));
 		boolean answer = true;
 		boolean loop=false ;
 
@@ -235,14 +239,32 @@ public class InputFlow {
 		return day;
 	}
 
-	public boolean checkIdAndList(int id, ArrayList<Integer> list) {
+	public static boolean checkIdAndList(int id, ArrayList<Patient> list) {
 		boolean check = true;
-		Iterator<Integer> it = list.iterator();
-		
+		Iterator<Patient> it = list.iterator();
+		BufferedReader reader =  new BufferedReader(new InputStreamReader(System.in));
 		while (it.hasNext()) {
-			int num = it.next();
-			if (num == id) {
-				check = false;
+			int num = it.next().getId();
+				if (num == id) {
+					check = false;
+				}
+		}
+		if(check==true) {
+			System.out.println("This is the available Patient's list:\n");
+			while (it.hasNext()) {
+				System.out.println(it.next().toString());
+				
+				do {
+					int num2 = takeInteger(reader, "Introduce the id again:");
+					id=num2;
+					while (it.hasNext()) {
+						int num = it.next().getId();
+							if (num == id) {
+								check = false;
+							}
+					}
+					
+				}while(check);
 			}
 		}
 		return check;
@@ -278,5 +300,6 @@ public class InputFlow {
 		}
 		return string;
 	}
+	
 
 }
