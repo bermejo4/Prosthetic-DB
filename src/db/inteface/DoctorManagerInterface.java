@@ -1,6 +1,7 @@
 package db.inteface;
 import pojos.*;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,4 +16,5 @@ public interface DoctorManagerInterface {
 	public Patient searchSpecificPatientById(int num_id);
 	public void assignProstheticToPatient(int prost_id, int pat_id);
 	public void addDoctorbyRegister(Doctor doc);
+	public ArrayList<Doctor> doctorsInDatabase();
 }
