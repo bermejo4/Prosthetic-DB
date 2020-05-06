@@ -238,6 +238,7 @@ public class InputFlow {
 	public boolean checkIdAndList(int id, ArrayList<Integer> list) {
 		boolean check = true;
 		Iterator<Integer> it = list.iterator();
+		
 		while (it.hasNext()) {
 			int num = it.next();
 			if (num == id) {

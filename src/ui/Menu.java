@@ -95,8 +95,8 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 					if (logged) {
-						System.out.println("3.Select a Hospital."); // ya funciona perfecto
-						System.out.println("4.View appointments."); // sigue sin funcionar att api
+						System.out.println("3.Select a Hospital.");  
+						System.out.println("4.View appointments."); 
 						max = 4;
 					}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
@@ -108,8 +108,7 @@ public class Menu {
 						break;
 					case 2: // Login
 						loginMenu();
-						login(patientRole);
-						logged = true;
+						login(patientRole); 						
 						break;
 					case 3:
 						// First, we show all the hospitals
@@ -184,14 +183,14 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 
-					// if(logged) {
+					if(logged) {
 
 					System.out.println("3. Upload a new Prosthetic.");
 					System.out.println("4. Modify a Prosthetic information.");
 					System.out.println("5. View Uploaded Prosthetics.");
 					System.out.println("6. Delete a Prosthetic.");
 					max = 6;
-					// }
+					}
 					System.out.println("\n0.Back to choose other user to the main menu.");
 
 					int choice;
@@ -490,18 +489,22 @@ public class Menu {
 				case "patient":
 					System.out.println("Welcome patient!");
 					logged = true;
+					check=false;
 					break;
 				case "doctor":
 					System.out.println("Welcome doctor!");
 					logged = true;
+					check=false;
 					break;
 				case "hospital":
 					System.out.println("You are in a hospital.");
 					logged = true;
+					check=false;
 					break;
 				case "biomedical_Engineer":
 					System.out.println("Welcome biomedical engineer!");
 					logged = true;
+					check=false;
 					break;
 				default:
 					System.out.println("Invalid role.");
