@@ -238,7 +238,7 @@ public class InputFlow {
 		return day;
 	}
 
-	public int checkIdAndListPatient(int id, ArrayList<Patient> list) {
+	public static int checkIdAndListPatient(int id, ArrayList<Patient> list) {
 		boolean check = true;
 		Iterator<Patient> it = list.iterator();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -267,7 +267,7 @@ public class InputFlow {
 		
 		return id;
 	}
-	public int checkIdAndListProsthetic(int id, ArrayList<Prosthetic> list) {
+	public static int checkIdAndListProsthetic(int id, ArrayList<Prosthetic> list) {
 		boolean check = true;
 		Iterator<Prosthetic> it = list.iterator();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -296,9 +296,38 @@ public class InputFlow {
 		
 		return id;
 	}
-	public int checkIdAndListDoctor(int id, ArrayList<Doctor> list) {
+	public static int checkIdAndListDoctor(int id, ArrayList<Doctor> list) {
 		boolean check = true;
 		Iterator<Doctor> it = list.iterator();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		do {
+			while (it.hasNext()) {
+				int num = it.next().getId();
+				if (num == id) {
+					check = false;
+				}
+			}
+			if (check == true) {
+				System.out.println("This is the available Patient's list:\n");
+				while (it.hasNext()) {
+					System.out.println(it.next().toString());
+					int num2 = takeInteger(reader, "Introduce the id again:");
+					id = num2;
+					while (it.hasNext()) {
+						int num = it.next().getId();
+						if (num == id) {
+							check = false;
+						}
+					}
+				}
+			}
+		} while (check);
+		
+		return id;
+	}
+	public static int checkIdAndListHospital(int id, ArrayList<Hospital> list) {
+		boolean check = true;
+		Iterator<Hospital> it = list.iterator();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		do {
 			while (it.hasNext()) {

@@ -40,9 +40,9 @@ public class PatientManager implements PatientManagerInterface {
 		}
 	}
 	
-	public List<Hospital> showHospitals() {
+	public ArrayList<Hospital> showHospitals() {
 		// To show all Hospitals in our data base
-		List<Hospital> hospitalList = new ArrayList<Hospital>();
+		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
 		try {
 			String sql = "SELECT * FROM hospital";
 			PreparedStatement prep = c.prepareStatement(sql);

@@ -112,7 +112,7 @@ public class Menu {
 						break;
 					case 3:
 						// First, we show all the hospitals
-						System.out.println("The list of the vailable hospitals is:\n");
+						System.out.println("The list of the available hospitals is:\n");
 						showHospitals();
 
 						// Then, they select the hospital
@@ -488,21 +488,25 @@ public class Menu {
 				switch (userCheck.getRole().getRole()) {
 				case "patient":
 					System.out.println("Welcome patient!");
+					patientUsing.setTelephone(telephone);
 					logged = true;
 					check=false;
 					break;
 				case "doctor":
 					System.out.println("Welcome doctor!");
+					doctorUsing.setTelephone(telephone);
 					logged = true;
 					check=false;
 					break;
 				case "hospital":
 					System.out.println("You are in a hospital.");
+					hospitalUsing.setTelephone(telephone);
 					logged = true;
 					check=false;
 					break;
 				case "biomedical_Engineer":
 					System.out.println("Welcome biomedical engineer!");
+					biomedical_engUsing.setTelephone(telephone);
 					logged = true;
 					check=false;
 					break;
@@ -574,9 +578,22 @@ public class Menu {
 
 	}
 
+	/*public static ArrayList<Hospital> showHospitals() {
+		// To show all Hospitals in our data base
+		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
+		Hospital hosp;
+		hospitalList = patientManagerInterface.showHospitals();
+		Iterator it = hospitalList.iterator();
+		while (it.hasNext()) {
+			hosp = (Hospital) it.next();
+			System.out.println(hosp.toString());
+			System.out.println("");
+		}
+		return hospitalList;
+	}*/
 	public static void showHospitals() {
 		// To show all Hospitals in our data base
-		List<Hospital> hospitalList = new ArrayList<Hospital>();
+		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
 		Hospital hosp;
 		hospitalList = patientManagerInterface.showHospitals();
 		Iterator it = hospitalList.iterator();
@@ -586,21 +603,34 @@ public class Menu {
 			System.out.println("");
 		}
 	}
-
+	
 	public static void selectHospitalByID() {
 		Hospital hosp;
 		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
+	
 		hosp = patientManagerInterface.selectHospitalByID(id);
 		System.out.println("You have chosen:\n" + hosp.toString());
 		System.out.println("");
 
 	}
 
+	/*public static void selectHospitalByID() {
+		Hospital hosp;
+		ArrayList<Hospital> hospitalList=Menu.showHospitals();
+		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
+		int idChecked = InputFlow.checkIdAndListHospital(id, hospitalList);
+		hosp = patientManagerInterface.selectHospitalByID(idChecked);
+		System.out.println("You have chosen:\n" + hosp.toString());
+		System.out.println("");
+
+	}*/
+
 	public static void viewDate() {
 		// To view your own date of fitting
 
-		String telephone = InputFlow.takeTelephone(reader, "Introduce your telephone number: ");
-		patientManagerInterface.viewDate(telephone);
+		//String telephone = InputFlow.takeTelephone(reader, "Introduce your telephone number: ");
+		String myTelephone = patientUsing.getTelephone();
+		patientManagerInterface.viewDate(myTelephone);
 
 	}
 
