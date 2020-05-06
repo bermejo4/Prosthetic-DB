@@ -102,15 +102,15 @@ public class InputFlow {
 
 	public static boolean takeAvailable(String choice) {
 
-		BufferedReader reader =  new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		boolean answer = true;
-		boolean loop=false ;
+		boolean loop = false;
 
 		try {
 			do {
-				if(loop==true) {
+				if (loop == true) {
 					choice = reader.readLine();
-					
+
 				}
 
 				if (choice.equalsIgnoreCase("a") || choice.equalsIgnoreCase("na")) {
@@ -127,9 +127,9 @@ public class InputFlow {
 					System.out.println("Please introduce 'A' for available or 'NA' for not available");
 					loop = true;
 				}
-			
+
 			} while (loop);
-		
+
 		} catch (Exception e) {
 			e.printStackTrace();
 
@@ -239,35 +239,34 @@ public class InputFlow {
 		return day;
 	}
 
-	public static boolean checkIdAndList(int id, ArrayList<Patient> list) {
+	public int checkIdAndList(int id, ArrayList<Patient> list) {
 		boolean check = true;
 		Iterator<Patient> it = list.iterator();
-		BufferedReader reader =  new BufferedReader(new InputStreamReader(System.in));
-		while (it.hasNext()) {
-			int num = it.next().getId();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		do {
+			while (it.hasNext()) {
+				int num = it.next().getId();
 				if (num == id) {
 					check = false;
 				}
-		}
-		if(check==true) {
-			System.out.println("This is the available Patient's list:\n");
-			while (it.hasNext()) {
-				System.out.println(it.next().toString());
-				
-				do {
+			}
+			if (check == true) {
+				System.out.println("This is the available Patient's list:\n");
+				while (it.hasNext()) {
+					System.out.println(it.next().toString());
 					int num2 = takeInteger(reader, "Introduce the id again:");
-					id=num2;
+					id = num2;
 					while (it.hasNext()) {
 						int num = it.next().getId();
-							if (num == id) {
-								check = false;
-							}
+						if (num == id) {
+							check = false;
+						}
 					}
-					
-				}while(check);
+				}
 			}
-		}
-		return check;
+		} while (check);
+		
+		return id;
 	}
 
 	public static byte[] takePasswordAndHashIt(BufferedReader reader, String text) {
@@ -300,6 +299,5 @@ public class InputFlow {
 		}
 		return string;
 	}
-	
 
 }
