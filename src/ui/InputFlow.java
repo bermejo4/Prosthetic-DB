@@ -10,8 +10,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import pojos.Doctor;
-import pojos.Patient;
+import pojos.*;
 
 public class InputFlow {
 
@@ -239,7 +238,7 @@ public class InputFlow {
 		return day;
 	}
 
-	public int checkIdAndList(int id, ArrayList<Patient> list) {
+	public int checkIdAndListPatient(int id, ArrayList<Patient> list) {
 		boolean check = true;
 		Iterator<Patient> it = list.iterator();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -268,6 +267,65 @@ public class InputFlow {
 		
 		return id;
 	}
+	public int checkIdAndListProsthetic(int id, ArrayList<Prosthetic> list) {
+		boolean check = true;
+		Iterator<Prosthetic> it = list.iterator();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		do {
+			while (it.hasNext()) {
+				int num = it.next().getId();
+				if (num == id) {
+					check = false;
+				}
+			}
+			if (check == true) {
+				System.out.println("This is the available Patient's list:\n");
+				while (it.hasNext()) {
+					System.out.println(it.next().toString());
+					int num2 = takeInteger(reader, "Introduce the id again:");
+					id = num2;
+					while (it.hasNext()) {
+						int num = it.next().getId();
+						if (num == id) {
+							check = false;
+						}
+					}
+				}
+			}
+		} while (check);
+		
+		return id;
+	}
+	public int checkIdAndListDoctor(int id, ArrayList<Doctor> list) {
+		boolean check = true;
+		Iterator<Doctor> it = list.iterator();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		do {
+			while (it.hasNext()) {
+				int num = it.next().getId();
+				if (num == id) {
+					check = false;
+				}
+			}
+			if (check == true) {
+				System.out.println("This is the available Patient's list:\n");
+				while (it.hasNext()) {
+					System.out.println(it.next().toString());
+					int num2 = takeInteger(reader, "Introduce the id again:");
+					id = num2;
+					while (it.hasNext()) {
+						int num = it.next().getId();
+						if (num == id) {
+							check = false;
+						}
+					}
+				}
+			}
+		} while (check);
+		
+		return id;
+	}
+	
 
 	public static byte[] takePasswordAndHashIt(BufferedReader reader, String text) {
 		System.out.println(text);
