@@ -97,8 +97,8 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 					if (logged) {
-						System.out.println("3.Select a Hospital."); // ya funciona perfecto
-						System.out.println("4.View appointments."); // sigue sin funcionar att api
+						System.out.println("3.Select a Hospital.");  
+						System.out.println("4.View appointments."); 
 						max = 4;
 					}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
@@ -110,16 +110,15 @@ public class Menu {
 						break;
 					case 2: // Login
 						loginMenu();
-						login(patientRole);
-						logged = true;
+						login(patientRole); 						
 						break;
 					case 3:
 						// First, we show all the hospitals
-						System.out.println("The list of the vailable hospitals is:\n");
-						showHospitals();
+						//System.out.println("The list of the available hospitals is:\n");
+						//showHospitals();
 
 						// Then, they select the hospital
-						System.out.println("Now, you need to choose one of them.");
+						//System.out.println("Now, you need to choose one of them.");
 						selectHospitalByID();
 
 						break;
@@ -186,14 +185,14 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 
-					// if(logged) {
+					if(logged) {
 
 					System.out.println("3. Upload a new Prosthetic.");
 					System.out.println("4. Modify a Prosthetic information.");
 					System.out.println("5. View Uploaded Prosthetics.");
 					System.out.println("6. Delete a Prosthetic.");
 					max = 6;
-					// }
+					}
 					System.out.println("\n0.Back to choose other user to the main menu.");
 
 					int choice;
@@ -491,19 +490,27 @@ public class Menu {
 				switch (userCheck.getRole().getRole()) {
 				case "patient":
 					System.out.println("Welcome patient!");
+					patientUsing.setTelephone(telephone);
 					logged = true;
+					check=false;
 					break;
 				case "doctor":
 					System.out.println("Welcome doctor!");
+					doctorUsing.setTelephone(telephone);
 					logged = true;
+					check=false;
 					break;
 				case "hospital":
 					System.out.println("You are in a hospital.");
+					hospitalUsing.setTelephone(telephone);
 					logged = true;
+					check=false;
 					break;
 				case "biomedical_Engineer":
 					System.out.println("Welcome biomedical engineer!");
+					biomedical_engUsing.setTelephone(telephone);
 					logged = true;
+					check=false;
 					break;
 				default:
 					System.out.println("Invalid role.");
@@ -572,10 +579,23 @@ public class Menu {
 		}
 
 	}
-
+	//Este es el de antes cuando funcionaba y ahora no:(((((((((((((((((
+	/*public static void showHospitals() {
+		// To show all Hospitals in our data base
+		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
+		Hospital hosp;
+		hospitalList = patientManagerInterface.showHospitals();
+		Iterator it = hospitalList.iterator();
+		while (it.hasNext()) {
+			hosp = (Hospital) it.next();
+			System.out.println(hosp.toString());
+			System.out.println("");
+		}
+		return hospitalList;
+	}*/
 	public static void showHospitals() {
 		// To show all Hospitals in our data base
-		List<Hospital> hospitalList = new ArrayList<Hospital>();
+		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
 		Hospital hosp;
 		hospitalList = patientManagerInterface.showHospitals();
 		Iterator it = hospitalList.iterator();
@@ -585,11 +605,24 @@ public class Menu {
 			System.out.println("");
 		}
 	}
-
-	public static void selectHospitalByID() {
+	//Este es el de antes cuando funcionaba y ahora no:(((((((((((((((((
+	/*public static void selectHospitalByID() {
 		Hospital hosp;
 		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
+	
 		hosp = patientManagerInterface.selectHospitalByID(id);
+		System.out.println("You have chosen:\n" + hosp.toString());
+		System.out.println("");
+
+	}*/
+
+	public static void selectHospitalByID() {
+		
+		ArrayList<Hospital> hospitalList;
+		Hospital hosp;
+		hospitalList = patientManagerInterface.showHospitals();
+		int idChecked = InputFlow.checkIdAndListHospital(hospitalList);
+		hosp = patientManagerInterface.selectHospitalByID(idChecked);
 		System.out.println("You have chosen:\n" + hosp.toString());
 		System.out.println("");
 
@@ -598,8 +631,9 @@ public class Menu {
 	public static void viewDate() {
 		// To view your own date of fitting
 
-		String telephone = InputFlow.takeTelephone(reader, "Introduce your telephone number: ");
-		patientManagerInterface.viewDate(telephone);
+		//String telephone = InputFlow.takeTelephone(reader, "Introduce your telephone number: ");
+		String myTelephone = patientUsing.getTelephone();
+		patientManagerInterface.viewDate(myTelephone);
 
 	}
 
@@ -643,6 +677,7 @@ public class Menu {
 			System.out.println("\nThis have been the coincidenses for the phone introduced.");
 			System.out.println("Now Introduce the Id number of the patient who want modify:\n");
 			num_id = InputFlow.takeInteger(reader, "Id number:");
+			
 		}
 		Patient pat;
 		System.out.println("Name:");
@@ -664,7 +699,9 @@ public class Menu {
 		String problem = reader.readLine();
 		System.out.println("Address:");
 		String address = reader.readLine();
-		int doctor_id = InputFlow.takeInteger(reader, "Doctor id: ");
+		doctorManagerInterface.doctorsInDatabase();
+		int doctor_id =InputFlow.checkIdAndListDoctor(InputFlow.takeInteger(reader, "Doctor id: "), doctorManagerInterface.doctorsInDatabase());
+		
 		Doctor doctor = new Doctor(doctor_id);
 		if (mood) {
 			pat = new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor);

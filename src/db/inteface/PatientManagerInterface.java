@@ -2,6 +2,7 @@ package db.inteface;
 import pojos.Hospital;
 import pojos.Patient;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import db.inteface.*;
 import db.inteface.*;
@@ -14,7 +15,7 @@ public interface PatientManagerInterface {
 	public void login(Patient patient);
 	public void viewDate(String telephone);
 	public Hospital selectHospitalByID(int id);
-	public List<Hospital> showHospitals();
+	public ArrayList<Hospital> showHospitals();
 	public void addpatientbyRegister(Patient pat);
 }
 

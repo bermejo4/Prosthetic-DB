@@ -3,11 +3,14 @@ package ui;
 import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import pojos.*;
 
 public class InputFlow {
 
@@ -98,15 +101,15 @@ public class InputFlow {
 
 	public static boolean takeAvailable(String choice) {
 
-		BufferedReader reader =  new BufferedReader(new InputStreamReader(System.in));;
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		boolean answer = true;
-		boolean loop=false ;
+		boolean loop = false;
 
 		try {
 			do {
-				if(loop==true) {
+				if (loop == true) {
 					choice = reader.readLine();
-					
+
 				}
 
 				if (choice.equalsIgnoreCase("a") || choice.equalsIgnoreCase("na")) {
@@ -123,9 +126,9 @@ public class InputFlow {
 					System.out.println("Please introduce 'A' for available or 'NA' for not available");
 					loop = true;
 				}
-			
+
 			} while (loop);
-		
+
 		} catch (Exception e) {
 			e.printStackTrace();
 
@@ -235,17 +238,129 @@ public class InputFlow {
 		return day;
 	}
 
-	public boolean checkIdAndList(int id, ArrayList<Integer> list) {
-		boolean check = true;
-		Iterator<Integer> it = list.iterator();
-		while (it.hasNext()) {
-			int num = it.next();
-			if (num == id) {
-				check = false;
-			}
+	public static void printPatientArrayList(ArrayList<Patient> list) {
+		Iterator<Patient> it = list.iterator();
+		Patient pat;
+		while(it.hasNext()) {
+			pat=(Patient) it.next();
+			System.out.println(pat.toString());
 		}
-		return check;
 	}
+	public static int checkIdAndListPPatient(ArrayList<Patient> list) {
+		boolean check = false;
+		Patient pat;
+		int numId,id;
+		Iterator<Patient> it = list.iterator();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		do {
+			System.out.println("This is the available Prosthetic's list:\n");
+			printPatientArrayList(list);
+			id = takeInteger(reader, "Introduce the id:");
+			while (it.hasNext()) {
+				pat=(Patient) it.next();
+				numId=pat.getId();
+				if (numId == id) {
+					check = true;
+					break;
+				}
+			}
+			System.out.println("This id is not in the available list. Try again.\n");
+		}while(!check);
+		return id;
+	}
+	public static void printProstheticArrayList(ArrayList<Prosthetic> list) {
+		Iterator<Prosthetic> it = list.iterator();
+		Prosthetic pros;
+		while(it.hasNext()) {
+			pros=(Prosthetic) it.next();
+			System.out.println(pros.toString());
+		}
+	}
+	public static int checkIdAndListProsthetic(ArrayList<Prosthetic> list) {
+		boolean check = false;
+		Prosthetic pros;
+		int numId,id;
+		Iterator<Prosthetic> it = list.iterator();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		do {
+			System.out.println("This is the available Prosthetic's list:\n");
+			printProstheticArrayList(list);
+			id = takeInteger(reader, "Introduce the id:");
+			while (it.hasNext()) {
+				pros=(Prosthetic) it.next();
+				numId=pros.getId();
+				if (numId == id) {
+					check = true;
+					break;
+				}
+			}
+			System.out.println("This id is not in the available list. Try again.\n");
+		}while(!check);
+		return id;
+	}
+	public static void printDoctorArrayList(ArrayList<Doctor> list) {
+		Iterator<Doctor> it = list.iterator();
+		Doctor doc;
+		while(it.hasNext()) {
+			doc=(Doctor) it.next();
+			System.out.println(doc.toString());
+		}
+	}
+	public static int checkIdAndListDoctor(ArrayList<Doctor> list) {
+		boolean check = false;
+		Doctor doc;
+		int numId,id;
+		Iterator<Doctor> it = list.iterator();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		do {
+			System.out.println("This is the available Doctor's list:\n");
+			printDoctorArrayList(list);
+			id = takeInteger(reader, "Introduce the id:");
+			while (it.hasNext()) {
+				doc=(Doctor) it.next();
+				numId=doc.getId();
+				if (numId == id) {
+					check = true;
+					break;
+				}
+			}
+			System.out.println("This id is not in the available list. Try again.\n");
+		}while(!check);
+		return id;
+	}
+	
+	public static void printHospitalArrayList(ArrayList<Hospital> list) {
+		Iterator<Hospital> it = list.iterator();
+		Hospital hosp;
+		while(it.hasNext()) {
+			hosp=(Hospital) it.next();
+			System.out.println(hosp.toString());
+		}
+	}
+	
+	public static int checkIdAndListHospital(ArrayList<Hospital> list) {
+		boolean check = false;
+		Hospital hosp;
+		int numId,id;
+		Iterator<Hospital> it = list.iterator();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		do {
+			System.out.println("This is the available Hospital's list:\n");
+			printHospitalArrayList(list);
+			id = takeInteger(reader, "Introduce the id:");
+			while (it.hasNext()) {
+				hosp=(Hospital) it.next();
+				numId=hosp.getId();
+				if (numId == id) {
+					check = true;
+					break;
+				}
+			}
+			System.out.println("This id is not in the available list. Try again.\n");
+		}while(!check);
+		return id;
+	}
+	
 
 	public static byte[] takePasswordAndHashIt(BufferedReader reader, String text) {
 		System.out.println(text);

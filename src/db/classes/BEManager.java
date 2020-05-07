@@ -197,7 +197,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1, biomed.getName());
 			prep.setString(2, biomed.getLastname());
-			prep.setString(5, biomed.getTelephone());
+			prep.setString(3, biomed.getTelephone());
 			prep.executeUpdate();
 			prep.close();
 		} catch (Exception e) {
