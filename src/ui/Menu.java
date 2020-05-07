@@ -36,7 +36,7 @@ public class Menu {
 	private static boolean logged;
 
 	public static void main(String[] args) throws Exception {
-		// Connect with the database.
+		// Connect with the database using JDBC.
 		dbManagerInterface = new DBManager();
 		dbManagerInterface.connect();
 		// dbManagerInterface.deleteTables();
@@ -47,6 +47,8 @@ public class Menu {
 		patientManagerInterface = dbManagerInterface.getPatientManager();
 		hospitalManagerInterface = dbManagerInterface.getHospitalManager();
 		biomedManagerInterface = dbManagerInterface.getBiomedManager();
+
+		// Connect with the database using JPA.
 
 		userManagerInterface = new UserManager();
 		userManagerInterface.connect();
