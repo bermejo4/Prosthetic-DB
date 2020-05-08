@@ -140,13 +140,13 @@ public class Menu {
 					System.out.println("2.Login.");
 
 					max = 2;
-					if (logged) {
+					//if (logged) {
 						System.out.println("3.Select a Prosthetic.");
 						System.out.println("4.Select date of fitting.");
 						System.out.println("5.Search a patients file.");
 						System.out.println("6.Add/Modify/Delete a patient.");
 						max = 6;
-					}
+					//}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
 					switch (num) {
@@ -700,8 +700,8 @@ public class Menu {
 		String problem = reader.readLine();
 		System.out.println("Address:");
 		String address = reader.readLine();
-		doctorManagerInterface.doctorsInDatabase();
-		int doctor_id =InputFlow.checkIdAndListDoctor(InputFlow.takeInteger(reader, "Doctor id: "), doctorManagerInterface.doctorsInDatabase());
+		//doctorManagerInterface.doctorsInDatabase();
+		int doctor_id =InputFlow.checkIdAndListDoctor(doctorManagerInterface.doctorsInDatabase());
 		
 		Doctor doctor = new Doctor(doctor_id);
 		if (mood) {
