@@ -228,7 +228,7 @@ public class Menu {
 					case 6: // Delete Prosthetic
 						searchProsthetic();
 
-						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be modified:");
+						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be deleted:");
 						deleteProsthetic(choice);
 
 					default: // back
@@ -291,7 +291,7 @@ public class Menu {
 		String pros_type = reader.readLine();
 		System.out.print("Material made of:");
 		String material = reader.readLine();
-		System.out.print("Prosthetic dimensions:");
+		System.out.println("Prosthetic dimensions:");
 		String dimensions = InputFlow.takeDimension();
 		Float price = InputFlow.takeFloat(reader, "Prosthetic price:");
 		System.out.println("Prosthetic Failures/limitations:");
@@ -318,11 +318,11 @@ public class Menu {
 	public static void deleteProsthetic(int prosID) throws Exception {
 
 		Prosthetic pros = biomedManagerInterface.getProsthetic(prosID);
-		System.out.println("You have choose this prosthetic:\n");
+		
 		if (InputFlow.areYouSure(reader, "Are you sure that do you want to delete this prosthetic?")) {
 			biomedManagerInterface.delete(pros);
 			System.out.println("The prosthetic has been deleted");
-		}
+		} 
 
 	}
 
@@ -458,6 +458,7 @@ public class Menu {
 		System.out.println("2.Password.");
 	}
 
+	//para que imprimir el register menu?
 	public static void registerHospitalMenu() {
 		System.out.println("REGISTER MENU:");
 		System.out.println("1.Name of Hospital.");
@@ -476,7 +477,7 @@ public class Menu {
 		System.out.println("0.Back.");
 	}
 
-	public static void login(Role role) throws Exception {
+	public static void login(Role role) throws Exception { //hacer option para go back 
 		boolean check = true;
 		do {
 			String telephone = InputFlow.takeTelephone(reader, "Introduce the phone number:");
@@ -521,7 +522,7 @@ public class Menu {
 	}
 
 	public static void register(Role role) {
-		String name = InputFlow.takeString(reader, "Introduce your Name:");
+		String name = InputFlow.takeString(reader, "Introduce your name:");
 		String lastname = "error";
 		String address = "error";
 
@@ -695,7 +696,7 @@ public class Menu {
 
 		System.out.println("Gender:");
 		String gender = InputFlow.takeGender(reader, "");
-		System.out.println("Problem:");
+		System.out.println("Problem:"); 
 		String problem = reader.readLine();
 		System.out.println("Address:");
 		String address = reader.readLine();
