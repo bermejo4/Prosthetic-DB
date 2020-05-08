@@ -36,7 +36,7 @@ public class Menu {
 	private static boolean logged;
 
 	public static void main(String[] args) throws Exception {
-		// Connect with the database.
+		// Connect with the database using JDBC.
 		dbManagerInterface = new DBManager();
 		dbManagerInterface.connect();
 		// dbManagerInterface.deleteTables();
@@ -47,6 +47,8 @@ public class Menu {
 		patientManagerInterface = dbManagerInterface.getPatientManager();
 		hospitalManagerInterface = dbManagerInterface.getHospitalManager();
 		biomedManagerInterface = dbManagerInterface.getBiomedManager();
+
+		// Connect with the database using JPA.
 
 		userManagerInterface = new UserManager();
 		userManagerInterface.connect();
@@ -112,11 +114,11 @@ public class Menu {
 						break;
 					case 3:
 						// First, we show all the hospitals
-						System.out.println("The list of the vailable hospitals is:\n");
-						showHospitals();
+						//System.out.println("The list of the available hospitals is:\n");
+						//showHospitals();
 
 						// Then, they select the hospital
-						System.out.println("Now, you need to choose one of them.");
+						//System.out.println("Now, you need to choose one of them.");
 						selectHospitalByID();
 
 						break;
@@ -226,7 +228,7 @@ public class Menu {
 					case 6: // Delete Prosthetic
 						searchProsthetic();
 
-						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be modified:");
+						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be deleted:");
 						deleteProsthetic(choice);
 
 					default: // back
@@ -289,7 +291,7 @@ public class Menu {
 		String pros_type = reader.readLine();
 		System.out.print("Material made of:");
 		String material = reader.readLine();
-		System.out.print("Prosthetic dimensions:");
+		System.out.println("Prosthetic dimensions:");
 		String dimensions = InputFlow.takeDimension();
 		Float price = InputFlow.takeFloat(reader, "Prosthetic price:");
 		System.out.println("Prosthetic Failures/limitations:");
@@ -316,11 +318,11 @@ public class Menu {
 	public static void deleteProsthetic(int prosID) throws Exception {
 
 		Prosthetic pros = biomedManagerInterface.getProsthetic(prosID);
-		System.out.println("You have choose this prosthetic:\n");
+		
 		if (InputFlow.areYouSure(reader, "Are you sure that do you want to delete this prosthetic?")) {
 			biomedManagerInterface.delete(pros);
 			System.out.println("The prosthetic has been deleted");
-		}
+		} 
 
 	}
 
@@ -456,6 +458,7 @@ public class Menu {
 		System.out.println("2.Password.");
 	}
 
+	//para que imprimir el register menu?
 	public static void registerHospitalMenu() {
 		System.out.println("REGISTER MENU:");
 		System.out.println("1.Name of Hospital.");
@@ -474,7 +477,7 @@ public class Menu {
 		System.out.println("0.Back.");
 	}
 
-	public static void login(Role role) throws Exception {
+	public static void login(Role role) throws Exception { //hacer option para go back 
 		boolean check = true;
 		do {
 			String telephone = InputFlow.takeTelephone(reader, "Introduce the phone number:");
@@ -488,21 +491,25 @@ public class Menu {
 				switch (userCheck.getRole().getRole()) {
 				case "patient":
 					System.out.println("Welcome patient!");
+					patientUsing.setTelephone(telephone);
 					logged = true;
 					check=false;
 					break;
 				case "doctor":
 					System.out.println("Welcome doctor!");
+					doctorUsing.setTelephone(telephone);
 					logged = true;
 					check=false;
 					break;
 				case "hospital":
 					System.out.println("You are in a hospital.");
+					hospitalUsing.setTelephone(telephone);
 					logged = true;
 					check=false;
 					break;
 				case "biomedical_Engineer":
 					System.out.println("Welcome biomedical engineer!");
+					biomedical_engUsing.setTelephone(telephone);
 					logged = true;
 					check=false;
 					break;
@@ -515,7 +522,7 @@ public class Menu {
 	}
 
 	public static void register(Role role) {
-		String name = InputFlow.takeString(reader, "Introduce your Name:");
+		String name = InputFlow.takeString(reader, "Introduce your name:");
 		String lastname = "error";
 		String address = "error";
 
@@ -573,10 +580,23 @@ public class Menu {
 		}
 
 	}
-
+	//Este es el de antes cuando funcionaba y ahora no:(((((((((((((((((
+	/*public static void showHospitals() {
+		// To show all Hospitals in our data base
+		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
+		Hospital hosp;
+		hospitalList = patientManagerInterface.showHospitals();
+		Iterator it = hospitalList.iterator();
+		while (it.hasNext()) {
+			hosp = (Hospital) it.next();
+			System.out.println(hosp.toString());
+			System.out.println("");
+		}
+		return hospitalList;
+	}*/
 	public static void showHospitals() {
 		// To show all Hospitals in our data base
-		List<Hospital> hospitalList = new ArrayList<Hospital>();
+		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
 		Hospital hosp;
 		hospitalList = patientManagerInterface.showHospitals();
 		Iterator it = hospitalList.iterator();
@@ -586,11 +606,24 @@ public class Menu {
 			System.out.println("");
 		}
 	}
-
-	public static void selectHospitalByID() {
+	//Este es el de antes cuando funcionaba y ahora no:(((((((((((((((((
+	/*public static void selectHospitalByID() {
 		Hospital hosp;
 		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
+	
 		hosp = patientManagerInterface.selectHospitalByID(id);
+		System.out.println("You have chosen:\n" + hosp.toString());
+		System.out.println("");
+
+	}*/
+
+	public static void selectHospitalByID() {
+		
+		ArrayList<Hospital> hospitalList;
+		Hospital hosp;
+		hospitalList = patientManagerInterface.showHospitals();
+		int idChecked = InputFlow.checkIdAndListHospital(hospitalList);
+		hosp = patientManagerInterface.selectHospitalByID(idChecked);
 		System.out.println("You have chosen:\n" + hosp.toString());
 		System.out.println("");
 
@@ -599,8 +632,9 @@ public class Menu {
 	public static void viewDate() {
 		// To view your own date of fitting
 
-		String telephone = InputFlow.takeTelephone(reader, "Introduce your telephone number: ");
-		patientManagerInterface.viewDate(telephone);
+		//String telephone = InputFlow.takeTelephone(reader, "Introduce your telephone number: ");
+		String myTelephone = patientUsing.getTelephone();
+		patientManagerInterface.viewDate(myTelephone);
 
 	}
 
@@ -644,6 +678,7 @@ public class Menu {
 			System.out.println("\nThis have been the coincidenses for the phone introduced.");
 			System.out.println("Now Introduce the Id number of the patient who want modify:\n");
 			num_id = InputFlow.takeInteger(reader, "Id number:");
+			
 		}
 		Patient pat;
 		System.out.println("Name:");
@@ -661,11 +696,13 @@ public class Menu {
 
 		System.out.println("Gender:");
 		String gender = InputFlow.takeGender(reader, "");
-		System.out.println("Problem:");
+		System.out.println("Problem:"); 
 		String problem = reader.readLine();
 		System.out.println("Address:");
 		String address = reader.readLine();
-		int doctor_id = InputFlow.takeInteger(reader, "Doctor id: ");
+		doctorManagerInterface.doctorsInDatabase();
+		int doctor_id =InputFlow.checkIdAndListDoctor(InputFlow.takeInteger(reader, "Doctor id: "), doctorManagerInterface.doctorsInDatabase());
+		
 		Doctor doctor = new Doctor(doctor_id);
 		if (mood) {
 			pat = new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor);

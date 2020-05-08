@@ -72,7 +72,6 @@ public class DBManager implements DBManagerInterface {
 					+ "telephone TEXT," 
 					+ "department TEXT," 
 					+ "hospital_id	INTEGER," 
-					+ "password BLOB,"
 					+ "FOREIGN KEY('hospital_id') REFERENCES hospital('hospital_id') ON DELETE SET NULL ON UPDATE CASCADE)";
 
 			stmt1.executeUpdate(sql1);
