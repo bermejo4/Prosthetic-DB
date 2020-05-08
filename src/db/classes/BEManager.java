@@ -95,7 +95,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 
 	@Override
 	public Prosthetic getProsthetic(int prostheticID) {
-		Prosthetic newProsthetic = null;
+		Prosthetic newProsthetic = new Prosthetic();
 
 		try {
 			//String sql = "SELECT * FROM prosthetic WHERE prosthetic_id = ?";

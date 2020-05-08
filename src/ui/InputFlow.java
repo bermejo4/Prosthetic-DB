@@ -310,19 +310,22 @@ public class InputFlow {
 		boolean check = false;
 		Doctor doc;
 		int numId,id;
-		Iterator<Doctor> it = list.iterator();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		do {
 			System.out.println("This is the available Doctor's list:\n");
 			printDoctorArrayList(list);
 			id = takeInteger(reader, "Introduce the id:");
+			Iterator<Doctor> it = list.iterator();
 			while (it.hasNext()) {
 				doc=(Doctor) it.next();
 				numId=doc.getId();
+				
 				if (numId == id) {
+					System.out.println();
 					check = true;
-					break;
+					//break;
 				}
+				System.out.println("id==>"+numId+check);
 			}
 			System.out.println("This id is not in the available list. Try again.\n");
 		}while(!check);
