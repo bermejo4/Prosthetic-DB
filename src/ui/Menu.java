@@ -317,7 +317,8 @@ public class Menu {
 
 	public static void deleteProsthetic(int prosID) throws Exception {
 
-		Prosthetic pros = biomedManagerInterface.getProsthetic(prosID);
+		Prosthetic pros = new Prosthetic();
+		pros = biomedManagerInterface.getProsthetic(prosID);
 		
 		if (InputFlow.areYouSure(reader, "Are you sure that do you want to delete this prosthetic?")) {
 			biomedManagerInterface.delete(pros);
