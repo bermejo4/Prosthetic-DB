@@ -185,14 +185,14 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 
-					if(logged) {
+					//if(logged) {
 
 					System.out.println("3. Upload a new Prosthetic.");
 					System.out.println("4. Modify a Prosthetic information.");
 					System.out.println("5. View Uploaded Prosthetics.");
 					System.out.println("6. Delete a Prosthetic.");
 					max = 6;
-					}
+					//}
 					System.out.println("\n0.Back to choose other user to the main menu.");
 
 					int choice;
@@ -246,7 +246,8 @@ public class Menu {
 					max = 2;
 					if (logged) {
 						System.out.println("3.Buy a Prosthetic.");
-						max = 3;
+						System.out.println("4.Generate Hospital XML ");
+						max = 4;
 					}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
@@ -262,6 +263,8 @@ public class Menu {
 					case 3: // Buy a prosthetic
 						buyProsthetic();
 						break;
+					case 4: //Generate the XML of the hospital
+						//generateHospitalXML(hospital_id);
 					default: // back
 						userUsing = false;
 					}
@@ -811,6 +814,10 @@ public class Menu {
 
 		// the specific hospital buys the prosthetic choosed
 		hospitalManagerInterface.buy(/* hospital_id */1, prosthetic_id);
+	}
+	
+	public static void generateHospitalXML(int hospital_id) throws Exception{
+		
 	}
 
 	public static void pressEnter() {
