@@ -153,6 +153,7 @@ public class Menu {
 					//}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
+					int prosId;
 					switch (num) {
 					case 1: // Register
 						registerMenu();
@@ -177,7 +178,8 @@ public class Menu {
 						break;
 					case 7:
 						searchProsthetic();
-						generateXML(prosID);
+						prosId = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic you want to create the XML:");
+						generateXML(prosId);
 						break;
 					default: // back
 						userUsing = false;
