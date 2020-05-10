@@ -339,6 +339,8 @@ public class Menu {
 		//Open the file
 		String nameF= InputFlow.takeString(reader,"Type the filename for the XML document (expected in the xml folder):");
 		File file = new File("./xml/"+nameF);
+		boolean incorrectPros = false;
+		do {
 		 try {
 	        	// Create a DocumentBuilderFactory
 	            DocumentBuilderFactory dBF = DocumentBuilderFactory.newInstance();
@@ -353,14 +355,15 @@ public class Menu {
 	            
 	        } catch (ParserConfigurationException ex) {
 	            System.out.println(file + " error while parsing!");
-	            return;
+	            incorrectPros=true;
 	        } catch (SAXException ex) {
 	            System.out.println(file + " was not well-formed!");
-	            return;
+	            incorrectPros=true;
 	        } catch (IOException ex) {
 	            System.out.println(file + " was not accesible!");
-	            return;
+	            incorrectPros=true;
 	        }
+		}while(incorrectPros);
 		//Unmarshall the Prosthetic from a file
 		Prosthetic pros = (Prosthetic) unmarshal.unmarshal(file);
 		//We print the prosthetic that we are adding to the database
