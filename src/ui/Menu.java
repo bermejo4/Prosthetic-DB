@@ -201,7 +201,8 @@ public class Menu {
 					System.out.println("4. Modify a Prosthetic information.");
 					System.out.println("5. View Uploaded Prosthetics.");
 					System.out.println("6. Delete a Prosthetic.");
-					
+				//	System.out.println("7. Edit user or password");
+				//	System.out.println("8. Delete account");
 					max = 6;
 					//}
 					System.out.println("\n0.Back to choose other user to the main menu.");
@@ -242,6 +243,11 @@ public class Menu {
 						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be deleted:");
 						deleteProsthetic(choice);
 						break;
+						
+					case 7: //Edit user or password
+					
+					case 8: //Delete account
+						
 					
 					default: // back
 						userUsing = false;
@@ -595,6 +601,8 @@ public class Menu {
 		}
 
 	}
+	
+	
 
 	public static void searchPatientByTelephone() {
 		List<Patient> coiList = new ArrayList<Patient>();

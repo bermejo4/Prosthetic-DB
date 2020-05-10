@@ -78,10 +78,14 @@ public class UserManager implements UserManagerInterface {
 		em.getTransaction().commit();
 		em.close();
 	}
-	
 	// its going to be a real user if the password is checked
-	public void deleteUser(User user, int num) {
-		
+	
+	
+	public void deleteUser(User user) {
+		em.getTransaction().begin();
+		em.remove(user);
+		em.getTransaction().commit();
+		em.close();
 		
 	}
 	

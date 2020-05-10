@@ -98,7 +98,6 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		Prosthetic newProsthetic = new Prosthetic();
 
 		try {
-			//String sql = "SELECT * FROM prosthetic WHERE prosthetic_id = ?";
 
 			 String sql = "SELECT * FROM prosthetic AS p JOIN Biomed_Pros AS bp ON p.prosthetic_id = bp.prosID"
 			 + " JOIN biomedical_engineer AS be ON bp.beID = be.be_id WHERE p.prosthetic_id = ?";
