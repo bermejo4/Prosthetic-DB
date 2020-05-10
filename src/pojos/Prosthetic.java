@@ -3,24 +3,47 @@ package pojos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.*;
 
+@XmlAccessorType(XmlAccessType.FIELD) //Here we indicates that the attributes need to be annotated.
+@XmlRootElement(name="prosthetic")
+@XmlType(propOrder = {"patient", "hospital", "type", "material", "dimensions", "price", "failures", "numberFailures", "available", "biomeds"})
 public class Prosthetic implements Serializable {
 
+	//<element attribute="value">text or other elements</element>
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2842189245403761539L;
-
+	@XmlTransient //If we put that we indicates xml to ignore the line of the id. In some cases we migth prefer to use @XmlAttribute (but it is when we dont want to insert more in our db
 	private Integer id;
+	@XmlElement
 	private String type;
+	@XmlElement
 	private String material;
+	@XmlElement
 	private Float price;
+	@XmlElement
 	private String dimensions;
+	@XmlElement
 	private String failures;
+	@XmlElement
 	private Integer numberFailures;
+	@XmlElement //How does xml recognize boolean? You tell as only Integer, Float and text
 	private boolean available;
+	@XmlAttribute
 	private Patient patient;
+	@XmlElement
 	private Hospital hospital;
+	//The annotation that I have done will show the biomeds like that:
+	//<prosthetic>
+	//	<biomeds>
+	//		<biomed></biomed>
+	//		<biomed></<biomed>
+	//	<biomeds>
+	//</prosthetic>
+	@XmlElement(name="biomed")
+	@XmlElementWrapper(name="biomeds")
 	private List<Biomedical_Eng> biomeds; //for the many to many relationship
 
 	
