@@ -218,6 +218,8 @@ public class DoctorManager implements DoctorManagerInterface {
 			prep.setString(3, doc.getTelephone());
 			prep.executeUpdate();
 			prep.close();
+			
+			System.out.println("Succesfully registered!!");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -241,6 +243,7 @@ public class DoctorManager implements DoctorManagerInterface {
 				Doctor doctor=new Doctor(id,name,lastname,tel,hospital);
 				docList.add(doctor);
 			}
+			
 			
 		}catch(Exception e) {
 			e.printStackTrace();
