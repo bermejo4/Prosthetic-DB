@@ -2,6 +2,9 @@ package ui;
 
 import java.io.*;
 import java.util.*;
+
+import javax.xml.bind.*;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -145,6 +148,7 @@ public class Menu {
 						System.out.println("4.Select date of fitting.");
 						System.out.println("5.Search a patients file.");
 						System.out.println("6.Add/Modify/Delete a patient.");
+						System.out.println("7.Generate a Prosthetic XML.");
 						max = 6;
 					//}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
@@ -171,6 +175,10 @@ public class Menu {
 					case 6: // Add/modify/Delete patient.
 						addModifyDelete();
 						break;
+					case 7:
+						searchProsthetic();
+						generateXML(prosID);
+						break;
 					default: // back
 						userUsing = false;
 					}
@@ -191,6 +199,7 @@ public class Menu {
 					System.out.println("4. Modify a Prosthetic information.");
 					System.out.println("5. View Uploaded Prosthetics.");
 					System.out.println("6. Delete a Prosthetic.");
+					
 					max = 6;
 					//}
 					System.out.println("\n0.Back to choose other user to the main menu.");
@@ -230,7 +239,8 @@ public class Menu {
 
 						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be deleted:");
 						deleteProsthetic(choice);
-
+						break;
+					
 					default: // back
 						userUsing = false;
 					}
@@ -285,6 +295,20 @@ public class Menu {
 
 //-----------------------------------------------------------------------------------
 
+	private static void generateXML(int prostheticID) throws Exception {
+		Prosthetic pros =biomedManagerInterface.getProsthetic(prostheticID);
+		//Create a JAXBContext
+		JAXBContext contextP = JAXBContext.newInstance(Prosthetic.class);
+		//Get the marshaller from the JAXBContext 
+		Marshaller marshalP = contextP.createMarshaller();
+		//Pretty formating to predefine things
+		marshalP.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		//Marshal the Prosthetic: first to a file and then to the screen
+		File fileP=new File("./xml/Output-Prosthetic.xml");
+		marshalP.marshal(pros, fileP);
+		marshalP.marshal(pros, System.out);
+	}
+	
 	public static void uploadProsthetic() throws Exception {
 
 		System.out.println("Introduce the new Prosthetic: ");
