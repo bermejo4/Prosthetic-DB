@@ -1,0 +1,13 @@
+<!PROSTYPE Prosthetic [
+	<!ELEMENT prosthetic (material, prize, dimensions, failures, available, biomeds?)>
+	<!ATTLIST prosthetic type CDATA #REQUIRED
+	<!ELEMENT material (#PCDATA)>
+	<!ELEMENT prize (#PCDATA)>
+	<!ELEMENT dimensions (#PCDATA)>
+	<!ELEMENT failures (#PCDATA)>
+	<!ELEMENT available (#PCDATA)>
+	<!ELEMENT biomeds(biomed+)>
+	<!ELEMENT biomed (name)>
+	<!ATTLIST biomed id CDATA #REQUIRED>
+	<!ELEMENT name (#PCDATA)>
+]>

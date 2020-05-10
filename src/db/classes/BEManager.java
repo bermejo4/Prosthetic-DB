@@ -120,7 +120,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 					float price = rs.getFloat(7);
 					boolean available = rs.getBoolean(8);
 					
-					newProsthetic = new Prosthetic(prostheticID, pros_type, material, price, dimensions, failures, 	available);
+					newProsthetic = new Prosthetic(prostheticID, pros_type, material, price, dimensions, failures, available);
 					prosCreated = true;
 				}
 
@@ -129,7 +129,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 				  String biomedName = rs.getString(14);
 				  
 				  Biomedical_Eng newbiomed = new Biomedical_Eng(beID,biomedName);
-				   biomedsLists.add(newbiomed);
+				  biomedsLists.add(newbiomed);
 				 
 
 			}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<prosthetic type = "auricular">
+	<material>plastic</material>
+	<price>1000</price>
+	<dimensions>30x30x30</dimensions>
+	<failures>none</failures>
+    <available>false</available>
+    <biomeds/>
+</prosthetic>
