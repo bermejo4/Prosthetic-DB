@@ -4,6 +4,12 @@ import java.io.*;
 import java.util.*;
 
 import javax.xml.bind.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -14,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import db.classes.*;
 import db.inteface.*;
 import pojos.*;
+import xml.utils.CustomErrorHandler;
 
 public class Menu {
 
@@ -94,7 +101,7 @@ public class Menu {
 			while (userUsing) {
 				switch (userUsingNumber) {
 				case 1: // patient
-					System.out.println("PATIENT MENU:");
+					System.out.println("\nPATIENT MENU:");
 					System.out.println("What do you want to do?");
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
@@ -137,7 +144,7 @@ public class Menu {
 
 //-----------------------------------------------------------------------------------
 				case 2: // Doctor
-					System.out.println("DOCTOR MENU:");
+					System.out.println("\nDOCTOR MENU:");
 					System.out.println("What do you want to do?");
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
@@ -149,7 +156,7 @@ public class Menu {
 						System.out.println("5.Search a patients file.");
 						System.out.println("6.Add/Modify/Delete a patient.");
 						System.out.println("7.Generate a Prosthetic XML.");
-						max = 6;
+						max = 7;
 					//}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
@@ -181,6 +188,7 @@ public class Menu {
 						prosId = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic you want to create the XML:");
 						generateXML(prosId);
 						break;
+				   
 					default: // back
 						userUsing = false;
 					}
@@ -189,7 +197,7 @@ public class Menu {
 //-----------------------------------------------------------------------------------
 
 				case 3: // Biomedical Engineer
-					System.out.println("BIOMEDICAL ENGINEER MENU:");
+					System.out.println("\nBIOMEDICAL ENGINEER MENU:");
 					System.out.println("What do you want to do?");
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
@@ -201,9 +209,12 @@ public class Menu {
 					System.out.println("4. Modify a Prosthetic information.");
 					System.out.println("5. View Uploaded Prosthetics.");
 					System.out.println("6. Delete a Prosthetic.");
+					System.out.println("7. Upload a new Prosthetic through XML.");
+
 				//	System.out.println("7. Edit user or password");
 				//	System.out.println("8. Delete account");
-					max = 6;
+					max = 7;
+
 					//}
 					System.out.println("\n0.Back to choose other user to the main menu.");
 
@@ -244,11 +255,13 @@ public class Menu {
 						deleteProsthetic(choice);
 						break;
 						
-					case 7: //Edit user or password
+					//case 7: Edit user or password
 					
-					case 8: //Delete account
-						
-					
+					//case 8: Delete account
+					case 7:
+						admitProstheticXML();
+						break;
+
 					default: // back
 						userUsing = false;
 					}
@@ -257,7 +270,7 @@ public class Menu {
 //-----------------------------------------------------------------------------------
 
 				case 4: // Hospital
-					System.out.println("HOSPITAL MENU:");
+					System.out.println("\nHOSPITAL MENU:");
 					System.out.println("What do you want to do?");
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
@@ -315,6 +328,52 @@ public class Menu {
 		File fileP=new File("./xml/Output-Prosthetic.xml");
 		marshalP.marshal(pros, fileP);
 		marshalP.marshal(pros, System.out);
+		
+	}
+	
+	
+	private static void admitProstheticXML() throws Exception {
+		JAXBContext contextP = JAXBContext.newInstance(Prosthetic.class);
+		//Here we get the unmarshaller
+		Unmarshaller unmarshal = contextP.createUnmarshaller();
+		//Open the file
+		String nameF= InputFlow.takeString(reader,"Type the filename for the XML document (expected in the xml folder):");
+		File file = new File("./xml/"+nameF);
+		 try {
+	        	// Create a DocumentBuilderFactory
+	            DocumentBuilderFactory dBF = DocumentBuilderFactory.newInstance();
+	            // Set it up so it validates XML documents
+	            dBF.setValidating(true);
+	            // Create a DocumentBuilder and an ErrorHandler (to check validity)
+	            DocumentBuilder builder = dBF.newDocumentBuilder();
+	            xml.utils.CustomErrorHandler customErrorHandler = new CustomErrorHandler();
+	            builder.setErrorHandler(customErrorHandler);
+	            // Parse the XML file and print out the result
+	            Document doc = builder.parse(file);
+	            
+	        } catch (ParserConfigurationException ex) {
+	            System.out.println(file + " error while parsing!");
+	            return;
+	        } catch (SAXException ex) {
+	            System.out.println(file + " was not well-formed!");
+	            return;
+	        } catch (IOException ex) {
+	            System.out.println(file + " was not accesible!");
+	            return;
+	        }
+		//Unmarshall the Prosthetic from a file
+		Prosthetic pros = (Prosthetic) unmarshal.unmarshal(file);
+		//We print the prosthetic that we are adding to the database
+		System.out.println("Added to the Prosthetic database: " + pros.toStringProstheticXML());
+		//Now we insert the prosthetic
+		biomedManagerInterface.insert(pros);
+		//We need the id of the prosthetic because it is not in the XML
+		int id=dbManagerInterface.getLastId();
+		List<Biomedical_Eng> biomeds = pros.getBiomeds();
+		for(Biomedical_Eng biomed: biomeds) {
+			biomedManagerInterface.design(id, biomed.getId());
+			
+		}
 	}
 	
 	public static void uploadProsthetic() throws Exception {
