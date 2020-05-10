@@ -38,16 +38,12 @@ public class BEManager implements db.inteface.BEManagerInterface {
 			PreparedStatement del = c.prepareStatement(sql);
 			del.setInt(1, pros.getId());
 			del.executeUpdate();
-			del.close();
-					
-			
+			del.close();	
 		}catch(Exception e){
-			e.printStackTrace();
-				
-		}
-		
-		
+			e.printStackTrace();		
+		}	
 	}
+	
 	@Override
 	public void upadate(Prosthetic pros) {
 		// we create a prepared statement for our connection
@@ -141,10 +137,11 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		return newProsthetic;
 	}
 
+	@Override
 	public void design(int prosthetic_id, int be_id) {
 
 		try {
-			String sql = "INSERT INTO Biomed_Pros (prosthetic_id ,be_id) " + "VALUES (?,?);";
+			String sql = "INSERT INTO Biomed_Pros (prosID ,beID) " + "VALUES (?,?);";
 			PreparedStatement prep = c.prepareStatement(sql);
 
 			prep.setInt(1, prosthetic_id);
@@ -157,6 +154,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		}
 
 	}
+	
 
 	public List<Prosthetic> showProsthetic() {
 		// Created empty list of prosthetics

@@ -4,6 +4,12 @@ import java.io.*;
 import java.util.*;
 
 import javax.xml.bind.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -14,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import db.classes.*;
 import db.inteface.*;
 import pojos.*;
+import xml.utils.CustomErrorHandler;
 
 public class Menu {
 
@@ -319,9 +326,34 @@ public class Menu {
 	
 	private static void admitProstheticXML() throws Exception {
 		JAXBContext contextP = JAXBContext.newInstance(Prosthetic.class);
+		//Here we get the unmarshaller
 		Unmarshaller unmarshal = contextP.createUnmarshaller();
+		//Open the file
 		String nameF= InputFlow.takeString(reader,"Type the filename for the XML document (expected in the xml folder):");
 		File file = new File("./xml/"+nameF);
+		 try {
+	        	// Create a DocumentBuilderFactory
+	            DocumentBuilderFactory dBF = DocumentBuilderFactory.newInstance();
+	            // Set it up so it validates XML documents
+	            dBF.setValidating(true);
+	            // Create a DocumentBuilder and an ErrorHandler (to check validity)
+	            DocumentBuilder builder = dBF.newDocumentBuilder();
+	            xml.utils.CustomErrorHandler customErrorHandler = new CustomErrorHandler();
+	            builder.setErrorHandler(customErrorHandler);
+	            // Parse the XML file and print out the result
+	            Document doc = builder.parse(file);
+	            
+	        } catch (ParserConfigurationException ex) {
+	            System.out.println(file + " error while parsing!");
+	            return;
+	        } catch (SAXException ex) {
+	            System.out.println(file + " was not well-formed!");
+	            return;
+	        } catch (IOException ex) {
+	            System.out.println(file + " was not accesible!");
+	            return;
+	        }
+		//Unmarshall the Prosthetic from a file
 		Prosthetic pros = (Prosthetic) unmarshal.unmarshal(file);
 		//We print the prosthetic that we are adding to the database
 		System.out.println("Added to the Prosthetic database: " + pros.toStringProstheticXML());
@@ -332,9 +364,8 @@ public class Menu {
 		List<Biomedical_Eng> biomeds = pros.getBiomeds();
 		for(Biomedical_Eng biomed: biomeds) {
 			biomedManagerInterface.design(id, biomed.getId());
+			
 		}
-				
-		
 	}
 	
 	public static void uploadProsthetic() throws Exception {
