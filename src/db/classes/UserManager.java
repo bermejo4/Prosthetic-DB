@@ -81,6 +81,10 @@ public class UserManager implements UserManagerInterface {
 	}
 	
 	// its going to be a real user if the password is checked
+	public void deleteUser(User user, int num) {
+		
+		
+	}
 	
 	@Override
 	public User checkPassword(User userps) {

@@ -10,10 +10,11 @@ public interface UserManagerInterface {
 	public void disconnect();
 	public void createUser(User user);
 	public User checkPassword(User user);
-	Role getRole(int id);
-	void createRole(Role role);
+	public Role getRole(int id);
+	public void createRole(Role role);
 	List<Role> getRoles();
 	public void updateUser(User user, int num);
+	public void deleteUser(User user, int num);
 	
 
 }
