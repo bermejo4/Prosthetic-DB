@@ -7,7 +7,7 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "hospital")
-@XmlType(propOrder = {name, address, patient, telephone, doctors}) //elements will appear like this on the XML
+@XmlType(propOrder = {"name", "address", "patient", "telephone", "doctors"}) //elements will appear like this on the XML
 
 public class Hospital implements Serializable{
 

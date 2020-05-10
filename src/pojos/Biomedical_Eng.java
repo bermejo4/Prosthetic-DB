@@ -3,15 +3,25 @@ package pojos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.*;
 
+@XmlAccessorType(XmlAccessType.FIELD) //Here we indicates that the attributes need to be annotated.
+@XmlRootElement(name="biomed")
 public class Biomedical_Eng implements Serializable {
 
 	private static final long serialVersionUID = -6234822159013375318L;
 	
+	@XmlTransient
 	private Integer id;
+	@XmlAttribute
 	private String name;
+	@XmlElement
 	private String lastname;
+	@XmlElement
 	private String telephone;
+	
+	@XmlElement(name="prosthetic")
+	@XmlElementWrapper(name="prosthetics")
 	private List<Prosthetic> prostheticsList;
 
 	
