@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD) //Here we indicates that the attributes need to be annotated.
 @XmlRootElement(name="prosthetic")
-@XmlType(propOrder = {"type", "material", "dimensions", "price", "failures", "available", "biomeds"})
+@XmlType(propOrder = {"material", "dimensions", "price", "failures", "available", "biomeds"})
 public class Prosthetic implements Serializable {
 
 	//<element attribute="value">text or other elements</element>
@@ -215,7 +215,7 @@ public class Prosthetic implements Serializable {
 	
 	public String toStringProstheticXML() {
 		return "Prosthetic [id=" + id + ", type=" + type + ", material=" + material + ", price=" + price
-				+ ", dimensions=" + dimensions + ", failures=" + failures + ", available=" + available +"]";
+				+ ", dimensions=" + dimensions + ", failures=" + failures + ", numberFailures=" + numberFailures+ ", available=" + available +"]";
 	}
 	
 	// HashCode and Equals methods only with the Id
