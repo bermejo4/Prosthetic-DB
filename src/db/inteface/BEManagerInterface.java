@@ -16,7 +16,7 @@ public interface BEManagerInterface {
 
 	public void insert(Prosthetic pros);
 
-	public Prosthetic getProsthetic(int prostheticID); //para los joins
+	public Prosthetic getProsthetic(int prostheticID); 
 	
 	public void design(int prosthetic_id, int be_id);
 	

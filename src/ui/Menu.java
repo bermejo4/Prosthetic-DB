@@ -1,6 +1,11 @@
 package ui;
 
+import java.awt.Desktop;
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.*;
 
 import javax.xml.bind.*;
@@ -91,7 +96,9 @@ public class Menu {
 			System.out.println("2.Doctor");
 			System.out.println("3.Biomedical Engineer");
 			System.out.println("4.Hospital");
-			System.out.println("\n5.Exit");
+			System.out.println("------------------------");
+			System.out.println("5. Go to the website.");
+			System.out.println("\n0.Exit");
 			System.out.println("---------\n");
 
 			num = requestNumber(5);
@@ -295,18 +302,25 @@ public class Menu {
 						buyProsthetic();
 						break;
 					case 4: //Generate the XML of the hospital
-						//generateHospitalXML(hospital_id);
+						showHospitals();
+						int hospId = InputFlow.takeInteger(reader, "Please, introduce the id of the hospital you want to generate the XML");
+						generateHospitalXML(hospId);
+						break;
 					default: // back
 						userUsing = false;
 					}
 					break;
-				default:// Exit
+				case 0:// Exit
 					// dbManagerInterface.deleteTables(); Quitar // cuando esté terminada la
 					// práctica
 					dbManagerInterface.disconnect();
 					userManagerInterface.disconnect();
 					System.exit(0);
+					break;
+				default: goToWeb();
+				userUsing = false;
 				}
+				
 			}
 
 			pressEnter();
@@ -315,6 +329,29 @@ public class Menu {
 	}
 
 //-----------------------------------------------------------------------------------
+	public static void goToWeb() {
+		System.out.println("Se esta ejecutando la página web");
+        File filehtml = new File("");
+        System.out.println("uri" + filehtml.toURI().toString()+"\n otro:"+filehtml.getAbsolutePath());
+        //openInBrowser("file://"+filehtml.getAbsolutePath()+"/src/arqui/pruebaparabases.html");
+        String url="file://"+filehtml.getAbsolutePath()+"/xml/homeProsthetic_db.html";
+        try {
+            URI uri;
+			try {
+				uri = new URL(url).toURI();
+				Desktop.getDesktop().browse(uri); 
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        } catch (MalformedURLException ex) {
+        	ex.printStackTrace();
+            //Logger.getLogger(AbrirArchivo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+        	ex.printStackTrace();
+            //Logger.getLogger(AbrirArchivo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+	}
 
 	private static void generateXML(int prostheticID) throws Exception {
 		Prosthetic pros =biomedManagerInterface.getProsthetic(prostheticID);
@@ -707,6 +744,7 @@ public class Menu {
 			System.out.println("");
 		}
 	}
+	
 	//Este es el de antes cuando funcionaba y ahora no:(((((((((((((((((
 	public static void selectHospitalByID() {
 		Hospital hosp;
@@ -915,9 +953,20 @@ public class Menu {
 		hospitalManagerInterface.buy(/* hospital_id */1, prosthetic_id);
 	}
 	
-	public static void generateHospitalXML(int hospital_id) throws Exception{
-		
+	
+	private static void generateHospitalXML(int hospital_id) throws Exception{
+		Hospital hospital = hospitalManagerInterface.getHospital(hospital_id);
+		//Defining and creating  JAXB context
+		JAXBContext contextHosp = JAXBContext.newInstance(Hospital.class);
+		//Creating the marshaller
+		Marshaller marsh = contextHosp.createMarshaller();
+		marsh.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		//We create the file to put the xml
+		File file = new File("./xml/Output-Hospital.xml");
+		marsh.marshal(hospital, file);
+		marsh.marshal(hospital, System.out);
 	}
+	
 
 	public static void pressEnter() {
 		System.out.println("Press enter to go to the main menu and continue...");
