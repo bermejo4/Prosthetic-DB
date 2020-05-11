@@ -7,6 +7,7 @@ import pojos.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,5 +90,34 @@ public class HospitalManager implements HospitalManagerInterface {
 
 	}
 	
+	public Hospital getHospital(int hospital_id){
+		Hospital newHosp=null;
+		
+		try {
+			String sql = "SELECT * FROM hospital WHERE hospital_id = ? ";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setInt(1, hospital_id);
+			ResultSet rs = prep.executeQuery();
+			
+			while(rs.next()) {
+				int hospId = rs.getInt(1);
+				String hospName = rs.getString(2);
+				String hospLocation = rs.getString(3);
+				String hospTelephone = rs.getString(4);
+				
+				newHosp = new Hospital(hospId, hospName, hospLocation, hospTelephone);
+			}
+			
+		}
+		
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+	return newHosp;
+	}
+	
+	
 }
+
 

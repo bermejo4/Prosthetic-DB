@@ -10,6 +10,7 @@ public interface HospitalManagerInterface {
 	public void register(Hospital hospital);
 	public void login(Hospital hospital);
 	public void addhospitalbyRegister(Hospital hosp);
+	public Hospital getHospital(int hospital_id);
 	
 	
 }
