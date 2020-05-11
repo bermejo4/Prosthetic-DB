@@ -124,8 +124,8 @@ public class Menu {
 						break;
 					case 3:
 						// First, we show all the hospitals
-						//System.out.println("The list of the available hospitals is:\n");
-						//showHospitals();
+						System.out.println("The list of the available hospitals is:\n");
+						showHospitals();
 
 						// Then, they select the hospital
 						//System.out.println("Now, you need to choose one of them.");
@@ -318,6 +318,7 @@ public class Menu {
 
 	private static void generateXML(int prostheticID) throws Exception {
 		Prosthetic pros =biomedManagerInterface.getProsthetic(prostheticID);
+		System.out.println(pros.toStringProstheticXML());
 		//Create a JAXBContext
 		JAXBContext contextP = JAXBContext.newInstance(Prosthetic.class);
 		//Get the marshaller from the JAXBContext 
@@ -702,12 +703,12 @@ public class Menu {
 		Iterator it = hospitalList.iterator();
 		while (it.hasNext()) {
 			hosp = (Hospital) it.next();
-			System.out.println(hosp.toString());
+			System.out.println(hosp.toStringXML());
 			System.out.println("");
 		}
 	}
 	//Este es el de antes cuando funcionaba y ahora no:(((((((((((((((((
-	/*public static void selectHospitalByID() {
+	public static void selectHospitalByID() {
 		Hospital hosp;
 		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
 	
@@ -715,8 +716,8 @@ public class Menu {
 		System.out.println("You have chosen:\n" + hosp.toString());
 		System.out.println("");
 
-	}*/
-
+	}
+/*
 	public static void selectHospitalByID() {
 		
 		ArrayList<Hospital> hospitalList;
@@ -727,7 +728,7 @@ public class Menu {
 		System.out.println("You have chosen:\n" + hosp.toString());
 		System.out.println("");
 
-	}
+	}*/
 
 	public static void viewDate() {
 		// To view your own date of fitting
@@ -880,6 +881,8 @@ public class Menu {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 	public static void assignProsthetic() {
 		try {

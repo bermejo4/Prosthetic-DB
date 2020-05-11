@@ -24,6 +24,7 @@ public interface BEManagerInterface {
 	
 	public void addBiomedbyRegister(Biomedical_Eng biomed);
 
+	public Prosthetic getProstheticXML(int prostheticID);
 
 }
 
