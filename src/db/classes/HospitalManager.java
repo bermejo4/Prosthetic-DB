@@ -7,6 +7,7 @@ import pojos.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,14 +101,23 @@ public class HospitalManager implements HospitalManagerInterface {
 			
 			while(rs.next()) {
 				int hospId = rs.getInt(1);
-				String hospname = rs.getString(2);
+				String hospName = rs.getString(2);
 				String hospLocation = rs.getString(3);
 				String hospTelephone = rs.getString(4);
 				
-				
+				newHosp = new Hospital(hospId, hospName, hospLocation, hospTelephone);
 			}
 			
 		}
+		
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+	return newHosp;
 	}
+	
+	
 }
+
 

@@ -913,6 +913,7 @@ public class Menu {
 	}
 	
 	public static void generateHospitalXML(int hospital_id) throws Exception{
+		Hospital hospital = hospitalManagerInterface.getHospital(hospital_id);
 		
 	}
 
