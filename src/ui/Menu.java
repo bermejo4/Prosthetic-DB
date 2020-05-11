@@ -302,7 +302,9 @@ public class Menu {
 						buyProsthetic();
 						break;
 					case 4: //Generate the XML of the hospital
-						generateHospitalXML(hospital_id);
+						showHospitals();
+						int hospId = InputFlow.takeInteger(reader, "Please, introduce the id of the hospital you want to generate the XML");
+						generateHospitalXML(hospId);
 						break;
 					default: // back
 						userUsing = false;
