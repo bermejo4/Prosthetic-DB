@@ -914,7 +914,10 @@ public class Menu {
 	
 	public static void generateHospitalXML(int hospital_id) throws Exception{
 		Hospital hospital = hospitalManagerInterface.getHospital(hospital_id);
-		
+		JAXBContext context = JAXBContext.newInstance(Hospital.class);
+		Marshaller marsh = context.createMarshaller();
+		marsh.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		File file = new File("./xmls/Out")
 	}
 
 	public static void pressEnter() {
