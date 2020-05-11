@@ -739,10 +739,11 @@ public class Menu {
 		Iterator it = hospitalList.iterator();
 		while (it.hasNext()) {
 			hosp = (Hospital) it.next();
-			System.out.println(hosp.toString());
+			System.out.println(hosp.toStringXML());
 			System.out.println("");
 		}
 	}
+	
 	//Este es el de antes cuando funcionaba y ahora no:(((((((((((((((((
 	/*public static void selectHospitalByID() {
 		Hospital hosp;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hospital name="la paz">
-    <address>begoña</address>
-    <telephone>123456789</telephone>
+<hospital name="san vicente">
+    <address>mostoles</address>
+    <telephone>123123123</telephone>
     <doctors/>
 </hospital>
