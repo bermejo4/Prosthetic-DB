@@ -88,14 +88,48 @@ public class BEManager implements db.inteface.BEManagerInterface {
 			e.printStackTrace();
 		}
 	}
-
 	@Override
 	public Prosthetic getProsthetic(int prostheticID) {
 		Prosthetic newProsthetic = new Prosthetic();
 
 		try {
 
-			 String sql = "SELECT * FROM prosthetic AS p JOIN Biomed_Pros AS bp ON p.prosthetic_id = bp.prosID"
+			 String sql = "SELECT * FROM prosthetic  WHERE prosthetic_id = ?";
+			 
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setInt(1, prostheticID);
+			ResultSet rs = prep.executeQuery(); // we only get one answer
+			//List<Biomedical_Eng> biomedsLists = new ArrayList<Biomedical_Eng>();
+
+			while (rs.next()) {
+
+					int id= rs.getInt(1);
+
+					String pros_type = rs.getString(2);
+					String material = rs.getString(3);
+					String dimensions = rs.getString(4);
+					//Integer number = rs.getInt(5);
+					String failures = rs.getString(6);
+					float price = rs.getFloat(7);
+					boolean available = rs.getBoolean(8);
+					
+					newProsthetic = new Prosthetic(id, pros_type, material, price, dimensions, failures, available);
+				 
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return newProsthetic;
+	}
+	@Override
+	public Prosthetic getProstheticNotValid(int prostheticID) {
+		Prosthetic newProsthetic = new Prosthetic();
+
+		try {
+
+			 String sql = "SELECT * FROM prosthetic AS p JOIN biomed_pros AS bp ON p.prosthetic_id = bp.prosID"
 			 + " JOIN biomedical_engineer AS be ON bp.beID = be.be_id WHERE p.prosthetic_id = ?";
 			 
 			PreparedStatement prep = c.prepareStatement(sql);
@@ -202,6 +236,8 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		}
 
 	}
+
+
 
 }
 //hacer delete de jpa
