@@ -7,7 +7,7 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "hospital")
-@XmlType(propOrder = {"address", "patient", "telephone", "doctors"}) //elements will appear like this on the XML
+@XmlType(propOrder = {"address","telephone", "doctors"}) //elements will appear like this on the XML
 
 public class Hospital implements Serializable{
 
@@ -117,6 +117,12 @@ public class Hospital implements Serializable{
 		return "Hospital [id= " + id + ", name=" + name + ", address=" + address + ", patient_id=" + patient.getId() + ", telephone="
 				+ telephone + "]";
 	}
+	
+	public String toStringXML() {
+		return "Hospital [id= " + id + ", name=" + name + ", address=" + address + ", telephone="
+				+ telephone + "]";
+	}
+	
 	
 
 	public Integer getId() {
