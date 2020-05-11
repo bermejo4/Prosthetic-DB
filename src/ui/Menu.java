@@ -946,13 +946,17 @@ public class Menu {
 		hospitalManagerInterface.buy(/* hospital_id */1, prosthetic_id);
 	}
 	
+	
 	public static void generateHospitalXML(int hospital_id) throws Exception{
 		Hospital hospital = hospitalManagerInterface.getHospital(hospital_id);
 		JAXBContext context = JAXBContext.newInstance(Hospital.class);
 		Marshaller marsh = context.createMarshaller();
 		marsh.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		File file = new File("./xmls/Out")
+		File file = new File("./xml/Output-Hospital.xml");
+		marsh.marshal(hospital, file);
+		marsh.marshal(hospital, System.out);
 	}
+	
 
 	public static void pressEnter() {
 		System.out.println("Press enter to go to the main menu and continue...");
