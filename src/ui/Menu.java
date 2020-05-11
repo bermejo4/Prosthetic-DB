@@ -302,7 +302,8 @@ public class Menu {
 						buyProsthetic();
 						break;
 					case 4: //Generate the XML of the hospital
-						//generateHospitalXML(hospital_id);
+						generateHospitalXML(hospital_id);
+						break;
 					default: // back
 						userUsing = false;
 					}
@@ -947,11 +948,14 @@ public class Menu {
 	}
 	
 	
-	public static void generateHospitalXML(int hospital_id) throws Exception{
+	private static void generateHospitalXML(int hospital_id) throws Exception{
 		Hospital hospital = hospitalManagerInterface.getHospital(hospital_id);
-		JAXBContext context = JAXBContext.newInstance(Hospital.class);
-		Marshaller marsh = context.createMarshaller();
+		//Defining and creating  JAXB context
+		JAXBContext contextHosp = JAXBContext.newInstance(Hospital.class);
+		//Creating the marshaller
+		Marshaller marsh = contextHosp.createMarshaller();
 		marsh.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		//We create the file to put the xml
 		File file = new File("./xml/Output-Hospital.xml");
 		marsh.marshal(hospital, file);
 		marsh.marshal(hospital, System.out);
