@@ -117,6 +117,7 @@ public class Hospital implements Serializable{
 		return "Hospital [id= " + id + ", name=" + name + ", address=" + address + ", patient_id=" + patient.getId() + ", telephone="
 				+ telephone + "]";
 	}
+	
 
 	public Integer getId() {
 		return id;
