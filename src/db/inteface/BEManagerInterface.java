@@ -16,7 +16,7 @@ public interface BEManagerInterface {
 
 	public void insert(Prosthetic pros);
 
-	public Prosthetic getProsthetic(int prostheticID); 
+	public Prosthetic getProstheticNotValid(int prostheticID); 
 	
 	public void design(int prosthetic_id, int be_id);
 	
@@ -24,7 +24,7 @@ public interface BEManagerInterface {
 	
 	public void addBiomedbyRegister(Biomedical_Eng biomed);
 
-	public Prosthetic getProstheticXML(int prostheticID);
+	public Prosthetic getProsthetic(int prostheticID);
 
 }
 

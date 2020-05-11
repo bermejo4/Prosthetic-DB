@@ -751,7 +751,7 @@ public class Menu {
 		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
 	
 		hosp = patientManagerInterface.selectHospitalByID(id);
-		System.out.println("You have chosen:\n" + hosp.toString());
+		System.out.println("You have chosen:\n" + hosp.toStringXML());
 		System.out.println("");
 
 	}

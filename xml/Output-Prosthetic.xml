@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <prosthetic type="knee">
     <material>plastic</material>
-    <dimensions>30.0x30.0x30.0</dimensions>
+    <dimensions>30.0x20.0x10.0</dimensions>
     <price>2000.0</price>
     <failures>none</failures>
     <available>true</available>
