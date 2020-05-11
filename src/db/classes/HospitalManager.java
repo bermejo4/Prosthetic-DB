@@ -89,5 +89,25 @@ public class HospitalManager implements HospitalManagerInterface {
 
 	}
 	
+	public Hospital getHospital(int hospital_id){
+		Hospital newHosp=null;
+		
+		try {
+			String sql = "SELECT * FROM hospital WHERE hospital_id = ? ";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setInt(1, hospital_id);
+			ResultSet rs = prep.executeQuery();
+			
+			while(rs.next()) {
+				int hospId = rs.getInt(1);
+				String hospname = rs.getString(2);
+				String hospLocation = rs.getString(3);
+				String hospTelephone = rs.getString(4);
+				
+				
+			}
+			
+		}
+	}
 }
 
