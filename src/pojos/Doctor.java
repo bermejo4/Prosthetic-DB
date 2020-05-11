@@ -3,20 +3,30 @@ package pojos;
 import java.io.Serializable;
 //import java.util.List;
 
+import javax.xml.bind.annotation.*;
+
 
 
 //import java.util.ArrayList;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(propOrder = {"name", "lastname", "telephone"})
 
 public class Doctor implements Serializable{
 
 	private static final long serialVersionUID = 3556611086750634776L;
 	
+	@XmlAttribute
 	private Integer id;
+	@XmlElement
 	private String name;
+	@XmlElement
 	private String lastname;
+	@XmlElement
 	private String telephone;
+	@XmlTransient
 	private Hospital hospital;
+	
 	
 	
 	public Doctor() {

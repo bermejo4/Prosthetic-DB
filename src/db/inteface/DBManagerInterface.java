@@ -14,4 +14,5 @@ public interface DBManagerInterface {
 	public PatientManagerInterface getPatientManager();
 	public BEManagerInterface getBiomedManager();
 
+	public int getLastId();
 }

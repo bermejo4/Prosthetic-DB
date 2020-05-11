@@ -1,19 +1,34 @@
 package pojos;
 
 import java.io.Serializable;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "hospital")
+@XmlType(propOrder = {"name", "address", "patient", "telephone", "doctors"}) //elements will appear like this on the XML
 
 public class Hospital implements Serializable{
 
 	private static final long serialVersionUID = 4942876712733558307L;
 	
+	@XmlTransient
 	private Integer id;
+	@XmlAttribute 
 	private String name;
+	@XmlElement
 	private String address;
+	@XmlElement
 	private Patient patient;
+	//i dont know what do type here about xml
+	@XmlElement
 	private String telephone;
+	@XmlElement(name = "doctor")
+	@XmlElementWrapper(name = "doctors")
 	private List<Doctor> doctors;
+	//WILL CREATE A DOCTORS ELEMENT AND INSIDE THE NAME OF THE DOCTORS WORKING ON THAT HOSPITAL
+	
 	
 	public Hospital() {
 		super();

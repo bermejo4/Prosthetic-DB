@@ -38,16 +38,12 @@ public class BEManager implements db.inteface.BEManagerInterface {
 			PreparedStatement del = c.prepareStatement(sql);
 			del.setInt(1, pros.getId());
 			del.executeUpdate();
-			del.close();
-					
-			
+			del.close();	
 		}catch(Exception e){
-			e.printStackTrace();
-				
-		}
-		
-		
+			e.printStackTrace();		
+		}	
 	}
+	
 	@Override
 	public void upadate(Prosthetic pros) {
 		// we create a prepared statement for our connection
@@ -98,7 +94,6 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		Prosthetic newProsthetic = new Prosthetic();
 
 		try {
-			//String sql = "SELECT * FROM prosthetic WHERE prosthetic_id = ?";
 
 			 String sql = "SELECT * FROM prosthetic AS p JOIN Biomed_Pros AS bp ON p.prosthetic_id = bp.prosID"
 			 + " JOIN biomedical_engineer AS be ON bp.beID = be.be_id WHERE p.prosthetic_id = ?";
@@ -120,7 +115,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 					float price = rs.getFloat(7);
 					boolean available = rs.getBoolean(8);
 					
-					newProsthetic = new Prosthetic(prostheticID, pros_type, material, price, dimensions, failures, 	available);
+					newProsthetic = new Prosthetic(prostheticID, pros_type, material, price, dimensions, failures, available);
 					prosCreated = true;
 				}
 
@@ -129,7 +124,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 				  String biomedName = rs.getString(14);
 				  
 				  Biomedical_Eng newbiomed = new Biomedical_Eng(beID,biomedName);
-				   biomedsLists.add(newbiomed);
+				  biomedsLists.add(newbiomed);
 				 
 
 			}
@@ -141,10 +136,11 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		return newProsthetic;
 	}
 
+	@Override
 	public void design(int prosthetic_id, int be_id) {
 
 		try {
-			String sql = "INSERT INTO Biomed_Pros (prosthetic_id ,be_id) " + "VALUES (?,?);";
+			String sql = "INSERT INTO Biomed_Pros (prosID ,beID) " + "VALUES (?,?);";
 			PreparedStatement prep = c.prepareStatement(sql);
 
 			prep.setInt(1, prosthetic_id);
@@ -157,6 +153,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		}
 
 	}
+	
 
 	public List<Prosthetic> showProsthetic() {
 		// Created empty list of prosthetics

@@ -62,12 +62,12 @@ public class UserManager implements UserManagerInterface {
 		List<Role> roles = (List<Role>) q.getResultList();
 		return roles;
 	}
+	
 	@Override
 	public void updateUser(User user, int num) {
 		em = Persistence.createEntityManagerFactory("Prosthetic-provider").createEntityManager();
 		
 		em.getTransaction().begin();
-		
 		switch(num) {
 			case 1: user.setUsername(user.getUsername()); //If you want to modify only your username(telephone)
 			case 2: user.setPassword(user.getPassword());
@@ -75,12 +75,19 @@ public class UserManager implements UserManagerInterface {
 				user.setUsername(user.getUsername());
 				user.setPassword(user.getPassword());
 			}
-		
 		em.getTransaction().commit();
 		em.close();
 	}
-	
 	// its going to be a real user if the password is checked
+	
+	
+	public void deleteUser(User user) {
+		em.getTransaction().begin();
+		em.remove(user);
+		em.getTransaction().commit();
+		em.close();
+		
+	}
 	
 	@Override
 	public User checkPassword(User userps) {

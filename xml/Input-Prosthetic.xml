@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE prosthetic [
+
+	<!ELEMENT prosthetic (material, price, dimensions, failures, available, biomeds?)>
+	<!ATTLIST prosthetic type CDATA #REQUIRED>
+	<!ELEMENT material (#PCDATA)>
+	<!ELEMENT price (#PCDATA)>
+	<!ELEMENT dimensions (#PCDATA)>
+	<!ELEMENT failures (#PCDATA)>
+	<!ELEMENT available (#PCDATA)>
+	<!ELEMENT biomeds (biomed+)>
+	<!ELEMENT biomed (name)>
+	<!ATTLIST biomed id CDATA #REQUIRED>
+	<!ELEMENT name (#PCDATA)>
+]>
+
+<prosthetic type = "hand">
+	<material>plastic</material>
+	<price>1000</price>
+	<dimensions>30x30x30</dimensions>
+	<failures>none</failures>
+    <available>false</available>
+    <biomeds>
+    	<biomed id="2">
+    		<name>Marina</name>
+    	</biomed>
+   </biomeds>
+</prosthetic>
