@@ -1,6 +1,11 @@
 package ui;
 
+import java.awt.Desktop;
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.*;
 
 import javax.xml.bind.*;
@@ -91,7 +96,9 @@ public class Menu {
 			System.out.println("2.Doctor");
 			System.out.println("3.Biomedical Engineer");
 			System.out.println("4.Hospital");
-			System.out.println("\n5.Exit");
+			System.out.println("------------------------");
+			System.out.println("5. Go to the website.");
+			System.out.println("\n0.Exit");
 			System.out.println("---------\n");
 
 			num = requestNumber(5);
@@ -300,13 +307,17 @@ public class Menu {
 						userUsing = false;
 					}
 					break;
-				default:// Exit
+				case 0:// Exit
 					// dbManagerInterface.deleteTables(); Quitar // cuando esté terminada la
 					// práctica
 					dbManagerInterface.disconnect();
 					userManagerInterface.disconnect();
 					System.exit(0);
+					break;
+				default: goToWeb();
+				userUsing = false;
 				}
+				
 			}
 
 			pressEnter();
@@ -315,6 +326,29 @@ public class Menu {
 	}
 
 //-----------------------------------------------------------------------------------
+	public static void goToWeb() {
+		System.out.println("Se esta ejecutando la página web");
+        File filehtml = new File("");
+        System.out.println("uri" + filehtml.toURI().toString()+"\n otro:"+filehtml.getAbsolutePath());
+        //openInBrowser("file://"+filehtml.getAbsolutePath()+"/src/arqui/pruebaparabases.html");
+        String url="file://"+filehtml.getAbsolutePath()+"/xml/homeProsthetic_db.html";
+        try {
+            URI uri;
+			try {
+				uri = new URL(url).toURI();
+				Desktop.getDesktop().browse(uri); 
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        } catch (MalformedURLException ex) {
+        	ex.printStackTrace();
+            //Logger.getLogger(AbrirArchivo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+        	ex.printStackTrace();
+            //Logger.getLogger(AbrirArchivo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+	}
 
 	private static void generateXML(int prostheticID) throws Exception {
 		Prosthetic pros =biomedManagerInterface.getProsthetic(prostheticID);
