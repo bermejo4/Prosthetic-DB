@@ -664,6 +664,10 @@ public class Menu {
 
 	}
 	
+	public static void deleteUser() {
+		
+		//User deletedUser = 
+	}
 	
 
 	public static void searchPatientByTelephone() {
