@@ -174,7 +174,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 	public void design(int prosthetic_id, int be_id) {
 
 		try {
-			String sql = "INSERT INTO Biomed_Pros (prosID ,beID) " + "VALUES (?,?);";
+			String sql = "INSERT INTO biomed_pros (prosID ,beID) " + "VALUES (?,?);";
 			PreparedStatement prep = c.prepareStatement(sql);
 
 			prep.setInt(1, prosthetic_id);
@@ -240,4 +240,4 @@ public class BEManager implements db.inteface.BEManagerInterface {
 
 
 }
-//hacer delete de jpa
+

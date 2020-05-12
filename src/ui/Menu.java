@@ -409,19 +409,17 @@ public class Menu {
 		//Now we insert the prosthetic
 		biomedManagerInterface.insert(pros);
 		//We need the id of the prosthetic because it is not in the XML
-		int id=dbManagerInterface.getLastId();
+		int prosId=dbManagerInterface.getLastId();
 		List<Biomedical_Eng> biomeds = pros.getBiomeds();
 		for(Biomedical_Eng biomed: biomeds) {
-			biomedManagerInterface.design(id, biomed.getId());
+			biomedManagerInterface.design(prosId, biomed.getId());
 			
 		}
 	}
 	
 	public static void uploadProsthetic() throws Exception {
 
-		System.out.println("Introduce the new Prosthetic: ");
-		// System.out.print("Name:");
-		// String name = reader.readLine();
+		System.out.println("Introduce the new Prosthetic: "); 
 		System.out.print("Specify Prosthetic type(ex. Below the knee, Auricular, etc):");
 		String pros_type = reader.readLine();
 		System.out.print("Material made of:");
