@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hospital name="san vicente">
-    <address>mostoles</address>
-    <telephone>123123123</telephone>
+<hospital name="santa sofia">
+    <address>caracas</address>
+    <telephone>615615615</telephone>
     <doctors/>
 </hospital>
