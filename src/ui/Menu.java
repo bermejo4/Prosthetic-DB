@@ -933,7 +933,7 @@ public class Menu {
 			int num_id_pat = InputFlow.takeInteger(reader, "Id number:");
 			doctorManagerInterface.assignProstheticToPatient(num_id_prost, num_id_pat);
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 	}
 
