@@ -16,11 +16,13 @@ public interface BEManagerInterface {
 
 	public void insert(Prosthetic pros);
 
-	public Prosthetic getProstheticNotValid(int prostheticID); 
+	public Prosthetic getProstheticMM(int prostheticID); 
 	
 	public void design(int prosthetic_id, int be_id);
 	
 	public List<Prosthetic> showProsthetic();
+	
+	public List<Biomedical_Eng> showBiomedics();
 	
 	public void addBiomedbyRegister(Biomedical_Eng biomed);
 

@@ -98,13 +98,11 @@ public class BEManager implements db.inteface.BEManagerInterface {
 			 
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setInt(1, prostheticID);
-			ResultSet rs = prep.executeQuery(); // we only get one answer
-			//List<Biomedical_Eng> biomedsLists = new ArrayList<Biomedical_Eng>();
+			ResultSet rs = prep.executeQuery(); 
 
 			while (rs.next()) {
 
 					int id= rs.getInt(1);
-
 					String pros_type = rs.getString(2);
 					String material = rs.getString(3);
 					String dimensions = rs.getString(4);
@@ -124,7 +122,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		return newProsthetic;
 	}
 	@Override
-	public Prosthetic getProstheticNotValid(int prostheticID) {
+	public Prosthetic getProstheticMM(int prostheticID) {
 		Prosthetic newProsthetic = new Prosthetic();
 
 		try {
@@ -140,8 +138,9 @@ public class BEManager implements db.inteface.BEManagerInterface {
 			boolean prosCreated = false;
 			while (rs.next()) {
 
-				if (!prosCreated) {
-//when doing joins we use numbers instead of column names 
+				if (!prosCreated) {//to get one prosthetic and not repeated ones
+					//when doing joins we use numbers instead of column names 
+					int prosID = rs.getInt(1);
 					String pros_type = rs.getString(2);
 					String material = rs.getString(3);
 					String dimensions = rs.getString(4);
@@ -149,7 +148,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 					float price = rs.getFloat(7);
 					boolean available = rs.getBoolean(8);
 					
-					newProsthetic = new Prosthetic(prostheticID, pros_type, material, price, dimensions, failures, available);
+					newProsthetic = new Prosthetic(prosID, pros_type, material, price, dimensions, failures, available);
 					prosCreated = true;
 				}
 
@@ -162,6 +161,9 @@ public class BEManager implements db.inteface.BEManagerInterface {
 				 
 
 			}
+			
+			newProsthetic.setBiomeds(biomedsLists);
+		
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -174,7 +176,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 	public void design(int prosthetic_id, int be_id) {
 
 		try {
-			String sql = "INSERT INTO biomed_pros (prosID ,beID) " + "VALUES (?,?);";
+			String sql = "INSERT INTO biomed_pros (prosID , beID) " + "VALUES (?,?);";
 			PreparedStatement prep = c.prepareStatement(sql);
 
 			prep.setInt(1, prosthetic_id);
@@ -234,6 +236,30 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+	}
+	
+	public List<Biomedical_Eng> showBiomedics() {
+		// Created empty list of biomedics
+		List<Biomedical_Eng> biomedList = new ArrayList<Biomedical_Eng>();
+		try {
+			String sql = "SELECT * FROM biomedical_engineer ";
+			PreparedStatement find1 = c.prepareStatement(sql);
+			ResultSet rs = find1.executeQuery();
+			while (rs.next()) {
+				int be_id = rs.getInt("be_id");
+				String name = rs.getString("name");
+				String lastname = rs.getString("lastname");
+				String telephone = rs.getString("telphone");
+				
+				Biomedical_Eng newbiomed = new Biomedical_Eng(be_id,name, lastname,telephone);
+				biomedList.add(newbiomed);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return biomedList;
 
 	}
 
