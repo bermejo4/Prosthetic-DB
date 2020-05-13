@@ -44,6 +44,16 @@ public class Biomedical_Eng implements Serializable {
 
 
 
+	public Biomedical_Eng(Integer id, String name, String lastname, String telephone) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.lastname = lastname;
+		this.telephone = telephone;
+	}
+
+
+
 	public Biomedical_Eng( String name, String lastname, String telephone) {
 		super();
 		

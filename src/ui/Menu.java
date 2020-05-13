@@ -239,9 +239,12 @@ public class Menu {
 						break;
 
 					case 3: // Upload a new Prosthetic
-						uploadProsthetic();
+						Prosthetic pros = uploadProsthetic();
+						
+						int prosID = pros.getId(); 
+					    designProsthetic(prosID);
 						break;
-
+ 
 					case 4: // Modify Prosthetic information
 						searchProsthetic();
 
@@ -417,7 +420,7 @@ public class Menu {
 		}
 	}
 	
-	public static void uploadProsthetic() throws Exception {
+	public static Prosthetic uploadProsthetic() throws Exception {
 
 		System.out.println("Introduce the new Prosthetic: "); 
 		System.out.print("Specify Prosthetic type(ex. Below the knee, Auricular, etc):");
@@ -437,14 +440,20 @@ public class Menu {
 		Prosthetic createProsthetic = new Prosthetic(pros_type, material, price, dimensions, failures, available);
 		biomedManagerInterface.insert(createProsthetic);
 		System.out.println("Your new prosthetic has been successfully uploaded! ");
+		return createProsthetic;
 
 	}
 
 	public static void designProsthetic(int prosID) throws Exception {
 
-		// System.out.println(" your ID is :" + );
+		//medicine hace el papel de biomedico 
+		List<Biomedical_Eng> biomedsLists = biomedManagerInterface.showBiomedics();
+		
+		int biomed_id = biomedical_engUsing.getId(); 
+		System.out.println(" Your ID: " + biomed_id);
+		System.out.println("You are now an author of the prosthetic " + prosID);
 
-		// biomedManagerInterface.design(prosID, be_id);
+		biomedManagerInterface.design(prosID, biomed_id);
 
 	}
 
