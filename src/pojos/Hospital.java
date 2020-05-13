@@ -175,10 +175,8 @@ public class Hospital implements Serializable{
 		this.doctors = doctors;
 	}
 	
-	// create additional method to add to list
 	
-	// create additional method to remove from list
-	
+
 	
 	
 	
