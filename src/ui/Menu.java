@@ -243,8 +243,6 @@ public class Menu {
 
 					case 3: // Upload a new Prosthetic
 						Prosthetic pros = uploadProsthetic();
-						
-						
 						int prosID =dbManagerInterface.getLastId(); 
 					    designProsthetic(prosID);
 						break;
