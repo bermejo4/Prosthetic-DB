@@ -101,6 +101,20 @@ public class PatientManager implements PatientManagerInterface {
 			e.printStackTrace();
 			}
 	}
+	
+	public void assignHospitalID(String telephone, int hos_id) {
+		try {
+			String sql = "UPDATE patient SET hospital_id=? WHERE telephone=?;";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setInt(1, hos_id);
+			prep.setString(2, telephone);
+			prep.executeUpdate();
+			prep.close();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 		
 	
 	

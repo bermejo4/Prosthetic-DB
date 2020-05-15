@@ -86,7 +86,7 @@ public class Menu {
 
 		int max;
 
-		System.out.println("WELCOME! THIS IS A PROSTHETIC DATABASE");
+		System.out.println("\nWELCOME! THIS IS A PROSTHETIC DATABASE");
 		// dbManagerInterface.deleteTables();
 		// initializeDatabaseWithSomeValues();
 
@@ -729,20 +729,7 @@ public class Menu {
 		}
 
 	}
-	//Este es el de antes cuando funcionaba y ahora no:(((((((((((((((((
-	/*public static void showHospitals() {
-		// To show all Hospitals in our data base
-		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
-		Hospital hosp;
-		hospitalList = patientManagerInterface.showHospitals();
-		Iterator it = hospitalList.iterator();
-		while (it.hasNext()) {
-			hosp = (Hospital) it.next();
-			System.out.println(hosp.toString());
-			System.out.println("");
-		}
-		return hospitalList;
-	}*/
+	
 	public static void showHospitals() {
 		// To show all Hospitals in our data base
 		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
@@ -756,7 +743,7 @@ public class Menu {
 		}
 	}
 	
-	//Este es el de antes cuando funcionaba y ahora no:(((((((((((((((((
+	
 	public static void selectHospitalByID() {
 		Hospital hosp;
 		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
@@ -766,6 +753,7 @@ public class Menu {
 		System.out.println("");
 
 	}
+	
 /*
 	public static void selectHospitalByID() {
 		

@@ -121,6 +121,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 
 		return newProsthetic;
 	}
+	
 	@Override
 	public Prosthetic getProstheticMM(int prostheticID) {
 		Prosthetic newProsthetic = new Prosthetic();
