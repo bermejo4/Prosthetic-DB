@@ -555,7 +555,7 @@ public class Menu {
 	}
 
 	public static int requestNumber(int max) {
-		// int max is the maximun option that is acceptable
+		// int max is the maximum option that is acceptable
 		int num;
 		do {
 
@@ -579,7 +579,7 @@ public class Menu {
 		 * <<<<<<< HEAD dbManagerInterface.initializeBiomedics("Gabriela", "Api");
 		 * dbManagerInterface.initializeBiomedics("Marina", "Gonzales"); =======
 		 * dbManagerInterface.initializeBiomedics("Gabriela", "Apicella");
-		 * dbManagerInterface.initializeBiomedics("Marina", "Miguelez"); >>>>>>> branch
+		 * dbManagerInterface.initializeBiomedics("Marina", "Miguelez"); 
 		 * 'master' of https://github.com/bermejo4/Prosthetic-DB.git
 		 * dbManagerInterface.initializeBiomedics("Jaime", "Bermejo");
 		 * dbManagerInterface.initializeBiomedics("Maria Celeste", "Ortega");
@@ -877,38 +877,46 @@ public class Menu {
 		doctorManagerInterface.assignDOF(dateToPass, pac);
 	}
 
-	public static void searchProsthetic() {// falta que si no la encuentra go back
+	public static void searchProsthetic() {
 		Prosthetic prost;
 		searchProstheticMenu();
 		int option = requestNumber(4);
+		boolean searched=true;
 
 		List<Prosthetic> prostheticList = new ArrayList<Prosthetic>();
 		try {
-			switch (option) {
-			case 1:// material
-				System.out.println("Name of the material you are looking for:");
-				String materialpassed = reader.readLine();
-				prostheticList = doctorManagerInterface.selectProsthetic("material", materialpassed);
-				break;
-			case 2:// type
-				System.out.println("Specify which type of prosthetic you are looking for:");
-				String typepassed = reader.readLine();
-				prostheticList = doctorManagerInterface.selectProsthetic("type", typepassed);
-				break;
-			case 3:// dimension
-				System.out.println("Specify the dimensions of prosthetic you are looking for:");
-				String dimensionpassed = InputFlow.takeDimension();
-				prostheticList = doctorManagerInterface.selectProsthetic("dimension", dimensionpassed);
-				break;
-			case 4:// failures
-				System.out.println("Specify the kind of failures you are looking for:");
-				String failurespassed = reader.readLine();
-				prostheticList = doctorManagerInterface.selectProsthetic("failures", failurespassed);
-				break;
-			default: // back?? si no la encuentra pueda volver al menu
-
-			}
-
+			do {
+				switch (option) {
+				case 1:// material
+					System.out.println("Name of the material you are looking for:");
+					String materialpassed = reader.readLine();
+					prostheticList = doctorManagerInterface.selectProsthetic("material", materialpassed);
+					searched=false;
+					break;
+				case 2:// type
+					System.out.println("Specify which type of prosthetic you are looking for:");
+					String typepassed = reader.readLine();
+					prostheticList = doctorManagerInterface.selectProsthetic("type", typepassed);
+					searched=false;
+					break;
+				case 3:// dimension
+					System.out.println("Specify the dimensions of prosthetic you are looking for:");
+					String dimensionpassed = InputFlow.takeDimension();
+					prostheticList = doctorManagerInterface.selectProsthetic("dimension", dimensionpassed);
+					searched=false;
+					break;
+				case 4:// failures
+					System.out.println("Specify the kind of failures you are looking for:");
+					String failurespassed = reader.readLine();
+					prostheticList = doctorManagerInterface.selectProsthetic("failures", failurespassed);
+					searched=false;
+					break;
+				default: 
+					searched=false;
+					break;
+				}
+			} while(searched);
+			
 			if (prostheticList.isEmpty()) {
 
 				System.out.println("No file found for that search..Try again");
