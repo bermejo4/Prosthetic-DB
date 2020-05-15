@@ -66,7 +66,8 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		}
 
 	}
-
+	public void assign(Prosthetic pros, int id)
+}
 	@Override
 	public void insert(Prosthetic pros) {
 		try {
@@ -262,6 +263,8 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		return biomedList;
 
 	}
+	
+
 
 
 

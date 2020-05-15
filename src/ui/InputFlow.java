@@ -250,12 +250,12 @@ public class InputFlow {
 		boolean check = false;
 		Patient pat;
 		int numId,id;
-		Iterator<Patient> it = list.iterator();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		do {
 			System.out.println("This is the available Prosthetic's list:\n");
 			printPatientArrayList(list);
 			id = takeInteger(reader, "Introduce the id:");
+			Iterator<Patient> it = list.iterator();
 			while (it.hasNext()) {
 				pat=(Patient) it.next();
 				numId=pat.getId();
@@ -280,12 +280,13 @@ public class InputFlow {
 		boolean check = false;
 		Prosthetic pros;
 		int numId,id;
-		Iterator<Prosthetic> it = list.iterator();
+		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		do {
 			System.out.println("This is the available Prosthetic's list:\n");
 			printProstheticArrayList(list);
 			id = takeInteger(reader, "Introduce the id:");
+			Iterator<Prosthetic> it = list.iterator();
 			while (it.hasNext()) {
 				pros=(Prosthetic) it.next();
 				numId=pros.getId();
@@ -345,12 +346,12 @@ public class InputFlow {
 		boolean check = false;
 		Hospital hosp;
 		int numId,id;
-		Iterator<Hospital> it = list.iterator();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		do {
 			System.out.println("This is the available Hospital's list:\n");
 			printHospitalArrayList(list);
 			id = takeInteger(reader, "Introduce the id:");
+			Iterator<Hospital> it = list.iterator();
 			while (it.hasNext()) {
 				hosp=(Hospital) it.next();
 				numId=hosp.getId();
