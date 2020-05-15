@@ -17,5 +17,5 @@ public interface DoctorManagerInterface {
 	public void assignProstheticToPatient(int prost_id, int pat_id);
 	public void addDoctorbyRegister(Doctor doc);
 	public ArrayList<Doctor> doctorsInDatabase();
-	public void assignDoctortoHospital(int hospital_id);
+	public void assignDoctortoHospital(int hospital_id, String doctelephone);
 }
