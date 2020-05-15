@@ -193,7 +193,7 @@ public class DoctorManager implements DoctorManagerInterface {
 		return patientfound;
 	}
 	public Patient searchSpecificPatientByTelephone(String telephone) {
-		//search the patient that fit the id
+		
 		Patient patientfound=new Patient();
 		try {
 			String sql = "SELECT * FROM patient WHERE telephone LIKE ?";
@@ -213,13 +213,11 @@ public class DoctorManager implements DoctorManagerInterface {
 				String problem = rs.getString("problem");
 				int doctor_id=rs.getInt("doctor_id");
 				Doctor doctor = new Doctor(doctor_id);
-				// create a new patient
 				patientfound = new Patient(id,name,lastname,telephone,dob,dof,gender,problem,address,doctor);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		// Return the patient
 		return patientfound;
 	}
 	
