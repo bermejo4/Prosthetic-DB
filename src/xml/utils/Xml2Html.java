@@ -26,7 +26,7 @@ public class Xml2Html {
 	}
 
 	public static void main(String[] args) {
-		simpleTransform("./xml/Output-Prosthetic.xml", "./xml/ProstheticWebPT.xslt", "./xml/Prosthetic.html");
+		simpleTransform("./xml/Output-Prosthetic.xml", "./xml/ProstheticWebPT.xslt", "./xml/Prosthetictmp.html");
 
 	}
 }
