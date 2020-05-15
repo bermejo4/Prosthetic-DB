@@ -131,8 +131,8 @@ public class Menu {
 						break;
 					case 3:
 						// First, we show all the hospitals
-						//System.out.println("The list of the available hospitals is:\n");
-						//showHospitals();
+						System.out.println("The list of the available hospitals is:\n");
+						showHospitals();
 
 						// Then, they select the hospital
 						//System.out.println("Now, you need to choose one of them.");
@@ -239,9 +239,12 @@ public class Menu {
 						break;
 
 					case 3: // Upload a new Prosthetic
-						uploadProsthetic();
+						Prosthetic pros = uploadProsthetic();
+						
+						int prosID = pros.getId(); 
+					    designProsthetic(prosID);
 						break;
-
+ 
 					case 4: // Modify Prosthetic information
 						searchProsthetic();
 
@@ -302,7 +305,10 @@ public class Menu {
 						buyProsthetic();
 						break;
 					case 4: //Generate the XML of the hospital
-						//generateHospitalXML(hospital_id);
+						showHospitals();
+						int hospId = InputFlow.takeInteger(reader, "Please, introduce the id of the hospital you want to generate the XML");
+						generateHospitalXML(hospId);
+						break;
 					default: // back
 						userUsing = false;
 					}
@@ -352,6 +358,7 @@ public class Menu {
 
 	private static void generateXML(int prostheticID) throws Exception {
 		Prosthetic pros =biomedManagerInterface.getProsthetic(prostheticID);
+		System.out.println(pros.toStringProstheticXML());
 		//Create a JAXBContext
 		JAXBContext contextP = JAXBContext.newInstance(Prosthetic.class);
 		//Get the marshaller from the JAXBContext 
@@ -405,19 +412,17 @@ public class Menu {
 		//Now we insert the prosthetic
 		biomedManagerInterface.insert(pros);
 		//We need the id of the prosthetic because it is not in the XML
-		int id=dbManagerInterface.getLastId();
+		int prosId=dbManagerInterface.getLastId();
 		List<Biomedical_Eng> biomeds = pros.getBiomeds();
 		for(Biomedical_Eng biomed: biomeds) {
-			biomedManagerInterface.design(id, biomed.getId());
+			biomedManagerInterface.design(prosId, biomed.getId());
 			
 		}
 	}
 	
-	public static void uploadProsthetic() throws Exception {
+	public static Prosthetic uploadProsthetic() throws Exception {
 
-		System.out.println("Introduce the new Prosthetic: ");
-		// System.out.print("Name:");
-		// String name = reader.readLine();
+		System.out.println("Introduce the new Prosthetic: "); 
 		System.out.print("Specify Prosthetic type(ex. Below the knee, Auricular, etc):");
 		String pros_type = reader.readLine();
 		System.out.print("Material made of:");
@@ -435,14 +440,20 @@ public class Menu {
 		Prosthetic createProsthetic = new Prosthetic(pros_type, material, price, dimensions, failures, available);
 		biomedManagerInterface.insert(createProsthetic);
 		System.out.println("Your new prosthetic has been successfully uploaded! ");
+		return createProsthetic;
 
 	}
 
 	public static void designProsthetic(int prosID) throws Exception {
 
-		// System.out.println(" your ID is :" + );
+		//medicine hace el papel de biomedico 
+		List<Biomedical_Eng> biomedsLists = biomedManagerInterface.showBiomedics();
+		
+		int biomed_id = biomedical_engUsing.getId(); 
+		System.out.println(" Your ID: " + biomed_id);
+		System.out.println("You are now an author of the prosthetic " + prosID);
 
-		// biomedManagerInterface.design(prosID, be_id);
+		biomedManagerInterface.design(prosID, biomed_id);
 
 	}
 
@@ -698,6 +709,10 @@ public class Menu {
 
 	}
 	
+	public static void deleteUser() {
+		
+		//User deletedUser = 
+	}
 	
 
 	public static void searchPatientByTelephone() {
@@ -736,21 +751,22 @@ public class Menu {
 		Iterator it = hospitalList.iterator();
 		while (it.hasNext()) {
 			hosp = (Hospital) it.next();
-			System.out.println(hosp.toString());
+			System.out.println(hosp.toStringXML());
 			System.out.println("");
 		}
 	}
+	
 	//Este es el de antes cuando funcionaba y ahora no:(((((((((((((((((
-	/*public static void selectHospitalByID() {
+	public static void selectHospitalByID() {
 		Hospital hosp;
 		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
 	
 		hosp = patientManagerInterface.selectHospitalByID(id);
-		System.out.println("You have chosen:\n" + hosp.toString());
+		System.out.println("You have chosen:\n" + hosp.toStringXML());
 		System.out.println("");
 
-	}*/
-
+	}
+/*
 	public static void selectHospitalByID() {
 		
 		ArrayList<Hospital> hospitalList;
@@ -761,7 +777,7 @@ public class Menu {
 		System.out.println("You have chosen:\n" + hosp.toString());
 		System.out.println("");
 
-	}
+	}*/
 
 	public static void viewDate() {
 		// To view your own date of fitting
@@ -914,6 +930,8 @@ public class Menu {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 	public static void assignProsthetic() {
 		try {
@@ -924,7 +942,7 @@ public class Menu {
 			int num_id_pat = InputFlow.takeInteger(reader, "Id number:");
 			doctorManagerInterface.assignProstheticToPatient(num_id_prost, num_id_pat);
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 	}
 
@@ -946,10 +964,20 @@ public class Menu {
 		hospitalManagerInterface.buy(/* hospital_id */1, prosthetic_id);
 	}
 	
-	public static void generateHospitalXML(int hospital_id) throws Exception{
+	
+	private static void generateHospitalXML(int hospital_id) throws Exception{
 		Hospital hospital = hospitalManagerInterface.getHospital(hospital_id);
-		
+		//Defining and creating  JAXB context
+		JAXBContext contextHosp = JAXBContext.newInstance(Hospital.class);
+		//Creating the marshaller
+		Marshaller marsh = contextHosp.createMarshaller();
+		marsh.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		//We create the file to put the xml
+		File file = new File("./xml/Output-Hospital.xml");
+		marsh.marshal(hospital, file);
+		marsh.marshal(hospital, System.out);
 	}
+	
 
 	public static void pressEnter() {
 		System.out.println("Press enter to go to the main menu and continue...");

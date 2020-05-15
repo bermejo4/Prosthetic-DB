@@ -12,7 +12,7 @@ public class Biomedical_Eng implements Serializable {
 
 	private static final long serialVersionUID = -6234822159013375318L;
 	
-	@XmlAttribute
+	@XmlAttribute //pq no lo ponen como transient 
 	private Integer id;
 	@XmlElement
 	private String name;
@@ -40,6 +40,16 @@ public class Biomedical_Eng implements Serializable {
 		this.id = id;
 		this.name = name;
 		this.prostheticsList =  new ArrayList<Prosthetic>();
+	}
+
+
+
+	public Biomedical_Eng(Integer id, String name, String lastname, String telephone) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.lastname = lastname;
+		this.telephone = telephone;
 	}
 
 

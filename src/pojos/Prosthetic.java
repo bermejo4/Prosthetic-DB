@@ -5,17 +5,20 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.*;
 
-@XmlAccessorType(XmlAccessType.FIELD) //Here we indicates that the attributes need to be annotated.
-@XmlRootElement(name="prosthetic")
-@XmlType(propOrder = {"type", "material", "dimensions", "price", "failures", "available", "biomeds"})
+@XmlAccessorType(XmlAccessType.FIELD) // Here we indicates that the attributes need to be annotated.
+@XmlRootElement(name = "prosthetic")
+@XmlType(propOrder = { "material", "dimensions", "price", "failures", "available", "biomeds" }) // Order in which the
+																								// elements appear
 public class Prosthetic implements Serializable {
 
-	//<element attribute="value">text or other elements</element>
+	// <element attribute="value">text or other elements</element>
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2842189245403761539L;
-	@XmlTransient //If we put that we indicates xml to ignore the line of the id. In some cases we migth prefer to use @XmlAttribute (but it is when we dont want to insert more in our db
+	@XmlTransient   // If we put that we indicate xml to ignore the line of the id. In some cases we
+					// prefer to use @XmlAttribute (but it is when we dont want to insert more in
+					// our db)
 	private Integer id;
 	@XmlAttribute
 	private String type;
@@ -29,38 +32,31 @@ public class Prosthetic implements Serializable {
 	private String failures;
 	@XmlTransient
 	private Integer numberFailures;
-	@XmlElement //How does xml recognize boolean? You tell as only Integer, Float and text
+	@XmlElement // How does xml recognize boolean? You tell as only Integer, Float and text
 	private boolean available;
 	@XmlTransient
 	private Patient patient;
 	@XmlTransient
 	private Hospital hospital;
-	//The annotation that I have done will show the biomeds like that:
-	//<prosthetic>
-	//	<biomeds>
-	//		<biomed></biomed>
-	//		<biomed></<biomed>
-	//	<biomeds>
-	//</prosthetic>
-	@XmlElement(name="biomed")
-	@XmlElementWrapper(name="biomeds")
-	private List<Biomedical_Eng> biomeds; //for the many to many relationship
+	// The annotation that I have done will show the biomeds like that:
+	// <prosthetic>
+	// <biomeds>
+	// <biomed></biomed>
+	// <biomed></<biomed>
+	// <biomeds>
+	// </prosthetic>
+	@XmlElement(name = "biomed")
+	@XmlElementWrapper(name = "biomeds")
+	private List<Biomedical_Eng> biomeds; // for the many to many relationship
 
-	
-
-
-	
 	public Prosthetic(Integer id, String type) {
 		super();
 		this.id = id;
 		this.type = type;
 		this.biomeds = new ArrayList<Biomedical_Eng>();
-		
-		
+
 	}
 
-	
-	
 	// Constructor with all variables
 	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures,
 			Integer numberFailures, boolean available, Patient patient, Hospital hospital,
@@ -74,12 +70,10 @@ public class Prosthetic implements Serializable {
 		this.failures = failures;
 		this.numberFailures = numberFailures;
 		this.available = available;
-		this.patient= patient;
+		this.patient = patient;
 		this.hospital = hospital;
 		this.biomeds = biomeds;
-	} 
-	
-	
+	}
 
 	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures,
 			Integer numberFailures, boolean available, Patient patient, Hospital hospital) {
@@ -97,9 +91,8 @@ public class Prosthetic implements Serializable {
 		this.biomeds = new ArrayList<Biomedical_Eng>();
 	}
 
-
-
-	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures, boolean available ) {
+	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures,
+			boolean available) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -111,11 +104,9 @@ public class Prosthetic implements Serializable {
 		this.biomeds = new ArrayList<Biomedical_Eng>();
 
 	}
-	
 
-
-
-	public Prosthetic( String type, String material, Float price, String dimensions, String failures, boolean available ) {
+	public Prosthetic(String type, String material, Float price, String dimensions, String failures,
+			boolean available) {
 		super();
 		this.type = type;
 		this.material = material;
@@ -125,7 +116,6 @@ public class Prosthetic implements Serializable {
 		this.available = available;
 		this.biomeds = new ArrayList<Biomedical_Eng>();
 	}
-
 
 //created another constructor to insert prosthetic but without id, failures etc
 	public Prosthetic(String type, String material, Float price, String dimensions) {
@@ -137,15 +127,11 @@ public class Prosthetic implements Serializable {
 		this.biomeds = new ArrayList<Biomedical_Eng>();
 	}
 
-
-
 	// Empty constructor
 	public Prosthetic() {
 		super();
 		biomeds = new ArrayList<Biomedical_Eng>();
 	}
-	
-	
 
 	// Getters and Setters
 
@@ -204,20 +190,20 @@ public class Prosthetic implements Serializable {
 	public void setNumberFailures(Integer numberFailures) {
 		this.numberFailures = numberFailures;
 	}
-	
 
 	@Override
 	public String toString() {
 		return "Prosthetic [id=" + id + ", type=" + type + ", material=" + material + ", price=" + price
 				+ ", dimensions=" + dimensions + ", failures=" + failures + ", numberFailures=" + numberFailures
-				+ ", available=" + available + ", hospital_id=" +hospital.getId()+"]";
+				+ ", available=" + available + ", hospital_id=" + hospital.getId() + "]";
 	}
-	
+
 	public String toStringProstheticXML() {
 		return "Prosthetic [id=" + id + ", type=" + type + ", material=" + material + ", price=" + price
-				+ ", dimensions=" + dimensions + ", failures=" + failures + ", available=" + available +"]";
+				+ ", dimensions=" + dimensions + ", failures=" + failures + ", numberFailures=" + numberFailures
+				+ ", available=" + available + "]";
 	}
-	
+
 	// HashCode and Equals methods only with the Id
 	@Override
 	public int hashCode() {
@@ -244,12 +230,9 @@ public class Prosthetic implements Serializable {
 		return true;
 	}
 
-
-
 	public boolean getAvailable() {
 		return available;
 	}
-
 
 	public void setAvailable(boolean available) {
 		this.available = available;
@@ -271,17 +254,12 @@ public class Prosthetic implements Serializable {
 		this.hospital = hospital;
 	}
 
-
-
 	public List<Biomedical_Eng> getBiomeds() {
 		return biomeds;
 	}
 
-
-
 	public void setBiomeds(List<Biomedical_Eng> biomeds) {
 		this.biomeds = biomeds;
 	}
-	
 
 }

@@ -91,7 +91,7 @@ public class HospitalManager implements HospitalManagerInterface {
 	}
 	
 	public Hospital getHospital(int hospital_id){
-		Hospital newHosp=null;
+		Hospital newHosp= new Hospital();
 		
 		try {
 			String sql = "SELECT * FROM hospital WHERE hospital_id = ? ";
