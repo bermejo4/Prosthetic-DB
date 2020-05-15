@@ -7,7 +7,9 @@
 	<!ELEMENT failures (#PCDATA)>
 	<!ELEMENT available (#PCDATA)>
 	<!ELEMENT biomeds (biomed+)>
-	<!ELEMENT biomed (name)>
+	<!ELEMENT biomed (name, lastname, telephone)>
 	<!ATTLIST biomed id CDATA #REQUIRED>
 	<!ELEMENT name (#PCDATA)>
+	<!ELEMENT lastname (#PCDATA)>
+	<!ELEMENT telephone (#PCDATA)>
 ]>

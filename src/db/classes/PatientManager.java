@@ -102,12 +102,13 @@ public class PatientManager implements PatientManagerInterface {
 			}
 	}
 	
-	public void assignHospitalID(String telephone, int hos_id) {
+	public void assignPatientToAHospital(int hos_id, Patient pat) {
 		try {
-			String sql = "UPDATE patient SET hospital_id=? WHERE telephone=?;";
+			String sql = "UPDATE hospital SET patient_id=? WHERE hospital_id=?;";
 			PreparedStatement prep = c.prepareStatement(sql);
-			prep.setInt(1, hos_id);
-			prep.setString(2, telephone);
+			int id = pat.getId();
+			prep.setInt(1, id);
+			prep.setInt(2, hos_id);
 			prep.executeUpdate();
 			prep.close();
 		}

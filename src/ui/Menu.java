@@ -470,6 +470,7 @@ public class Menu {
 		
 	}
 	
+	
 
 	public static void deleteProsthetic(int prosID) throws Exception {
 
@@ -649,6 +650,7 @@ public class Menu {
 				case "patient":
 					System.out.println("Welcome patient!");
 					patientUsing.setTelephone(telephone);
+					
 					logged = true;
 					check=false;
 					break;
@@ -757,14 +759,15 @@ public class Menu {
 		}
 	}
 	
-	
+
 	public static void selectHospitalByID() {
 		Hospital hosp;
+		Patient pat = patientUsing;
 		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
-	
 		hosp = patientManagerInterface.selectHospitalByID(id);
-		System.out.println("You have chosen:\n" + hosp.toStringXML());
-		System.out.println("");
+		patientManagerInterface.assignPatientToAHospital(id, pat);
+		//System.out.println("You have chosen:\n" + hosp.toStringXML());
+		//System.out.println("");
 
 	}
 	

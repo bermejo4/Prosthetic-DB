@@ -17,5 +17,6 @@ public interface PatientManagerInterface {
 	public Hospital selectHospitalByID(int id);
 	public ArrayList<Hospital> showHospitals();
 	public void addpatientbyRegister(Patient pat);
+	public void assignPatientToAHospital(int hos_id, Patient pat);
 }
 
