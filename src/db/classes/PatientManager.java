@@ -116,6 +116,33 @@ public class PatientManager implements PatientManagerInterface {
 			e.printStackTrace();
 		}
 	}
+	public Patient searchSpecificPatientByTelephone(String telephone) {
+		Patient patientfound=new Patient();
+		try {
+			String sql = "SELECT * FROM patient WHERE telephone LIKE ?";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setString(1, telephone);
+			ResultSet rs = prep.executeQuery();
+			
+			while(rs.next()) {
+				int id = rs.getInt("patient_id");
+				String name = rs.getString("name");
+				String lastname = rs.getString("lastname");
+				Date dob = rs.getDate("dob");
+				Date dof = rs.getDate("dof");
+				String address = rs.getString("address");
+				String tele = rs.getString("telephone");
+				String gender = rs.getString("gender");
+				String problem = rs.getString("problem");
+				int doctor_id=rs.getInt("doctor_id");
+				Doctor doctor = new Doctor(doctor_id);
+				patientfound = new Patient(id,name,lastname,telephone,dob,dof,gender,problem,address,doctor);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return patientfound;
+	}
 		
 	
 	

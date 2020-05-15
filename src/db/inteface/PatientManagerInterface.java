@@ -18,5 +18,6 @@ public interface PatientManagerInterface {
 	public ArrayList<Hospital> showHospitals();
 	public void addpatientbyRegister(Patient pat);
 	public void assignPatientToAHospital(int hos_id, Patient pat);
+	public Patient searchSpecificPatientByTelephone(String telephone);
 }
 

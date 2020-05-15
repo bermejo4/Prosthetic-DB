@@ -192,33 +192,27 @@ public class DoctorManager implements DoctorManagerInterface {
 		// Return the patient
 		return patientfound;
 	}
-	public Patient searchSpecificPatientByTelephone(String telephone) {
-		
-		Patient patientfound=new Patient();
+	public Doctor searchSpecificDoctorByTelephone(String telephone) {
+		Doctor doctorfound=new Doctor();
 		try {
-			String sql = "SELECT * FROM patient WHERE telephone LIKE ?";
+			String sql = "SELECT * FROM doctor WHERE telephone LIKE ?";
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1, telephone);
 			ResultSet rs = prep.executeQuery();
 			
 			while(rs.next()) {
-				int id = rs.getInt("patient_id");
+				int id = rs.getInt("doctor_id");
 				String name = rs.getString("name");
 				String lastname = rs.getString("lastname");
-				Date dob = rs.getDate("dob");
-				Date dof = rs.getDate("dof");
-				String address = rs.getString("address");
 				String tele = rs.getString("telephone");
-				String gender = rs.getString("gender");
-				String problem = rs.getString("problem");
-				int doctor_id=rs.getInt("doctor_id");
-				Doctor doctor = new Doctor(doctor_id);
-				patientfound = new Patient(id,name,lastname,telephone,dob,dof,gender,problem,address,doctor);
+				int hosp_id=rs.getInt("hospital_id");
+				Hospital hosp = new Hospital(hosp_id);
+				doctorfound= new Doctor(id,name,lastname,tele, hosp);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return patientfound;
+		return doctorfound;
 	}
 	
 	public void delete(Patient pat) {

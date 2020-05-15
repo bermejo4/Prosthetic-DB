@@ -18,5 +18,5 @@ public interface DoctorManagerInterface {
 	public void addDoctorbyRegister(Doctor doc);
 	public ArrayList<Doctor> doctorsInDatabase();
 	public void assignDoctortoHospital(int hospital_id, String doctelephone);
-	public Patient searchSpecificPatientByTelephone(String telephone);
+	public Doctor searchSpecificDoctorByTelephone(String telephone);
 }

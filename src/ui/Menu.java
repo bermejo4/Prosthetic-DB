@@ -649,11 +649,10 @@ public class Menu {
 				case "patient":
 					System.out.println("Welcome patient!");
 					patientUsing.setTelephone(telephone);
-					Patient pat = doctorManagerInterface.searchSpecificPatientByTelephone(telephone);
+					Patient pat = patientManagerInterface.searchSpecificPatientByTelephone(telephone);
 					patientUsing.setId(pat.getId());
 					patientUsing.setName(pat.getName());
 					patientUsing.setLastname(pat.getLastname());
-					patientUsing.setTelephone(pat.getTelephone());
 					patientUsing.setDob(pat.getDob());
 					patientUsing.setGender(pat.getGender());
 					patientUsing.setProblem(pat.getProblem());
@@ -665,6 +664,11 @@ public class Menu {
 				case "doctor":
 					System.out.println("Welcome doctor!");
 					doctorUsing.setTelephone(telephone);
+					Doctor doc = doctorManagerInterface.searchSpecificDoctorByTelephone(telephone);
+					doctorUsing.setId(doc.getId());
+					doctorUsing.setName(doc.getName());
+					doctorUsing.setLastname(doc.getLastname());
+					doctorUsing.setHospital(doc.getHospital());
 					logged = true;
 					check=false;
 					break;
@@ -779,23 +783,9 @@ public class Menu {
 
 	}
 	
-/*
-	public static void selectHospitalByID() {
-		
-		ArrayList<Hospital> hospitalList;
-		Hospital hosp;
-		hospitalList = patientManagerInterface.showHospitals();
-		int idChecked = InputFlow.checkIdAndListHospital(hospitalList);
-		hosp = patientManagerInterface.selectHospitalByID(idChecked);
-		System.out.println("You have chosen:\n" + hosp.toString());
-		System.out.println("");
-
-	}*/
 
 	public static void viewDate() {
 		// To view your own date of fitting
-
-		//String telephone = InputFlow.takeTelephone(reader, "Introduce your telephone number: ");
 		String myTelephone = patientUsing.getTelephone();
 		patientManagerInterface.viewDate(myTelephone);
 
