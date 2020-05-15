@@ -172,6 +172,9 @@ public class Menu {
 					case 1: // Register
 						registerMenu();
 						register(doctorRole);
+						showHospitals();
+						int hospital_id = InputFlow.takeInteger(reader, "Introduce the id of the hospital");
+						assignDoctorHospital(hospital_id);
 						break;
 					case 2: // Login
 						loginMenu();
@@ -456,6 +459,17 @@ public class Menu {
 		biomedManagerInterface.design(prosID, biomed_id);
 
 	}
+	
+	public static void assignDoctorHospital(int hospital_id ) throws Exception {
+		int doctor_id = doctorUsing.getId();
+		
+		System.out.println("Your Id: " +doctor_id);
+		System.out.println("You have been assigned to this hospital: " +hospital_id);
+		
+		doctorManagerInterface.assignDoctortoHospital(hospital_id);
+		
+	}
+	
 
 	public static void deleteProsthetic(int prosID) throws Exception {
 

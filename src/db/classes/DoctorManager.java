@@ -251,6 +251,19 @@ public class DoctorManager implements DoctorManagerInterface {
 		return docList;
 	}
 	
-	
+	public void assignDoctortoHospital(int hospital_id) {
+		try {
+			String sql = "INSERT INTO doctor (hospital_id) VALUES ?";
+			PreparedStatement prep = c.prepareStatement(sql);
+			
+			prep.setInt(1, hospital_id);
+			
+			prep.executeUpdate();
+			prep.close();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
