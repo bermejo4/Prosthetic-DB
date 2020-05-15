@@ -251,6 +251,20 @@ public class DoctorManager implements DoctorManagerInterface {
 		return docList;
 	}
 	
-	
+	public void assignDoctortoHospital(int hospital_id, String doctelephone) {
+		try {
+			String sql = "UPDATE doctor SET hospital_id=? WHERE telephone=?";
+			PreparedStatement prep = c.prepareStatement(sql);
+			
+			prep.setInt(1, hospital_id);
+			prep.setString(2, doctelephone);
+			
+			prep.executeUpdate();
+			prep.close();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
