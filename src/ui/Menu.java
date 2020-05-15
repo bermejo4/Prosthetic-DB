@@ -210,7 +210,7 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 
-					//if(logged) {
+					if(logged) {
 
 					System.out.println("3. Upload a new Prosthetic.");
 					System.out.println("4. Modify a Prosthetic information.");
@@ -222,7 +222,7 @@ public class Menu {
 				//	System.out.println("8. Delete account");
 					max = 7;
 
-					//}
+					}
 					System.out.println("\n0.Back to choose other user to the main menu.");
 
 					int choice;
@@ -241,7 +241,7 @@ public class Menu {
 					case 3: // Upload a new Prosthetic
 						Prosthetic pros = uploadProsthetic();
 						
-						int prosID = pros.getId(); 
+						int prosID =dbManagerInterface.getLastId(); 
 					    designProsthetic(prosID);
 						break;
  
@@ -449,6 +449,7 @@ public class Menu {
 		//medicine hace el papel de biomedico 
 		List<Biomedical_Eng> biomedsLists = biomedManagerInterface.showBiomedics();
 		
+		//int biomed_id =dbManagerInterface.getLastId(); 
 		int biomed_id = biomedical_engUsing.getId(); 
 		System.out.println(" Your ID: " + biomed_id);
 		System.out.println("You are now an author of the prosthetic " + prosID);
