@@ -675,6 +675,11 @@ public class Menu {
 				case "hospital":
 					System.out.println("You are in a hospital.");
 					hospitalUsing.setTelephone(telephone);
+					Hospital hosp = hospitalManagerInterface.searchSpecificHospitalByTelephone(telephone);
+					hospitalUsing.setId(hosp.getId());
+					hospitalUsing.setName(hosp.getName());
+					hospitalUsing.setAddress(hosp.getAddress());
+					hospitalUsing.setPatient(hosp.getPatient());
 					logged = true;
 					check=false;
 					break;

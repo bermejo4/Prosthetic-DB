@@ -117,6 +117,29 @@ public class HospitalManager implements HospitalManagerInterface {
 	return newHosp;
 	}
 	
+	public Hospital searchSpecificHospitalByTelephone(String telephone) {
+		Hospital hosp=new Hospital();
+		try {
+			String sql = "SELECT hospital WHERE telephone LIKE ?";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setString(1,telephone);
+			ResultSet rs = prep.executeQuery();
+			while(rs.next()) {
+				int id = rs.getInt("hospital_id");
+				String name=rs.getString("name");
+				String location=rs.getString("location");
+				String tele=rs.getString("telephone");
+				int pat_id=rs.getInt("patient_id");
+				Patient pat = new Patient(pat_id);	
+				hosp=new Hospital(id,name,location,telephone,pat);
+				
+				}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return hosp;
+	}
+	
 	
 }
 

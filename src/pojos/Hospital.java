@@ -73,6 +73,14 @@ public class Hospital implements Serializable{
 		this.address = address;
 		this.telephone = telephone;
 	}
+	public Hospital(Integer id,String name, String address, String telephone, Patient pat) {
+		super();
+		this.id=id;
+		this.name = name;
+		this.address = address;
+		this.telephone = telephone;
+		this.patient=pat;
+	}
 	
 
 	public Hospital(Integer id, String name, String address, Patient patient, String telephone,
@@ -145,7 +153,7 @@ public class Hospital implements Serializable{
 		return address;
 	}
 
-	public void setAddres(String address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
