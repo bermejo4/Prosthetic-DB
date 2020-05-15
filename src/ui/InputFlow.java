@@ -326,7 +326,7 @@ public class InputFlow {
 					check = true;
 					//break;
 				}
-				System.out.println("id==>"+numId+check);
+				//System.out.println("id==>"+numId+check);
 			}
 			System.out.println("This id is not in the available list. Try again.\n");
 		}while(!check);

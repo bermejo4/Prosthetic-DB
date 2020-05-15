@@ -423,6 +423,36 @@ public class Menu {
 		}
 	}
 	
+	/*private static void generateHtmlProsthetic() {
+		BufferedWriter bw = null;
+	    FileWriter fw = null;
+	    try {
+	        String data = "";
+	        File file = new File("./Prosthetic.html");
+	        // Si el archivo no existe, se crea!
+	        if (!file.exists()) {
+	            file.createNewFile();
+	        }
+	        // flag true, indica adjuntar información al archivo.
+	        fw = new FileWriter(file.getAbsoluteFile(), true);
+	        bw = new BufferedWriter(fw);
+	        bw.write(data);
+	        System.out.println("información agregada!");
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	                        //Cierra instancias de FileWriter y BufferedWriter
+	            if (bw != null)
+	                bw.close();
+	            if (fw != null)
+	                fw.close();
+	        } catch (IOException ex) {
+	            ex.printStackTrace();
+	        }
+	    }
+	}*/
+	
 	public static Prosthetic uploadProsthetic() throws Exception {
 
 		System.out.println("Introduce the new Prosthetic: "); 
@@ -650,7 +680,16 @@ public class Menu {
 				case "patient":
 					System.out.println("Welcome patient!");
 					patientUsing.setTelephone(telephone);
-					
+					Patient pat = doctorManagerInterface.searchSpecificPatientByTelephone(telephone);
+					patientUsing.setId(pat.getId());
+					patientUsing.setName(pat.getName());
+					patientUsing.setLastname(pat.getLastname());
+					patientUsing.setTelephone(pat.getTelephone());
+					patientUsing.setDob(pat.getDob());
+					patientUsing.setGender(pat.getGender());
+					patientUsing.setProblem(pat.getProblem());
+					patientUsing.setAddres(pat.getAddres());
+					patientUsing.setDoctor(pat.getDoctor());
 					logged = true;
 					check=false;
 					break;
