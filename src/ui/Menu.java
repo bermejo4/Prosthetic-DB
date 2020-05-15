@@ -681,6 +681,9 @@ public class Menu {
 				case "biomedical_Engineer":
 					System.out.println("Welcome biomedical engineer!");
 					biomedical_engUsing.setTelephone(telephone);
+					Biomedical_Eng biomed = biomedManagerInterface.searchSpecificBiomedByTelephone(telephone);
+					biomedical_engUsing.setName(biomed.getName());
+					biomedical_engUsing.setLastname(biomed.getLastname());
 					logged = true;
 					check=false;
 					break;

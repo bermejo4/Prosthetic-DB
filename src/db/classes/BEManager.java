@@ -172,6 +172,29 @@ public class BEManager implements db.inteface.BEManagerInterface {
 
 		return newProsthetic;
 	}
+	
+	public Biomedical_Eng searchSpecificBiomedByTelephone(String telephone) {
+		Biomedical_Eng biomed=new Biomedical_Eng();
+		try {
+			String sql = "SELECT biomedical_engineer WHERE telephone LIKE ?";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setString(1,telephone);
+			ResultSet rs = prep.executeQuery();
+			while(rs.next()) {
+				int id = rs.getInt("be_id");
+				String name=rs.getString("name");
+				String lastname=rs.getString("lastname");
+				String tele = rs.getString("telephone");
+				biomed = new Biomedical_Eng(id,name,lastname,tele);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return biomed;
+		
+		
+	}
 
 	@Override
 	public void design(int prosthetic_id, int be_id) {

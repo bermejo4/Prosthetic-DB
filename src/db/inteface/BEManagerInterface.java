@@ -27,6 +27,7 @@ public interface BEManagerInterface {
 	public void addBiomedbyRegister(Biomedical_Eng biomed);
 
 	public Prosthetic getProsthetic(int prostheticID);
+	public Biomedical_Eng searchSpecificBiomedByTelephone(String telephone);
 
 }
 

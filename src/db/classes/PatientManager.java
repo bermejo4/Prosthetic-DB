@@ -136,7 +136,7 @@ public class PatientManager implements PatientManagerInterface {
 				String problem = rs.getString("problem");
 				int doctor_id=rs.getInt("doctor_id");
 				Doctor doctor = new Doctor(doctor_id);
-				patientfound = new Patient(id,name,lastname,telephone,dob,dof,gender,problem,address,doctor);
+				patientfound = new Patient(id,name,lastname,tele,dob,dof,gender,problem,address,doctor);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
