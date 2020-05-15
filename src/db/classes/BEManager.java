@@ -251,7 +251,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 				int be_id = rs.getInt("be_id");
 				String name = rs.getString("name");
 				String lastname = rs.getString("lastname");
-				String telephone = rs.getString("telphone");
+				String telephone = rs.getString("telephone");
 				
 				Biomedical_Eng newbiomed = new Biomedical_Eng(be_id,name, lastname,telephone);
 				biomedList.add(newbiomed);
