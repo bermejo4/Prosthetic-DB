@@ -6,7 +6,6 @@ import java.util.List;
 import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD) //Here we indicates that the attributes need to be annotated.
-@XmlRootElement(name="biomed")
 @XmlType(propOrder = {"name", "lastname", "telephone"})
 public class Biomedical_Eng implements Serializable {
 

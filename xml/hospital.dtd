@@ -1,5 +1,5 @@
 <!DOCTYPE hospital [
-	<!ELEMENT prosthetic (name, address, telephone, doctors?)>
+	<!ELEMENT prosthetic (name, address, telephone, doctors+)>
 	<!ATTLIST hospital name CDATA #REQUIRED>
 	<!ELEMENT address (#PCDATA)>
 	<!ELEMENT telephone (#PCDATA)>

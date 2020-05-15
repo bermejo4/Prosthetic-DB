@@ -244,7 +244,7 @@ public class Menu {
 					case 3: // Upload a new Prosthetic
 						Prosthetic pros = uploadProsthetic();
 						
-						int prosID = pros.getId(); 
+						int prosID = pros.getId();  //al insertar prosthetic nueva da null pointer y es por esto
 					    designProsthetic(prosID);
 						break;
  
