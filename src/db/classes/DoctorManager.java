@@ -162,6 +162,8 @@ public class DoctorManager implements DoctorManagerInterface {
 		// Return the list
 		return patientsList;
 	}
+	
+	
 	public Patient searchSpecificPatientById(int num_id) {
 		//search the patient that fit the id
 		Patient patientfound=new Patient();

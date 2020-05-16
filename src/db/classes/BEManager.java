@@ -176,7 +176,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 	public Biomedical_Eng searchSpecificBiomedByTelephone(String telephone) {
 		Biomedical_Eng biomed=new Biomedical_Eng();
 		try {
-			String sql = "SELECT biomedical_engineer WHERE telephone LIKE ?";
+			String sql = "SELECT * FROM biomedical_engineer WHERE telephone LIKE ?";
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1,telephone);
 			ResultSet rs = prep.executeQuery();
