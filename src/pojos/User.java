@@ -30,7 +30,7 @@ public class User implements Serializable {
 	private Integer id;
 	@Column(unique = true)
 	private String username;
-	@Lob
+	@Lob 
 	private byte[] password;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "role_id")

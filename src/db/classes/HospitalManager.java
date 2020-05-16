@@ -120,7 +120,7 @@ public class HospitalManager implements HospitalManagerInterface {
 	public Hospital searchSpecificHospitalByTelephone(String telephone) {
 		Hospital hosp=new Hospital();
 		try {
-			String sql = "SELECT hospital WHERE telephone LIKE ?";
+			String sql = "SELECT * FROM hospital WHERE telephone LIKE ?";
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1,telephone);
 			ResultSet rs = prep.executeQuery();
