@@ -649,46 +649,32 @@ public class Menu {
 				case "patient":
 					System.out.println("Welcome patient!");
 					patientUsing.setTelephone(telephone);
-					Patient pat = patientManagerInterface.searchSpecificPatientByTelephone(telephone);
-					patientUsing.setId(pat.getId());
-					patientUsing.setName(pat.getName());
-					patientUsing.setLastname(pat.getLastname());
-					patientUsing.setDob(pat.getDob());
-					patientUsing.setGender(pat.getGender());
-					patientUsing.setProblem(pat.getProblem());
-					patientUsing.setAddres(pat.getAddres());
-					patientUsing.setDoctor(pat.getDoctor());
+					patientUsing = patientManagerInterface.searchSpecificPatientByTelephone(telephone);
+					
 					logged = true;
 					check=false;
 					break;
 				case "doctor":
 					System.out.println("Welcome doctor!");
 					doctorUsing.setTelephone(telephone);
-					Doctor doc = doctorManagerInterface.searchSpecificDoctorByTelephone(telephone);
-					doctorUsing.setId(doc.getId());
-					doctorUsing.setName(doc.getName());
-					doctorUsing.setLastname(doc.getLastname());
-					doctorUsing.setHospital(doc.getHospital());
+					doctorUsing = doctorManagerInterface.searchSpecificDoctorByTelephone(telephone);
+					
 					logged = true;
 					check=false;
 					break;
 				case "hospital":
 					System.out.println("You are in a hospital.");
 					hospitalUsing.setTelephone(telephone);
-					Hospital hosp = hospitalManagerInterface.searchSpecificHospitalByTelephone(telephone);
-					hospitalUsing.setId(hosp.getId());
-					hospitalUsing.setName(hosp.getName());
-					hospitalUsing.setAddress(hosp.getAddress());
-					hospitalUsing.setPatient(hosp.getPatient());
+					hospitalUsing = hospitalManagerInterface.searchSpecificHospitalByTelephone(telephone);
+					
 					logged = true;
 					check=false;
 					break;
 				case "biomedical_Engineer":
 					System.out.println("Welcome biomedical engineer!");
 					biomedical_engUsing.setTelephone(telephone);
-					Biomedical_Eng biomed = biomedManagerInterface.searchSpecificBiomedByTelephone(telephone);
-					biomedical_engUsing.setName(biomed.getName());
-					biomedical_engUsing.setLastname(biomed.getLastname());
+					biomedical_engUsing = biomedManagerInterface.searchSpecificBiomedByTelephone(telephone);
+					
 					logged = true;
 					check=false;
 					break;
