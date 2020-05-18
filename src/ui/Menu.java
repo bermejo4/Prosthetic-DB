@@ -213,7 +213,7 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 
-					//if(logged) {
+					if(logged) {
 
 					System.out.println("3. Upload a new Prosthetic.");
 					System.out.println("4. Modify a Prosthetic information.");
@@ -225,7 +225,7 @@ public class Menu {
 				//	System.out.println("8. Delete account");
 					max = 7;
 
-					//}
+					}
 					System.out.println("\n0.Back to choose other user to the main menu.");
 
 					int choice;
@@ -448,7 +448,7 @@ public class Menu {
 
 	public static void designProsthetic(int prosID) throws Exception {
 
-		//medicine hace el papel de biomedico 
+		
 		List<Biomedical_Eng> biomedsLists = biomedManagerInterface.showBiomedics();
 		
 		int biomed_id = biomedical_engUsing.getId(); 
