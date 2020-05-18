@@ -290,5 +290,7 @@ public class DoctorManager implements DoctorManagerInterface {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 }
