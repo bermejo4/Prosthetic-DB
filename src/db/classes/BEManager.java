@@ -146,7 +146,6 @@ public class BEManager implements db.inteface.BEManagerInterface {
 					boolean available = rs.getBoolean(8);
 					int pat_id = rs.getInt(9);
 					Patient pat = new Patient(pat_id);
-					//Patient pat = PatientManagerInterface.getPatient(pat_id);
 					
 					newProsthetic = new Prosthetic(id, pros_type, material, price, dimensions, failures, available, pat);
 				 
