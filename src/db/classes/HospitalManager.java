@@ -117,6 +117,7 @@ public class HospitalManager implements HospitalManagerInterface {
 	return newHosp;
 	}
 	
+	
 	public Hospital searchSpecificHospitalByTelephone(String telephone) {
 		Hospital hosp=new Hospital();
 		try {
