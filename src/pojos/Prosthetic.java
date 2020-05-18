@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD) // Here we indicates that the attributes need to be annotated.
 @XmlRootElement(name = "prosthetic")
-@XmlType(propOrder = { "material", "dimensions", "price", "failures", "available", "biomeds" }) // Order in which the
+@XmlType(propOrder = { "material", "dimensions", "price", "failures", "available", "patient", "biomeds" }) // Order in which the
 																								// elements appear
 public class Prosthetic implements Serializable {
 
@@ -34,7 +34,7 @@ public class Prosthetic implements Serializable {
 	private Integer numberFailures;
 	@XmlElement // How does xml recognize boolean? You tell as only Integer, Float and text
 	private boolean available;
-	@XmlTransient
+	@XmlElement
 	private Patient patient;
 	@XmlTransient
 	private Hospital hospital;
@@ -103,6 +103,19 @@ public class Prosthetic implements Serializable {
 		this.available = available;
 		this.biomeds = new ArrayList<Biomedical_Eng>();
 
+	}
+	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures,
+			 boolean available, Patient patient) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.material = material;
+		this.price = price;
+		this.dimensions = dimensions;
+		this.failures = failures;
+		this.available = available;
+		this.patient = patient;
+		this.biomeds = new ArrayList<Biomedical_Eng>();
 	}
 
 	public Prosthetic(String type, String material, Float price, String dimensions, String failures,

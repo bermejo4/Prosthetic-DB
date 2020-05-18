@@ -19,5 +19,6 @@ public interface PatientManagerInterface {
 	public void addpatientbyRegister(Patient pat);
 	public void assignPatientToAHospital(int hos_id, Patient pat);
 	public Patient searchSpecificPatientByTelephone(String telephone);
+	public Patient getPatient(int pat_id);
 }
 
