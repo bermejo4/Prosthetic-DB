@@ -325,7 +325,5 @@ public class BEManager implements db.inteface.BEManagerInterface {
 	
 
 
-
-
 }
 

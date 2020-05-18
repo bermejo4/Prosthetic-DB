@@ -173,15 +173,7 @@ public class DBManager implements DBManagerInterface {
 			// Close database connection
 			// c.close();
 			// System.out.println("Database connection closed.");
-			
-			stmt6 = c.createStatement();
-			String sqlbiomed1 = "INSERT INTO biomedical_engineer (name, lastname) VALUES ('Silvia','Torres') "; 
-			stmt6.executeUpdate(sqlbiomed1);
-			
-			
-			String sqlbiomed2 = "INSERT INTO biomedical_engineer (name, lastname) VALUES ('Hector','Fernandez') "; 
-			stmt6.executeUpdate(sqlbiomed2);
-			stmt6.close();
+	
 			
 			
 			
