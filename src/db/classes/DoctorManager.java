@@ -292,8 +292,8 @@ public class DoctorManager implements DoctorManagerInterface {
 	}
 	
 	//REVISAR A VER SI LO BORRO 
-	public List<Doctor> getDoctorfromHospital (int hospital_id) {
-		List<Doctor> docs = new ArrayList<Doctor>();
+	public Doctor getDoctorfromHospital (int hospital_id) {
+		Doctor d = new Doctor();
 		try {
 		String sql = "SELECT * FROM doctor WHERE hospital_id =?";
 		PreparedStatement prep = c.prepareStatement(sql);
@@ -307,15 +307,15 @@ public class DoctorManager implements DoctorManagerInterface {
 			String doclastname = rs.getString(3);
 			String doctelephone = rs.getString(4);
 			
-			Doctor d = new Doctor(docId, docname, doclastname, doctelephone);
-			docs.add(d);
+			 d = new Doctor(docId, docname, doclastname, doctelephone);
+			
 		}
 	}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
 
-		return docs;
+		return d;
 }
 	
 	

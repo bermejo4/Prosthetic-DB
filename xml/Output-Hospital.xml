@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hospital name="jimenez">
-    <address>madrid</address>
-    <telephone>987640998</telephone>
+<hospital name="la paz">
+    <address>plaza castilla</address>
+    <telephone>112112112</telephone>
     <doctors/>
 </hospital>

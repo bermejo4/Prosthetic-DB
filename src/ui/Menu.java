@@ -974,8 +974,7 @@ public class Menu {
 	
 	private static void generateHospitalXML(int hospital_id) throws Exception{
 		Hospital hospital = hospitalManagerInterface.getHospital(hospital_id);
-		//Patient pat = patientManagerInterface.getPatient(pros.getPatient().getId());
-		Doctor doc = doctorManagerInterface.getDoctor(doctorUsing.getId());
+		Doctor doc = doctorManagerInterface.getDoctorfromHospital(hospital.getId());
 		//Defining and creating  JAXB context
 		JAXBContext contextHosp = JAXBContext.newInstance(Hospital.class);
 		//Creating the marshaller
