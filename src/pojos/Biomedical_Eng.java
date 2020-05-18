@@ -11,7 +11,7 @@ public class Biomedical_Eng implements Serializable {
 
 	private static final long serialVersionUID = -6234822159013375318L;
 	
-	@XmlAttribute //pq no lo ponen como transient 
+	@XmlAttribute 
 	private Integer id;
 	@XmlElement
 	private String name;

@@ -359,7 +359,9 @@ public class Menu {
 	}
 
 	private static void generateXML(int prostheticID) throws Exception {
-		Prosthetic pros =biomedManagerInterface.getProsthetic(prostheticID);
+		Prosthetic pros =biomedManagerInterface.getProstheticWithPatient(prostheticID);
+		Patient pat = patientManagerInterface.getPatient(pros.getPatient().getId());
+		pros.setPatient(pat);
 		System.out.println(pros.toStringProstheticXML());
 		//Create a JAXBContext
 		JAXBContext contextP = JAXBContext.newInstance(Prosthetic.class);

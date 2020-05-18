@@ -102,6 +102,27 @@ public class PatientManager implements PatientManagerInterface {
 			}
 	}
 	
+	public Patient getPatient(int pat_id) {
+		Patient pat = new Patient();
+		try {
+			String sql = "SELECT * FROM patient WHERE patient_id LIKE ?;";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setInt(1, pat_id);
+			ResultSet rs = prep.executeQuery();
+			while(rs.next()) {
+				int id = rs.getInt("patient_id");
+				String name = rs.getString("name");
+				String lastname = rs.getString("lastname");
+				pat = new Patient(id, name, lastname);
+			
+		}
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
+		return pat;
+		
+	}
+	
 	public void assignPatientToAHospital(int hos_id, Patient pat) {
 		try {
 			String sql = "UPDATE hospital SET patient_id=? WHERE hospital_id=?;";
