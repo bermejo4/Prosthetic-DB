@@ -291,6 +291,7 @@ public class DoctorManager implements DoctorManagerInterface {
 		}
 	}
 	
+	//REVISAR A VER SI LO BORRO 
 	public List<Doctor> getDoctorfromHospital (int hospital_id) {
 		List<Doctor> docs = new ArrayList<Doctor>();
 		try {
@@ -319,7 +320,7 @@ public class DoctorManager implements DoctorManagerInterface {
 	
 	
 
-	/*public Doctor getDoctor(int doctor_id) {
+	public Doctor getDoctor(int doctor_id) {
 		Doctor doc = new Doctor();
 		try {
 			String sql = "SELECT * FROM doctor WHERE doctor_id LIKE ?";
@@ -331,16 +332,20 @@ public class DoctorManager implements DoctorManagerInterface {
 				int docid = rs.getInt(1);
 				String docname = rs.getString(2);
 				String doclastname = rs.getString(3);
+				String doctelephone = rs.getString(4);
 				
 				
+				doc = new Doctor(docid, docname, doclastname, doctelephone);
 			}
 			
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
+		
+		return doc;
 	}
-	*/
+
 	
 	
 }
