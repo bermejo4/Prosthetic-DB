@@ -290,5 +290,57 @@ public class DoctorManager implements DoctorManagerInterface {
 			e.printStackTrace();
 		}
 	}
+	
+	public List<Doctor> getDoctorfromHospital (int hospital_id) {
+		List<Doctor> docs = new ArrayList<Doctor>();
+		try {
+		String sql = "SELECT * FROM doctor WHERE hospital_id =?";
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.setInt(1, hospital_id);
+		
+		ResultSet rs = prep.executeQuery();
+		
+		while(rs.next()) {
+			int docId = rs.getInt(1);
+			String docname = rs.getString(2);
+			String doclastname = rs.getString(3);
+			String doctelephone = rs.getString(4);
+			
+			Doctor d = new Doctor(docId, docname, doclastname, doctelephone);
+			docs.add(d);
+		}
+	}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
 
+		return docs;
+}
+	
+	
+
+	/*public Doctor getDoctor(int doctor_id) {
+		Doctor doc = new Doctor();
+		try {
+			String sql = "SELECT * FROM doctor WHERE doctor_id LIKE ?";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setInt(1, doctor_id);
+			ResultSet rs = prep.executeQuery();
+			
+			while(rs.next()) {
+				int docid = rs.getInt(1);
+				String docname = rs.getString(2);
+				String doclastname = rs.getString(3);
+				
+				
+			}
+			
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	*/
+	
+	
 }

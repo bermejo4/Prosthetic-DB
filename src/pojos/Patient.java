@@ -1,24 +1,41 @@
 package pojos;
 import java.io.Serializable;
+import javax.xml.bind.annotation.*;
 import java.sql.Date;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlType;
+@XmlAccessorType(XmlAccessType.FIELD) //Here we indicates that the attributes need to be annotated.
+@XmlType(propOrder = {"name", "lastname"})
 public class Patient implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -8467155529721810193L;
-	
+	@XmlAttribute
 	private Integer id;
+	@XmlElement
 	private String name;
+	@XmlElement
 	private String lastname;
+	@XmlTransient
 	private String telephone;
+	@XmlTransient
 	private Date dob;
+	@XmlTransient
 	private Date dof;
+	@XmlTransient
 	private String gender;
+	@XmlTransient
 	private String problem;
+	@XmlTransient
 	private String address;
+	@XmlTransient
 	private Doctor doctor;
+	@XmlTransient
 	private User patientUser;
 	
 	
@@ -85,7 +102,12 @@ public class Patient implements Serializable {
 		this.lastname = lastname;
 		this.telephone = telephone;
 	}
-
+	public Patient(int id, String name, String lastname) {
+		super();
+		this.id=id;
+		this.name = name;
+		this.lastname = lastname;
+	}
 
 	public Patient(String name, String lastname, String telephone, Date dob, String gender, String problem,
 			String address, Doctor doctor) {

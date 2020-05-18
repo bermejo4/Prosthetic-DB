@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.inteface.PatientManagerInterface;
 import pojos.Biomedical_Eng;
 import pojos.Doctor;
 import pojos.Hospital;
@@ -11,7 +12,7 @@ import pojos.Patient;
 import pojos.Prosthetic;
 
 public class BEManager implements db.inteface.BEManagerInterface {
-	// shift control f para arreglar
+	
 
 	private Connection c;
 
@@ -112,6 +113,41 @@ public class BEManager implements db.inteface.BEManagerInterface {
 					boolean available = rs.getBoolean(8);
 					
 					newProsthetic = new Prosthetic(id, pros_type, material, price, dimensions, failures, available);
+				 
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return newProsthetic;
+	}
+	
+	public Prosthetic getProstheticWithPatient(int prostheticID) {
+		Prosthetic newProsthetic = new Prosthetic();
+
+		try {
+
+			 String sql = "SELECT * FROM prosthetic WHERE prosthetic_id = ?";
+			 
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setInt(1, prostheticID);
+			ResultSet rs = prep.executeQuery(); 
+
+			while (rs.next()) {
+
+					int id= rs.getInt(1);
+					String pros_type = rs.getString(2);
+					String material = rs.getString(3);
+					String dimensions = rs.getString(4);
+					//Integer number = rs.getInt(5);
+					String failures = rs.getString(6);
+					float price = rs.getFloat(7);
+					boolean available = rs.getBoolean(8);
+					int pat_id = rs.getInt(9);
+					Patient pat = new Patient(pat_id);
+					
+					newProsthetic = new Prosthetic(id, pros_type, material, price, dimensions, failures, available, pat);
 				 
 			}
 		} catch (SQLException e) {
@@ -250,7 +286,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 	public void addBiomedbyRegister(Biomedical_Eng biomed) {
 		// Insert the provided patient pat
 		try {
-			String sql = "INSERT INTO doctor (name, lastname,  telephone)" + " VALUES (?,?,?);";
+			String sql = "INSERT INTO biomedical_engineer (name, lastname,  telephone)" + " VALUES (?,?,?);";
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1, biomed.getName());
 			prep.setString(2, biomed.getLastname());

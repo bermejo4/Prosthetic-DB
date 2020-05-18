@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<<<<<<< HEAD
+<prosthetic type="hip">
+    <material>glass</material>
+    <dimensions>20.0x8030.0x30.0</dimensions>
+    <price>18000.0</price>
+    <failures>extension</failures>
+    <available>true</available>
+=======
 <prosthetic type="knee">
     <material>plastic</material>
     <dimensions>30.0x20.0x10.0</dimensions>
     <price>2000.0</price>
     <failures>none</failures>
-    <available>true</available>
+    <available>false</available>
+    <patient id="2">
+        <name>pepa</name>
+        <lastname>ruiz</lastname>
+    </patient>
+>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
     <biomeds/>
 </prosthetic>
