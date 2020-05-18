@@ -291,6 +291,31 @@ public class DoctorManager implements DoctorManagerInterface {
 		}
 	}
 	
-	
+	public List<Doctor> getDoctorfromHospital (int hospital_id) {
+		List<Doctor> docs = new ArrayList<Doctor>();
+		try {
+		Statement stm = c.createStatement();
+		String sql = "SELECT * FROM doctor AS d JOIN hospital AS h ON d.hospital_id = h.hospital_id WHERE d.hospital_id = ?";
+		
+		ResultSet rs = stm.executeQuery(sql);	
+		
+		while(rs.next()) {
+			int docId = rs.getInt("doctor_id");
+			String docname = rs.getString("name");
+			String doclastname = rs.getString("lastname");
+			String doctelephone = rs.getString("telephone");
+			
+			Doctor d = new Doctor(docId, docname, doclastname, doctelephone);
+			docs.add(d);
+		}
+	}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
 
+		return docs;
+}
+	
+	
+	
 }

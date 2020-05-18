@@ -70,6 +70,17 @@ public class Doctor implements Serializable{
 		this.lastname = lastname;
 		this.telephone = telephone;
 	}
+	
+	
+
+
+	public Doctor(Integer id, String name, String lastname, String telephone) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.lastname = lastname;
+		this.telephone = telephone;
+	}
 
 
 
