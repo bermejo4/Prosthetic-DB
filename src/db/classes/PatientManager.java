@@ -165,6 +165,35 @@ public class PatientManager implements PatientManagerInterface {
 		return patientfound;
 	}
 		
+	public ArrayList<Patient> showPatients(){
+		ArrayList<Patient> pati = new ArrayList<Patient>();
+		try {
+			Statement stm = c.createStatement();
+			String sql = "SELECT * FROM patient";
+			ResultSet rs = stm.executeQuery(sql);
+			
+			while(rs.next()) {
+				int id = rs.getInt("patient_id");
+				String name = rs.getString("name");
+				String lastname = rs.getString("lastname");
+				Date dob = rs.getDate("dob");
+				Date dof = rs.getDate("dof");
+				String address = rs.getString("address");
+				String tele = rs.getString("telephone");
+				String gender = rs.getString("gender");
+				String problem = rs.getString("problem");
+				int doctor_id=rs.getInt("doctor_id");
+				Doctor doctor = new Doctor(doctor_id);
+				Patient patient = new Patient(id,name,lastname,tele,dob,dof,gender,problem,address,doctor);
+				pati.add(patient);
+				
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return pati;
+	}
 	
 	
 }

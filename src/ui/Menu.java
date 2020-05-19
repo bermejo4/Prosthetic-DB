@@ -959,7 +959,7 @@ public class Menu {
 			System.out.println("Now Introduce the Id number of the prosthetic which you want to select:\n");
 			int num_id_prost = InputFlow.takeInteger(reader, "Id number:");
 			System.out.println("And now introduce the id_number of your patient:");
-			int num_id_pat = InputFlow.takeInteger(reader, "Id number:");
+			int num_id_pat = InputFlow.checkIdAndListPPatient(patientManagerInterface.showPatients());
 			doctorManagerInterface.assignProstheticToPatient(num_id_prost, num_id_pat);
 		} catch (Exception e) {
 			e.printStackTrace(); 
