@@ -2,5 +2,8 @@
 <hospital name="la paz">
     <address>plaza castilla</address>
     <telephone>112112112</telephone>
-    <patient id="3"/>
+    <patient id="3">
+        <name>drake</name>
+        <lastname>bell</lastname>
+    </patient>
 </hospital>

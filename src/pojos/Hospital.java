@@ -72,6 +72,8 @@ public class Hospital implements Serializable{
 		this.address = address;
 		this.telephone = telephone;
 	}
+	
+	
 	public Hospital(Integer id,String name, String address, String telephone, Patient pat) {
 		super();
 		this.id=id;
