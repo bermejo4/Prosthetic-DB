@@ -286,7 +286,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 	public void addBiomedbyRegister(Biomedical_Eng biomed) {
 		// Insert the provided patient pat
 		try {
-			String sql = "INSERT INTO doctor (name, lastname,  telephone)" + " VALUES (?,?,?);";
+			String sql = "INSERT INTO biomedical_engineer (name, lastname,  telephone)" + " VALUES (?,?,?);";
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setString(1, biomed.getName());
 			prep.setString(2, biomed.getLastname());
@@ -323,8 +323,6 @@ public class BEManager implements db.inteface.BEManagerInterface {
 
 	}
 	
-
-
 
 
 }

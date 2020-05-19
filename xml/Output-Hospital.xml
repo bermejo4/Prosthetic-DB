@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hospital name="ramon y cajal">
-    <address>moncloa</address>
-    <telephone>890890890</telephone>
+<hospital name="la paz">
+    <address>plaza castilla</address>
+    <telephone>112112112</telephone>
     <doctors/>
 </hospital>
