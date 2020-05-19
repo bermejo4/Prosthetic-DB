@@ -299,6 +299,8 @@ public class InputFlow {
 		}while(!check);
 		return id;
 	}
+	
+	
 	public static void printDoctorArrayList(ArrayList<Doctor> list) {
 		Iterator<Doctor> it = list.iterator();
 		Doctor doc;

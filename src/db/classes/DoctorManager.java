@@ -161,6 +161,7 @@ public class DoctorManager implements DoctorManagerInterface {
 		}
 		// Return the list
 		return patientsList;
+		
 	}
 	
 	

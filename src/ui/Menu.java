@@ -763,7 +763,9 @@ public class Menu {
 			System.out.println(pat.toString());
 			System.out.println("");
 		}
-
+		if (coiList.isEmpty()) {
+			System.out.println("there´s no patient with that telephone number");
+		}
 	}
 	
 	public static void showHospitals() {
@@ -829,7 +831,6 @@ public class Menu {
 		if (InputFlow.areYouSure(reader, "Are you sure that do you want to delete this patient?")) {
 			doctorManagerInterface.delete(pac);
 		}
-
 	}
 
 	public static void addPatient(boolean mood) throws Exception {
@@ -846,21 +847,21 @@ public class Menu {
 		String name = reader.readLine();
 		System.out.println("Lastname:");
 		String lastname = reader.readLine();
-		System.out.println("Phone number:");
-		String telephone = InputFlow.takeTelephone(reader, "Introduce a telephone: ");
 		// dob
 		LocalDate dayofbirth = InputFlow.takeDate(reader, "Day of Birthday (yyyy-MM-dd): ");
 		if (mood) {// If you are modifying the patient you can also modify the day of fitting
 			// dof
 			LocalDate dayoffitting = InputFlow.takeDate(reader, "Day of Fitting (yyyy-MM-dd)");
 		}
-
+		
+		System.out.println("Address:");
+		String address = reader.readLine();
+		System.out.println("Phone number:");
+		String telephone = InputFlow.takeTelephone(reader, "Introduce a telephone: ");
 		System.out.println("Gender:");
 		String gender = InputFlow.takeGender(reader, "");
 		System.out.println("Problem:"); 
 		String problem = reader.readLine();
-		System.out.println("Address:");
-		String address = reader.readLine();
 		//doctorManagerInterface.doctorsInDatabase();
 		int doctor_id =InputFlow.checkIdAndListDoctor(doctorManagerInterface.doctorsInDatabase());
 		
