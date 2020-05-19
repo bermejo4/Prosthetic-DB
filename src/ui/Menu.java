@@ -933,7 +933,6 @@ public class Menu {
 
 				System.out.println("No file found for that search..Try again");
 				searchProsthetic();
-
 			} else {
 
 				Iterator it = prostheticList.iterator();
