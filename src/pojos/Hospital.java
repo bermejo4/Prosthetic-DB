@@ -7,7 +7,7 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "hospital")
-@XmlType(propOrder = {"address","telephone", "doctors"}) //elements will appear like this on the XML
+@XmlType(propOrder = {"address","telephone", "patient"}) //elements will appear like this on the XML
 
 public class Hospital implements Serializable{
 
@@ -19,12 +19,11 @@ public class Hospital implements Serializable{
 	private String name;
 	@XmlElement
 	private String address;
-	@XmlTransient
+	@XmlElement
 	private Patient patient;
 	@XmlElement
 	private String telephone;
-	@XmlElement(name = "doctor")
-	@XmlElementWrapper(name = "doctors")
+	@XmlTransient
 	private List<Doctor> doctors;
 	//WILL CREATE A DOCTORS ELEMENT AND INSIDE THE NAME OF THE DOCTORS WORKING ON THAT HOSPITAL
 	

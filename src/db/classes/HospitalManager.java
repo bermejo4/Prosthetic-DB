@@ -142,6 +142,36 @@ public class HospitalManager implements HospitalManagerInterface {
 	}
 	
 	
+	
+	public Hospital getHospitalwithPatient(int hospital_id) {
+		Hospital hosp = new Hospital();
+		try {
+			String sql = "SELECT * FROM hospital WHERE hospital_id = ?";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setInt(1, hospital_id);
+			ResultSet rs = prep.executeQuery();
+			
+			while(rs.next()) {
+				int hospId = rs.getInt(1);
+				String hospName = rs.getString(2);
+				String hospAddress = rs.getString(3);
+				String hospTel = rs.getString(4);
+				int patId = rs.getInt(5);
+				Patient pat = new Patient(patId);
+				
+				hosp = new Hospital(hospId, hospName, hospAddress, hospTel, pat);
+				
+			}
+		}
+		
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return hosp;
+	}
+	
+	
 }
 
 

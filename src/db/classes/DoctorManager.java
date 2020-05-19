@@ -294,33 +294,7 @@ public class DoctorManager implements DoctorManagerInterface {
 	
 	
 
-	public Doctor getDoctorwithHospital(int hospital_id) {
-		Doctor doc = new Doctor();
-		try {
-			String sql = "SELECT * FROM doctor AS d JOIN hospital AS h ON d.hospital_id = h.hospital_id WHERE h.hospital_id LIKE ?";
-			PreparedStatement prep = c.prepareStatement(sql);
-			prep.setInt(1, hospital_id);
-			ResultSet rs = prep.executeQuery();
-			
-			while(rs.next()) {
-				int docid = rs.getInt(1);
-				String docname = rs.getString(2);
-				String doclastname = rs.getString(3);
-				String doctelephone = rs.getString(4);
-				int hosp_id = rs.getInt(6);
-				Hospital hosp = new Hospital(hosp_id);
-				
-				
-				doc = new Doctor(docid, docname, doclastname, doctelephone, hosp);
-			}
-			
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return doc;
-	}
+	
 
 	
 	

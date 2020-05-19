@@ -1,6 +1,6 @@
 <!DOCTYPE prosthetic [
 
-	<!ELEMENT prosthetic (material, price, dimensions, failures, available,patient, biomeds?)>
+	<!ELEMENT prosthetic (material, price, dimensions, failures, available,patient)>
 	<!ATTLIST prosthetic type CDATA #REQUIRED>
 	<!ELEMENT material (#PCDATA)>
 	<!ELEMENT price (#PCDATA)>
@@ -11,10 +11,4 @@
 	<!ATTLIST patient id CDATA #REQUIRED>
 	<!ELEMENT name (#PCDATA)>
 	<!ELEMENT lastname (#PCDATA)>
-	<!ELEMENT biomeds (biomed+)>
-	<!ELEMENT biomed (name, lastname, telephone)>
-	<!ATTLIST biomed id CDATA #REQUIRED>
-	<!ELEMENT name (#PCDATA)>
-	<!ELEMENT lastname (#PCDATA)>
-	<!ELEMENT telephone (#PCDATA)>
-]>
+	]

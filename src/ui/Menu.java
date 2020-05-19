@@ -629,6 +629,13 @@ public class Menu {
 		System.out.println("4.Failures.");
 		System.out.println("0.Back.");
 	}
+	
+	public static void wrongInfo(){
+		System.out.println("Wrong credentials, please select an option: ");
+		System.out.println("1. Introduce them again. ");
+		System.out.println("0. Go back to the menu. ");
+	}
+	
 
 	public static void login(Role role) throws Exception { //hacer option para go back 
 		boolean check = true;
@@ -639,7 +646,17 @@ public class Menu {
 			User userCheck = userManagerInterface.checkPassword(user);
 
 			if (userCheck == null) {
-				System.out.println("Wrong credentials. Introduce them again.");
+				wrongInfo();
+				int option = requestNumber(1);
+				switch(option) {
+				case 1:
+					break;
+				default:
+					System.out.println("Press 0 to go back");
+					break;
+				}
+				pressEnter();
+				//System.out.println("Wrong credentials. Please, introduce them again:");
 			} else {
 				switch (userCheck.getRole().getRole()) {
 				case "patient":
@@ -968,8 +985,8 @@ public class Menu {
 	
 	
 	private static void generateHospitalXML(int hospital_id) throws Exception{
-		Doctor doc = doctorManagerInterface.getDoctorwithHospital(hospital_id);
-		Hospital hospital = hospitalManagerInterface.getHospital(doc.getHospital().getId());
+		Hospital hospital = hospitalManagerInterface.getHospitalwithPatient(hospital_id);
+		Patient pat = patientManagerInterface.getPatient(hospital.getPatient().getId());
 		//Defining and creating  JAXB context
 		JAXBContext contextHosp = JAXBContext.newInstance(Hospital.class);
 		//Creating the marshaller

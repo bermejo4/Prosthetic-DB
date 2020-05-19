@@ -12,6 +12,7 @@ public interface HospitalManagerInterface {
 	public void addhospitalbyRegister(Hospital hosp);
 	public Hospital getHospital(int hospital_id);
 	public Hospital searchSpecificHospitalByTelephone(String telephone);
+	public Hospital getHospitalwithPatient (int hospital_id);
 	
 	
 }
