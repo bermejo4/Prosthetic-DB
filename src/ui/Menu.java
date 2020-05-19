@@ -682,6 +682,7 @@ public class Menu {
 		} while (check);
 	}
 
+	
 	public static void register(Role role) {
 		String name = InputFlow.takeString(reader, "Introduce your name:");
 		String lastname = "error";
