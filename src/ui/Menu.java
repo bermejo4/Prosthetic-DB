@@ -207,13 +207,15 @@ public class Menu {
 //-----------------------------------------------------------------------------------
 
 				case 3: // Biomedical Engineer
+					
+					//agregar un switch o if para que no vuelva a salir
 					System.out.println("\nBIOMEDICAL ENGINEER MENU:");
 					System.out.println("What do you want to do?");
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
 					max = 2;
 
-					//if(logged) {
+					if(logged) {
 
 					System.out.println("3. Upload a new Prosthetic.");
 					System.out.println("4. Modify a Prosthetic information.");
@@ -225,7 +227,7 @@ public class Menu {
 				//	System.out.println("8. Delete account");
 					max = 7;
 
-					//}
+					}
 					System.out.println("\n0.Back to choose other user to the main menu.");
 
 					int choice;
@@ -251,8 +253,9 @@ public class Menu {
 						searchProsthetic();
 
 						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be modified:");
-						modifyProstheticInfo(choice); // no esta funcionando
-						System.out.println("Your prosthetic has been updated!");
+						modifyProstheticInfo(choice); 
+						System.out.println("The prosthetic has been updated!");
+						designProsthetic(choice);
 						break;
 
 					case 5:// View Uploaded Prosthetics
@@ -266,6 +269,7 @@ public class Menu {
 						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be deleted:");
 						deleteProsthetic(choice);
 						break;
+					//tengo que utilizar el metodo showbiomedics 
 						
 					//case 7: Edit user or password
 					
@@ -443,19 +447,18 @@ public class Menu {
 
 		Prosthetic createProsthetic = new Prosthetic(pros_type, material, price, dimensions, failures, available);
 		biomedManagerInterface.insert(createProsthetic);
-		System.out.println("Your new prosthetic has been successfully uploaded! ");
+		System.out.println("The new prosthetic has been successfully uploaded! ");
 		return createProsthetic;
 
 	}
 
 	public static void designProsthetic(int prosID) throws Exception {
 
-		//medicine hace el papel de biomedico 
+		
 		List<Biomedical_Eng> biomedsLists = biomedManagerInterface.showBiomedics();
 		
 		int biomed_id = biomedical_engUsing.getId(); 
-		System.out.println(" Your ID: " + biomed_id);
-		System.out.println("You are now an author of the prosthetic " + prosID);
+		System.out.println("Biomedic with ID " + biomed_id + ",is now an author of the prosthetic with ID:" + prosID);
 
 		biomedManagerInterface.design(prosID, biomed_id);
 
@@ -505,7 +508,7 @@ public class Menu {
 
 		}
 		System.out.println("Actual prosthetic dimensions: " + prosToModify.getDimensions());
-		System.out.println("Establish new or same dimensions:");
+		System.out.println("Establish the same dimensions or specify new dimensions:");
 		String newDimensions = InputFlow.takeDimension();
 
 		System.out.println("Actual prosthetic price: " + prosToModify.getPrice());
@@ -591,15 +594,6 @@ public class Menu {
 
 		dbManagerInterface.initializeDoctors("Juan", "657901456", "traumatologist", 1);
 		dbManagerInterface.initializeDoctors("Rosa", "646321211", "cardiologist", 2);
-		/*
-		 * <<<<<<< HEAD dbManagerInterface.initializeBiomedics("Gabriela", "Api");
-		 * dbManagerInterface.initializeBiomedics("Marina", "Gonzales"); =======
-		 * dbManagerInterface.initializeBiomedics("Gabriela", "Apicella");
-		 * dbManagerInterface.initializeBiomedics("Marina", "Miguelez"); 
-		 * 'master' of https://github.com/bermejo4/Prosthetic-DB.git
-		 * dbManagerInterface.initializeBiomedics("Jaime", "Bermejo");
-		 * dbManagerInterface.initializeBiomedics("Maria Celeste", "Ortega");
-		 */
 
 	}
 
