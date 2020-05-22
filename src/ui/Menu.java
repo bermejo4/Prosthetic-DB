@@ -282,7 +282,7 @@ public class Menu {
 
 					case 6: // Delete Prosthetic
 						searchProsthetic();
-
+						
 						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be deleted:");
 						deleteProsthetic(choice);
 						break;
@@ -356,7 +356,7 @@ public class Menu {
 
 //-----------------------------------------------------------------------------------
 	public static void goToWeb() {
-		System.out.println("Se esta ejecutando la p√°gina web");
+		System.out.println("Se esta ejecutando la p·gina web");
         File filehtml = new File("");
         System.out.println("uri" + filehtml.toURI().toString()+"\n otro:"+filehtml.getAbsolutePath());
         //openInBrowser("file://"+filehtml.getAbsolutePath()+"/src/arqui/pruebaparabases.html");
@@ -664,12 +664,13 @@ public class Menu {
 
 			if (userCheck == null) {
 				wrongInfo();
-				int option = requestNumber(1);
+				int option = requestNumber(2);
 				switch(option) {
 				case 1:
 					break;
-				default:
+				case 0:
 					System.out.println("Press 0 to go back");
+					check=false;
 					break;
 				}
 				pressEnter();
@@ -910,47 +911,68 @@ public class Menu {
 	public static void searchProsthetic() {
 		Prosthetic prost;
 		searchProstheticMenu();
-		int option = requestNumber(4);
+		int option = requestNumber(5);
 		boolean searched=true;
 
 		List<Prosthetic> prostheticList = new ArrayList<Prosthetic>();
 		try {
 			do {
 				switch (option) {
-				case 1:// material
-					System.out.println("Name of the material you are looking for:");
-					String materialpassed = reader.readLine();
-					prostheticList = doctorManagerInterface.selectProsthetic("material", materialpassed);
-					searched=false;
-					break;
-				case 2:// type
-					System.out.println("Specify which type of prosthetic you are looking for:");
-					String typepassed = reader.readLine();
-					prostheticList = doctorManagerInterface.selectProsthetic("type", typepassed);
-					searched=false;
-					break;
-				case 3:// dimension
-					System.out.println("Specify the dimensions of prosthetic you are looking for:");
-					String dimensionpassed = InputFlow.takeDimension();
-					prostheticList = doctorManagerInterface.selectProsthetic("dimension", dimensionpassed);
-					searched=false;
-					break;
-				case 4:// failures
-					System.out.println("Specify the kind of failures you are looking for:");
-					String failurespassed = reader.readLine();
-					prostheticList = doctorManagerInterface.selectProsthetic("failures", failurespassed);
-					searched=false;
-					break;
-				default: 
-					searched=false;
-					break;
-				}
+					case 1:// material
+						System.out.println("Name of the material you are looking for:");
+						String materialpassed = reader.readLine();
+						prostheticList = doctorManagerInterface.selectProsthetic("material", materialpassed);
+						searched=false;
+						
+						break;
+					case 2:// type
+						System.out.println("Specify which type of prosthetic you are looking for:");
+						String typepassed = reader.readLine();
+						prostheticList = doctorManagerInterface.selectProsthetic("type", typepassed);
+						searched=false;
+						
+						break;
+					case 3:// dimension
+						System.out.println("Specify the dimensions of prosthetic you are looking for:");
+						String dimensionpassed = InputFlow.takeDimension();
+						prostheticList = doctorManagerInterface.selectProsthetic("dimension", dimensionpassed);
+						searched=false;
+						if (prostheticList.isEmpty()) {
+
+							System.out.println("No file found for that search..Try again");
+							searchProsthetic();
+							
+						} else {
+
+							Iterator it = prostheticList.iterator();
+							while (it.hasNext()) {
+								prost = (Prosthetic) it.next();
+
+								System.out.println(prost.toString());
+								System.out.println("");
+
+							}
+
+						}
+						break;
+					case 4:// failures
+						System.out.println("Specify the kind of failures you are looking for:");
+						String failurespassed = reader.readLine();
+						prostheticList = doctorManagerInterface.selectProsthetic("failures", failurespassed);
+						searched=false;
+						
+						break;
+					case 0: 
+						searched=false;
+						break;
+					}
 			} while(searched);
 			
 			if (prostheticList.isEmpty()) {
 
 				System.out.println("No file found for that search..Try again");
 				searchProsthetic();
+				
 			} else {
 
 				Iterator it = prostheticList.iterator();
@@ -959,9 +981,7 @@ public class Menu {
 
 					System.out.println(prost.toString());
 					System.out.println("");
-
 				}
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
