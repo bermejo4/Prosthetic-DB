@@ -4,7 +4,11 @@
 
 <xsl:template match="/">
 		<html>
-			<head><title>Here is your prosthetic</title></head>
+			<!--><head><title>Here is your prosthetic</title></head><!-->
+			<head>
+    		<title>Prosthetic Transformation from xml</title>
+    		<link rel="stylesheet" href="ProstheticDbStyle.css"></link>
+			</head>
 			<body>
 				<p><b>Type: </b><xsl:value-of select = "/prosthetic/@type" /></p>
 				<p><b>Material: </b> <xsl:value-of select = "/prosthetic/material" /></p>
