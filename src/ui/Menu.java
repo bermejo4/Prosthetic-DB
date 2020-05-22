@@ -651,12 +651,10 @@ public class Menu {
 				switch(option) {
 				case 1:
 					break;
-				default:
-					System.out.println("Press 0 to go back");
+				case 0: 
+					userUsing = false;
 					break;
 				}
-				pressEnter();
-				//System.out.println("Wrong credentials. Please, introduce them again:");
 			} else {
 				switch (userCheck.getRole().getRole()) {
 				case "patient":
@@ -747,7 +745,6 @@ public class Menu {
 	
 	public static void deleteUser() {
 		
-		//User deletedUser = 
 	}
 	
 
@@ -893,11 +890,11 @@ public class Menu {
 		Prosthetic prost;
 		searchProstheticMenu();
 		int option = requestNumber(4);
-		boolean searched=true;
+		boolean searched;
 
 		List<Prosthetic> prostheticList = new ArrayList<Prosthetic>();
 		try {
-			do {
+			//do {
 				switch (option) {
 				case 1:// material
 					System.out.println("Name of the material you are looking for:");
@@ -923,11 +920,11 @@ public class Menu {
 					prostheticList = doctorManagerInterface.selectProsthetic("failures", failurespassed);
 					searched=false;
 					break;
-				default: 
+				case 0: 
 					searched=false;
 					break;
 				}
-			} while(searched);
+			//} while(searched);
 			
 			if (prostheticList.isEmpty()) {
 
@@ -966,13 +963,13 @@ public class Menu {
 	}
 
 	public static void buyProsthetic() throws Exception {
-		// int hospital_id = hospitalUser.getId();
+		int hospital_id = hospitalUsing.getId();
 
 		// Show the list of all available prosthetic on that specific hospital
 		List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics();
 
 		for (Prosthetic prosthetic : prostheticList) {
-			System.out.println(prosthetic);
+			System.out.println(prosthetic.toStringProstheticXML());
 		}
 
 		// Ask for the Id of the prosthetic you want to buy
@@ -980,7 +977,9 @@ public class Menu {
 		int prosthetic_id = Integer.parseInt(reader.readLine());
 
 		// the specific hospital buys the prosthetic choosed
-		hospitalManagerInterface.buy(/* hospital_id */1, prosthetic_id);
+		hospitalManagerInterface.buy(hospital_id , prosthetic_id);
+		
+		System.out.println("You bought this prosthetic: "+prosthetic_id);
 	}
 	
 	

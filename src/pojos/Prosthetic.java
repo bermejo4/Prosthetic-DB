@@ -49,12 +49,22 @@ public class Prosthetic implements Serializable {
 	@XmlElementWrapper(name = "biomeds")
 	private List<Biomedical_Eng> biomeds; // for the many to many relationship
 
-	public Prosthetic(Integer id, String type) {
+
+
+
+	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures,
+			Integer numberFailures, boolean available, Patient patient, Hospital hospital) {
 		super();
 		this.id = id;
 		this.type = type;
-		this.biomeds = new ArrayList<Biomedical_Eng>();
-
+		this.material = material;
+		this.price = price;
+		this.dimensions = dimensions;
+		this.failures = failures;
+		this.numberFailures = numberFailures;
+		this.available = available;
+		this.patient = patient;
+		this.hospital = hospital;
 	}
 
 	// Constructor with all variables
