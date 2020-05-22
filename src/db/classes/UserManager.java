@@ -62,6 +62,7 @@ public class UserManager implements UserManagerInterface {
 		List<Role> roles = (List<Role>) q.getResultList();
 		return roles;
 	}
+	@Override
 	public User getUserByTelephone(String telephone) {
 		Query q = em.createNativeQuery("SELECT username, password, role_id FROM users WHERE username =?", User.class);
 		q.setParameter(3,telephone);

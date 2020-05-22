@@ -145,16 +145,16 @@ public class Menu {
 					case 5:
 						System.out.println("1.Change Username.\n2.Change Password.\n3.Change both.");
 						num = requestNumber(max);
-						User user = new User(patientUsing.getTelephone(),);
+						User user=userManagerInterface.getUserByTelephone(patientUsing.getTelephone());
 						switch(num) {
 							case 1: 
-								updateUser(user,1);
+								userManagerInterface.updateUser(user,1);
 								break;
 							case 2:
-								updateUser(user, 2);
+								userManagerInterface.updateUser(user, 2);
 								break;
-							case 2:
-								updateUser(user, 3);
+							case 3:
+								userManagerInterface.updateUser(user, 3);
 								break;
 						}
 						

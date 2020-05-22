@@ -23,5 +23,6 @@ public interface UserManagerInterface {
 	public void updateUser(User user, int num);
 
 	public void deleteUser(User user);
+	public User getUserByTelephone(String telephone);
 
 }
