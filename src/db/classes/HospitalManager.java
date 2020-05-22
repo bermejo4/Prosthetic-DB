@@ -41,8 +41,20 @@ public class HospitalManager implements HospitalManagerInterface {
 			while (rs.next()) {
 				Integer prosthId = rs.getInt("prosthetic_id");
 				String prosthType = rs.getString("type");
-				Prosthetic newProsthetic = new Prosthetic(prosthId, prosthType);
-				prostheticList.add(newProsthetic);
+				String prosMaterial = rs.getString("material");
+				float prosPrice = rs.getFloat("price");
+				String prosDimensions = rs.getString("dimension");
+				String prosFailures = rs.getString("failures");
+				int prosnumbFail = rs.getInt("number_of_failures");
+				boolean prosAvailable = rs.getBoolean("available");
+				int pati_id = rs.getInt("patient_id");
+				int hospi_id = rs.getInt("hospital_id");
+				Patient p = new Patient(pati_id);
+				Hospital h = new Hospital(hospi_id);
+				
+				Prosthetic newprosthetic = new Prosthetic(prosthId, prosthType, prosMaterial, prosPrice, prosDimensions, prosFailures,prosnumbFail,
+						prosAvailable, p, h);
+				prostheticList.add(newprosthetic);
 
 			}
 

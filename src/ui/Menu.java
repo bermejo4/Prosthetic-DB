@@ -671,10 +671,7 @@ public class Menu {
 				case 0:
 					System.out.println("Press 0 to go back");
 					check=false;
-					break;
 				}
-				pressEnter();
-				//System.out.println("Wrong credentials. Please, introduce them again:");
 			} else {
 				switch (userCheck.getRole().getRole()) {
 				case "patient":
@@ -765,7 +762,6 @@ public class Menu {
 	
 	public static void deleteUser() {
 		
-		//User deletedUser = 
 	}
 	
 
@@ -918,54 +914,35 @@ public class Menu {
 		try {
 			do {
 				switch (option) {
-					case 1:// material
-						System.out.println("Name of the material you are looking for:");
-						String materialpassed = reader.readLine();
-						prostheticList = doctorManagerInterface.selectProsthetic("material", materialpassed);
-						searched=false;
-						
-						break;
-					case 2:// type
-						System.out.println("Specify which type of prosthetic you are looking for:");
-						String typepassed = reader.readLine();
-						prostheticList = doctorManagerInterface.selectProsthetic("type", typepassed);
-						searched=false;
-						
-						break;
-					case 3:// dimension
-						System.out.println("Specify the dimensions of prosthetic you are looking for:");
-						String dimensionpassed = InputFlow.takeDimension();
-						prostheticList = doctorManagerInterface.selectProsthetic("dimension", dimensionpassed);
-						searched=false;
-						if (prostheticList.isEmpty()) {
-
-							System.out.println("No file found for that search..Try again");
-							searchProsthetic();
-							
-						} else {
-
-							Iterator it = prostheticList.iterator();
-							while (it.hasNext()) {
-								prost = (Prosthetic) it.next();
-
-								System.out.println(prost.toString());
-								System.out.println("");
-
-							}
-
-						}
-						break;
-					case 4:// failures
-						System.out.println("Specify the kind of failures you are looking for:");
-						String failurespassed = reader.readLine();
-						prostheticList = doctorManagerInterface.selectProsthetic("failures", failurespassed);
-						searched=false;
-						
-						break;
-					case 0: 
-						searched=false;
-						break;
-					}
+					
+				case 1:// material
+					System.out.println("Name of the material you are looking for:");
+					String materialpassed = reader.readLine();
+					prostheticList = doctorManagerInterface.selectProsthetic("material", materialpassed);
+					searched=false;
+					break;
+				case 2:// type
+					System.out.println("Specify which type of prosthetic you are looking for:");
+					String typepassed = reader.readLine();
+					prostheticList = doctorManagerInterface.selectProsthetic("type", typepassed);
+					searched=false;
+					break;
+				case 3:// dimension
+					System.out.println("Specify the dimensions of prosthetic you are looking for:");
+					String dimensionpassed = InputFlow.takeDimension();
+					prostheticList = doctorManagerInterface.selectProsthetic("dimension", dimensionpassed);
+					searched=false;
+					break;
+				case 4:// failures
+					System.out.println("Specify the kind of failures you are looking for:");
+					String failurespassed = reader.readLine();
+					prostheticList = doctorManagerInterface.selectProsthetic("failures", failurespassed);
+					searched=false;
+					break;
+				case 0: 
+					searched=false;
+					break;
+				}
 			} while(searched);
 			
 			if (prostheticList.isEmpty()) {
@@ -1004,13 +981,13 @@ public class Menu {
 	}
 
 	public static void buyProsthetic() throws Exception {
-		// int hospital_id = hospitalUser.getId();
+		int hospital_id = hospitalUsing.getId();
 
 		// Show the list of all available prosthetic on that specific hospital
 		List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics();
 
 		for (Prosthetic prosthetic : prostheticList) {
-			System.out.println(prosthetic);
+			System.out.println(prosthetic.toStringProstheticXML());
 		}
 
 		// Ask for the Id of the prosthetic you want to buy
@@ -1018,7 +995,9 @@ public class Menu {
 		int prosthetic_id = Integer.parseInt(reader.readLine());
 
 		// the specific hospital buys the prosthetic choosed
-		hospitalManagerInterface.buy(/* hospital_id */1, prosthetic_id);
+		hospitalManagerInterface.buy(hospital_id , prosthetic_id);
+		
+		System.out.println("You bought this prosthetic: "+prosthetic_id);
 	}
 	
 	
