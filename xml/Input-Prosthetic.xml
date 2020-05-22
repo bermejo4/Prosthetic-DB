@@ -11,12 +11,6 @@
 	<!ATTLIST patient id CDATA #REQUIRED>
 	<!ELEMENT name (#PCDATA)>
 	<!ELEMENT lastname (#PCDATA)>
-	<!ELEMENT biomeds (biomed+)>
-	<!ELEMENT biomed (name, lastname, telephone)>
-	<!ATTLIST biomed id CDATA #REQUIRED>
-	<!ELEMENT name (#PCDATA)>
-	<!ELEMENT lastname (#PCDATA)>
-	<!ELEMENT telephone (#PCDATA)>
 ]>
 
 <prosthetic type = "hand">
@@ -29,11 +23,4 @@
     	<name>Rocio</name>
        <lastname>Ruiz</lastname>
     </patient>
-    <biomeds>
-    	<biomed id="2">
-    		<name>Marina</name>
-    		<lastname>Miguelez</lastname>
-    		<telephone>Marina</telephone>
-    	</biomed>
-   </biomeds>
 </prosthetic>

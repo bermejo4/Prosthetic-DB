@@ -8,6 +8,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
+import javax.persistence.Persistence;
 import javax.xml.bind.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -116,7 +117,8 @@ public class Menu {
 					if (logged) {
 						System.out.println("3.Select a Hospital.");  
 						System.out.println("4.View appointments."); 
-						max = 4;
+						System.out.println("5.Change the credentials."); 
+						max = 5;
 					}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
@@ -134,13 +136,28 @@ public class Menu {
 						System.out.println("The list of the available hospitals is:\n");
 						showHospitals();
 
-						// Then, they select the hospital
-						//System.out.println("Now, you need to choose one of them.");
 						selectHospitalByID();
 
 						break;
 					case 4:
 						viewDate();
+						break;
+					case 5:
+						System.out.println("1.Change Username.\n2.Change Password.\n3.Change both.");
+						num = requestNumber(max);
+						User user = new User(patientUsing.getTelephone(),);
+						switch(num) {
+							case 1: 
+								updateUser(user,1);
+								break;
+							case 2:
+								updateUser(user, 2);
+								break;
+							case 2:
+								updateUser(user, 3);
+								break;
+						}
+						
 						break;
 
 					default: // back
@@ -810,6 +827,7 @@ public class Menu {
 			break;
 		case 2: // Modify Patient
 			addPatient(true); // you are modifying also the dof
+			
 			break;
 		case 3: // Delete Patient
 			DeletePatient();

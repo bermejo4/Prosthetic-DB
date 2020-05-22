@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-
 <!DOCTYPE prosthetic [
-	<!ELEMENT prosthetic (material, price, dimensions, failures, available, biomeds?)>
+	<!ELEMENT prosthetic (material, price, dimensions, failures, available,patient, biomeds?)>
 	<!ATTLIST prosthetic type CDATA #REQUIRED>
 	<!ELEMENT material (#PCDATA)>
 	<!ELEMENT price (#PCDATA)>
 	<!ELEMENT dimensions (#PCDATA)>
 	<!ELEMENT failures (#PCDATA)>
 	<!ELEMENT available (#PCDATA)>
-	<!ELEMENT biomeds (biomed+)>
-	<!ELEMENT biomed (name)>
-	<!ATTLIST biomed id CDATA #REQUIRED>
+	<!ELEMENT patient (name, lastname)>
+	<!ATTLIST patient id CDATA #REQUIRED>
 	<!ELEMENT name (#PCDATA)>
+	<!ELEMENT lastname (#PCDATA)>
 ]>
 
-
-<prosthetic type = "auricular">
-	<material>wood</material>
-	<price>2999.0</price>
-	<dimensions>50x20x10</dimensions>
+<prosthetic type = "hand">
+	<material>plastic</material>
+	<price>1000</price>
+	<dimensions>30x30x30</dimensions>
 	<failures>none</failures>
     <available>false</available>
-    <biomeds>
-    	<biomed id="1">
-    		<name>Julia</name>
-    	</biomed>
-   </biomeds>
+    <patient id="4">
+    	<name>Rocio</name>
+       <lastname>Ruiz</lastname>
+    </patient>
 </prosthetic>
