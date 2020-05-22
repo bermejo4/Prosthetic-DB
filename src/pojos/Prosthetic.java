@@ -52,21 +52,6 @@ public class Prosthetic implements Serializable {
 
 
 
-	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures,
-			Integer numberFailures, boolean available, Patient patient, Hospital hospital) {
-		super();
-		this.id = id;
-		this.type = type;
-		this.material = material;
-		this.price = price;
-		this.dimensions = dimensions;
-		this.failures = failures;
-		this.numberFailures = numberFailures;
-		this.available = available;
-		this.patient = patient;
-		this.hospital = hospital;
-	}
-
 	// Constructor with all variables
 	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures,
 			Integer numberFailures, boolean available, Patient patient, Hospital hospital,

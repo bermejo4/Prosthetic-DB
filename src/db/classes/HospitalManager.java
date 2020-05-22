@@ -43,9 +43,9 @@ public class HospitalManager implements HospitalManagerInterface {
 				String prosthType = rs.getString("type");
 				String prosMaterial = rs.getString("material");
 				float prosPrice = rs.getFloat("price");
-				String prosDimensions = rs.getString("dimensions");
+				String prosDimensions = rs.getString("dimension");
 				String prosFailures = rs.getString("failures");
-				int prosnumbFail = rs.getInt("number of failures");
+				int prosnumbFail = rs.getInt("number_of_failures");
 				boolean prosAvailable = rs.getBoolean("available");
 				int pati_id = rs.getInt("patient_id");
 				int hospi_id = rs.getInt("hospital_id");
