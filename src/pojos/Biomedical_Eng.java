@@ -5,22 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.*;
 
-@XmlAccessorType(XmlAccessType.FIELD) //Here we indicates that the attributes need to be annotated.
-@XmlType(propOrder = {"name", "lastname", "telephone"})
 public class Biomedical_Eng implements Serializable {
 
 	private static final long serialVersionUID = -6234822159013375318L;
-	
-	@XmlAttribute 
+	 
 	private Integer id;
-	@XmlElement
 	private String name;
-	@XmlElement
 	private String lastname;
-	@XmlElement
 	private String telephone;
-	
-	@XmlTransient
 	private List<Prosthetic> prostheticsList;
 
 	

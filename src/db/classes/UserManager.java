@@ -62,6 +62,14 @@ public class UserManager implements UserManagerInterface {
 		List<Role> roles = (List<Role>) q.getResultList();
 		return roles;
 	}
+	@Override
+	public User getUserByTelephone(String telephone) {
+		Query q = em.createNativeQuery("SELECT username, password, role_id FROM users WHERE username =?", User.class);
+		q.setParameter(3,telephone);
+		User user = (User) q.getSingleResult();
+		return user;
+		
+	}
 	
 	@Override
 	public void updateUser(User user, int num) {
@@ -69,11 +77,14 @@ public class UserManager implements UserManagerInterface {
 		
 		em.getTransaction().begin();
 		switch(num) {
-			case 1: user.setUsername(user.getUsername()); //If you want to modify only your username(telephone)
+			case 1: user.setUsername(user.getUsername());
+				break;//If you want to modify only your username(telephone)
 			case 2: user.setPassword(user.getPassword());
-			default: //To modify both of them
+			break;
+			case 3: //To modify both of them
 				user.setUsername(user.getUsername());
 				user.setPassword(user.getPassword());
+				break;
 			}
 		em.getTransaction().commit();
 		em.close();

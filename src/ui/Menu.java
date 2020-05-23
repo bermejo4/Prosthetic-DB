@@ -8,6 +8,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
+import javax.persistence.Persistence;
 import javax.xml.bind.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.parsers.DocumentBuilder;
@@ -119,7 +120,8 @@ public class Menu {
 					if (logged) {
 						System.out.println("3.Select a Hospital.");  
 						System.out.println("4.View appointments."); 
-						max = 4;
+						System.out.println("5.Change the credentials."); 
+						max = 5;
 					}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
@@ -137,13 +139,28 @@ public class Menu {
 						System.out.println("The list of the available hospitals is:\n");
 						showHospitals();
 
-						// Then, they select the hospital
-						//System.out.println("Now, you need to choose one of them.");
 						selectHospitalByID();
 
 						break;
 					case 4:
 						viewDate();
+						break;
+					case 5:
+						System.out.println("1.Change Username.\n2.Change Password.\n3.Change both.");
+						num = requestNumber(max);
+						User user=userManagerInterface.getUserByTelephone(patientUsing.getTelephone());
+						switch(num) {
+							case 1: 
+								userManagerInterface.updateUser(user,1);
+								break;
+							case 2:
+								userManagerInterface.updateUser(user, 2);
+								break;
+							case 3:
+								userManagerInterface.updateUser(user, 3);
+								break;
+						}
+						
 						break;
 
 					default: // back
@@ -268,7 +285,7 @@ public class Menu {
 
 					case 6: // Delete Prosthetic
 						searchProsthetic();
-
+						
 						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be deleted:");
 						deleteProsthetic(choice);
 						break;
@@ -341,9 +358,14 @@ public class Menu {
 	}
 
 //-----------------------------------------------------------------------------------
+<<<<<<< HEAD
 	public static void goToWeb() throws JAXBException {
 		prepareWeb();
 		System.out.println("Se esta ejecutando la pÃ¡gina web");
+=======
+	public static void goToWeb() {
+		System.out.println("Se esta ejecutando la página web");
+>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
         File filehtml = new File("");
         System.out.println("uri" + filehtml.toURI().toString()+"\n otro:"+filehtml.getAbsolutePath());
         //openInBrowser("file://"+filehtml.getAbsolutePath()+"/src/arqui/pruebaparabases.html");
@@ -691,16 +713,14 @@ public class Menu {
 
 			if (userCheck == null) {
 				wrongInfo();
-				int option = requestNumber(1);
+				int option = requestNumber(2);
 				switch(option) {
 				case 1:
 					break;
-				default:
+				case 0:
 					System.out.println("Press 0 to go back");
-					break;
+					check=false;
 				}
-				pressEnter();
-				//System.out.println("Wrong credentials. Please, introduce them again:");
 			} else {
 				switch (userCheck.getRole().getRole()) {
 				case "patient":
@@ -791,7 +811,6 @@ public class Menu {
 	
 	public static void deleteUser() {
 		
-		//User deletedUser = 
 	}
 	
 
@@ -857,6 +876,7 @@ public class Menu {
 			break;
 		case 2: // Modify Patient
 			addPatient(true); // you are modifying also the dof
+			
 			break;
 		case 3: // Delete Patient
 			DeletePatient();
@@ -936,13 +956,14 @@ public class Menu {
 	public static void searchProsthetic() {
 		Prosthetic prost;
 		searchProstheticMenu();
-		int option = requestNumber(4);
+		int option = requestNumber(5);
 		boolean searched=true;
 
 		List<Prosthetic> prostheticList = new ArrayList<Prosthetic>();
 		try {
 			do {
 				switch (option) {
+					
 				case 1:// material
 					System.out.println("Name of the material you are looking for:");
 					String materialpassed = reader.readLine();
@@ -967,7 +988,7 @@ public class Menu {
 					prostheticList = doctorManagerInterface.selectProsthetic("failures", failurespassed);
 					searched=false;
 					break;
-				default: 
+				case 0: 
 					searched=false;
 					break;
 				}
@@ -977,6 +998,7 @@ public class Menu {
 
 				System.out.println("No file found for that search..Try again");
 				searchProsthetic();
+				
 			} else {
 
 				Iterator it = prostheticList.iterator();
@@ -985,9 +1007,7 @@ public class Menu {
 
 					System.out.println(prost.toString());
 					System.out.println("");
-
 				}
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1010,13 +1030,13 @@ public class Menu {
 	}
 
 	public static void buyProsthetic() throws Exception {
-		// int hospital_id = hospitalUser.getId();
+		int hospital_id = hospitalUsing.getId();
 
 		// Show the list of all available prosthetic on that specific hospital
 		List<Prosthetic> prostheticList = hospitalManagerInterface.showProsthetics();
 
 		for (Prosthetic prosthetic : prostheticList) {
-			System.out.println(prosthetic);
+			System.out.println(prosthetic.toStringProstheticXML());
 		}
 
 		// Ask for the Id of the prosthetic you want to buy
@@ -1024,7 +1044,9 @@ public class Menu {
 		int prosthetic_id = Integer.parseInt(reader.readLine());
 
 		// the specific hospital buys the prosthetic choosed
-		hospitalManagerInterface.buy(/* hospital_id */1, prosthetic_id);
+		hospitalManagerInterface.buy(hospital_id , prosthetic_id);
+		
+		System.out.println("You bought this prosthetic: "+prosthetic_id);
 	}
 	
 	

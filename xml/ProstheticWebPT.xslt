@@ -4,7 +4,6 @@
 
 <xsl:template match="/">
 		<html>
-			<!--><head><title>Here is your prosthetic</title></head><!-->
 			<head>
     		<title>Prosthetic Transformation from xml</title>
     		<link rel="stylesheet" href="ProstheticDbStyle.css"></link>
@@ -16,11 +15,12 @@
 				<p><b>Dimensions: </b> <xsl:value-of select = "/prosthetic/dimensions" /></p>
 				<p><b>Failures: </b> <xsl:value-of select = "/prosthetic/failures" /></p>
 				<p><b>Availability: </b> <xsl:value-of select = "/prosthetic/available" /></p>
-				<p><b>Biomedical Engineers
+				<p><b>Patient: 
 						<table border ="1">
-						<th>Name</th>
-						
-						<xsl:for-each select ="/prosthetic/biomeds/biomed">
+						<tr>
+						<th>Name</th> 
+						<th>Last Name</th>
+						</tr>
 						<tr>
 						
 							<td> <xsl:value-of select = "/name "/> </td>
@@ -29,7 +29,6 @@
 						</tr>
 					
 					
-						</xsl:for-each>
 						</table>
 				</b></p>			
 				</body>		

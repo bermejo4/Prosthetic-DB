@@ -49,13 +49,8 @@ public class Prosthetic implements Serializable {
 	@XmlElementWrapper(name = "biomeds")
 	private List<Biomedical_Eng> biomeds; // for the many to many relationship
 
-	public Prosthetic(Integer id, String type) {
-		super();
-		this.id = id;
-		this.type = type;
-		this.biomeds = new ArrayList<Biomedical_Eng>();
 
-	}
+
 
 	// Constructor with all variables
 	public Prosthetic(Integer id, String type, String material, Float price, String dimensions, String failures,
