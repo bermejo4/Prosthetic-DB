@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.*;
 
 import javax.xml.bind.*;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -26,6 +27,7 @@ import db.classes.*;
 import db.inteface.*;
 import pojos.*;
 import xml.utils.CustomErrorHandler;
+import xml.utils.Xml2Html;
 
 public class Menu {
 
@@ -49,6 +51,7 @@ public class Menu {
 	private static boolean userUsing;
 	private static int userUsingNumber; // Only can be from 1 to 5
 	private static boolean logged;
+	
 
 	public static void main(String[] args) throws Exception {
 		// Connect with the database using JDBC.
@@ -338,7 +341,8 @@ public class Menu {
 	}
 
 //-----------------------------------------------------------------------------------
-	public static void goToWeb() {
+	public static void goToWeb() throws JAXBException {
+		prepareWeb();
 		System.out.println("Se esta ejecutando la p谩gina web");
         File filehtml = new File("");
         System.out.println("uri" + filehtml.toURI().toString()+"\n otro:"+filehtml.getAbsolutePath());
@@ -361,6 +365,45 @@ public class Menu {
             //Logger.getLogger(AbrirArchivo.class.getName()).log(Level.SEVERE, null, ex);
         }
 	}
+	private static void prepareWeb() throws JAXBException {
+		//funci贸n para tomar todas las protesis de la base
+		Patient pat = new Patient();
+		ProstheticsListing prosListWeb = new ProstheticsListing();
+		prosListWeb.setProsListWeb(new ArrayList<Prosthetic>());
+		
+		//List<Prosthetic> prosListWeb = new ArrayList<Prosthetic>();
+		prosListWeb.setProsListWeb(biomedManagerInterface.showProsthetic());
+		Iterator<Prosthetic> it = prosListWeb.getProsListWeb().iterator();
+		//while (it.hasNext()) {
+			//Prosthetic pros=new Prosthetic();
+			//pros=(Prosthetic) it.next();
+			//pat = patientManagerInterface.getPatient(it.next().getPatient().getId());
+			//it.setPatient(pat);
+			
+		//}
+		
+		//funci贸n para transformar a xml la lista
+		//Create a JAXBContext
+		JAXBContext contextP = JAXBContext.newInstance(ProstheticsListing.class);
+		//Get the marshaller from the JAXBContext 
+		Marshaller marshalP = contextP.createMarshaller();
+		//Pretty formating to predefine things
+		marshalP.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		//Marshal the Prosthetic: first to a file and then to the screen
+		File fileP=new File("./xml/Output-Prosthetic.xml");
+		for (Prosthetic currentpros : prosListWeb.getProsListWeb()) {
+            System.out.println(currentpros.toString());
+            pat = patientManagerInterface.getPatient(currentpros.getPatient().getId());
+            currentpros.setPatient(pat);
+        }
+		marshalP.marshal(prosListWeb, fileP);
+		marshalP.marshal(prosListWeb, System.out);
+		//funci贸n para ejecutar el xslt
+		Xml2Html converter = new Xml2Html();
+		converter.simpleTransform("./xml/Output-Prosthetic.xml", "./xml/ProstheticWebPT.xslt", "./xml/Prosthetictmp.html");
+		
+		//funci贸n para para pasar de xml a html a trav茅s de xslt
+	}
 
 	private static void generateXML(int prostheticID) throws Exception {
 		Prosthetic pros =biomedManagerInterface.getProstheticWithPatient(prostheticID);
@@ -375,8 +418,9 @@ public class Menu {
 		marshalP.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		//Marshal the Prosthetic: first to a file and then to the screen
 		File fileP=new File("./xml/Output-Prosthetic.xml");
-		marshalP.marshal(pros, fileP);
 		marshalP.marshal(pros, System.out);
+		marshalP.marshal(pros, fileP);
+		
 		
 	}
 	
@@ -764,7 +808,7 @@ public class Menu {
 			System.out.println("");
 		}
 		if (coiList.isEmpty()) {
-			System.out.println("there磗 no patient with that telephone number");
+			System.out.println("there锟絪 no patient with that telephone number");
 		}
 	}
 	
