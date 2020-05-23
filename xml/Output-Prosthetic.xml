@@ -1,13 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<prosthetic type="arm">
-    <material>titanium</material>
-    <dimensions>15.0x20.0x15.0</dimensions>
-    <price>10000.0</price>
-    <failures>none</failures>
-    <available>true</available>
-    <patient id="3">
-        <name>drake</name>
-        <lastname>bell</lastname>
-    </patient>
-    <biomeds/>
-</prosthetic>
+<prosthetics>
+    <prosthetic type="arm">
+        <material>titanium</material>
+        <dimensions>15.0x20.0x15.0</dimensions>
+        <price>10000.0</price>
+        <failures>none</failures>
+        <available>true</available>
+        <patient id="3">
+            <name>drake</name>
+            <lastname>bell</lastname>
+        </patient>
+        <biomeds/>
+    </prosthetic>
+    <prosthetic type="leg">
+        <material>plastic</material>
+        <dimensions>13x2x4</dimensions>
+        <price>4.0</price>
+        <failures>none</failures>
+        <available>true</available>
+        <patient id="3">
+            <name>drake</name>
+            <lastname>bell</lastname>
+        </patient>
+        <biomeds/>
+    </prosthetic>
+    <prosthetic type="ear">
+        <material>plastic</material>
+        <dimensions>1x2x4</dimensions>
+        <price>5.0</price>
+        <failures>nene</failures>
+        <available>true</available>
+        <patient id="5">
+            <name>pedro</name>
+            <lastname>mmontana</lastname>
+        </patient>
+        <biomeds/>
+    </prosthetic>
+    <prosthetic type="liver">
+        <material>blood</material>
+        <dimensions>1x4x2</dimensions>
+        <price>3.0</price>
+        <failures>none</failures>
+        <available>true</available>
+        <patient id="6">
+            <name>abraham</name>
+            <lastname>otero</lastname>
+        </patient>
+        <biomeds/>
+    </prosthetic>
+</prosthetics>
