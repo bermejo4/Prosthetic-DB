@@ -15,7 +15,7 @@ public class Xml2Html {
 	 * @param xsltPath - Absolute path to xslt file.
 	 * @param resultDir - Directory where you want to put resulting files.
 	 */
-	public static void simpleTransform(String sourcePath, String xsltPath,String resultDir) {
+	public void simpleTransform(String sourcePath, String xsltPath,String resultDir) {
 		TransformerFactory tFactory = TransformerFactory.newInstance();
 		try {
 			Transformer transformer = tFactory.newTransformer(new StreamSource(new File(xsltPath)));
@@ -26,7 +26,7 @@ public class Xml2Html {
 	}
 
 	public static void main(String[] args) {
-		simpleTransform("./xml/Output-Prosthetic.xml", "./xml/ProstheticWebPT.xslt", "./xml/Prosthetictmp.html");
+		//simpleTransform("./xml/Output-Prosthetic.xml", "./xml/ProstheticWebPT.xslt", "./xml/Prosthetictmp.html");
 
 	}
 }
