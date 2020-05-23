@@ -358,14 +358,10 @@ public class Menu {
 	}
 
 //-----------------------------------------------------------------------------------
-<<<<<<< HEAD
+
 	public static void goToWeb() throws JAXBException {
 		prepareWeb();
 		System.out.println("Se esta ejecutando la pÃ¡gina web");
-=======
-	public static void goToWeb() {
-		System.out.println("Se esta ejecutando la página web");
->>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git
         File filehtml = new File("");
         System.out.println("uri" + filehtml.toURI().toString()+"\n otro:"+filehtml.getAbsolutePath());
         //openInBrowser("file://"+filehtml.getAbsolutePath()+"/src/arqui/pruebaparabases.html");
