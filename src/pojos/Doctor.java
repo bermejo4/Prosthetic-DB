@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.*;
 //import java.util.ArrayList;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = {"name","lastname", "telephone"})
+@XmlType(propOrder = {"name","lastname", "telephone","department"})
 public class Doctor implements Serializable{
 
 	private static final long serialVersionUID = 3556611086750634776L;
@@ -22,6 +22,8 @@ public class Doctor implements Serializable{
 	private String lastname;
 	@XmlElement
 	private String telephone;
+	@XmlElement
+	private String department;
 	@XmlTransient
 	private Hospital hospital;
 	
@@ -78,6 +80,18 @@ public class Doctor implements Serializable{
 		this.name = name;
 		this.lastname = lastname;
 		this.telephone = telephone;
+	}
+
+
+
+	public Doctor(Integer id, String name, String lastname, String telephone, String department, Hospital hospital) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.lastname = lastname;
+		this.telephone = telephone;
+		this.department = department;
+		this.hospital = hospital;
 	}
 
 
@@ -143,6 +157,14 @@ public class Doctor implements Serializable{
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
+	}
+	
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 
 	public Hospital getHospital() {

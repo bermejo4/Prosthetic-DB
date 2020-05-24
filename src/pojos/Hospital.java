@@ -125,6 +125,9 @@ public class Hospital implements Serializable{
 		return "Hospital [id= " + id + ", name=" + name + ", address=" + address + ", patient_id=" + patient.getId() + ", telephone="
 				+ telephone + "]";
 	}
+	public String toStringShort() {
+		return "Hospital [id= " + id + ", name=" + name + ", address=" + address + ", telephone=" + telephone + "]";
+	}
 	
 	public String toStringXML() {
 		return "Hospital [id= " + id + ", name=" + name + ", address=" + address + ", telephone="
