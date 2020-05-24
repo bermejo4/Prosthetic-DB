@@ -12,34 +12,34 @@
 			<body>
 				<div id="container">
 					<xsl:for-each select="prosthetics/prosthetic">
-						<div id="bounds">
+						<div id="boundsPros">
 							<p>
-								<b>Type: </b>
+								<b><img class="image3" src="imagesForHtml/type.png"> Type: </img> </b>
 								<xsl:value-of select="@type" />
 							</p>
 							<p>
-								<b>Material: </b>
+								<b><img class="image3" src="imagesForHtml/material.png"> Material: </img></b>
 								<xsl:value-of select="material" />
 							</p>
 							<p>
-								<b>Price: </b>
+								<b><img class="image3" src="imagesForHtml/coin.png"> Price: </img></b>
 								<xsl:value-of select="price" />
 							</p>
 							<p>
-								<b>Dimensions: </b>
+								<b><img class="image3" src="imagesForHtml/dimensions.png"> Dimensions: </img></b>
 								<xsl:value-of select="dimensions" />
 							</p>
 							<p>
-								<b>Failures: </b>
+								<b><img class="image3" src="imagesForHtml/Failures.png"> Failures: </img></b>
 								<xsl:value-of select="failures" />
 							</p>
 							<p>
-								<b>Availability: </b>
+								<b><img class="image3" src="imagesForHtml/available.png"> Availability: </img></b>
 								<xsl:value-of select="available" />
 							</p>
 							<p>
 								<b>
-									Patient: <br /> 
+									<img class="image3" src="imagesForHtml/patient.png"> Patient: </img> <br /> 
 									<table>
 										<tr>
 											<th>Name</th>
