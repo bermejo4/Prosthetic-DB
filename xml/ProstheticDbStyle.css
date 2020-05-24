@@ -63,7 +63,9 @@
 .image2{
     width: 60px; height: 60px;
 }
-
+.image3{
+    width: 20px;
+}
 .goBackButton{
     background-color: black;
     color: red;
@@ -103,8 +105,15 @@ table{
     width: 100%;
 }
 
-#bounds{
+#boundsPros{
     background-color: rgb(132, 196, 238);
+    padding: 2%;
+    margin: 2%;
+    text-align: center;
+    border-radius: 3%;
+}
+#boundsHosp{
+    background-color: rgb(196, 196, 196);
     padding: 2%;
     margin: 2%;
     text-align: center;
