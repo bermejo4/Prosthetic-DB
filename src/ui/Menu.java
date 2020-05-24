@@ -91,7 +91,6 @@ public class Menu {
 		int max;
 
 		System.out.println("\nWELCOME! THIS IS A PROSTHETIC DATABASE");
-		// dbManagerInterface.deleteTables();
 		// initializeDatabaseWithSomeValues();
 
 		while (true) {
@@ -177,14 +176,15 @@ public class Menu {
 					System.out.println("2.Login.");
 
 					max = 2;
-					//if (logged) {
+					if (logged) {
 						System.out.println("3.Select a Prosthetic.");
 						System.out.println("4.Select date of fitting.");
 						System.out.println("5.Search a patients file.");
 						System.out.println("6.Add/Modify/Delete a patient.");
 						System.out.println("7.Generate a Prosthetic XML.");
-						max = 7;
-					//}
+						System.out.println("8.Put additional information about me.");
+						max = 8;
+					}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
 					num = requestNumber(max);
 					int prosId;
@@ -196,9 +196,6 @@ public class Menu {
 					case 2: // Login
 						loginMenu();
 						login(doctorRole);
-						showHospitals();
-						int hospital_id = InputFlow.takeInteger(reader, "Introduce the id of the hospital");
-						assignDoctorHospital(hospital_id);
 						break;
 					case 3: // Select prosthetic and assign it
 						searchProsthetic();
@@ -218,6 +215,7 @@ public class Menu {
 						prosId = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic you want to create the XML:");
 						generateXML(prosId);
 						break;
+					case 8: introduceDepartmentAndHospital(doctorUsing.getId());
 				   
 					default: // back
 						userUsing = false;
@@ -340,8 +338,6 @@ public class Menu {
 					}
 					break;
 				case 0:// Exit
-					// dbManagerInterface.deleteTables(); Quitar // cuando esté terminada la
-					// práctica
 					dbManagerInterface.disconnect();
 					userManagerInterface.disconnect();
 					System.exit(0);
@@ -546,7 +542,6 @@ public class Menu {
 
 	public static void designProsthetic(int prosID) throws Exception {
 
-		
 		List<Biomedical_Eng> biomedsLists = biomedManagerInterface.showBiomedics();
 		
 		int biomed_id = biomedical_engUsing.getId(); 
@@ -554,16 +549,6 @@ public class Menu {
 
 		biomedManagerInterface.design(prosID, biomed_id);
 
-	}
-	
-	public static void assignDoctorHospital(int hospital_id ) throws Exception {
-		String doctelephone = doctorUsing.getTelephone();
-		
-		System.out.println("Your Telephone: " +doctelephone);
-		System.out.println("You have been assigned to this hospital: " +hospital_id);
-		
-		doctorManagerInterface.assignDoctortoHospital(hospital_id, doctelephone);
-		
 	}
 	
 	
@@ -855,6 +840,7 @@ public class Menu {
 		if (coiList.isEmpty()) {
 			System.out.println("there�s no patient with that telephone number");
 		}
+		pressEnter();
 	}
 	
 	public static void showHospitals() {
@@ -1089,6 +1075,13 @@ public class Menu {
 		File file = new File("./xml/Output-Hospital.xml");
 		marsh.marshal(hospital, file);
 		marsh.marshal(hospital, System.out);
+	}
+	
+	private static void introduceDepartmentAndHospital(int currentDoctorId) {
+		String department=InputFlow.takeString(reader, "Introduce your department");		
+		int id= InputFlow.checkIdAndListHospital(patientManagerInterface.showHospitals());
+		doctorManagerInterface.insertDepartmentAndHospital(currentDoctorId, department, id);
+		
 	}
 	
 

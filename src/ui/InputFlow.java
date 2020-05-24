@@ -243,6 +243,9 @@ public class InputFlow {
 		Patient pat;
 		while(it.hasNext()) {
 			pat=(Patient) it.next();
+			//if(pat.) {
+				
+			//}
 			System.out.println(pat.toString());
 		}
 	}
@@ -252,7 +255,7 @@ public class InputFlow {
 		int numId,id;
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		do {
-			System.out.println("This is the available Prosthetic's list:\n");
+			System.out.println("This is the available Patients list:\n");
 			printPatientArrayList(list);
 			id = takeInteger(reader, "Introduce the id:");
 			Iterator<Patient> it = list.iterator();
@@ -264,7 +267,9 @@ public class InputFlow {
 					break;
 				}
 			}
+			if(!check) {
 			System.out.println("This id is not in the available list. Try again.\n");
+			}
 		}while(!check);
 		return id;
 	}
@@ -328,9 +333,10 @@ public class InputFlow {
 					check = true;
 					//break;
 				}
-				//System.out.println("id==>"+numId+check);
 			}
+			if(!check) {
 			System.out.println("This id is not in the available list. Try again.\n");
+			}
 		}while(!check);
 		return id;
 	}
@@ -340,7 +346,7 @@ public class InputFlow {
 		Hospital hosp;
 		while(it.hasNext()) {
 			hosp=(Hospital) it.next();
-			System.out.println(hosp.toString());
+			System.out.println(hosp.toStringShort());
 		}
 	}
 	
@@ -362,7 +368,9 @@ public class InputFlow {
 					break;
 				}
 			}
+			if(!check) {
 			System.out.println("This id is not in the available list. Try again.\n");
+			}
 		}while(!check);
 		return id;
 	}
