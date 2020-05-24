@@ -23,11 +23,11 @@
 							</p>
 							<p>
 								<b><img class="image3" src="imagesForHtml/coin.png"> Price: </img></b>
-								<xsl:value-of select="price" />
+								<xsl:value-of select="price" /> €
 							</p>
 							<p>
 								<b><img class="image3" src="imagesForHtml/dimensions.png"> Dimensions: </img></b>
-								<xsl:value-of select="dimensions" />
+								<xsl:value-of select="dimensions" /> cm
 							</p>
 							<p>
 								<b><img class="image3" src="imagesForHtml/Failures.png"> Failures: </img></b>

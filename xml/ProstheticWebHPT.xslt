@@ -32,6 +32,7 @@
 											<th>Name</th>
 											<th>Last Name</th>
 											<th>Telephone</th>
+											<th>Department</th>
 										</tr>
 										<xsl:for-each select="doctors">
 										<tr>
@@ -49,7 +50,12 @@
 												<p>
 													<xsl:value-of select="telephone" />
 												</p>
-											</td>											
+											</td>
+											<td>
+												<p>
+													<xsl:value-of select="department" />
+												</p>
+											</td>												
 										</tr>
 										</xsl:for-each>
 									</table>
