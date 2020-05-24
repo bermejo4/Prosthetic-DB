@@ -418,7 +418,6 @@ public class Menu {
 	}
 	
 	private static void prepareWebForHospitals() throws JAXBException {
-		Patient pat= new Patient();
 		HospitalsListing hospitalsListWeb = new HospitalsListing();
 		hospitalsListWeb.setHosptialListWeb(new ArrayList<Hospital>());
 		
@@ -1064,8 +1063,7 @@ public class Menu {
 	
 	private static void generateHospitalXML(int hospital_id) throws Exception{
 		Hospital hospital = hospitalManagerInterface.getHospitalwithPatient(hospital_id);
-		Patient pat = patientManagerInterface.getPatient(hospital.getPatient().getId());
-		hospital.setPatient(pat);
+		hospital.setDoctors(doctorManagerInterface.doctorsInHospital(hospital.getId()));
 		//Defining and creating  JAXB context
 		JAXBContext contextHosp = JAXBContext.newInstance(Hospital.class);
 		//Creating the marshaller
@@ -1074,7 +1072,9 @@ public class Menu {
 		//We create the file to put the xml
 		File file = new File("./xml/Output-Hospital.xml");
 		marsh.marshal(hospital, file);
+		System.out.println("\nThis is the XML of the hospital introduced:");
 		marsh.marshal(hospital, System.out);
+		pressEnter();	
 	}
 	
 	private static void introduceDepartmentAndHospital(int currentDoctorId) {
