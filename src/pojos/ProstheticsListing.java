@@ -1,5 +1,4 @@
 package pojos;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,8 +11,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ProstheticsListing {
     @XmlElement(name = "prosthetic")
     private List<Prosthetic> prosListWeb=null;
-    //= new ArrayList<Prosthetic>();
-    //private List<Employee> employees = null;
 
 	public List<Prosthetic> getProsListWeb() {
 		return prosListWeb;
