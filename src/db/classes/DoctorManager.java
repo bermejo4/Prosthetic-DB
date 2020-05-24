@@ -46,7 +46,21 @@ public class DoctorManager implements DoctorManagerInterface {
 		}
 
 	}
-	
+	public void insertDepartmentAndHospital(int id, String department, int hospital_id) {
+		String sql="UPDATE doctor SET department=?, hospital_id=? WHERE doctor_id=?";		
+		try {
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setString(1, department);
+			prep.setInt(2, hospital_id);
+			prep.setInt(3, id);
+			prep.executeUpdate();
+			prep.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		
+	}
 
 	public void addPatient(Patient pat) {
 		//Insert the provided patient pat
@@ -116,10 +130,11 @@ public class DoctorManager implements DoctorManagerInterface {
 	
 	public void assignProstheticToPatient(int prost_id, int pat_id) {
 		try {
-			String sql = "UPDATE prosthetic SET patient_id=? WHERE prosthetic_id=?";
+			String sql = "UPDATE prosthetic SET patient_id=?, available=? WHERE prosthetic_id=?";
 			PreparedStatement up = c.prepareStatement(sql);
 			up.setInt(1, pat_id);
-			up.setInt(2, prost_id);
+			up.setBoolean(2, false);
+			up.setInt(3, prost_id);
 			up.executeUpdate();
 			up.close();
 		}catch(Exception e) {
@@ -289,9 +304,10 @@ public class DoctorManager implements DoctorManagerInterface {
 				String name=rs.getString("name");
 				String lastname=rs.getString("lastname");
 				String tel=rs.getString("telephone");
+				String department=rs.getString("department");
 				int hospital_id=rs.getInt("hospital_id");
 				Hospital hospital= new Hospital(hospital_id);
-				Doctor doctor=new Doctor(id,name,lastname,tel,hospital);
+				Doctor doctor=new Doctor(id,name,lastname,tel,department,hospital);
 				docList.add(doctor);
 			}
 			

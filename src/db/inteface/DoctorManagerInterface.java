@@ -20,6 +20,6 @@ public interface DoctorManagerInterface {
 	public void assignDoctortoHospital(int hospital_id, String doctelephone);
 	public Doctor searchSpecificDoctorByTelephone(String telephone);
 	public ArrayList<Doctor> doctorsInHospital(int hospitalId);
-	
+	public void insertDepartmentAndHospital(int id, String department, int hospital_id);
 }
 
