@@ -1,9 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hospital name="la paz">
-    <address>plaza castilla</address>
-    <telephone>112112112</telephone>
-    <patient id="3">
-        <name>drake</name>
-        <lastname>bell</lastname>
-    </patient>
-</hospital>
+<hospitals>
+    <hospital name="BMC">
+        <address>Boston</address>
+        <telephone>434545664</telephone>
+        <doctors>
+            <name>Gregory</name>
+            <lastname>House</lastname>
+            <telephone>3453454535</telephone>
+        </doctors>
+        <doctors>
+            <name>James</name>
+            <lastname>Wilson</lastname>
+            <telephone>2353453</telephone>
+        </doctors>
+        <doctors>
+            <name>Foreman</name>
+            <lastname>red</lastname>
+            <telephone>43345345</telephone>
+        </doctors>
+        <doctors>
+            <name>Chase</name>
+            <lastname>blue</lastname>
+            <telephone>3453453543</telephone>
+        </doctors>
+    </hospital>
+    <hospital name="Hospital General">
+        <address>Segovia</address>
+        <telephone>34546456456</telephone>
+        <doctors>
+            <name>Sigmund</name>
+            <lastname>Freud</lastname>
+            <telephone>3434534554</telephone>
+        </doctors>
+    </hospital>
+    <hospital name="Hospital De La Misericordia">
+        <address>Segovia</address>
+        <telephone>456456546</telephone>
+        <doctors>
+            <name>Fernando </name>
+            <lastname>Simón</lastname>
+            <telephone>3453453453</telephone>
+        </doctors>
+    </hospital>
+    <hospital name="12 de Octubre">
+        <address>Madrid</address>
+        <telephone>234435435</telephone>
+    </hospital>
+    <hospital name="La Paz">
+        <address>Madrid</address>
+        <telephone>34534543534</telephone>
+        <doctors>
+            <name>John</name>
+            <lastname>Doolite</lastname>
+            <telephone>3245345345</telephone>
+        </doctors>
+    </hospital>
+    <hospital name="Puerta de Hierro">
+        <address>Madrid</address>
+        <telephone>23434234343</telephone>
+    </hospital>
+</hospitals>
