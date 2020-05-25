@@ -1,29 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hospital name="BMC">
-    <address>Boston</address>
-    <telephone>434545664</telephone>
-    <doctors>
-        <name>Gregory</name>
-        <lastname>House</lastname>
-        <telephone>3453454535</telephone>
-        <department>Diagnosis</department>
-    </doctors>
-    <doctors>
-        <name>James</name>
-        <lastname>Wilson</lastname>
-        <telephone>2353453</telephone>
-        <department>Oncology</department>
-    </doctors>
-    <doctors>
-        <name>Foreman</name>
-        <lastname>red</lastname>
-        <telephone>43345345</telephone>
-        <department>Neurology</department>
-    </doctors>
-    <doctors>
-        <name>Chase</name>
-        <lastname>blue</lastname>
-        <telephone>3453453543</telephone>
-        <department>Traumatology</department>
-    </doctors>
-</hospital>
+<hospitals>
+    <hospital name="BMC">
+        <address>Boston</address>
+        <telephone>434545664</telephone>
+        <doctors>
+            <name>Gregory</name>
+            <lastname>House</lastname>
+            <telephone>3453454535</telephone>
+            <department>Diagnosis</department>
+        </doctors>
+        <doctors>
+            <name>James</name>
+            <lastname>Wilson</lastname>
+            <telephone>2353453</telephone>
+            <department>Oncology</department>
+        </doctors>
+        <doctors>
+            <name>Foreman</name>
+            <lastname>red</lastname>
+            <telephone>43345345</telephone>
+            <department>Neurology</department>
+        </doctors>
+        <doctors>
+            <name>Chase</name>
+            <lastname>blue</lastname>
+            <telephone>3453453543</telephone>
+            <department>Traumatology</department>
+        </doctors>
+    </hospital>
+    <hospital name="Hospital General">
+        <address>Segovia</address>
+        <telephone>34546456456</telephone>
+        <doctors>
+            <name>Sigmund</name>
+            <lastname>Freud</lastname>
+            <telephone>3434534554</telephone>
+            <department>Psicoanalisis</department>
+        </doctors>
+    </hospital>
+    <hospital name="Hospital De La Misericordia">
+        <address>Segovia</address>
+        <telephone>456456546</telephone>
+        <doctors>
+            <name>Fernando </name>
+            <lastname>Simón</lastname>
+            <telephone>3453453453</telephone>
+            <department>Co-Vid</department>
+        </doctors>
+    </hospital>
+    <hospital name="12 de Octubre">
+        <address>Madrid</address>
+        <telephone>234435435</telephone>
+    </hospital>
+    <hospital name="La Paz">
+        <address>Madrid</address>
+        <telephone>34534543534</telephone>
+        <doctors>
+            <name>John</name>
+            <lastname>Doolite</lastname>
+            <telephone>3245345345</telephone>
+            <department>Veterinary</department>
+        </doctors>
+    </hospital>
+    <hospital name="Puerta de Hierro">
+        <address>Madrid</address>
+        <telephone>23434234343</telephone>
+    </hospital>
+    <hospital name="Hospital de Guadalupe">
+        <address>Gran Canaria</address>
+        <telephone>2343454543</telephone>
+        <doctors>
+            <name>James</name>
+            <lastname>Watson</lastname>
+            <telephone>13</telephone>
+            <department>crime</department>
+        </doctors>
+    </hospital>
+    <hospital name="Hospital de la Concepción">
+        <address>Bilbao</address>
+        <telephone>14</telephone>
+    </hospital>
+</hospitals>
