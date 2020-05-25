@@ -82,8 +82,7 @@ public class DBManager implements DBManagerInterface {
 					+ "(hospital_id	INTEGER PRIMARY KEY AUTOINCREMENT," 
 					+ "name TEXT,"
 					+ "location TEXT," 
-					+ "telephone TEXT," 
-					+ "patient_id	INTEGER)";
+					+ "telephone TEXT)";
 
 			stmt2.executeUpdate(sql2);
 			stmt2.close();

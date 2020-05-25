@@ -17,15 +17,6 @@ public class HospitalManager implements HospitalManagerInterface {
 	public HospitalManager(Connection c) {
 		this.c = c;
 	}
-
-	public void register(Hospital hospital) {
-
-	}
- 
-	public void login(Hospital hospital) {
-
-	}
-
 	
 	public List<Prosthetic> showProsthetics() {
 		// we use this method to link a prosthetic to the catalogue of a hospital
@@ -142,9 +133,7 @@ public class HospitalManager implements HospitalManagerInterface {
 				String name=rs.getString("name");
 				String location=rs.getString("location");
 				String tele=rs.getString("telephone");
-				int pat_id=rs.getInt("patient_id");
-				Patient pat = new Patient(pat_id);	
-				hosp=new Hospital(id,name,location,telephone,pat);
+				hosp=new Hospital(id,name,location,telephone);
 				
 				}
 		} catch(Exception e) {
@@ -168,10 +157,8 @@ public class HospitalManager implements HospitalManagerInterface {
 				String hospName = rs.getString(2);
 				String hospAddress = rs.getString(3);
 				String hospTel = rs.getString(4);
-				int patId = rs.getInt(5);
-				Patient pat = new Patient(patId);
 				
-				hosp = new Hospital(hospId, hospName, hospAddress, hospTel, pat);
+				hosp = new Hospital(hospId, hospName, hospAddress, hospTel);
 				
 			}
 		}

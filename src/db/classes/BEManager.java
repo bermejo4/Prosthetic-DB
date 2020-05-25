@@ -21,17 +21,6 @@ public class BEManager implements db.inteface.BEManagerInterface {
 		this.c = c;
 	}
 
-	@Override
-	public void register(Biomedical_Eng BE) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void login(Biomedical_Eng BE) {
-		// TODO Auto-generated method stub
-
-	}
 
 	public void delete(Prosthetic pros) {
 		try {

@@ -13,14 +13,6 @@ public class PatientManager implements PatientManagerInterface {
 		this.c=connection;
 	}
 	
-	public void register(Patient patient) {
-		
-	}
-	
-	public void login(Patient patient) {
-		
-	}
-	
 	
 	public void viewDate(String telephone) {
 		try {

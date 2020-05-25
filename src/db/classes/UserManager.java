@@ -12,8 +12,8 @@ import javax.persistence.Query;
 import db.inteface.UserManagerInterface;
 import pojos.Doctor;
 import pojos.Patient;
-import pojos.User;
 import pojos.Role;
+import pojos.User;
 
 
 public class UserManager implements UserManagerInterface {
