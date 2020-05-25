@@ -358,11 +358,12 @@ public class Menu {
 	public static void goToWeb() throws JAXBException {
 		prepareWebForProsthetics();
 		prepareWebForHospitals();
-		System.out.println("Se esta ejecutando la página web");
+		System.out.println("Opening the Website...");
         File filehtml = new File("");
-        System.out.println("uri" + filehtml.toURI().toString()+"\n otro:"+filehtml.getAbsolutePath());
+        //System.out.println("uri" + filehtml.toURI().toString()+"\n otro:"+filehtml.getAbsolutePath());
         //openInBrowser("file://"+filehtml.getAbsolutePath()+"/src/arqui/pruebaparabases.html");
         String url="file://"+filehtml.getAbsolutePath()+"/xml/homeProsthetic_db.html";
+        System.out.println("url: "+url);
         try {
             URI uri;
 			try {
@@ -373,45 +374,37 @@ public class Menu {
 			}
         } catch (MalformedURLException ex) {
         	ex.printStackTrace();
-            //Logger.getLogger(AbrirArchivo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
         	ex.printStackTrace();
-            //Logger.getLogger(AbrirArchivo.class.getName()).log(Level.SEVERE, null, ex);
         }
 	}
 	private static void prepareWebForProsthetics() throws JAXBException {
-		//función para tomar todas las protesis de la base
+		//Create an Object where we push the Prothesis list, and a patient object 
 		Patient pat = new Patient();
 		ProstheticsListing prosListWeb = new ProstheticsListing();
 		prosListWeb.setProsListWeb(new ArrayList<Prosthetic>());
-		
-		
-		
-		//ArrayList<Hospital> hospitalsListWeb = new ArrayList<Hospital>();
-		//hospitalList = patientManagerInterface.showHospitals();
-		
-		
-		
 		prosListWeb.setProsListWeb(biomedManagerInterface.showProsthetic());
-		
-				
-		//función para transformar a xml la lista
 		//Create a JAXBContext
 		JAXBContext contextP = JAXBContext.newInstance(ProstheticsListing.class);
 		//Get the marshaller from the JAXBContext 
 		Marshaller marshalP = contextP.createMarshaller();
 		//Pretty formating to predefine things
 		marshalP.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		//Marshal the Prosthetic: first to a file and then to the screen
+		//Define the file where the XML is going to be written 
 		File fileP=new File("./xml/Output-Prosthetic.xml");
 		for (Prosthetic currentpros : prosListWeb.getProsListWeb()) {
-            System.out.println(currentpros.toString());
+            //System.out.println(currentpros.toString());
             pat = patientManagerInterface.getPatient(currentpros.getPatient().getId());
+            //Assign to the current prosthetic object its patient through patient's id
             currentpros.setPatient(pat);
-        }
+        }		
+		//Marshal the Prosthetic: first to a file and then to the screen
 		marshalP.marshal(prosListWeb, fileP);
-		marshalP.marshal(prosListWeb, System.out);
-		//función para ejecutar el xslt
+		if(InputFlow.areYouSure(reader, "Do you want to print the Prosthetic list XML?")) {
+			//to print the XML
+			marshalP.marshal(prosListWeb, System.out);
+		}
+		//Transform the XML obtained into HTML through XSLT
 		Xml2Html converter = new Xml2Html();
 		converter.simpleTransform("./xml/Output-Prosthetic.xml", "./xml/ProstheticWebPT.xslt", "./xml/Prosthetictmp.html");
 		
@@ -429,20 +422,23 @@ public class Menu {
 		Marshaller marshalH = contextH.createMarshaller();
 		//Pretty formating to predefine things
 		marshalH.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		//Define the file where the XML is going to be written 
 		File fileH=new File("./xml/Output-Hospital.xml");
 		for (Hospital currenthospital : hospitalsListWeb.getHosptialListWeb()) {
 			currenthospital.setDoctors(doctorManagerInterface.doctorsInHospital(currenthospital.getId()));
 			for (Doctor currentdoctor : currenthospital.getDoctors()) {
 				currentdoctor.getHospital().setName(currenthospital.getName());;
 			}
-            System.out.println(currenthospital.getDoctors().toString());
+            //System.out.println(currenthospital.getDoctors().toString());
             //pat = patientManagerInterface.getPatient(currenthospital.getPatient().getId());
             //currenthospital.setPatient(pat);
         }
 		marshalH.marshal(hospitalsListWeb, fileH);
-		marshalH.marshal(hospitalsListWeb, System.out);
-		//función para ejecutar el xslt
-		
+		if(InputFlow.areYouSure(reader, "Do you want to print the hospitals list XML?")) {
+			//to print XML
+			marshalH.marshal(hospitalsListWeb, System.out);
+		}
+		//Transform the XML obtained into HTML through XSLT
 		Xml2Html converter = new Xml2Html();
 		converter.simpleTransform("./xml/Output-Hospital.xml", "./xml/ProstheticWebHPT.xslt", "./xml/Hospitaltmp.html");
 		

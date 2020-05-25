@@ -147,7 +147,7 @@ public class InputFlow {
 				answer = reader.readLine();
 				if (answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("n")) {
 					loop = false;
-					if (answer.contains("y")) {
+					if (answer.contains("y")||answer.contains("Y")) {
 						resp = true;
 					} else {
 						resp = false;
@@ -346,7 +346,7 @@ public class InputFlow {
 		Hospital hosp;
 		while(it.hasNext()) {
 			hosp=(Hospital) it.next();
-			System.out.println(hosp.toStringShort());
+			System.out.println(hosp.toString());
 		}
 	}
 	
