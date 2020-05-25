@@ -18,8 +18,6 @@ public class Hospital implements Serializable{
 	private String name;
 	@XmlElement
 	private String address;
-	@XmlTransient
-	private Patient patient;
 	@XmlElement
 	private String telephone;
 	@XmlElement(name = "doctors")
@@ -72,24 +70,13 @@ public class Hospital implements Serializable{
 		this.telephone = telephone;
 	}
 	
-	
-	public Hospital(Integer id,String name, String address, String telephone, Patient pat) {
-		super();
-		this.id=id;
-		this.name = name;
-		this.address = address;
-		this.telephone = telephone;
-		this.patient=pat;
-	}
-	
 
-	public Hospital(Integer id, String name, String address, Patient patient, String telephone,
+	public Hospital(Integer id, String name, String address, String telephone,
 			List<Doctor> doctors) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;
-		this.patient = patient;
 		this.telephone = telephone;
 		this.doctors = doctors;
 	}
@@ -122,11 +109,7 @@ public class Hospital implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Hospital [id= " + id + ", name=" + name + ", address=" + address + ", patient_id=" + patient.getId() + ", telephone="
-				+ telephone + "]";
-	}
-	public String toStringShort() {
-		return "Hospital [id= " + id + ", name=" + name + ", address=" + address + ", telephone=" + telephone + "]";
+		return "Hospital [id= " + id + ", name=" + name + ", address=" + address +", telephone=" + telephone + "]";
 	}
 	
 	public String toStringXML() {
@@ -134,8 +117,6 @@ public class Hospital implements Serializable{
 				+ telephone + "]";
 	}
 	
-	
-
 	public Integer getId() {
 		return id;
 	}
@@ -167,15 +148,6 @@ public class Hospital implements Serializable{
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
-	}
-
-
-	public Patient getPatient() {
-		return patient;
-	}
-
-	public void setPatient(Patient patient) {
-		this.patient = patient;
 	}
 
 	public List<Doctor> getDoctors() {

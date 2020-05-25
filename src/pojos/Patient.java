@@ -35,8 +35,6 @@ public class Patient implements Serializable {
 	private String address;
 	@XmlTransient
 	private Doctor doctor;
-	@XmlTransient
-	private User patientUser;
 	
 	
 	public Patient() {
