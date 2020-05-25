@@ -11,8 +11,6 @@ import db.inteface.*;
 
 public interface PatientManagerInterface {
 	
-	public void register(Patient patient);
-	public void login(Patient patient);
 	public void viewDate(String telephone);
 	public Hospital selectHospitalByID(int id);
 	public ArrayList<Hospital> showHospitals();

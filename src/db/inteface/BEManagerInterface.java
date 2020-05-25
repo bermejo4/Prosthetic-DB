@@ -5,10 +5,6 @@ import java.util.List;
 import pojos.*;
 
 public interface BEManagerInterface {
-
-	public void register(Biomedical_Eng BE);
-
-	public void login(Biomedical_Eng BE);
 	
 	public void delete(Prosthetic pros);
 
