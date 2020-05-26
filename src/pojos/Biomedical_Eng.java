@@ -4,23 +4,28 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.*;
-
+@XmlRootElement(name = "Biomedical")
+@XmlAccessorType (XmlAccessType.FIELD)
 public class Biomedical_Eng implements Serializable {
 
 	private static final long serialVersionUID = -6234822159013375318L;
-	 
+	@XmlTransient 
 	private Integer id;
+	@XmlElement
 	private String name;
+	@XmlElement
 	private String lastname;
+	@XmlElement
 	private String telephone;
-	private List<Prosthetic> prostheticsList;
+	@XmlElement(name = "Prosthetic")
+	private List<Prosthetic> prosthetics;
 
 	
 
 
 	public Biomedical_Eng() {
 		super ();
-		this.prostheticsList =  new ArrayList<Prosthetic>();
+		this.prosthetics =  new ArrayList<Prosthetic>();
 
 	}
 	
@@ -30,7 +35,7 @@ public class Biomedical_Eng implements Serializable {
 		super();
 		this.id = id;
 		this.name = name;
-		this.prostheticsList =  new ArrayList<Prosthetic>();
+		this.prosthetics =  new ArrayList<Prosthetic>();
 	}
 
 
@@ -51,7 +56,7 @@ public class Biomedical_Eng implements Serializable {
 		this.name = name;
 		this.lastname = lastname;
 		this.telephone = telephone;
-		this.prostheticsList =  new ArrayList<Prosthetic>();
+		this.prosthetics =  new ArrayList<Prosthetic>();
 					
 	}
 
@@ -85,7 +90,7 @@ public class Biomedical_Eng implements Serializable {
 	@Override
 	public String toString() {
 		return "Biomedical_Eng [id=" + id + ", name=" + name + ", lastname=" + lastname + ", telephone=" + telephone
-				+ ", prostheticsList =" + prostheticsList + "]";
+				+ ", prostheticsList =" + prosthetics + "]";
 	}
 
 	public Integer getId() {
@@ -121,11 +126,11 @@ public class Biomedical_Eng implements Serializable {
 	}
 	
 	public List<Prosthetic> getProstheticsList() {
-		return prostheticsList;
+		return prosthetics;
 	}
 
 	public void setProstheticsList(List<Prosthetic> prostheticsList) {
-		this.prostheticsList = prostheticsList;
+		this.prosthetics = prostheticsList;
 	}
 	
 		
