@@ -30,6 +30,7 @@ import pojos.*;
 import pojos.pojos4Xml.BiomedicalsListing;
 import pojos.pojos4Xml.HospitalsListing;
 import pojos.pojos4Xml.ProstheticsListing;
+import pojos.pojos4Xml.SuperDBListing;
 import xml.utils.CustomErrorHandler;
 import xml.utils.Xml2Html;
 
@@ -366,6 +367,7 @@ public class Menu {
 //-----------------------------------------------------------------------------------
 
 	public static void goToWeb() throws JAXBException {
+		generateWholeDataBaseXml();
 		prepareWebForProsthetics();
 		prepareWebForHospitals();
 		prepareWebForBiomedsEngineers();
@@ -466,16 +468,13 @@ public class Menu {
 		marshalB.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		//Define the file where the XML is going to be written 
 		File fileH=new File("./xml/Output-Biomedical.xml");
+		
 		for (Biomedical_Eng currentbiomed : biomedsListWeb.getBiomedicalListWeb()) {
-			//currenthospital.setDoctors(doctorManagerInterface.doctorsInHospital(currenthospital.getId()));
 			System.out.println(currentbiomed.toString());
 			for (Prosthetic currentpros : currentbiomed.getProstheticsList()) {
 				System.out.println(currentpros.toString());
-				//currentdoctor.getHospital().setName(currenthospital.getName());;
 			}
-            //System.out.println(currenthospital.getDoctors().toString());
-            //pat = patientManagerInterface.getPatient(currenthospital.getPatient().getId());
-            //currenthospital.setPatient(pat);
+            
         }
 		marshalB.marshal(biomedsListWeb, fileH);
 		if(InputFlow.areYouSure(reader, "Do you want to print the biomedicals engineers list XML?")) {
@@ -483,9 +482,46 @@ public class Menu {
 			marshalB.marshal(biomedsListWeb, System.out);
 		}
 		//Transform the XML obtained into HTML through XSLT
-		//Xml2Html converter = new Xml2Html();
-		//converter.simpleTransform("./xml/Output-Hospital.xml", "./xml/ProstheticWebHPT.xslt", "./xml/Hospitaltmp.html");
+		Xml2Html converter = new Xml2Html();
+		converter.simpleTransform("./xml/Output-Biomedical.xml", "./xml/ProstheticWebBE.xslt", "./xml/Biomedicaltmp.html");
 		
+	}
+	private static void generateWholeDataBaseXml() throws JAXBException {
+		Patient pat = new Patient();
+		HospitalsListing hospitalsList = new HospitalsListing();
+		hospitalsList.setHosptialListWeb(new ArrayList<Hospital>());
+		hospitalsList.setHosptialListWeb(patientManagerInterface.showHospitals());
+		for (Hospital currenthospital : hospitalsList.getHosptialListWeb()) {
+			currenthospital.setDoctors(doctorManagerInterface.doctorsInHospital(currenthospital.getId()));
+			for (Doctor currentdoctor : currenthospital.getDoctors()) {
+				currentdoctor.getHospital().setName(currenthospital.getName());;
+			}
+        }
+		BiomedicalsListing biomedsList = new BiomedicalsListing();
+		biomedsList.setBiomedicalListWeb(new ArrayList<Biomedical_Eng>());
+		biomedsList.setBiomedicalListWeb(biomedManagerInterface.showBiomedics());
+		
+		ProstheticsListing prosList = new ProstheticsListing();
+		prosList.setProsListWeb(new ArrayList<Prosthetic>());
+		prosList.setProsListWeb(biomedManagerInterface.showProsthetic());
+		for (Prosthetic currentpros : prosList.getProsListWeb()) {
+            //System.out.println(currentpros.toString());
+            pat = patientManagerInterface.getPatient(currentpros.getPatient().getId());
+            //Assign to the current prosthetic object its patient through patient's id
+            currentpros.setPatient(pat);
+        }
+		SuperDBListing superdb= new SuperDBListing(hospitalsList, biomedsList, prosList);
+		
+		JAXBContext contextS = JAXBContext.newInstance(SuperDBListing.class);
+		//Get the marshaller from the JAXBContext 
+		Marshaller marshalS = contextS.createMarshaller();
+		//Pretty formating to predefine things
+		marshalS.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		//Define the file where the XML is going to be written 
+		File fileS=new File("./xml/Output-WholeDataBase.xml");
+		marshalS.marshal(superdb, fileS);
+		//to print XML
+		marshalS.marshal(superdb, System.out);
 	}
 
 	private static void generateXML(int prostheticID) throws Exception {
