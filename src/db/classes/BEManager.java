@@ -291,6 +291,9 @@ public class BEManager implements db.inteface.BEManagerInterface {
 	public List<Biomedical_Eng> showBiomedics() {
 		// Created empty list of biomedics
 		List<Biomedical_Eng> biomedList = new ArrayList<Biomedical_Eng>();
+		List<Prosthetic> prosListOfBiomed = new ArrayList<Prosthetic>();
+		Biomedical_Eng newbiomed = new Biomedical_Eng();
+		Prosthetic prosthetic = new Prosthetic();
 		try {
 			String sql = "SELECT * FROM biomedical_engineer ";
 			PreparedStatement find1 = c.prepareStatement(sql);
@@ -301,7 +304,35 @@ public class BEManager implements db.inteface.BEManagerInterface {
 				String lastname = rs.getString("lastname");
 				String telephone = rs.getString("telephone");
 				
-				Biomedical_Eng newbiomed = new Biomedical_Eng(be_id,name, lastname,telephone);
+				newbiomed = new Biomedical_Eng(be_id,name, lastname,telephone);
+				try {
+					String sql_1 = "SELECT * FROM prosthetic AS p JOIN biomed_pros AS bp ON p.prosthetic_id = bp.prosID WHERE bp.beID LIKE ?";
+					PreparedStatement prep = c.prepareStatement(sql_1);
+					prep.setInt(1,be_id);
+					ResultSet rss = prep.executeQuery();
+					while (rss.next()) {
+						
+						int id= rss.getInt("prosthetic_id");
+						String pros_type = rss.getString(2);
+						String material = rss.getString(3);
+						String dimensions = rss.getString(4);
+						Integer number = rss.getInt(5);
+						String failures = rss.getString(6);
+						float price = rss.getFloat(7);
+						boolean available = rss.getBoolean(8);
+						int pat_id = rss.getInt(9);
+						Patient pat = new Patient(pat_id);
+						int hosp_id = rss.getInt(10);
+						Hospital hospital= new Hospital(hosp_id);
+						
+						prosthetic=new Prosthetic(id, pros_type, material, price, dimensions, failures, number, available, pat, hospital);
+						prosListOfBiomed.add(prosthetic);
+					}
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				newbiomed.setProstheticsList(prosListOfBiomed);
 				biomedList.add(newbiomed);
 			}
 
