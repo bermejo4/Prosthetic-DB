@@ -13,20 +13,27 @@
 					<xsl:for-each select="hospitals/hospital">
 						<div id="boundsHosp">
 							<p>
-								<b><img class="image3" src="imagesForHtml/hospital.png"> Hospital Name: </img></b>
+								<b>
+									<img class="image3" src="imagesForHtml/hospital.png"> Hospital Name: </img>
+								</b>
 								<xsl:value-of select="@name" />
 							</p>
 							<p>
-								<b><img class="image3" src="imagesForHtml/location.png">Location: </img></b>
+								<b>
+									<img class="image3" src="imagesForHtml/location.png">Location: </img>
+								</b>
 								<xsl:value-of select="address" />
 							</p>
 							<p>
-								<b><img class="image3" src="imagesForHtml/telephone.png"> Telephone: </img></b>
+								<b>
+									<img class="image3" src="imagesForHtml/telephone.png"> Telephone: </img>
+								</b>
 								<xsl:value-of select="telephone" />
 							</p>
 							<p>
 								<b>
-									<img class="image3" src="imagesForHtml/doctor.png"> Doctors: </img> <br /> 
+									<img class="image3" src="imagesForHtml/doctor.png"> Doctors: </img>
+									<br />
 									<table>
 										<tr>
 											<th>Name</th>
@@ -35,28 +42,28 @@
 											<th>Department</th>
 										</tr>
 										<xsl:for-each select="doctors">
-										<tr>
-											<td>
-												<p>
-													<xsl:value-of select="name " />
-												</p>
-											</td>
-											<td>
-												<p>
-													<xsl:value-of select="lastname" />
-												</p>
-											</td>
-											<td>
-												<p>
-													<xsl:value-of select="telephone" />
-												</p>
-											</td>
-											<td>
-												<p>
-													<xsl:value-of select="department" />
-												</p>
-											</td>												
-										</tr>
+											<tr>
+												<td>
+													<p>
+														<xsl:value-of select="name " />
+													</p>
+												</td>
+												<td>
+													<p>
+														<xsl:value-of select="lastname" />
+													</p>
+												</td>
+												<td>
+													<p>
+														<xsl:value-of select="telephone" />
+													</p>
+												</td>
+												<td>
+													<p>
+														<xsl:value-of select="department" />
+													</p>
+												</td>
+											</tr>
 										</xsl:for-each>
 									</table>
 								</b>
