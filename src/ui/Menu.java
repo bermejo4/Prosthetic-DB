@@ -27,6 +27,9 @@ import java.time.format.DateTimeFormatter;
 import db.classes.*;
 import db.inteface.*;
 import pojos.*;
+import pojos.pojos4Xml.BiomedicalsListing;
+import pojos.pojos4Xml.HospitalsListing;
+import pojos.pojos4Xml.ProstheticsListing;
 import xml.utils.CustomErrorHandler;
 import xml.utils.Xml2Html;
 
@@ -164,6 +167,7 @@ public class Menu {
 
 					default: // back
 						userUsing = false;
+						logged=false;
 
 					}
 					break;
@@ -215,10 +219,13 @@ public class Menu {
 						prosId = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic you want to create the XML:");
 						generateXML(prosId);
 						break;
-					case 8: introduceDepartmentAndHospital(doctorUsing.getId());
+					case 8: 
+						introduceDepartmentAndHospital(doctorUsing.getId());
+						break;
 				   
 					default: // back
 						userUsing = false;
+						logged=false;
 					}
 					break;
 
@@ -298,6 +305,7 @@ public class Menu {
 
 					default: // back
 						userUsing = false;
+						logged=false;
 					}
 					break;
 
@@ -335,6 +343,7 @@ public class Menu {
 						break;
 					default: // back
 						userUsing = false;
+						logged=false;
 					}
 					break;
 				case 0:// Exit
@@ -344,6 +353,7 @@ public class Menu {
 					break;
 				default: goToWeb();
 				userUsing = false;
+				
 				}
 				
 			}
@@ -358,6 +368,7 @@ public class Menu {
 	public static void goToWeb() throws JAXBException {
 		prepareWebForProsthetics();
 		prepareWebForHospitals();
+		prepareWebForBiomedsEngineers();
 		System.out.println("Opening the Website...");
         File filehtml = new File("");
         //System.out.println("uri" + filehtml.toURI().toString()+"\n otro:"+filehtml.getAbsolutePath());
@@ -441,6 +452,39 @@ public class Menu {
 		//Transform the XML obtained into HTML through XSLT
 		Xml2Html converter = new Xml2Html();
 		converter.simpleTransform("./xml/Output-Hospital.xml", "./xml/ProstheticWebHPT.xslt", "./xml/Hospitaltmp.html");
+		
+	}
+	private static void prepareWebForBiomedsEngineers() throws JAXBException {
+		BiomedicalsListing biomedsListWeb = new BiomedicalsListing();
+		biomedsListWeb.setBiomedicalListWeb(new ArrayList<Biomedical_Eng>());
+		biomedsListWeb.setBiomedicalListWeb(biomedManagerInterface.showBiomedics());
+				
+		JAXBContext contextB = JAXBContext.newInstance(BiomedicalsListing.class);
+		//Get the marshaller from the JAXBContext 
+		Marshaller marshalB = contextB.createMarshaller();
+		//Pretty formating to predefine things
+		marshalB.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		//Define the file where the XML is going to be written 
+		File fileH=new File("./xml/Output-Biomedical.xml");
+		for (Biomedical_Eng currentbiomed : biomedsListWeb.getBiomedicalListWeb()) {
+			//currenthospital.setDoctors(doctorManagerInterface.doctorsInHospital(currenthospital.getId()));
+			System.out.println(currentbiomed.toString());
+			for (Prosthetic currentpros : currentbiomed.getProstheticsList()) {
+				System.out.println(currentpros.toString());
+				//currentdoctor.getHospital().setName(currenthospital.getName());;
+			}
+            //System.out.println(currenthospital.getDoctors().toString());
+            //pat = patientManagerInterface.getPatient(currenthospital.getPatient().getId());
+            //currenthospital.setPatient(pat);
+        }
+		marshalB.marshal(biomedsListWeb, fileH);
+		if(InputFlow.areYouSure(reader, "Do you want to print the biomedicals engineers list XML?")) {
+			//to print XML
+			marshalB.marshal(biomedsListWeb, System.out);
+		}
+		//Transform the XML obtained into HTML through XSLT
+		//Xml2Html converter = new Xml2Html();
+		//converter.simpleTransform("./xml/Output-Hospital.xml", "./xml/ProstheticWebHPT.xslt", "./xml/Hospitaltmp.html");
 		
 	}
 
