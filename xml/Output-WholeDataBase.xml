@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DataBase>
+    <hospitals>
+        <hospital name="BMC">
+            <address>Boston</address>
+            <telephone>3453465676</telephone>
+            <doctors>
+                <name>Gregory </name>
+                <lastname>House</lastname>
+                <telephone>345345345</telephone>
+                <department>Diagnosis</department>
+            </doctors>
+            <doctors>
+                <name>Rachel</name>
+                <lastname>Cameron</lastname>
+                <telephone>345345345</telephone>
+                <department>Diagnosis</department>
+            </doctors>
+            <doctors>
+                <name>Jaimy</name>
+                <lastname>Chase</lastname>
+                <telephone>324325345</telephone>
+                <department>Diagnosis</department>
+            </doctors>
+            <doctors>
+                <name>James</name>
+                <lastname>Wilson</lastname>
+                <telephone>34534534657</telephone>
+                <department>Oncology</department>
+            </doctors>
+            <doctors>
+                <name>George</name>
+                <lastname>Foreman</lastname>
+                <telephone>46554645675</telephone>
+                <department>Neurology</department>
+            </doctors>
+        </hospital>
+        <hospital name="Hospital General">
+            <address>Segovia</address>
+            <telephone>34534543</telephone>
+            <doctors>
+                <name>James</name>
+                <lastname>Watson</lastname>
+                <telephone>67878967</telephone>
+                <department>Crime</department>
+            </doctors>
+            <doctors>
+                <name>Ibn</name>
+                <lastname>Sina</lastname>
+                <telephone>45746554</telephone>
+                <department>General</department>
+            </doctors>
+            <doctors>
+                <name>Jaime</name>
+                <lastname>Bermejo</lastname>
+                <telephone>11</telephone>
+                <department>Geneal</department>
+            </doctors>
+        </hospital>
+        <hospital name="Hospital de la Misericordia">
+            <address>Segovia</address>
+            <telephone>456456456</telephone>
+            <doctors>
+                <name>Sigmund</name>
+                <lastname>Freud</lastname>
+                <telephone>3768954321</telephone>
+                <department>Psicology</department>
+            </doctors>
+            <doctors>
+                <name>Alexander</name>
+                <lastname>Fleming</lastname>
+                <telephone>9875746847</telephone>
+                <department>Laboratory</department>
+            </doctors>
+        </hospital>
+        <hospital name="La Paz">
+            <address>Madrid</address>
+            <telephone>4554656456</telephone>
+            <doctors>
+                <name>Ramón</name>
+                <lastname>Y Cajal</lastname>
+                <telephone>867534534</telephone>
+                <department>Laboratory</department>
+            </doctors>
+            <doctors>
+                <name>Hipócrates</name>
+                <lastname>El Griego</lastname>
+                <telephone>453465645654</telephone>
+                <department>General</department>
+            </doctors>
+        </hospital>
+        <hospital name="12 de Octuble">
+            <address>Madrid</address>
+            <telephone>456456456</telephone>
+            <doctors>
+                <name>Fernando</name>
+                <lastname>Simón</lastname>
+                <telephone>34543534</telephone>
+                <department>Co-Vid19</department>
+            </doctors>
+        </hospital>
+        <hospital name="Puerta de Hierro">
+            <address>Madrid</address>
+            <telephone>5464564565</telephone>
+        </hospital>
+        <hospital name="Infanta Sofía">
+            <address>Madrid</address>
+            <telephone>4564564565</telephone>
+        </hospital>
+    </hospitals>
+    <biomedicals>
+        <Biomedical>
+            <name>Jaime</name>
+            <lastname>Torres</lastname>
+            <telephone>43543534</telephone>
+            <Prosthetic type="Leg">
+                <material>Aluminium</material>
+                <dimensions>2x4x6</dimensions>
+                <price>12000.0</price>
+                <failures>none</failures>
+                <available>false</available>
+                <patient id="4"/>
+                <biomeds/>
+            </Prosthetic>
+            <Prosthetic type="Arm">
+                <material>Iron</material>
+                <dimensions>1x3x7</dimensions>
+                <price>13000.0</price>
+                <failures>nene</failures>
+                <available>false</available>
+                <patient id="5"/>
+                <biomeds/>
+            </Prosthetic>
+            <Prosthetic type="Hip">
+                <material>Steel</material>
+                <dimensions>3x3x4</dimensions>
+                <price>20000.0</price>
+                <failures>none</failures>
+                <available>true</available>
+                <patient id="0"/>
+                <biomeds/>
+            </Prosthetic>
+            <Prosthetic type="Heart">
+                <material>Gold</material>
+                <dimensions>2x2x2</dimensions>
+                <price>13000.0</price>
+                <failures>none</failures>
+                <available>true</available>
+                <patient id="0"/>
+                <biomeds/>
+            </Prosthetic>
+            <Prosthetic type="Hand">
+                <material>Cooper</material>
+                <dimensions>3x2x1</dimensions>
+                <price>3000.0</price>
+                <failures>none</failures>
+                <available>false</available>
+                <patient id="6"/>
+                <biomeds/>
+            </Prosthetic>
+            <Prosthetic type="Leg">
+                <material>Wood</material>
+                <dimensions>5x6x4</dimensions>
+                <price>4000.0</price>
+                <failures>none</failures>
+                <available>false</available>
+                <patient id="4"/>
+                <biomeds/>
+            </Prosthetic>
+            <Prosthetic type="Nose">
+                <material>Plastic</material>
+                <dimensions>1x1x0.5</dimensions>
+                <price>2000.0</price>
+                <failures>none</failures>
+                <available>false</available>
+                <patient id="3"/>
+                <biomeds/>
+            </Prosthetic>
+            <Prosthetic type="Join">
+                <material>silicon</material>
+                <dimensions>2.0x3.0x4.0</dimensions>
+                <price>12.0</price>
+                <failures>none</failures>
+                <available>true</available>
+                <patient id="0"/>
+                <biomeds/>
+            </Prosthetic>
+        </Biomedical>
+        <Biomedical>
+            <name>Pepe</name>
+            <lastname>Claro</lastname>
+            <telephone>12</telephone>
+            <Prosthetic type="Leg">
+                <material>Aluminium</material>
+                <dimensions>2x4x6</dimensions>
+                <price>12000.0</price>
+                <failures>none</failures>
+                <available>false</available>
+                <patient id="4"/>
+                <biomeds/>
+            </Prosthetic>
+            <Prosthetic type="Arm">
+                <material>Iron</material>
+                <dimensions>1x3x7</dimensions>
+                <price>13000.0</price>
+                <failures>nene</failures>
+                <available>false</available>
+                <patient id="5"/>
+                <biomeds/>
+            </Prosthetic>
+            <Prosthetic type="Hip">
+                <material>Steel</material>
+                <dimensions>3x3x4</dimensions>
+                <price>20000.0</price>
+                <failures>none</failures>
+                <available>true</available>
+                <patient id="0"/>
+                <biomeds/>
+            </Prosthetic>
+            <Prosthetic type="Heart">
+                <material>Gold</material>
+                <dimensions>2x2x2</dimensions>
+                <price>13000.0</price>
+                <failures>none</failures>
+                <available>true</available>
+                <patient id="0"/>
+                <biomeds/>
+            </Prosthetic>
+            <Prosthetic type="Hand">
+                <material>Cooper</material>
+                <dimensions>3x2x1</dimensions>
+                <price>3000.0</price>
+                <failures>none</failures>
+                <available>false</available>
+                <patient id="6"/>
+                <biomeds/>
+            </Prosthetic>
+            <Prosthetic type="Leg">
+                <material>Wood</material>
+                <dimensions>5x6x4</dimensions>
+                <price>4000.0</price>
+                <failures>none</failures>
+                <available>false</available>
+                <patient id="4"/>
+                <biomeds/>
+            </Prosthetic>
+            <Prosthetic type="Nose">
+                <material>Plastic</material>
+                <dimensions>1x1x0.5</dimensions>
+                <price>2000.0</price>
+                <failures>none</failures>
+                <available>false</available>
+                <patient id="3"/>
+                <biomeds/>
+            </Prosthetic>
+            <Prosthetic type="Join">
+                <material>silicon</material>
+                <dimensions>2.0x3.0x4.0</dimensions>
+                <price>12.0</price>
+                <failures>none</failures>
+                <available>true</available>
+                <patient id="0"/>
+                <biomeds/>
+            </Prosthetic>
+        </Biomedical>
+    </biomedicals>
+    <prosthetics>
+        <prosthetic type="Leg">
+            <material>Aluminium</material>
+            <dimensions>2x4x6</dimensions>
+            <price>12000.0</price>
+            <failures>none</failures>
+            <available>false</available>
+            <patient id="4">
+                <name>Nikola</name>
+                <lastname>Tesla</lastname>
+            </patient>
+            <biomeds/>
+        </prosthetic>
+        <prosthetic type="Arm">
+            <material>Iron</material>
+            <dimensions>1x3x7</dimensions>
+            <price>13000.0</price>
+            <failures>nene</failures>
+            <available>false</available>
+            <patient id="5">
+                <name>Niels</name>
+                <lastname>Bohr</lastname>
+            </patient>
+            <biomeds/>
+        </prosthetic>
+        <prosthetic type="Hip">
+            <material>Steel</material>
+            <dimensions>3x3x4</dimensions>
+            <price>20000.0</price>
+            <failures>none</failures>
+            <available>true</available>
+            <patient/>
+            <biomeds/>
+        </prosthetic>
+        <prosthetic type="Heart">
+            <material>Gold</material>
+            <dimensions>2x2x2</dimensions>
+            <price>13000.0</price>
+            <failures>none</failures>
+            <available>true</available>
+            <patient/>
+            <biomeds/>
+        </prosthetic>
+        <prosthetic type="Hand">
+            <material>Cooper</material>
+            <dimensions>3x2x1</dimensions>
+            <price>3000.0</price>
+            <failures>none</failures>
+            <available>false</available>
+            <patient id="6">
+                <name>Ada</name>
+                <lastname>Byron</lastname>
+            </patient>
+            <biomeds/>
+        </prosthetic>
+        <prosthetic type="Leg">
+            <material>Wood</material>
+            <dimensions>5x6x4</dimensions>
+            <price>4000.0</price>
+            <failures>none</failures>
+            <available>false</available>
+            <patient id="4">
+                <name>Nikola</name>
+                <lastname>Tesla</lastname>
+            </patient>
+            <biomeds/>
+        </prosthetic>
+        <prosthetic type="Nose">
+            <material>Plastic</material>
+            <dimensions>1x1x0.5</dimensions>
+            <price>2000.0</price>
+            <failures>none</failures>
+            <available>false</available>
+            <patient id="3">
+                <name>Marie</name>
+                <lastname>Curie</lastname>
+            </patient>
+            <biomeds/>
+        </prosthetic>
+        <prosthetic type="Join">
+            <material>silicon</material>
+            <dimensions>2.0x3.0x4.0</dimensions>
+            <price>12.0</price>
+            <failures>none</failures>
+            <available>true</available>
+            <patient/>
+            <biomeds/>
+        </prosthetic>
+    </prosthetics>
+</DataBase>
