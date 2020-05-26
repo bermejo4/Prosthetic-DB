@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Biomedicals>
+    <Biomedical>
+        <name>Jaime</name>
+        <lastname>Torres</lastname>
+        <telephone>43543534</telephone>
+        <Prosthetic type="Leg">
+            <material>Aluminium</material>
+            <dimensions>2x4x6</dimensions>
+            <price>12000.0</price>
+            <failures>none</failures>
+            <available>false</available>
+            <patient id="4"/>
+            <biomeds/>
+        </Prosthetic>
+        <Prosthetic type="Arm">
+            <material>Iron</material>
+            <dimensions>1x3x7</dimensions>
+            <price>13000.0</price>
+            <failures>nene</failures>
+            <available>false</available>
+            <patient id="5"/>
+            <biomeds/>
+        </Prosthetic>
+        <Prosthetic type="Hip">
+            <material>Steel</material>
+            <dimensions>3x3x4</dimensions>
+            <price>20000.0</price>
+            <failures>none</failures>
+            <available>true</available>
+            <patient id="0"/>
+            <biomeds/>
+        </Prosthetic>
+        <Prosthetic type="Heart">
+            <material>Gold</material>
+            <dimensions>2x2x2</dimensions>
+            <price>13000.0</price>
+            <failures>none</failures>
+            <available>true</available>
+            <patient id="0"/>
+            <biomeds/>
+        </Prosthetic>
+        <Prosthetic type="Hand">
+            <material>Cooper</material>
+            <dimensions>3x2x1</dimensions>
+            <price>3000.0</price>
+            <failures>none</failures>
+            <available>false</available>
+            <patient id="6"/>
+            <biomeds/>
+        </Prosthetic>
+        <Prosthetic type="Leg">
+            <material>Wood</material>
+            <dimensions>5x6x4</dimensions>
+            <price>4000.0</price>
+            <failures>none</failures>
+            <available>false</available>
+            <patient id="4"/>
+            <biomeds/>
+        </Prosthetic>
+        <Prosthetic type="Nose">
+            <material>Plastic</material>
+            <dimensions>1x1x0.5</dimensions>
+            <price>2000.0</price>
+            <failures>none</failures>
+            <available>false</available>
+            <patient id="3"/>
+            <biomeds/>
+        </Prosthetic>
+        <Prosthetic type="Join">
+            <material>silicon</material>
+            <dimensions>2.0x3.0x4.0</dimensions>
+            <price>12.0</price>
+            <failures>none</failures>
+            <available>true</available>
+            <patient id="0"/>
+            <biomeds/>
+        </Prosthetic>
+    </Biomedical>
+    <Biomedical>
+        <name>Pepe</name>
+        <lastname>Claro</lastname>
+        <telephone>12</telephone>
+        <Prosthetic type="Leg">
+            <material>Aluminium</material>
+            <dimensions>2x4x6</dimensions>
+            <price>12000.0</price>
+            <failures>none</failures>
+            <available>false</available>
+            <patient id="4"/>
+            <biomeds/>
+        </Prosthetic>
+        <Prosthetic type="Arm">
+            <material>Iron</material>
+            <dimensions>1x3x7</dimensions>
+            <price>13000.0</price>
+            <failures>nene</failures>
+            <available>false</available>
+            <patient id="5"/>
+            <biomeds/>
+        </Prosthetic>
+        <Prosthetic type="Hip">
+            <material>Steel</material>
+            <dimensions>3x3x4</dimensions>
+            <price>20000.0</price>
+            <failures>none</failures>
+            <available>true</available>
+            <patient id="0"/>
+            <biomeds/>
+        </Prosthetic>
+        <Prosthetic type="Heart">
+            <material>Gold</material>
+            <dimensions>2x2x2</dimensions>
+            <price>13000.0</price>
+            <failures>none</failures>
+            <available>true</available>
+            <patient id="0"/>
+            <biomeds/>
+        </Prosthetic>
+        <Prosthetic type="Hand">
+            <material>Cooper</material>
+            <dimensions>3x2x1</dimensions>
+            <price>3000.0</price>
+            <failures>none</failures>
+            <available>false</available>
+            <patient id="6"/>
+            <biomeds/>
+        </Prosthetic>
+        <Prosthetic type="Leg">
+            <material>Wood</material>
+            <dimensions>5x6x4</dimensions>
+            <price>4000.0</price>
+            <failures>none</failures>
+            <available>false</available>
+            <patient id="4"/>
+            <biomeds/>
+        </Prosthetic>
+        <Prosthetic type="Nose">
+            <material>Plastic</material>
+            <dimensions>1x1x0.5</dimensions>
+            <price>2000.0</price>
+            <failures>none</failures>
+            <available>false</available>
+            <patient id="3"/>
+            <biomeds/>
+        </Prosthetic>
+        <Prosthetic type="Join">
+            <material>silicon</material>
+            <dimensions>2.0x3.0x4.0</dimensions>
+            <price>12.0</price>
+            <failures>none</failures>
+            <available>true</available>
+            <patient id="0"/>
+            <biomeds/>
+        </Prosthetic>
+    </Biomedical>
+</Biomedicals>

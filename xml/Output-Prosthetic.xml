@@ -1,87 +1,90 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <prosthetics>
-    <prosthetic type="arm">
-        <material>iron</material>
-        <dimensions>1x9x3</dimensions>
-        <price>3.0</price>
-        <failures>none</failures>
-        <available>false</available>
-        <patient id="3">
-            <name>Pedro</name>
-            <lastname>Jim</lastname>
-        </patient>
-        <biomeds/>
-    </prosthetic>
-    <prosthetic type="leg">
-        <material>aluminium</material>
-        <dimensions>3x1x5</dimensions>
-        <price>34.0</price>
-        <failures>none</failures>
-        <available>false</available>
-        <patient id="5">
-            <name>Marisa</name>
-            <lastname>Wery</lastname>
-        </patient>
-        <biomeds/>
-    </prosthetic>
-    <prosthetic type="liver">
-        <material>tissue</material>
-        <dimensions>2x5x7</dimensions>
-        <price>27.0</price>
+    <prosthetic type="Leg">
+        <material>Aluminium</material>
+        <dimensions>2x4x6</dimensions>
+        <price>12000.0</price>
         <failures>none</failures>
         <available>false</available>
         <patient id="4">
-            <name>Elena</name>
-            <lastname>Rodez</lastname>
+            <name>Nikola</name>
+            <lastname>Tesla</lastname>
         </patient>
         <biomeds/>
     </prosthetic>
-    <prosthetic type="ear">
-        <material>tissue</material>
-        <dimensions>3x8x6</dimensions>
-        <price>12.0</price>
-        <failures>none</failures>
+    <prosthetic type="Arm">
+        <material>Iron</material>
+        <dimensions>1x3x7</dimensions>
+        <price>13000.0</price>
+        <failures>nene</failures>
         <available>false</available>
-        <patient id="2">
-            <name>Juan</name>
-            <lastname>Perez</lastname>
+        <patient id="5">
+            <name>Niels</name>
+            <lastname>Bohr</lastname>
         </patient>
         <biomeds/>
     </prosthetic>
-    <prosthetic type="ear">
-        <material>plastic</material>
-        <dimensions>1.0x1.0x1.0</dimensions>
-        <price>34.0</price>
+    <prosthetic type="Hip">
+        <material>Steel</material>
+        <dimensions>3x3x4</dimensions>
+        <price>20000.0</price>
+        <failures>none</failures>
+        <available>true</available>
+        <patient/>
+        <biomeds/>
+    </prosthetic>
+    <prosthetic type="Heart">
+        <material>Gold</material>
+        <dimensions>2x2x2</dimensions>
+        <price>13000.0</price>
+        <failures>none</failures>
+        <available>true</available>
+        <patient/>
+        <biomeds/>
+    </prosthetic>
+    <prosthetic type="Hand">
+        <material>Cooper</material>
+        <dimensions>3x2x1</dimensions>
+        <price>3000.0</price>
         <failures>none</failures>
         <available>false</available>
         <patient id="6">
-            <name>Apolonia</name>
-            <lastname>gete</lastname>
+            <name>Ada</name>
+            <lastname>Byron</lastname>
+        </patient>
+        <biomeds/>
+    </prosthetic>
+    <prosthetic type="Leg">
+        <material>Wood</material>
+        <dimensions>5x6x4</dimensions>
+        <price>4000.0</price>
+        <failures>none</failures>
+        <available>false</available>
+        <patient id="4">
+            <name>Nikola</name>
+            <lastname>Tesla</lastname>
         </patient>
         <biomeds/>
     </prosthetic>
     <prosthetic type="Nose">
-        <material>wood</material>
-        <dimensions>2.0x1.0x1.0</dimensions>
-        <price>12.0</price>
-        <failures>none</failures>
-        <available>false</available>
-        <patient id="7">
-            <name>Mariee</name>
-            <lastname>Curiee</lastname>
-        </patient>
-        <biomeds/>
-    </prosthetic>
-    <prosthetic type="Knee">
-        <material>tITANIUM</material>
-        <dimensions>2.0x3.0x4.0</dimensions>
+        <material>Plastic</material>
+        <dimensions>1x1x0.5</dimensions>
         <price>2000.0</price>
         <failures>none</failures>
         <available>false</available>
-        <patient id="8">
-            <name>Albert</name>
-            <lastname>Einstein</lastname>
+        <patient id="3">
+            <name>Marie</name>
+            <lastname>Curie</lastname>
         </patient>
+        <biomeds/>
+    </prosthetic>
+    <prosthetic type="Join">
+        <material>silicon</material>
+        <dimensions>2.0x3.0x4.0</dimensions>
+        <price>12.0</price>
+        <failures>none</failures>
+        <available>true</available>
+        <patient/>
         <biomeds/>
     </prosthetic>
 </prosthetics>
