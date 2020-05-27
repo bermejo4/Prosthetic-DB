@@ -8,18 +8,30 @@
             <lastname>House</lastname>
             <telephone>345345345</telephone>
             <department>Diagnosis</department>
+            <patients id="2">
+                <name>Albert</name>
+                <lastname>Einstein</lastname>
+            </patients>
         </doctors>
         <doctors>
             <name>Rachel</name>
             <lastname>Cameron</lastname>
             <telephone>345345345</telephone>
             <department>Diagnosis</department>
+            <patients id="3">
+                <name>Marie</name>
+                <lastname>Curie</lastname>
+            </patients>
         </doctors>
         <doctors>
             <name>Jaimy</name>
             <lastname>Chase</lastname>
             <telephone>324325345</telephone>
             <department>Diagnosis</department>
+            <patients id="5">
+                <name>Niels</name>
+                <lastname>Bohr</lastname>
+            </patients>
         </doctors>
         <doctors>
             <name>James</name>
@@ -32,6 +44,10 @@
             <lastname>Foreman</lastname>
             <telephone>46554645675</telephone>
             <department>Neurology</department>
+            <patients id="6">
+                <name>Ada</name>
+                <lastname>Byron</lastname>
+            </patients>
         </doctors>
     </hospital>
     <hospital name="Hospital General">
@@ -42,6 +58,10 @@
             <lastname>Watson</lastname>
             <telephone>67878967</telephone>
             <department>Crime</department>
+            <patients id="8">
+                <name>Charles</name>
+                <lastname>Darwin</lastname>
+            </patients>
         </doctors>
         <doctors>
             <name>Ibn</name>
@@ -64,12 +84,20 @@
             <lastname>Freud</lastname>
             <telephone>3768954321</telephone>
             <department>Psicology</department>
+            <patients id="9">
+                <name>Margarita</name>
+                <lastname>Salas</lastname>
+            </patients>
         </doctors>
         <doctors>
             <name>Alexander</name>
             <lastname>Fleming</lastname>
             <telephone>9875746847</telephone>
             <department>Laboratory</department>
+            <patients id="4">
+                <name>Nikola</name>
+                <lastname>Tesla</lastname>
+            </patients>
         </doctors>
     </hospital>
     <hospital name="La Paz">
@@ -96,6 +124,10 @@
             <lastname>Simón</lastname>
             <telephone>34543534</telephone>
             <department>Co-Vid19</department>
+            <patients id="7">
+                <name>Tomas</name>
+                <lastname>Alba-Edinson</lastname>
+            </patients>
         </doctors>
     </hospital>
     <hospital name="Puerta de Hierro">
