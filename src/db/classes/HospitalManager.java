@@ -170,6 +170,38 @@ public class HospitalManager implements HospitalManagerInterface {
 		return hosp;
 	}
 	
+	public ArrayList<Prosthetic> getProstheticsFromHospital(Hospital hospital){
+		ArrayList<Prosthetic> prostheticsInHospital = new ArrayList<Prosthetic>();
+		try {
+			String sql="SELECT * FROM prosthetic WHERE hospital_id LIKE ?";
+			PreparedStatement prep= c.prepareStatement(sql);
+			prep.setInt(1, hospital.getId());
+			ResultSet rs= prep.executeQuery();
+			
+			while (rs.next()) {
+				Integer prosthId = rs.getInt("prosthetic_id");
+				String prosthType = rs.getString("type");
+				String prosMaterial = rs.getString("material");
+				float prosPrice = rs.getFloat("price");
+				String prosDimensions = rs.getString("dimension");
+				String prosFailures = rs.getString("failures");
+				int prosnumbFail = rs.getInt("number_of_failures");
+				boolean prosAvailable = rs.getBoolean("available");
+				int pati_id = rs.getInt("patient_id");
+				//int hospi_id = rs.getInt(hospital.getId());
+				Patient p = new Patient(pati_id);
+
+				Prosthetic newprosthetic = new Prosthetic(prosthId, prosthType, prosMaterial, prosPrice, prosDimensions, prosFailures,prosnumbFail, prosAvailable, p, hospital);
+				prostheticsInHospital.add(newprosthetic);
+
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return prostheticsInHospital;
+	}
+	
 	
 }
 

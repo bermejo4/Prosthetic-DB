@@ -334,6 +334,35 @@ public class DoctorManager implements DoctorManagerInterface {
 		}
 	}
 	
+	public ArrayList<Patient> allPatientsOfDoctor(int doctor_id) {
+		ArrayList<Patient> patientsOfDoctor = new ArrayList<Patient>();
+		try {
+			String sql = "SELECT * FROM patient WHERE doctor_id LIKE ?";
+			PreparedStatement prep=c.prepareStatement(sql);
+			prep.setInt(1, doctor_id);
+			ResultSet rs= prep.executeQuery();
+			while(rs.next()) {
+				int id = rs.getInt("patient_id");
+				String name = rs.getString("name");
+				String lastname = rs.getString("lastname");
+				Date dob = rs.getDate("dob");
+				Date dof = rs.getDate("dof");
+				String address = rs.getString("address");
+				String telephone = rs.getString("telephone");
+				String gender = rs.getString("gender");
+				String problem = rs.getString("problem");
+				Doctor doctor = new Doctor(doctor_id);
+				
+				Patient ptmp=new Patient(id,name,lastname,telephone,dob,dof,gender,problem,address,doctor);
+				patientsOfDoctor.add(ptmp);
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return patientsOfDoctor;
+	}
+	
 	
 	
 

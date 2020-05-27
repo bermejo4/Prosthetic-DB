@@ -288,6 +288,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 
 	}
 	
+	
 	public List<Biomedical_Eng> showBiomedics() {
 		// Created empty list of biomedics
 		List<Biomedical_Eng> biomedList = new ArrayList<Biomedical_Eng>();
