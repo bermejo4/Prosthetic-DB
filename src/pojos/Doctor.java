@@ -1,7 +1,9 @@
 package pojos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 //import java.util.List;
+import java.util.List;
 
 import javax.xml.bind.annotation.*;
 
@@ -10,7 +12,7 @@ import javax.xml.bind.annotation.*;
 //import java.util.ArrayList;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = {"name","lastname", "telephone","department"})
+@XmlType(propOrder = {"name","lastname", "telephone","department", "patients"})
 public class Doctor implements Serializable{
 
 	private static final long serialVersionUID = 3556611086750634776L;
@@ -26,12 +28,14 @@ public class Doctor implements Serializable{
 	private String department;
 	@XmlTransient
 	private Hospital hospital;
+	@XmlElement(name = "patients")
+	private List<Patient> patients;
 	
 	
 	
 	public Doctor() {
 		super();
-		
+		this.patients= new ArrayList<Patient>();
 	}
 	
 	
@@ -173,6 +177,14 @@ public class Doctor implements Serializable{
 
 	public void setHospital(Hospital hospital) {
 		this.hospital = hospital;
+	}
+	
+	public List<Patient> getPatients() {
+		return patients;
+	}
+
+	public void setPatients(List<Patient> patients) {
+		this.patients = patients;
 	}
 	
 

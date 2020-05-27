@@ -7,7 +7,7 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "hospital")
-@XmlType(propOrder = {"address","telephone", "doctors"}) //elements will appear like this on the XML
+@XmlType(propOrder = {"address","telephone", "doctors", "prosthetics"}) //elements will appear like this on the XML
 public class Hospital implements Serializable{
 
 	private static final long serialVersionUID = 4942876712733558307L;
@@ -22,12 +22,15 @@ public class Hospital implements Serializable{
 	private String telephone;
 	@XmlElement(name = "doctors")
 	private List<Doctor> doctors;
+	@XmlElement(name = "prosthetics")
+	private List<Prosthetic> prosthetics;
 	//WILL CREATE A DOCTORS ELEMENT AND INSIDE THE NAME OF THE DOCTORS WORKING ON THAT HOSPITAL
 	
 	
 	public Hospital() {
 		super();
 		this.doctors = new ArrayList<Doctor>();
+		this.prosthetics=new ArrayList<Prosthetic>();
 	}
 	
 	public Hospital(Integer id) {
@@ -157,14 +160,14 @@ public class Hospital implements Serializable{
 	public void setDoctors(List<Doctor> doctors) {
 		this.doctors = doctors;
 	}
-	
-	
 
-	
-	
-	
-	
-	
+	public List<Prosthetic> getProsthetics() {
+		return prosthetics;
+	}
+
+	public void setProsthetics(List<Prosthetic> prosthetics) {
+		this.prosthetics = prosthetics;
+	}
 	
 
 }

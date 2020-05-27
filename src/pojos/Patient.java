@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD) //Here we indicates that the attributes need to be annotated.
-@XmlType(propOrder = {"name", "lastname"})
+@XmlType(propOrder = {"name", "lastname","telephone","gender", "problem", "address"})
 public class Patient implements Serializable {
 	
 	/**
@@ -21,17 +21,17 @@ public class Patient implements Serializable {
 	private String name;
 	@XmlElement
 	private String lastname;
-	@XmlTransient
+	@XmlElement
 	private String telephone;
 	@XmlTransient
 	private Date dob;
 	@XmlTransient
 	private Date dof;
-	@XmlTransient
+	@XmlElement
 	private String gender;
-	@XmlTransient
+	@XmlElement
 	private String problem;
-	@XmlTransient
+	@XmlElement
 	private String address;
 	@XmlTransient
 	private Doctor doctor;
