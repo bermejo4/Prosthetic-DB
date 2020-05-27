@@ -467,10 +467,7 @@ public class Menu {
 				currentdoctor.getHospital().setName(currenthospital.getName());
 				currentdoctor.setPatients(doctorManagerInterface.allPatientsOfDoctor(currentdoctor.getId()));
 			}
-			// System.out.println(currenthospital.getDoctors().toString());
-			// pat =
-			// patientManagerInterface.getPatient(currenthospital.getPatient().getId());
-			// currenthospital.setPatient(pat);
+			
 		}
 		marshalH.marshal(hospitalsListWeb, fileH);
 		if (InputFlow.areYouSure(reader, "Do you want to print the hospitals list XML?")) {
@@ -638,23 +635,25 @@ public class Menu {
 					doctorManagerInterface.addPatient(currentpatient);
 					currentpatient.setId(dbManagerInterface.getLastId());
 				}
-				
+			}
+			for(Prosthetic currentpros: currenthospital.getProsthetics()) {
+				for (Prosthetic prost : sdb.getProsthetics().getProsListWeb()) {
+					if(compare2Prosthetics(prost, currentpros)) {
+						hospitalManagerInterface.buy(currenthospital.getId(), prost.getId());
+					}
+				}
 			}
 		}
 		
 		for (Biomedical_Eng currentbiomed : sdb.getBiomedicals().getBiomedicalListWeb()) {
 			for (Prosthetic currentpros : sdb.getProsthetics().getProsListWeb()) {
 				for(Prosthetic prost :currentbiomed.getProstheticsList()) {
-					if(prost.getDimensions().equalsIgnoreCase(currentpros.getDimensions())&&prost.getMaterial().equalsIgnoreCase(currentpros.getMaterial())) {
+					if(compare2Prosthetics(prost, currentpros)) {
 						biomedManagerInterface.design(currentpros.getId(), currentbiomed.getId());
 					}
 				}
 			}
-			/*for (Prosthetic currentpros : currentbiomed.getProstheticsList()) {
-				System.out.println("currentpros.getid:"+currentpros.getMaterial());
-				System.out.println("currentbiomed.getId:"+currentbiomed.getId());
-				biomedManagerInterface.design(currentpros.getId(), currentbiomed.getId());
-			}*/
+			
 		}
 		
 		for (Prosthetic currentpros : sdb.getProsthetics().getProsListWeb()) {
@@ -663,33 +662,6 @@ public class Menu {
 			}
 			
 		}
-		
-		/*for (Hospital currenthospital : sdb.getHospitals().getHosptialListWeb()) {	
-			
-			}*/
-		
-		
-			
-			
-	
-		
-		/*for (Hospital currenthospital : sdb.getHospitals().getHosptialListWeb()) {
-				for (Prosthetic currentpros : sdb.getProsthetics().getProsListWeb()) {
-					//currentpros.getPatient().getDoctor().setId(id);
-
-					currentpros.getPatient().setId(dbManagerInterface.getLastId());
-					biomedManagerInterface.insert(currentpros);
-					currentpros.setId(dbManagerInterface.getLastId());
-					hospitalManagerInterface.buy(currenthospital.getId(), currentpros.getId());
-					doctorManagerInterface.assignProstheticToPatient(currentpros.getId(),currentpros.getPatient().getId());
-					
-						for (Biomedical_Eng currentbiomed : sdb.getBiomedicals().getBiomedicalListWeb()) {
-							biomedManagerInterface.design(currentpros.getId(), currentbiomed.getId());
-					}
-
-				}
-			
-		}*/
 
 	}
 
@@ -1297,6 +1269,17 @@ public class Menu {
 		int id = InputFlow.checkIdAndListHospital(patientManagerInterface.showHospitals());
 		doctorManagerInterface.insertDepartmentAndHospital(currentDoctorId, department, id);
 
+	}
+	public static boolean compare2Prosthetics(Prosthetic pros1, Prosthetic pros2) {
+		boolean check=false;
+		if(pros1.getType().equalsIgnoreCase(pros2.getType()) && pros1.getMaterial().equalsIgnoreCase(pros2.getMaterial())) {
+			if(pros1.getDimensions().equalsIgnoreCase(pros2.getDimensions())) {
+				if(pros1.getFailures().equalsIgnoreCase(pros2.getFailures())) {
+					check=true;
+				}
+			}
+		}
+		return check;
 	}
 
 	public static void pressEnter() {
