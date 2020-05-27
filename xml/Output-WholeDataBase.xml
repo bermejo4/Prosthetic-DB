@@ -33,6 +33,20 @@
                 </patients>
             </doctors>
             <doctors>
+                <name>Racheeeeel</name>
+                <lastname>Cameroooon</lastname>
+                <telephone>6666777777</telephone>
+                <department>Diagnosiiiiiiis</department>
+                <patients id="3">
+                    <name>Mariiiiie</name>
+                    <lastname>Curiiiiie</lastname>
+                    <telephone>77777888</telephone>
+                    <gender>Female</gender>
+                    <problem>Radioooooactivity</problem>
+                    <address>La Franceeeee</address>
+                </patients>
+            </doctors>
+            <doctors>
                 <name>Jaimy</name>
                 <lastname>Chase</lastname>
                 <telephone>324325345</telephone>
@@ -476,15 +490,6 @@
             <price>12.0</price>
             <failures>none</failures>
             <available>true</available>
-            <patient/>
-            <biomeds/>
-        </prosthetic>
-        <prosthetic type="Leg">
-            <material>Aluminium</material>
-            <dimensions>2x4x6</dimensions>
-            <price>12000.0</price>
-            <failures>none</failures>
-            <available>false</available>
             <patient/>
             <biomeds/>
         </prosthetic>
