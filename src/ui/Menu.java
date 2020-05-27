@@ -56,7 +56,6 @@ public class Menu {
 	private static boolean userUsing;
 	private static int userUsingNumber; // Only can be from 1 to 5
 	private static boolean logged;
-	
 
 	public static void main(String[] args) throws Exception {
 		// Connect with the database using JDBC.
@@ -105,10 +104,11 @@ public class Menu {
 			System.out.println("4.Hospital");
 			System.out.println("------------------------");
 			System.out.println("5. Go to the website.");
+			System.out.println("6. Settings");
 			System.out.println("\n0.Exit");
 			System.out.println("---------\n");
 
-			num = requestNumber(5);
+			num = requestNumber(6);
 			userUsingNumber = num;
 			userUsing = true;
 //------------------------------ while user ocupattion//num=1// en cada menu poner un back to the global menu
@@ -121,9 +121,9 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 					if (logged) {
-						System.out.println("3.Select a Hospital.");  
-						System.out.println("4.View appointments."); 
-						System.out.println("5.Change the credentials."); 
+						System.out.println("3.Select a Hospital.");
+						System.out.println("4.View appointments.");
+						System.out.println("5.Change the credentials.");
 						max = 5;
 					}
 					System.out.println("\n0.Back to choose other user to the main menu.\n");
@@ -135,7 +135,7 @@ public class Menu {
 						break;
 					case 2: // Login
 						loginMenu();
-						login(patientRole); 						
+						login(patientRole);
 						break;
 					case 3:
 						// First, we show all the hospitals
@@ -151,24 +151,24 @@ public class Menu {
 					case 5:
 						System.out.println("1.Change Username.\n2.Change Password.\n3.Change both.");
 						num = requestNumber(max);
-						User user=userManagerInterface.getUserByTelephone(patientUsing.getTelephone());
-						switch(num) {
-							case 1: 
-								userManagerInterface.updateUser(user,1);
-								break;
-							case 2:
-								userManagerInterface.updateUser(user, 2);
-								break;
-							case 3:
-								userManagerInterface.updateUser(user, 3);
-								break;
+						User user = userManagerInterface.getUserByTelephone(patientUsing.getTelephone());
+						switch (num) {
+						case 1:
+							userManagerInterface.updateUser(user, 1);
+							break;
+						case 2:
+							userManagerInterface.updateUser(user, 2);
+							break;
+						case 3:
+							userManagerInterface.updateUser(user, 3);
+							break;
 						}
-						
+
 						break;
 
 					default: // back
 						userUsing = false;
-						logged=false;
+						logged = false;
 
 					}
 					break;
@@ -217,41 +217,42 @@ public class Menu {
 						break;
 					case 7:
 						searchProsthetic();
-						prosId = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic you want to create the XML:");
+						prosId = InputFlow.takeInteger(reader,
+								"Introduce the ID of the prosthetic you want to create the XML:");
 						generateXML(prosId);
 						break;
-					case 8: 
+					case 8:
 						introduceDepartmentAndHospital(doctorUsing.getId());
 						break;
-				   
+
 					default: // back
 						userUsing = false;
-						logged=false;
+						logged = false;
 					}
 					break;
 
 //-----------------------------------------------------------------------------------
 
 				case 3: // Biomedical Engineer
-					
-					//agregar un switch o if para que no vuelva a salir
+
+					// agregar un switch o if para que no vuelva a salir
 					System.out.println("\nBIOMEDICAL ENGINEER MENU:");
 					System.out.println("What do you want to do?");
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
 					max = 2;
 
-					if(logged) {
+					if (logged) {
 
-					System.out.println("3. Upload a new Prosthetic.");
-					System.out.println("4. Modify a Prosthetic information.");
-					System.out.println("5. View Uploaded Prosthetics.");
-					System.out.println("6. Delete a Prosthetic.");
-					System.out.println("7. Upload a new Prosthetic through XML.");
+						System.out.println("3. Upload a new Prosthetic.");
+						System.out.println("4. Modify a Prosthetic information.");
+						System.out.println("5. View Uploaded Prosthetics.");
+						System.out.println("6. Delete a Prosthetic.");
+						System.out.println("7. Upload a new Prosthetic through XML.");
 
-				//	System.out.println("7. Edit user or password");
-				//	System.out.println("8. Delete account");
-					max = 7;
+						// System.out.println("7. Edit user or password");
+						// System.out.println("8. Delete account");
+						max = 7;
 
 					}
 					System.out.println("\n0.Back to choose other user to the main menu.");
@@ -271,15 +272,15 @@ public class Menu {
 
 					case 3: // Upload a new Prosthetic
 						Prosthetic pros = uploadProsthetic();
-						int prosID =dbManagerInterface.getLastId(); 
-					    designProsthetic(prosID);
+						int prosID = dbManagerInterface.getLastId();
+						designProsthetic(prosID);
 						break;
- 
+
 					case 4: // Modify Prosthetic information
 						searchProsthetic();
 
 						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be modified:");
-						modifyProstheticInfo(choice); 
+						modifyProstheticInfo(choice);
 						System.out.println("The prosthetic has been updated!");
 						designProsthetic(choice);
 						break;
@@ -291,22 +292,22 @@ public class Menu {
 
 					case 6: // Delete Prosthetic
 						searchProsthetic();
-						
+
 						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be deleted:");
 						deleteProsthetic(choice);
 						break;
-					//tengo que utilizar el metodo showbiomedics 
-						
-					//case 7: Edit user or password
-					
-					//case 8: Delete account
+					// tengo que utilizar el metodo showbiomedics
+
+					// case 7: Edit user or password
+
+					// case 8: Delete account
 					case 7:
 						admitProstheticXML();
 						break;
 
 					default: // back
 						userUsing = false;
-						logged=false;
+						logged = false;
 					}
 					break;
 
@@ -337,263 +338,411 @@ public class Menu {
 					case 3: // Buy a prosthetic
 						buyProsthetic();
 						break;
-					case 4: //Generate the XML of the hospital
+					case 4: // Generate the XML of the hospital
 						showHospitals();
-						int hospId = InputFlow.takeInteger(reader, "Please, introduce the id of the hospital you want to generate the XML");
+						int hospId = InputFlow.takeInteger(reader,
+								"Please, introduce the id of the hospital you want to generate the XML");
 						generateHospitalXML(hospId);
 						break;
 					default: // back
 						userUsing = false;
-						logged=false;
+						logged = false;
 					}
+					break;
+				case 5: 
+					goToWeb();
+					userUsing = false; 
 					break;
 				case 0:// Exit
 					dbManagerInterface.disconnect();
 					userManagerInterface.disconnect();
 					System.exit(0);
 					break;
-				default: goToWeb();
-				userUsing = false;
-				
+				default:
+					wholeDataBaseXml();
+					userUsing = false;
+					break;
 				}
-				
 			}
-
 			pressEnter();
 		}
 
 	}
 
 //-----------------------------------------------------------------------------------
+	public static void wholeDataBaseXml() throws JAXBException {
+		System.out.println("\nChoose an option:");
+		System.out.println("1. Generate the Xml document of whole Database.");
+		System.out.println("2. Import the Database from an XML document.");
+		System.out.println("\n0.Back.");
+		num=requestNumber(2);
+		switch(num) {
+		case 1:
+			generateWholeDataBaseXml();
+			break;
+		case 2: 
+			importWholeDataBaseXml();
+			break;
+		default:
+		}
+	}
 
 	public static void goToWeb() throws JAXBException {
-		generateWholeDataBaseXml();
 		prepareWebForProsthetics();
 		prepareWebForHospitals();
 		prepareWebForBiomedsEngineers();
 		System.out.println("Opening the Website...");
-        File filehtml = new File("");
-        //System.out.println("uri" + filehtml.toURI().toString()+"\n otro:"+filehtml.getAbsolutePath());
-        //openInBrowser("file://"+filehtml.getAbsolutePath()+"/src/arqui/pruebaparabases.html");
-        String url="file://"+filehtml.getAbsolutePath()+"/xml/homeProsthetic_db.html";
-        System.out.println("url: "+url);
-        try {
-            URI uri;
+		File filehtml = new File("");
+		// System.out.println("uri" + filehtml.toURI().toString()+"\n
+		// otro:"+filehtml.getAbsolutePath());
+		// openInBrowser("file://"+filehtml.getAbsolutePath()+"/src/arqui/pruebaparabases.html");
+		String url = "file://" + filehtml.getAbsolutePath() + "/xml/homeProsthetic_db.html";
+		System.out.println("url: " + url);
+		try {
+			URI uri;
 			try {
 				uri = new URL(url).toURI();
-				Desktop.getDesktop().browse(uri); 
+				Desktop.getDesktop().browse(uri);
 			} catch (URISyntaxException e) {
 				e.printStackTrace();
 			}
-        } catch (MalformedURLException ex) {
-        	ex.printStackTrace();
-        } catch (IOException ex) {
-        	ex.printStackTrace();
-        }
+		} catch (MalformedURLException ex) {
+			ex.printStackTrace();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 	}
+
 	private static void prepareWebForProsthetics() throws JAXBException {
-		//Create an Object where we push the Prothesis list, and a patient object 
+		// Create an Object where we push the Prothesis list, and a patient object
 		Patient pat = new Patient();
 		ProstheticsListing prosListWeb = new ProstheticsListing();
 		prosListWeb.setProsListWeb(new ArrayList<Prosthetic>());
 		prosListWeb.setProsListWeb(biomedManagerInterface.showProsthetic());
-		//Create a JAXBContext
+		// Create a JAXBContext
 		JAXBContext contextP = JAXBContext.newInstance(ProstheticsListing.class);
-		//Get the marshaller from the JAXBContext 
+		// Get the marshaller from the JAXBContext
 		Marshaller marshalP = contextP.createMarshaller();
-		//Pretty formating to predefine things
+		// Pretty formating to predefine things
 		marshalP.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		//Define the file where the XML is going to be written 
-		File fileP=new File("./xml/Output-Prosthetic.xml");
+		// Define the file where the XML is going to be written
+		File fileP = new File("./xml/Output-Prosthetic.xml");
 		for (Prosthetic currentpros : prosListWeb.getProsListWeb()) {
-            //System.out.println(currentpros.toString());
-            pat = patientManagerInterface.getPatient(currentpros.getPatient().getId());
-            //Assign to the current prosthetic object its patient through patient's id
-            currentpros.setPatient(pat);
-        }		
-		//Marshal the Prosthetic: first to a file and then to the screen
+			// System.out.println(currentpros.toString());
+			pat = patientManagerInterface.getPatient(currentpros.getPatient().getId());
+			// Assign to the current prosthetic object its patient through patient's id
+			currentpros.setPatient(pat);
+		}
+		// Marshal the Prosthetic: first to a file and then to the screen
 		marshalP.marshal(prosListWeb, fileP);
-		if(InputFlow.areYouSure(reader, "Do you want to print the Prosthetic list XML?")) {
-			//to print the XML
+		if (InputFlow.areYouSure(reader, "Do you want to print the Prosthetic list XML?")) {
+			// to print the XML
 			marshalP.marshal(prosListWeb, System.out);
 		}
-		//Transform the XML obtained into HTML through XSLT
+		// Transform the XML obtained into HTML through XSLT
 		Xml2Html converter = new Xml2Html();
-		converter.simpleTransform("./xml/Output-Prosthetic.xml", "./xml/ProstheticWebPT.xslt", "./xml/Prosthetictmp.html");
-		
+		converter.simpleTransform("./xml/Output-Prosthetic.xml", "./xml/ProstheticWebPT.xslt",
+				"./xml/Prosthetictmp.html");
+
 	}
-	
+
 	private static void prepareWebForHospitals() throws JAXBException {
 		HospitalsListing hospitalsListWeb = new HospitalsListing();
 		hospitalsListWeb.setHosptialListWeb(new ArrayList<Hospital>());
-		
+
 		hospitalsListWeb.setHosptialListWeb(patientManagerInterface.showHospitals());
-		
-		//Hospital
+
+		// Hospital
 		JAXBContext contextH = JAXBContext.newInstance(HospitalsListing.class);
-		//Get the marshaller from the JAXBContext 
+		// Get the marshaller from the JAXBContext
 		Marshaller marshalH = contextH.createMarshaller();
-		//Pretty formating to predefine things
+		// Pretty formating to predefine things
 		marshalH.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		//Define the file where the XML is going to be written 
-		File fileH=new File("./xml/Output-Hospital.xml");
+		// Define the file where the XML is going to be written
+		File fileH = new File("./xml/Output-Hospital.xml");
 		for (Hospital currenthospital : hospitalsListWeb.getHosptialListWeb()) {
 			currenthospital.setDoctors(doctorManagerInterface.doctorsInHospital(currenthospital.getId()));
+			currenthospital.setProsthetics(hospitalManagerInterface.getProstheticsFromHospital(currenthospital));
 			for (Doctor currentdoctor : currenthospital.getDoctors()) {
-				currentdoctor.getHospital().setName(currenthospital.getName());;
+				currentdoctor.getHospital().setName(currenthospital.getName());
+				currentdoctor.setPatients(doctorManagerInterface.allPatientsOfDoctor(currentdoctor.getId()));
 			}
-            //System.out.println(currenthospital.getDoctors().toString());
-            //pat = patientManagerInterface.getPatient(currenthospital.getPatient().getId());
-            //currenthospital.setPatient(pat);
-        }
+			// System.out.println(currenthospital.getDoctors().toString());
+			// pat =
+			// patientManagerInterface.getPatient(currenthospital.getPatient().getId());
+			// currenthospital.setPatient(pat);
+		}
 		marshalH.marshal(hospitalsListWeb, fileH);
-		if(InputFlow.areYouSure(reader, "Do you want to print the hospitals list XML?")) {
-			//to print XML
+		if (InputFlow.areYouSure(reader, "Do you want to print the hospitals list XML?")) {
+			// to print XML
 			marshalH.marshal(hospitalsListWeb, System.out);
 		}
-		//Transform the XML obtained into HTML through XSLT
+		// Transform the XML obtained into HTML through XSLT
 		Xml2Html converter = new Xml2Html();
 		converter.simpleTransform("./xml/Output-Hospital.xml", "./xml/ProstheticWebHPT.xslt", "./xml/Hospitaltmp.html");
-		
+
 	}
+
 	private static void prepareWebForBiomedsEngineers() throws JAXBException {
 		BiomedicalsListing biomedsListWeb = new BiomedicalsListing();
 		biomedsListWeb.setBiomedicalListWeb(new ArrayList<Biomedical_Eng>());
 		biomedsListWeb.setBiomedicalListWeb(biomedManagerInterface.showBiomedics());
-				
+
 		JAXBContext contextB = JAXBContext.newInstance(BiomedicalsListing.class);
-		//Get the marshaller from the JAXBContext 
+		// Get the marshaller from the JAXBContext
 		Marshaller marshalB = contextB.createMarshaller();
-		//Pretty formating to predefine things
+		// Pretty formating to predefine things
 		marshalB.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		//Define the file where the XML is going to be written 
-		File fileH=new File("./xml/Output-Biomedical.xml");
-		
+		// Define the file where the XML is going to be written
+		File fileH = new File("./xml/Output-Biomedical.xml");
+
 		for (Biomedical_Eng currentbiomed : biomedsListWeb.getBiomedicalListWeb()) {
-			System.out.println(currentbiomed.toString());
+			//System.out.println(currentbiomed.toString());
 			for (Prosthetic currentpros : currentbiomed.getProstheticsList()) {
-				System.out.println(currentpros.toString());
+				//System.out.println(currentpros.toString());
 			}
-            
-        }
+
+		}
 		marshalB.marshal(biomedsListWeb, fileH);
-		if(InputFlow.areYouSure(reader, "Do you want to print the biomedicals engineers list XML?")) {
-			//to print XML
+		if (InputFlow.areYouSure(reader, "Do you want to print the biomedicals engineers list XML?")) {
+			// to print XML
 			marshalB.marshal(biomedsListWeb, System.out);
 		}
-		//Transform the XML obtained into HTML through XSLT
+		// Transform the XML obtained into HTML through XSLT
 		Xml2Html converter = new Xml2Html();
-		converter.simpleTransform("./xml/Output-Biomedical.xml", "./xml/ProstheticWebBE.xslt", "./xml/Biomedicaltmp.html");
-		
+		converter.simpleTransform("./xml/Output-Biomedical.xml", "./xml/ProstheticWebBE.xslt",
+				"./xml/Biomedicaltmp.html");
+
 	}
+
 	private static void generateWholeDataBaseXml() throws JAXBException {
 		Patient pat = new Patient();
 		HospitalsListing hospitalsList = new HospitalsListing();
 		hospitalsList.setHosptialListWeb(new ArrayList<Hospital>());
+		
 		hospitalsList.setHosptialListWeb(patientManagerInterface.showHospitals());
 		for (Hospital currenthospital : hospitalsList.getHosptialListWeb()) {
 			currenthospital.setDoctors(doctorManagerInterface.doctorsInHospital(currenthospital.getId()));
+			currenthospital.setProsthetics(hospitalManagerInterface.getProstheticsFromHospital(currenthospital));
 			for (Doctor currentdoctor : currenthospital.getDoctors()) {
-				currentdoctor.getHospital().setName(currenthospital.getName());;
+				currentdoctor.getHospital().setName(currenthospital.getName());
+				currentdoctor.setPatients(doctorManagerInterface.allPatientsOfDoctor(currentdoctor.getId()));
 			}
-        }
+		}
 		BiomedicalsListing biomedsList = new BiomedicalsListing();
 		biomedsList.setBiomedicalListWeb(new ArrayList<Biomedical_Eng>());
 		biomedsList.setBiomedicalListWeb(biomedManagerInterface.showBiomedics());
-		
+
 		ProstheticsListing prosList = new ProstheticsListing();
 		prosList.setProsListWeb(new ArrayList<Prosthetic>());
 		prosList.setProsListWeb(biomedManagerInterface.showProsthetic());
 		for (Prosthetic currentpros : prosList.getProsListWeb()) {
-            //System.out.println(currentpros.toString());
-            pat = patientManagerInterface.getPatient(currentpros.getPatient().getId());
-            //Assign to the current prosthetic object its patient through patient's id
-            currentpros.setPatient(pat);
-        }
-		SuperDBListing superdb= new SuperDBListing(hospitalsList, biomedsList, prosList);
-		
+			// System.out.println(currentpros.toString());
+			pat = patientManagerInterface.getPatient(currentpros.getPatient().getId());
+			// Assign to the current prosthetic object its patient through patient's id
+			currentpros.setPatient(pat);
+		}
+		SuperDBListing superdb = new SuperDBListing(hospitalsList, biomedsList, prosList);
+
 		JAXBContext contextS = JAXBContext.newInstance(SuperDBListing.class);
-		//Get the marshaller from the JAXBContext 
+		// Get the marshaller from the JAXBContext
 		Marshaller marshalS = contextS.createMarshaller();
-		//Pretty formating to predefine things
+		// Pretty formating to predefine things
 		marshalS.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		//Define the file where the XML is going to be written 
-		File fileS=new File("./xml/Output-WholeDataBase.xml");
+		// Define the file where the XML is going to be written
+		File fileS = new File("./xml/Output-WholeDataBase.xml");
 		marshalS.marshal(superdb, fileS);
-		//to print XML
+		// to print XML
 		marshalS.marshal(superdb, System.out);
 	}
 
 	private static void generateXML(int prostheticID) throws Exception {
-		Prosthetic pros =biomedManagerInterface.getProstheticWithPatient(prostheticID);
+		Prosthetic pros = biomedManagerInterface.getProstheticWithPatient(prostheticID);
 		Patient pat = patientManagerInterface.getPatient(pros.getPatient().getId());
 		pros.setPatient(pat);
 		System.out.println(pros.toStringProstheticXML());
-		//Create a JAXBContext
+		// Create a JAXBContext
 		JAXBContext contextP = JAXBContext.newInstance(Prosthetic.class);
-		//Get the marshaller from the JAXBContext 
+		// Get the marshaller from the JAXBContext
 		Marshaller marshalP = contextP.createMarshaller();
-		//Pretty formating to predefine things
+		// Pretty formating to predefine things
 		marshalP.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		//Marshal the Prosthetic: first to a file and then to the screen
-		File fileP=new File("./xml/Output-Prosthetic.xml");
+		// Marshal the Prosthetic: first to a file and then to the screen
+		File fileP = new File("./xml/Output-Prosthetic.xml");
 		marshalP.marshal(pros, System.out);
 		marshalP.marshal(pros, fileP);
-		
-		
+
 	}
-	
-	
-	private static void admitProstheticXML() throws Exception {
-		JAXBContext contextP = JAXBContext.newInstance(Prosthetic.class);
-		//Here we get the unmarshaller
-		Unmarshaller unmarshal = contextP.createUnmarshaller();
-		//Open the file
-		String nameF= InputFlow.takeString(reader,"Type the filename for the XML document (expected in the xml folder):");
-		File file = new File("./xml/"+nameF);
+
+	private static void importWholeDataBaseXml() throws JAXBException {
+		JAXBContext contextS = JAXBContext.newInstance(SuperDBListing.class);
+		// Here we get the unmarshaller
+		Unmarshaller unmarshal = contextS.createUnmarshaller();
+		// Open the file
+		String nameF = InputFlow.takeString(reader,
+				"Type the filename for the XML document (expected in the xml folder):");
+		File file = new File("./xml/" + nameF);
 		boolean incorrectPros = false;
 		do {
-		 try {
-	        	// Create a DocumentBuilderFactory
-	            DocumentBuilderFactory dBF = DocumentBuilderFactory.newInstance();
-	            // Set it up so it validates XML documents
-	            dBF.setValidating(true);
-	            // Create a DocumentBuilder and an ErrorHandler (to check validity)
-	            DocumentBuilder builder = dBF.newDocumentBuilder();
-	            xml.utils.CustomErrorHandler customErrorHandler = new CustomErrorHandler();
-	            builder.setErrorHandler(customErrorHandler);
-	            // Parse the XML file and print out the result
-	            Document doc = builder.parse(file);
-	            
-	        } catch (ParserConfigurationException ex) {
-	            System.out.println(file + " error while parsing!");
-	            incorrectPros=true;
-	        } catch (SAXException ex) {
-	            System.out.println(file + " was not well-formed!");
-	            incorrectPros=true;
-	        } catch (IOException ex) {
-	            System.out.println(file + " was not accesible!");
-	            incorrectPros=true;
-	        }
-		}while(incorrectPros);
-		//Unmarshall the Prosthetic from a file
-		Prosthetic pros = (Prosthetic) unmarshal.unmarshal(file);
-		//We print the prosthetic that we are adding to the database
-		System.out.println("Added to the Prosthetic database: " + pros.toStringProstheticXML());
-		//Now we insert the prosthetic
-		biomedManagerInterface.insert(pros);
-		//We need the id of the prosthetic because it is not in the XML
-		int prosId=dbManagerInterface.getLastId();
-		List<Biomedical_Eng> biomeds = pros.getBiomeds();
-		for(Biomedical_Eng biomed: biomeds) {
-			biomedManagerInterface.design(prosId, biomed.getId());
+			try {
+				// Create a DocumentBuilderFactory
+				DocumentBuilderFactory dBF = DocumentBuilderFactory.newInstance();
+				// Set it up so it validates XML documents
+				dBF.setValidating(true);
+				// Create a DocumentBuilder and an ErrorHandler (to check validity)
+				DocumentBuilder builder = dBF.newDocumentBuilder();
+				xml.utils.CustomErrorHandler customErrorHandler = new CustomErrorHandler();
+				builder.setErrorHandler(customErrorHandler);
+				// Parse the XML file and print out the result
+				Document doc = builder.parse(file);
+
+			} catch (ParserConfigurationException ex) {
+				System.out.println(file + " error while parsing!");
+				incorrectPros = true;
+			} catch (SAXException ex) {
+				System.out.println(file + " was not well-formed!");
+				incorrectPros = true;
+			} catch (IOException ex) {
+				System.out.println(file + " was not accesible!");
+				incorrectPros = true;
+			}
+		} while (incorrectPros);
+
+		// Unmarshall the Prosthetic from a file
+		SuperDBListing sdb = (SuperDBListing) unmarshal.unmarshal(file);
+		// Prosthetic pros = (Prosthetic) unmarshal.unmarshal(file);
+		// We print the prosthetic that we are adding to the database
+		System.out.println("Added to the Prosthetic database: " + sdb.getProsthetics().toString());
+		// Now we insert the prosthetic
+		//boolean check1 = true, check2 = true, check3 = true;
+		for (Hospital currenthospital : sdb.getHospitals().getHosptialListWeb()) {
+			hospitalManagerInterface.addhospitalbyRegister(currenthospital);
+			currenthospital.setId(dbManagerInterface.getLastId());
+			}
+		for (Biomedical_Eng currentbiomed : sdb.getBiomedicals().getBiomedicalListWeb()) {
+			biomedManagerInterface.addBiomedbyRegister(currentbiomed);
+			currentbiomed.setId(dbManagerInterface.getLastId());
+		}
+		for (Prosthetic currentpros : sdb.getProsthetics().getProsListWeb()) {
+			biomedManagerInterface.insert(currentpros);
+			currentpros.setId(dbManagerInterface.getLastId());
+		}
+		for (Hospital currenthospital : sdb.getHospitals().getHosptialListWeb()) {	
+			for (Doctor currentdoctor : currenthospital.getDoctors()) {
+				doctorManagerInterface.addDoctorbyRegister(currentdoctor);
+				currentdoctor.setId(dbManagerInterface.getLastId());
+				doctorManagerInterface.insertDepartmentAndHospital(currentdoctor.getId(), currentdoctor.getDepartment(), currenthospital.getId());
+				for(Patient currentpatient: currentdoctor.getPatients()) {
+					//System.out.println(currentpatient.getName());
+					currentpatient.setDoctor(currentdoctor);					
+					doctorManagerInterface.addPatient(currentpatient);
+					currentpatient.setId(dbManagerInterface.getLastId());
+				}
+				
+			}
+		}
+		
+		for (Biomedical_Eng currentbiomed : sdb.getBiomedicals().getBiomedicalListWeb()) {
+			for (Prosthetic currentpros : sdb.getProsthetics().getProsListWeb()) {
+				for(Prosthetic prost :currentbiomed.getProstheticsList()) {
+					if(prost.getDimensions().equalsIgnoreCase(currentpros.getDimensions())&&prost.getMaterial().equalsIgnoreCase(currentpros.getMaterial())) {
+						biomedManagerInterface.design(currentpros.getId(), currentbiomed.getId());
+					}
+				}
+			}
+			/*for (Prosthetic currentpros : currentbiomed.getProstheticsList()) {
+				System.out.println("currentpros.getid:"+currentpros.getMaterial());
+				System.out.println("currentbiomed.getId:"+currentbiomed.getId());
+				biomedManagerInterface.design(currentpros.getId(), currentbiomed.getId());
+			}*/
+		}
+		
+		for (Prosthetic currentpros : sdb.getProsthetics().getProsListWeb()) {
+			if(currentpros.getId()!=null&&currentpros.getPatient().getId()!=null) {
+			doctorManagerInterface.assignProstheticToPatient(currentpros.getId(),currentpros.getPatient().getId());
+			}
 			
 		}
-	}
+		
+		/*for (Hospital currenthospital : sdb.getHospitals().getHosptialListWeb()) {	
+			
+			}*/
+		
+		
+			
+			
 	
+		
+		/*for (Hospital currenthospital : sdb.getHospitals().getHosptialListWeb()) {
+				for (Prosthetic currentpros : sdb.getProsthetics().getProsListWeb()) {
+					//currentpros.getPatient().getDoctor().setId(id);
+
+					currentpros.getPatient().setId(dbManagerInterface.getLastId());
+					biomedManagerInterface.insert(currentpros);
+					currentpros.setId(dbManagerInterface.getLastId());
+					hospitalManagerInterface.buy(currenthospital.getId(), currentpros.getId());
+					doctorManagerInterface.assignProstheticToPatient(currentpros.getId(),currentpros.getPatient().getId());
+					
+						for (Biomedical_Eng currentbiomed : sdb.getBiomedicals().getBiomedicalListWeb()) {
+							biomedManagerInterface.design(currentpros.getId(), currentbiomed.getId());
+					}
+
+				}
+			
+		}*/
+
+	}
+
+	private static void admitProstheticXML() throws Exception {
+		JAXBContext contextP = JAXBContext.newInstance(Prosthetic.class);
+		// Here we get the unmarshaller
+		Unmarshaller unmarshal = contextP.createUnmarshaller();
+		// Open the file
+		String nameF = InputFlow.takeString(reader,
+				"Type the filename for the XML document (expected in the xml folder):");
+		File file = new File("./xml/" + nameF);
+		boolean incorrectPros = false;
+		do {
+			try {
+				// Create a DocumentBuilderFactory
+				DocumentBuilderFactory dBF = DocumentBuilderFactory.newInstance();
+				// Set it up so it validates XML documents
+				dBF.setValidating(true);
+				// Create a DocumentBuilder and an ErrorHandler (to check validity)
+				DocumentBuilder builder = dBF.newDocumentBuilder();
+				xml.utils.CustomErrorHandler customErrorHandler = new CustomErrorHandler();
+				builder.setErrorHandler(customErrorHandler);
+				// Parse the XML file and print out the result
+				Document doc = builder.parse(file);
+
+			} catch (ParserConfigurationException ex) {
+				System.out.println(file + " error while parsing!");
+				incorrectPros = true;
+			} catch (SAXException ex) {
+				System.out.println(file + " was not well-formed!");
+				incorrectPros = true;
+			} catch (IOException ex) {
+				System.out.println(file + " was not accesible!");
+				incorrectPros = true;
+			}
+		} while (incorrectPros);
+		// Unmarshall the Prosthetic from a file
+		Prosthetic pros = (Prosthetic) unmarshal.unmarshal(file);
+		// We print the prosthetic that we are adding to the database
+		System.out.println("Added to the Prosthetic database: " + pros.toStringProstheticXML());
+		// Now we insert the prosthetic
+		biomedManagerInterface.insert(pros);
+		// We need the id of the prosthetic because it is not in the XML
+		int prosId = dbManagerInterface.getLastId();
+		List<Biomedical_Eng> biomeds = pros.getBiomeds();
+		for (Biomedical_Eng biomed : biomeds) {
+			biomedManagerInterface.design(prosId, biomed.getId());
+		}
+	}
+
 	public static Prosthetic uploadProsthetic() throws Exception {
 
-		System.out.println("Introduce the new Prosthetic: "); 
+		System.out.println("Introduce the new Prosthetic: ");
 		System.out.print("Specify Prosthetic type(ex. Below the knee, Auricular, etc):");
 		String pros_type = reader.readLine();
 		System.out.print("Material made of:");
@@ -618,25 +767,23 @@ public class Menu {
 	public static void designProsthetic(int prosID) throws Exception {
 
 		List<Biomedical_Eng> biomedsLists = biomedManagerInterface.showBiomedics();
-		
-		int biomed_id = biomedical_engUsing.getId(); 
+
+		int biomed_id = biomedical_engUsing.getId();
 		System.out.println("Biomedic with ID " + biomed_id + ",is now an author of the prosthetic with ID:" + prosID);
 
 		biomedManagerInterface.design(prosID, biomed_id);
 
 	}
-	
-	
 
 	public static void deleteProsthetic(int prosID) throws Exception {
 
 		Prosthetic pros = new Prosthetic();
 		pros = biomedManagerInterface.getProsthetic(prosID);
-		
+
 		if (InputFlow.areYouSure(reader, "Are you sure that do you want to delete this prosthetic?")) {
 			biomedManagerInterface.delete(pros);
 			System.out.println("The prosthetic has been deleted");
-		} 
+		}
 
 	}
 
@@ -763,7 +910,7 @@ public class Menu {
 		System.out.println("2.Password.");
 	}
 
-	//para que imprimir el register menu?
+	// para que imprimir el register menu?
 	public static void registerHospitalMenu() {
 		System.out.println("REGISTER MENU:");
 		System.out.println("1.Name of Hospital.");
@@ -781,15 +928,14 @@ public class Menu {
 		System.out.println("4.Failures.");
 		System.out.println("0.Back.");
 	}
-	
-	public static void wrongInfo(){
+
+	public static void wrongInfo() {
 		System.out.println("Wrong credentials, please select an option: ");
 		System.out.println("1. Introduce them again. ");
 		System.out.println("0. Go back to the menu. ");
 	}
-	
 
-	public static void login(Role role) throws Exception { //hacer option para go back 
+	public static void login(Role role) throws Exception { // hacer option para go back
 		boolean check = true;
 		do {
 			String telephone = InputFlow.takeTelephone(reader, "Introduce the phone number:");
@@ -800,12 +946,12 @@ public class Menu {
 			if (userCheck == null) {
 				wrongInfo();
 				int option = requestNumber(2);
-				switch(option) {
+				switch (option) {
 				case 1:
 					break;
 				case 0:
 					System.out.println("Press 0 to go back");
-					check=false;
+					check = false;
 				}
 			} else {
 				switch (userCheck.getRole().getRole()) {
@@ -813,33 +959,33 @@ public class Menu {
 					System.out.println("Welcome patient!");
 					patientUsing.setTelephone(telephone);
 					patientUsing = patientManagerInterface.searchSpecificPatientByTelephone(telephone);
-					
+
 					logged = true;
-					check=false;
+					check = false;
 					break;
 				case "doctor":
 					System.out.println("Welcome doctor!");
 					doctorUsing.setTelephone(telephone);
 					doctorUsing = doctorManagerInterface.searchSpecificDoctorByTelephone(telephone);
-					
+
 					logged = true;
-					check=false;
+					check = false;
 					break;
 				case "hospital":
 					System.out.println("You are in a hospital.");
 					hospitalUsing.setTelephone(telephone);
 					hospitalUsing = hospitalManagerInterface.searchSpecificHospitalByTelephone(telephone);
-					
+
 					logged = true;
-					check=false;
+					check = false;
 					break;
 				case "biomedical_Engineer":
 					System.out.println("Welcome biomedical engineer!");
 					biomedical_engUsing.setTelephone(telephone);
 					biomedical_engUsing = biomedManagerInterface.searchSpecificBiomedByTelephone(telephone);
-					
+
 					logged = true;
-					check=false;
+					check = false;
 					break;
 				default:
 					System.out.println("Invalid role.");
@@ -849,7 +995,6 @@ public class Menu {
 		} while (check);
 	}
 
-	
 	public static void register(Role role) {
 		String name = InputFlow.takeString(reader, "Introduce your name:");
 		String lastname = "error";
@@ -894,11 +1039,10 @@ public class Menu {
 		}
 
 	}
-	
+
 	public static void deleteUser() {
-		
+
 	}
-	
 
 	public static void searchPatientByTelephone() {
 		List<Patient> coiList = new ArrayList<Patient>();
@@ -917,7 +1061,7 @@ public class Menu {
 		}
 		pressEnter();
 	}
-	
+
 	public static void showHospitals() {
 		// To show all Hospitals in our data base
 		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
@@ -930,7 +1074,6 @@ public class Menu {
 			System.out.println("");
 		}
 	}
-	
 
 	public static void selectHospitalByID() {
 		Hospital hosp;
@@ -938,11 +1081,10 @@ public class Menu {
 		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
 		hosp = patientManagerInterface.selectHospitalByID(id);
 		patientManagerInterface.assignPatientToAHospital(id, pat);
-		//System.out.println("You have chosen:\n" + hosp.toStringXML());
-		//System.out.println("");
+		// System.out.println("You have chosen:\n" + hosp.toStringXML());
+		// System.out.println("");
 
 	}
-	
 
 	public static void viewDate() {
 		// To view your own date of fitting
@@ -963,7 +1105,7 @@ public class Menu {
 			break;
 		case 2: // Modify Patient
 			addPatient(true); // you are modifying also the dof
-			
+
 			break;
 		case 3: // Delete Patient
 			DeletePatient();
@@ -991,7 +1133,7 @@ public class Menu {
 			System.out.println("\nThis have been the coincidenses for the phone introduced.");
 			System.out.println("Now Introduce the Id number of the patient who want modify:\n");
 			num_id = InputFlow.takeInteger(reader, "Id number:");
-			
+
 		}
 		Patient pat;
 		System.out.println("Name:");
@@ -1004,18 +1146,18 @@ public class Menu {
 			// dof
 			LocalDate dayoffitting = InputFlow.takeDate(reader, "Day of Fitting (yyyy-MM-dd)");
 		}
-		
+
 		System.out.println("Address:");
 		String address = reader.readLine();
 		System.out.println("Phone number:");
 		String telephone = InputFlow.takeTelephone(reader, "Introduce a telephone: ");
 		System.out.println("Gender:");
 		String gender = InputFlow.takeGender(reader, "");
-		System.out.println("Problem:"); 
+		System.out.println("Problem:");
 		String problem = reader.readLine();
-		//doctorManagerInterface.doctorsInDatabase();
-		int doctor_id =InputFlow.checkIdAndListDoctor(doctorManagerInterface.doctorsInDatabase());
-		
+		// doctorManagerInterface.doctorsInDatabase();
+		int doctor_id = InputFlow.checkIdAndListDoctor(doctorManagerInterface.doctorsInDatabase());
+
 		Doctor doctor = new Doctor(doctor_id);
 		if (mood) {
 			pat = new Patient(name, lastname, telephone, Date.valueOf(dayofbirth), gender, problem, address, doctor);
@@ -1044,48 +1186,48 @@ public class Menu {
 		Prosthetic prost;
 		searchProstheticMenu();
 		int option = requestNumber(5);
-		boolean searched=true;
+		boolean searched = true;
 
 		List<Prosthetic> prostheticList = new ArrayList<Prosthetic>();
 		try {
 			do {
 				switch (option) {
-					
+
 				case 1:// material
 					System.out.println("Name of the material you are looking for:");
 					String materialpassed = reader.readLine();
 					prostheticList = doctorManagerInterface.selectProsthetic("material", materialpassed);
-					searched=false;
+					searched = false;
 					break;
 				case 2:// type
 					System.out.println("Specify which type of prosthetic you are looking for:");
 					String typepassed = reader.readLine();
 					prostheticList = doctorManagerInterface.selectProsthetic("type", typepassed);
-					searched=false;
+					searched = false;
 					break;
 				case 3:// dimension
 					System.out.println("Specify the dimensions of prosthetic you are looking for:");
 					String dimensionpassed = InputFlow.takeDimension();
 					prostheticList = doctorManagerInterface.selectProsthetic("dimension", dimensionpassed);
-					searched=false;
+					searched = false;
 					break;
 				case 4:// failures
 					System.out.println("Specify the kind of failures you are looking for:");
 					String failurespassed = reader.readLine();
 					prostheticList = doctorManagerInterface.selectProsthetic("failures", failurespassed);
-					searched=false;
+					searched = false;
 					break;
-				case 0: 
-					searched=false;
+				case 0:
+					searched = false;
 					break;
 				}
-			} while(searched);
-			
+			} while (searched);
+
 			if (prostheticList.isEmpty()) {
 
 				System.out.println("No file found for that search..Try again");
 				searchProsthetic();
-				
+
 			} else {
 
 				Iterator it = prostheticList.iterator();
@@ -1100,8 +1242,6 @@ public class Menu {
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 	public static void assignProsthetic() {
 		try {
@@ -1112,7 +1252,7 @@ public class Menu {
 			int num_id_pat = InputFlow.checkIdAndListPPatient(patientManagerInterface.showPatients());
 			doctorManagerInterface.assignProstheticToPatient(num_id_prost, num_id_pat);
 		} catch (Exception e) {
-			e.printStackTrace(); 
+			e.printStackTrace();
 		}
 	}
 
@@ -1131,35 +1271,33 @@ public class Menu {
 		int prosthetic_id = Integer.parseInt(reader.readLine());
 
 		// the specific hospital buys the prosthetic choosed
-		hospitalManagerInterface.buy(hospital_id , prosthetic_id);
-		
-		System.out.println("You bought this prosthetic: "+prosthetic_id);
+		hospitalManagerInterface.buy(hospital_id, prosthetic_id);
+
+		System.out.println("You bought this prosthetic: " + prosthetic_id);
 	}
-	
-	
-	private static void generateHospitalXML(int hospital_id) throws Exception{
+
+	private static void generateHospitalXML(int hospital_id) throws Exception {
 		Hospital hospital = hospitalManagerInterface.getHospitalwithPatient(hospital_id);
 		hospital.setDoctors(doctorManagerInterface.doctorsInHospital(hospital.getId()));
-		//Defining and creating  JAXB context
+		// Defining and creating JAXB context
 		JAXBContext contextHosp = JAXBContext.newInstance(Hospital.class);
-		//Creating the marshaller
+		// Creating the marshaller
 		Marshaller marsh = contextHosp.createMarshaller();
 		marsh.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		//We create the file to put the xml
+		// We create the file to put the xml
 		File file = new File("./xml/Output-Hospital.xml");
 		marsh.marshal(hospital, file);
 		System.out.println("\nThis is the XML of the hospital introduced:");
 		marsh.marshal(hospital, System.out);
-		pressEnter();	
+		pressEnter();
 	}
-	
+
 	private static void introduceDepartmentAndHospital(int currentDoctorId) {
-		String department=InputFlow.takeString(reader, "Introduce your department");		
-		int id= InputFlow.checkIdAndListHospital(patientManagerInterface.showHospitals());
+		String department = InputFlow.takeString(reader, "Introduce your department");
+		int id = InputFlow.checkIdAndListHospital(patientManagerInterface.showHospitals());
 		doctorManagerInterface.insertDepartmentAndHospital(currentDoctorId, department, id);
-		
+
 	}
-	
 
 	public static void pressEnter() {
 		System.out.println("Press enter to go to the main menu and continue...");
