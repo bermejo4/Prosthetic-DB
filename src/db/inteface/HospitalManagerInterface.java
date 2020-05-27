@@ -1,6 +1,8 @@
 package db.inteface;
 
 import pojos.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public interface HospitalManagerInterface {
@@ -11,6 +13,7 @@ public interface HospitalManagerInterface {
 	public Hospital getHospital(int hospital_id);
 	public Hospital searchSpecificHospitalByTelephone(String telephone);
 	public Hospital getHospitalwithPatient (int hospital_id);
-	
+	public ArrayList<Prosthetic> getProstheticsFromHospital(Hospital hospital);
+
 	
 }

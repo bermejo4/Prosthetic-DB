@@ -21,5 +21,6 @@ public interface DoctorManagerInterface {
 	public Doctor searchSpecificDoctorByTelephone(String telephone);
 	public ArrayList<Doctor> doctorsInHospital(int hospitalId);
 	public void insertDepartmentAndHospital(int id, String department, int hospital_id);
+	public ArrayList<Patient> allPatientsOfDoctor(int doctor_id);
 }
 
