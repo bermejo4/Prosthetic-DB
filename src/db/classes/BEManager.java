@@ -313,7 +313,7 @@ public class BEManager implements db.inteface.BEManagerInterface {
 					ResultSet rss = prep.executeQuery();
 					while (rss.next()) {
 						
-						int id= rss.getInt("prosthetic_id");
+						int id= rss.getInt(1);
 						String pros_type = rss.getString(2);
 						String material = rss.getString(3);
 						String dimensions = rss.getString(4);
