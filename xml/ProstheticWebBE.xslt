@@ -7,17 +7,22 @@
 			<head>
 				<title>Biomedical Engineer Transformation from Xml</title>
 				<link rel="stylesheet" href="ProstheticDbStyle.css"></link>
+				<style>
+				p{
+				color: yellow;
+				}
+				</style>
 			</head>
 			<body>
-				<div id="container">
+				<div id="containerBE">
 					<xsl:for-each select="Biomedicals/Biomedical">
-						<div id="boundsHosp">
+						<div id="boundsBE">
 							<p>
-								<b><img class="image3" src="imagesForHtml/hospital.png"> Name: </img></b>
+								<b><img class="image3" src="imagesForHtml/patient.png"> Name: </img></b>
 								<xsl:value-of select="name" />
 							</p>
 							<p>
-								<b><img class="image3" src="imagesForHtml/location.png">Last Name: </img></b>
+								<b><img class="image3" src="imagesForHtml/patient.png"> Last Name: </img></b>
 								<xsl:value-of select="lastname" />
 							</p>
 							<p>
@@ -26,7 +31,7 @@
 							</p>
 							<p>
 								<b>
-									<img class="image3" src="imagesForHtml/doctor.png"> Prosthetics: </img> <br /> 
+									<img class="image3" src="imagesForHtml/arm.png"> Prosthetics: </img> <br /> 
 									<table>
 										<tr>
 											<th>Type</th>
