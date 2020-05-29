@@ -32,49 +32,49 @@ public class PatientManager implements PatientManagerInterface {
 		}
 	}
 	
-	public ArrayList<Hospital> showHospitals() {
+	public ArrayList<Doctor> showDoctors() {
 		// To show all Hospitals in our data base
-		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
+		ArrayList<Doctor> doctorList = new ArrayList<Doctor>();
 		try {
-			String sql = "SELECT * FROM hospital";
+			String sql = "SELECT * FROM doctor";
 			PreparedStatement prep = c.prepareStatement(sql);
 			ResultSet rs = prep.executeQuery();
 			while (rs.next()) {
-				int hosId = rs.getInt("hospital_id");
-				String hosName = rs.getString("name");
-				String hosLocat = rs.getString("location");
-				String hosTele = rs.getString("telephone");
+				int docId = rs.getInt("doctor_id");
+				String docName = rs.getString("name");
+				String docLocat = rs.getString("lastname");
+				String docTele = rs.getString("telephone");
 				
-				Hospital newHospital = new Hospital(hosId, hosName, hosLocat, hosTele);
-				hospitalList.add(newHospital);
+				Doctor newDoctor = new Doctor(docId, docName, docLocat, docTele);
+				doctorList.add(newDoctor);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return hospitalList;
+		return doctorList;
 	}
 
 
-	public Hospital selectHospitalByID(int id) {
-		Hospital hosSelected= new Hospital();
+	public Doctor selectDoctorByID(int id) {
+		Doctor docSelected= new Doctor();
 		try {
-			String sql = "SELECT * FROM hospital WHERE hospital_id LIKE ?";
+			String sql = "SELECT * FROM doctor WHERE doctor_id LIKE ?";
 			PreparedStatement prep = c.prepareStatement(sql);
 			prep.setInt(1, id);
 			ResultSet rs = prep.executeQuery();
 			while(rs.next()) {
-				int hospital_id = rs.getInt("hospital_id");
+				int doc_id = rs.getInt("doctor_id");
 				String name = rs.getString("name");
-				String location = rs.getString("location");
+				String lastname = rs.getString("lastname");
 				String telephone = rs.getString("telephone");
-				hosSelected= new Hospital(hospital_id, name, location, telephone);
+				docSelected= new Doctor(doc_id, name, lastname, telephone);
 			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return hosSelected;
+		return docSelected;
 		
 	}
 	
@@ -115,19 +115,41 @@ public class PatientManager implements PatientManagerInterface {
 		
 	}
 	
-	public void assignPatientToAHospital(int hos_id, Patient pat) {
+	public void assignPatientToADoctor(int doc_id, Patient pat) {
 		try {
-			String sql = "UPDATE hospital SET patient_id=? WHERE hospital_id=?;";
+			String sql = "UPDATE patient SET doctor_id=? WHERE patient_id=?;";
 			PreparedStatement prep = c.prepareStatement(sql);
 			int id = pat.getId();
-			prep.setInt(1, id);
-			prep.setInt(2, hos_id);
+			prep.setInt(1, doc_id);
+			prep.setInt(2, id);
 			prep.executeUpdate();
 			prep.close();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public ArrayList<Hospital> showHospitals() {
+		// To show all Hospitals in our data base
+		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
+		try {
+			String sql = "SELECT * FROM hospital";
+			PreparedStatement prep = c.prepareStatement(sql);
+			ResultSet rs = prep.executeQuery();
+			while (rs.next()) {
+				int hosId = rs.getInt("hospital_id");
+				String hosName = rs.getString("name");
+				String hosLocat = rs.getString("location");
+				String hosTele = rs.getString("telephone");
+				
+				Hospital newHospital = new Hospital(hosId, hosName, hosLocat, hosTele);
+				hospitalList.add(newHospital);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return hospitalList;
 	}
 	public Patient searchSpecificPatientByTelephone(String telephone) {
 		Patient patientfound=new Patient();
