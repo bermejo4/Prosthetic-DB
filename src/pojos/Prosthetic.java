@@ -201,9 +201,17 @@ public class Prosthetic implements Serializable {
 
 	@Override
 	public String toString() {
+		if(biomeds.isEmpty()) {
+		return "Prosthetic [id=" + id + ", type=" + type + ", material=" + material + ", price=" + price
+					+ ", dimensions=" + dimensions + ", failures=" + failures + ", numberFailures=" + numberFailures
+					+ ", available=" + available + ", hospital_id=" + hospital.getId() + "]";
+			
+		}
+		else {
 		return "Prosthetic [id=" + id + ", type=" + type + ", material=" + material + ", price=" + price
 				+ ", dimensions=" + dimensions + ", failures=" + failures + ", numberFailures=" + numberFailures
-				+ ", available=" + available + ", hospital_id=" + hospital.getId() + "]";
+				+ ", available=" + available + ", hospital_id=" + hospital.getId() +", biomedical engineers ="+ biomeds+ "]";
+		}
 	}
 
 	public String toStringProstheticXML() {
