@@ -235,24 +235,28 @@ public class Menu {
 
 				case 3: // Biomedical Engineer
 
-					// agregar un switch o if para que no vuelva a salir
+					// we add an if so that once logged in this options don't appear 
+					if(logged==false) {
 					System.out.println("\nBIOMEDICAL ENGINEER MENU:");
 					System.out.println("What do you want to do?");
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
+					}
 					max = 2;
-
+					
 					if (logged) {
+						System.out.println("Select the number for the desired option:");
 
 						System.out.println("3. Upload a new Prosthetic.");
 						System.out.println("4. Modify a Prosthetic information.");
 						System.out.println("5. View Uploaded Prosthetics.");
 						System.out.println("6. Delete a Prosthetic.");
 						System.out.println("7. Upload a new Prosthetic through XML.");
+						System.out.println("8. View the authors of each prosthetic.");
 
 						// System.out.println("7. Edit user or password");
 						// System.out.println("8. Delete account");
-						max = 7;
+						max = 9;
 
 					}
 					System.out.println("\n0.Back to choose other user to the main menu.");
@@ -296,7 +300,6 @@ public class Menu {
 						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be deleted:");
 						deleteProsthetic(choice);
 						break;
-					// tengo que utilizar el metodo showbiomedics
 
 					// case 7: Edit user or password
 
@@ -304,7 +307,11 @@ public class Menu {
 					case 7:
 						admitProstheticXML();
 						break;
+					case 8:
 
+						viewAuthors();
+						break;
+ 
 					default: // back
 						userUsing = false;
 						logged = false;
@@ -665,6 +672,14 @@ public class Menu {
 		}
 
 	}
+	
+	private static void viewAuthors() throws Exception{
+		
+		List<Biomedical_Eng> biomedsLists = biomedManagerInterface.showBiomedics();
+		
+		System.out.println(biomedsLists);	
+		
+	}
 
 	private static void admitProstheticXML() throws Exception {
 		JAXBContext contextP = JAXBContext.newInstance(Prosthetic.class);
@@ -739,8 +754,6 @@ public class Menu {
 
 	public static void designProsthetic(int prosID) throws Exception {
 
-		List<Biomedical_Eng> biomedsLists = biomedManagerInterface.showBiomedics();
-
 		int biomed_id = biomedical_engUsing.getId();
 		System.out.println("Biomedic with ID " + biomed_id + ",is now an author of the prosthetic with ID:" + prosID);
 
@@ -806,11 +819,12 @@ public class Menu {
 
 		String newAV = reader.readLine();
 		boolean av = true;
-		av = InputFlow.takeAvailable(newAV);
-
+		
 		if (newAV.equals("")) {
 
 			av = prosToModify.getAvailable();
+		}else {
+			av = InputFlow.takeAvailable(newAV);
 		}
 
 		Prosthetic updatedPros = new Prosthetic(prosID, newType, newMaterial, newPrice, newDimensions, newFailures, av);
@@ -1204,7 +1218,7 @@ public class Menu {
 					break;
 				case 0:
 					searched = false;
-					break;
+					
 				}
 			} while (searched);
 
