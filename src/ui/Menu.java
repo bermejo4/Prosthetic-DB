@@ -308,8 +308,10 @@ public class Menu {
 						admitProstheticXML();
 						break;
 					case 8:
+						searchProsthetic();
 
-						viewAuthors();
+						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to see its authors: ");
+						viewAuthors(choice);
 						break;
  
 					default: // back
@@ -672,11 +674,10 @@ public class Menu {
 
 	}
 	
-	private static void viewAuthors() throws Exception{
+	private static void viewAuthors(int prosID ) throws Exception{
 		
-		List<Biomedical_Eng> biomedsLists = biomedManagerInterface.showBiomedics();
-		
-		System.out.println(biomedsLists);	
+		Prosthetic prosthetic = biomedManagerInterface.getProstheticMM(prosID);
+		System.out.println(prosthetic);	
 		
 	}
 
@@ -1217,6 +1218,7 @@ public class Menu {
 					break;
 				case 0:
 					searched = false;
+					break;
 					
 				}
 			} while (searched);

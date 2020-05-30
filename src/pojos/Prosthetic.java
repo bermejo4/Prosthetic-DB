@@ -203,7 +203,7 @@ public class Prosthetic implements Serializable {
 	public String toString() {
 		return "Prosthetic [id=" + id + ", type=" + type + ", material=" + material + ", price=" + price
 				+ ", dimensions=" + dimensions + ", failures=" + failures + ", numberFailures=" + numberFailures
-				+ ", available=" + available + ", hospital_id=" + hospital.getId() + "]";
+				+ ", available=" + available + ", hospital=" + hospital + ", biomeds=" + biomeds + "]";
 	}
 
 	public String toStringProstheticXML() {

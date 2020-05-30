@@ -225,6 +225,8 @@ public class BEManager implements db.inteface.BEManagerInterface {
 	public void design(int prosthetic_id, int be_id) {
 
 		try {
+			//si el id ya existe solo agregarle una prosthetic 
+		
 			String sql = "INSERT INTO biomed_pros (prosID , beID) " + "VALUES (?,?);";
 			PreparedStatement prep = c.prepareStatement(sql);
 
