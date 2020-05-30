@@ -387,6 +387,7 @@ public class Menu {
 		}
 	}
 
+	
 	public static void goToWeb() throws JAXBException {
 		prepareWebForProsthetics();
 		prepareWebForHospitals();
