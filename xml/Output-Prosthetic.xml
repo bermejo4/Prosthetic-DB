@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<<<<<<< HEAD
 <prosthetic type="Hand">
     <material>titanium</material>
     <dimensions>7.2x15.3x2.8</dimensions>
@@ -11,3 +12,19 @@
     </patient>
     <biomeds/>
 </prosthetic>
+=======
+<prosthetics>
+    <prosthetic type="knee">
+        <material>titanium</material>
+        <dimensions>20.0x20.0x20.0</dimensions>
+        <price>12000.0</price>
+        <failures>none</failures>
+        <available>false</available>
+        <patient id="2">
+            <name>drake </name>
+            <lastname>bell</lastname>
+        </patient>
+        <biomeds/>
+    </prosthetic>
+</prosthetics>
+>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git

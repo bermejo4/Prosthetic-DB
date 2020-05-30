@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<<<<<<< HEAD
 <Biomedicals/>
+=======
+<Biomedicals>
+    <Biomedical>
+        <name>gabriela</name>
+        <lastname>apicella</lastname>
+        <telephone>112112112</telephone>
+        <Prosthetic type="knee">
+            <material>titanium</material>
+            <dimensions>20.0x20.0x20.0</dimensions>
+            <price>12000.0</price>
+            <failures>none</failures>
+            <available>false</available>
+            <patient id="2"/>
+            <biomeds/>
+        </Prosthetic>
+    </Biomedical>
+</Biomedicals>
+>>>>>>> branch 'master' of https://github.com/bermejo4/Prosthetic-DB.git

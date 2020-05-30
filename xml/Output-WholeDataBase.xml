@@ -33,20 +33,6 @@
                 </patients>
             </doctors>
             <doctors>
-                <name>Racheeeeel</name>
-                <lastname>Cameroooon</lastname>
-                <telephone>6666777777</telephone>
-                <department>Diagnosiiiiiiis</department>
-                <patients id="3">
-                    <name>Mariiiiie</name>
-                    <lastname>Curiiiiie</lastname>
-                    <telephone>77777888</telephone>
-                    <gender>Female</gender>
-                    <problem>Radioooooactivity</problem>
-                    <address>La Franceeeee</address>
-                </patients>
-            </doctors>
-            <doctors>
                 <name>Jaimy</name>
                 <lastname>Chase</lastname>
                 <telephone>324325345</telephone>
@@ -228,6 +214,11 @@
                     <gender>Male</gender>
                     <problem>Cleptomany</problem>
                     <address>UK</address>
+                </patients>
+                <patients id="241">
+                    <name>Marina</name>
+                    <lastname>Miguelez</lastname>
+                    <telephone>610167672</telephone>
                 </patients>
             </doctors>
             <prosthetics type="Hip">

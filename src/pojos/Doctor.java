@@ -186,6 +186,9 @@ public class Doctor implements Serializable{
 	public void setPatients(List<Patient> patients) {
 		this.patients = patients;
 	}
+	public String toStringPat() {
+		return "Doctor [id=" + id + ", name=" + name + ", lastname=" + lastname + ", telephone=" + telephone+"]";
+	}
 	
 
 

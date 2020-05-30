@@ -121,7 +121,7 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 					if (logged) {
-						System.out.println("3.Select a Hospital.");
+						System.out.println("3.Select a Doctor.");
 						System.out.println("4.View appointments.");
 						System.out.println("5.Change the credentials.");
 						max = 5;
@@ -138,11 +138,11 @@ public class Menu {
 						login(patientRole);
 						break;
 					case 3:
-						// First, we show all the hospitals
-						System.out.println("The list of the available hospitals is:\n");
-						showHospitals();
+						// First, we show all the doctors
+						System.out.println("The list of the available doctors is:\n");
+						showDoctors();
 
-						selectHospitalByID();
+						selectDoctorByID();
 
 						break;
 					case 4:
@@ -235,24 +235,28 @@ public class Menu {
 
 				case 3: // Biomedical Engineer
 
-					// agregar un switch o if para que no vuelva a salir
+					// we add an if so that once logged in this options don't appear 
+					if(logged==false) {
 					System.out.println("\nBIOMEDICAL ENGINEER MENU:");
 					System.out.println("What do you want to do?");
 					System.out.println("1.Register.");
 					System.out.println("2.Login.");
+					}
 					max = 2;
-
+					
 					if (logged) {
+						System.out.println("Select the number for the desired option:");
 
 						System.out.println("3. Upload a new Prosthetic.");
 						System.out.println("4. Modify a Prosthetic information.");
 						System.out.println("5. View Uploaded Prosthetics.");
 						System.out.println("6. Delete a Prosthetic.");
 						System.out.println("7. Upload a new Prosthetic through XML.");
+						System.out.println("8. View the authors of each prosthetic.");
 
 						// System.out.println("7. Edit user or password");
 						// System.out.println("8. Delete account");
-						max = 7;
+						max = 9;
 
 					}
 					System.out.println("\n0.Back to choose other user to the main menu.");
@@ -296,7 +300,6 @@ public class Menu {
 						choice = InputFlow.takeInteger(reader, "Introduce the ID of the prosthetic to be deleted:");
 						deleteProsthetic(choice);
 						break;
-					// tengo que utilizar el metodo showbiomedics
 
 					// case 7: Edit user or password
 
@@ -304,7 +307,11 @@ public class Menu {
 					case 7:
 						admitProstheticXML();
 						break;
+					case 8:
 
+						viewAuthors();
+						break;
+ 
 					default: // back
 						userUsing = false;
 						logged = false;
@@ -387,6 +394,7 @@ public class Menu {
 		}
 	}
 
+	
 	public static void goToWeb() throws JAXBException {
 		prepareWebForProsthetics();
 		prepareWebForHospitals();
@@ -664,6 +672,14 @@ public class Menu {
 		}
 
 	}
+	
+	private static void viewAuthors() throws Exception{
+		
+		List<Biomedical_Eng> biomedsLists = biomedManagerInterface.showBiomedics();
+		
+		System.out.println(biomedsLists);	
+		
+	}
 
 	private static void admitProstheticXML() throws Exception {
 		JAXBContext contextP = JAXBContext.newInstance(Prosthetic.class);
@@ -738,8 +754,6 @@ public class Menu {
 
 	public static void designProsthetic(int prosID) throws Exception {
 
-		List<Biomedical_Eng> biomedsLists = biomedManagerInterface.showBiomedics();
-
 		int biomed_id = biomedical_engUsing.getId();
 		System.out.println("Biomedic with ID " + biomed_id + ",is now an author of the prosthetic with ID:" + prosID);
 
@@ -805,11 +819,12 @@ public class Menu {
 
 		String newAV = reader.readLine();
 		boolean av = true;
-		av = InputFlow.takeAvailable(newAV);
-
+		
 		if (newAV.equals("")) {
 
 			av = prosToModify.getAvailable();
+		}else {
+			av = InputFlow.takeAvailable(newAV);
 		}
 
 		Prosthetic updatedPros = new Prosthetic(prosID, newType, newMaterial, newPrice, newDimensions, newFailures, av);
@@ -842,6 +857,18 @@ public class Menu {
 			System.out.println("");
 		}
 
+	}
+	public static void showHospitals() {
+		// To show all Hospitals in our data base
+		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
+		Hospital hosp;
+		hospitalList = patientManagerInterface.showHospitals();
+		Iterator it = hospitalList.iterator();
+		while (it.hasNext()) {
+			hosp = (Hospital) it.next();
+			System.out.println(hosp.toStringXML());
+			System.out.println("");
+		}
 	}
 
 	public static int requestNumber(int max) {
@@ -1034,25 +1061,25 @@ public class Menu {
 		pressEnter();
 	}
 
-	public static void showHospitals() {
+	public static void showDoctors() {
 		// To show all Hospitals in our data base
-		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
-		Hospital hosp;
-		hospitalList = patientManagerInterface.showHospitals();
-		Iterator it = hospitalList.iterator();
+		ArrayList<Doctor> doctorList = new ArrayList<Doctor>();
+		Doctor doc;
+		doctorList = patientManagerInterface.showDoctors();
+		Iterator it = doctorList.iterator();
 		while (it.hasNext()) {
-			hosp = (Hospital) it.next();
-			System.out.println(hosp.toStringXML());
+			doc = (Doctor) it.next();
+			System.out.println(doc.toStringPat());
 			System.out.println("");
 		}
 	}
 
-	public static void selectHospitalByID() {
-		Hospital hosp;
+	public static void selectDoctorByID() {
+		Doctor doc;
 		Patient pat = patientUsing;
-		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
-		hosp = patientManagerInterface.selectHospitalByID(id);
-		patientManagerInterface.assignPatientToAHospital(id, pat);
+		int id = InputFlow.takeInteger(reader, "Introduce the id of the doctor you want to select:");
+		doc = patientManagerInterface.selectDoctorByID(id);
+		patientManagerInterface.assignPatientToADoctor(id, pat);
 		// System.out.println("You have chosen:\n" + hosp.toStringXML());
 		// System.out.println("");
 
@@ -1191,7 +1218,7 @@ public class Menu {
 					break;
 				case 0:
 					searched = false;
-					break;
+					
 				}
 			} while (searched);
 
