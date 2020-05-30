@@ -1,236 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <hospitals>
-    <hospital name="BMC">
-        <address>Boston</address>
-        <telephone>3453465676</telephone>
+    <hospital name="La paz">
+        <address>plaza castilla</address>
+        <telephone>123456789</telephone>
+    </hospital>
+    <hospital name="la paz madrid ">
+        <address>plaza castilla</address>
+        <telephone>123123123</telephone>
+    </hospital>
+    <hospital name="quiron">
+        <address>madrid</address>
+        <telephone>345345345</telephone>
+    </hospital>
+    <hospital name="santa sofia">
+        <address>gijon</address>
+        <telephone>123456777</telephone>
         <doctors>
-            <name>Gregory </name>
-            <lastname>House</lastname>
-            <telephone>345345345</telephone>
-            <department>Diagnosis</department>
-            <patients id="2">
-                <name>Albert</name>
-                <lastname>Einstein</lastname>
-                <telephone>456464</telephone>
-                <gender>Male</gender>
-                <problem>Relativity</problem>
-                <address>Germany</address>
-            </patients>
+            <name>pedro</name>
+            <lastname>pi</lastname>
+            <telephone>123123321</telephone>
+            <department>cardiology</department>
         </doctors>
-        <doctors>
-            <name>Rachel</name>
-            <lastname>Cameron</lastname>
-            <telephone>345345345</telephone>
-            <department>Diagnosis</department>
-            <patients id="3">
-                <name>Marie</name>
-                <lastname>Curie</lastname>
-                <telephone>456456</telephone>
-                <gender>Female</gender>
-                <problem>Radioactivity</problem>
-                <address>La France</address>
-            </patients>
-        </doctors>
-        <doctors>
-            <name>Jaimy</name>
-            <lastname>Chase</lastname>
-            <telephone>324325345</telephone>
-            <department>Diagnosis</department>
-            <patients id="5">
-                <name>Niels</name>
-                <lastname>Bohr</lastname>
-                <telephone>3453453</telephone>
-                <gender>Male</gender>
-                <problem>Atomicity</problem>
-                <address>Germany</address>
-            </patients>
-        </doctors>
-        <doctors>
-            <name>James</name>
-            <lastname>Wilson</lastname>
-            <telephone>34534534657</telephone>
-            <department>Oncology</department>
-        </doctors>
-        <doctors>
-            <name>George</name>
-            <lastname>Foreman</lastname>
-            <telephone>46554645675</telephone>
-            <department>Neurology</department>
-            <patients id="6">
-                <name>Ada</name>
-                <lastname>Byron</lastname>
-                <telephone>2342342</telephone>
-                <gender>Female</gender>
-                <problem>Progamming</problem>
-                <address>UK</address>
-            </patients>
-        </doctors>
-        <prosthetics type="Leg">
-            <material>Aluminium</material>
-            <dimensions>2x4x6</dimensions>
+    </hospital>
+    <hospital name="universitario">
+        <address>arguelles</address>
+        <telephone>120120120</telephone>
+    </hospital>
+    <hospital name="ramon y cajal">
+        <address>gran via</address>
+        <telephone>123444555</telephone>
+    </hospital>
+    <hospital name="saint john ">
+        <address>toledo</address>
+        <telephone>123321123</telephone>
+        <prosthetics type="knee">
+            <material>titanium</material>
+            <dimensions>20.0x20.0x20.0</dimensions>
             <price>12000.0</price>
             <failures>none</failures>
             <available>false</available>
-            <patient id="4"/>
+            <patient id="2"/>
             <biomeds/>
         </prosthetics>
-        <prosthetics type="Nose">
-            <material>Plastic</material>
-            <dimensions>1x1x0.5</dimensions>
-            <price>2000.0</price>
-            <failures>none</failures>
-            <available>false</available>
-            <patient id="3"/>
-            <biomeds/>
-        </prosthetics>
-    </hospital>
-    <hospital name="Hospital General">
-        <address>Segovia</address>
-        <telephone>34534543</telephone>
-        <doctors>
-            <name>James</name>
-            <lastname>Watson</lastname>
-            <telephone>67878967</telephone>
-            <department>Crime</department>
-            <patients id="8">
-                <name>Charles</name>
-                <lastname>Darwin</lastname>
-                <telephone>854375934</telephone>
-                <gender>Male</gender>
-                <problem>Monkeys</problem>
-                <address>Australia</address>
-            </patients>
-        </doctors>
-        <doctors>
-            <name>Ibn</name>
-            <lastname>Sina</lastname>
-            <telephone>45746554</telephone>
-            <department>General</department>
-        </doctors>
-        <doctors>
-            <name>Jaime</name>
-            <lastname>Bermejo</lastname>
-            <telephone>11</telephone>
-            <department>Geneal</department>
-        </doctors>
-        <prosthetics type="Arm">
-            <material>Iron</material>
-            <dimensions>1x3x7</dimensions>
-            <price>13000.0</price>
-            <failures>nene</failures>
-            <available>false</available>
-            <patient id="5"/>
-            <biomeds/>
-        </prosthetics>
-        <prosthetics type="Leg">
-            <material>Wood</material>
-            <dimensions>5x6x4</dimensions>
-            <price>4000.0</price>
-            <failures>none</failures>
-            <available>false</available>
-            <patient id="4"/>
-            <biomeds/>
-        </prosthetics>
-    </hospital>
-    <hospital name="Hospital de la Misericordia">
-        <address>Segovia</address>
-        <telephone>456456456</telephone>
-        <doctors>
-            <name>Sigmund</name>
-            <lastname>Freud</lastname>
-            <telephone>3768954321</telephone>
-            <department>Psicology</department>
-            <patients id="9">
-                <name>Margarita</name>
-                <lastname>Salas</lastname>
-                <telephone>458734897</telephone>
-                <gender>Female</gender>
-                <problem>Bacterias</problem>
-                <address>España</address>
-            </patients>
-        </doctors>
-        <doctors>
-            <name>Alexander</name>
-            <lastname>Fleming</lastname>
-            <telephone>9875746847</telephone>
-            <department>Laboratory</department>
-            <patients id="4">
-                <name>Nikola</name>
-                <lastname>Tesla</lastname>
-                <telephone>453847534</telephone>
-                <gender>Male</gender>
-                <problem>Electricity</problem>
-                <address>Chequia</address>
-            </patients>
-        </doctors>
-        <prosthetics type="Heart">
-            <material>Gold</material>
-            <dimensions>2x2x2</dimensions>
-            <price>13000.0</price>
-            <failures>none</failures>
-            <available>true</available>
-            <patient id="0"/>
-            <biomeds/>
-        </prosthetics>
-    </hospital>
-    <hospital name="La Paz">
-        <address>Madrid</address>
-        <telephone>4554656456</telephone>
-        <doctors>
-            <name>Ramón</name>
-            <lastname>Y Cajal</lastname>
-            <telephone>867534534</telephone>
-            <department>Laboratory</department>
-        </doctors>
-        <doctors>
-            <name>Hipócrates</name>
-            <lastname>El Griego</lastname>
-            <telephone>453465645654</telephone>
-            <department>General</department>
-        </doctors>
-        <prosthetics type="Hand">
-            <material>Cooper</material>
-            <dimensions>3x2x1</dimensions>
-            <price>3000.0</price>
-            <failures>none</failures>
-            <available>false</available>
-            <patient id="6"/>
-            <biomeds/>
-        </prosthetics>
-    </hospital>
-    <hospital name="12 de Octuble">
-        <address>Madrid</address>
-        <telephone>456456456</telephone>
-        <doctors>
-            <name>Fernando</name>
-            <lastname>Simón</lastname>
-            <telephone>34543534</telephone>
-            <department>Co-Vid19</department>
-            <patients id="7">
-                <name>Tomas</name>
-                <lastname>Alba-Edinson</lastname>
-                <telephone>45345345</telephone>
-                <gender>Male</gender>
-                <problem>Cleptomany</problem>
-                <address>UK</address>
-            </patients>
-        </doctors>
-        <prosthetics type="Hip">
-            <material>Steel</material>
-            <dimensions>3x3x4</dimensions>
-            <price>20000.0</price>
-            <failures>none</failures>
-            <available>true</available>
-            <patient id="0"/>
-            <biomeds/>
-        </prosthetics>
-    </hospital>
-    <hospital name="Puerta de Hierro">
-        <address>Madrid</address>
-        <telephone>5464564565</telephone>
-    </hospital>
-    <hospital name="Infanta Sofía">
-        <address>Madrid</address>
-        <telephone>4564564565</telephone>
     </hospital>
 </hospitals>

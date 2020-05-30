@@ -138,7 +138,7 @@ public class Menu {
 						login(patientRole);
 						break;
 					case 3:
-						// First, we show all the hospitals
+						// First, we show all the doctors
 						System.out.println("The list of the available doctors is:\n");
 						showDoctors();
 
@@ -396,6 +396,7 @@ public class Menu {
 		}
 	}
 
+	
 	public static void goToWeb() throws JAXBException {
 		prepareWebForProsthetics();
 		prepareWebForHospitals();
