@@ -121,7 +121,7 @@ public class Menu {
 					System.out.println("2.Login.");
 					max = 2;
 					if (logged) {
-						System.out.println("3.Select a Hospital.");
+						System.out.println("3.Select a Doctor.");
 						System.out.println("4.View appointments.");
 						System.out.println("5.Change the credentials.");
 						max = 5;
@@ -138,11 +138,11 @@ public class Menu {
 						login(patientRole);
 						break;
 					case 3:
-						// First, we show all the hospitals
-						System.out.println("The list of the available hospitals is:\n");
-						showHospitals();
+						// First, we show all the doctors
+						System.out.println("The list of the available doctors is:\n");
+						showDoctors();
 
-						selectHospitalByID();
+						selectDoctorByID();
 
 						break;
 					case 4:
@@ -843,6 +843,18 @@ public class Menu {
 		}
 
 	}
+	public static void showHospitals() {
+		// To show all Hospitals in our data base
+		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
+		Hospital hosp;
+		hospitalList = patientManagerInterface.showHospitals();
+		Iterator it = hospitalList.iterator();
+		while (it.hasNext()) {
+			hosp = (Hospital) it.next();
+			System.out.println(hosp.toStringXML());
+			System.out.println("");
+		}
+	}
 
 	public static int requestNumber(int max) {
 		// int max is the maximum option that is acceptable
@@ -1034,25 +1046,25 @@ public class Menu {
 		pressEnter();
 	}
 
-	public static void showHospitals() {
+	public static void showDoctors() {
 		// To show all Hospitals in our data base
-		ArrayList<Hospital> hospitalList = new ArrayList<Hospital>();
-		Hospital hosp;
-		hospitalList = patientManagerInterface.showHospitals();
-		Iterator it = hospitalList.iterator();
+		ArrayList<Doctor> doctorList = new ArrayList<Doctor>();
+		Doctor doc;
+		doctorList = patientManagerInterface.showDoctors();
+		Iterator it = doctorList.iterator();
 		while (it.hasNext()) {
-			hosp = (Hospital) it.next();
-			System.out.println(hosp.toStringXML());
+			doc = (Doctor) it.next();
+			System.out.println(doc.toStringPat());
 			System.out.println("");
 		}
 	}
 
-	public static void selectHospitalByID() {
-		Hospital hosp;
+	public static void selectDoctorByID() {
+		Doctor doc;
 		Patient pat = patientUsing;
-		int id = InputFlow.takeInteger(reader, "Introduce the id of the hospital you want to select:");
-		hosp = patientManagerInterface.selectHospitalByID(id);
-		patientManagerInterface.assignPatientToAHospital(id, pat);
+		int id = InputFlow.takeInteger(reader, "Introduce the id of the doctor you want to select:");
+		doc = patientManagerInterface.selectDoctorByID(id);
+		patientManagerInterface.assignPatientToADoctor(id, pat);
 		// System.out.println("You have chosen:\n" + hosp.toStringXML());
 		// System.out.println("");
 
