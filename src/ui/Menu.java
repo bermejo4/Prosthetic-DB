@@ -252,7 +252,7 @@ public class Menu {
 						System.out.println("5. View Uploaded Prosthetics.");
 						System.out.println("6. Delete a Prosthetic.");
 						System.out.println("7. Upload a new Prosthetic through XML.");
-						System.out.println("8. View the authors of each prosthetic.");
+						//System.out.println("8. View the authors of each prosthetic.");
 
 						// System.out.println("7. Edit user or password");
 						// System.out.println("8. Delete account");
