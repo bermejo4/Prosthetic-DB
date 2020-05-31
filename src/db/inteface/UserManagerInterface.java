@@ -20,7 +20,7 @@ public interface UserManagerInterface {
 
 	List<Role> getRoles();
 
-	public void updateUser(User user, int num);
+	public void updateUser(String username, byte[] password, int num);
 
 	public void deleteUser(User user);
 	public User getUserByTelephone(String telephone);

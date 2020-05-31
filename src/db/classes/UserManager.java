@@ -1,6 +1,10 @@
 package db.classes;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.security.MessageDigest;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
@@ -14,6 +18,7 @@ import pojos.Doctor;
 import pojos.Patient;
 import pojos.Role;
 import pojos.User;
+import ui.InputFlow;
 
 
 public class UserManager implements UserManagerInterface {
@@ -72,24 +77,44 @@ public class UserManager implements UserManagerInterface {
 	}
 	
 	@Override
-	public void updateUser(User user, int num) {
-		em = Persistence.createEntityManagerFactory("Prosthetic-provider").createEntityManager();
-		
-		em.getTransaction().begin();
-		switch(num) {
-			case 1: user.setUsername(user.getUsername());
-				break;//If you want to modify only your username(telephone)
-			case 2: user.setPassword(user.getPassword());
-			break;
-			case 3: //To modify both of them
-				user.setUsername(user.getUsername());
-				user.setPassword(user.getPassword());
-				break;
+	public void updateUser(String username, byte[] password, int num) {
+		try {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		Role patientRole = new Role("patient");
+		Query q = em.createNativeQuery("SELECT * FROM users WHERE username = ?", User.class);
+		q.setParameter(1,username);
+		User user = (User) q.getSingleResult();
+				switch(num) {
+					case 1: 
+						String newTelephone = InputFlow.takeTelephone(reader, "Introduce your new phone number:");
+						em.getTransaction().begin();
+						user.setUsername(newTelephone);
+						em.getTransaction().commit();
+						break;//If you want to modify only your username(telephone)
+					case 2: 
+						byte[] newPassword = InputFlow.takePasswordAndHashIt(reader, "Introduce the new password:");
+						em.getTransaction().begin();
+						user.setPassword(newPassword);
+						em.getTransaction().commit();
+						break;
+					case 3: //To modify both of them
+						String newTel = InputFlow.takeTelephone(reader, "Introduce your new phone number:");
+						em.getTransaction().begin();
+						user.setUsername(newTel);
+						em.getTransaction().commit();
+						byte[] newPas = InputFlow.takePasswordAndHashIt(reader, "Introduce the new password:");
+						em.getTransaction().begin();
+						user.setPassword(newPas);
+						em.getTransaction().commit();
+						break;
+					}
 			}
-		em.getTransaction().commit();
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		em.close();
 	}
-	// its going to be a real user if the password is checked
+
 	
 	
 	public void deleteUser(User user) {

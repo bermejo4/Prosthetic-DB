@@ -151,16 +151,18 @@ public class Menu {
 					case 5:
 						System.out.println("1.Change Username.\n2.Change Password.\n3.Change both.");
 						num = requestNumber(max);
-						User user = userManagerInterface.getUserByTelephone(patientUsing.getTelephone());
 						switch (num) {
 						case 1:
-							userManagerInterface.updateUser(user, 1);
+							byte[] password1 = getPassword(patientRole);
+							userManagerInterface.updateUser(patientUsing.getTelephone(), password1, 1);
 							break;
 						case 2:
-							userManagerInterface.updateUser(user, 2);
+							byte[] password2 = getPassword(patientRole);
+							userManagerInterface.updateUser(patientUsing.getTelephone(), password2, 2);
 							break;
 						case 3:
-							userManagerInterface.updateUser(user, 3);
+							byte[] password3 = getPassword(patientRole);
+							userManagerInterface.updateUser(patientUsing.getTelephone(),  password3,3);
 							break;
 						}
 
@@ -1310,6 +1312,17 @@ public class Menu {
 		}
 		return check;
 	}
+
+	
+	public static byte[] getPassword(Role role) {
+		byte[] password;
+			password = InputFlow.takePasswordAndHashIt(reader, "Introduce the password:");
+			User user = new User(patientUsing.getTelephone(), password, role);
+			User userCheck = userManagerInterface.checkPassword(user);
+
+			return password;
+	}
+	
 
 	public static void pressEnter() {
 		System.out.println("Press enter to go to the main menu and continue...");
